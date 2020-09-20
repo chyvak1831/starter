@@ -1,0 +1,5 @@
+/node_modules
+/assets/css
+/assets/js/plugins.js
+/assets/js/scripts.js
+/package-lock.json

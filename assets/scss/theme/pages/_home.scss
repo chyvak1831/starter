@@ -1,0 +1,20 @@
+.fullwidth_carousel {
+	margin-bottom: 6%;
+	.carousel_control_next, .carousel_control_prev {
+		svg {
+			font-size: 25px;
+			fill: $white;
+		}
+	}
+	picture {
+		width: 100%;
+		@media (max-width: 375px) {height: calc(calc(100vw - 10px) / 1.520833333333333);}
+		@media (min-width: 376px) and (max-width: 575px) {height: calc(calc(100vw - 10px) / 1.822916666666667);}
+		@media (min-width: 576px) {height: 258px;}
+		@media (min-width: 768px) {height: 384px;}
+		@media (min-width: 1200px) {height: 480px;}
+		@media (max-width: 375px) {&.carousel_img_mobile {display: block !important;}}
+		@media (min-width: 376px) and (max-width: 991px) {&.carousel_img_tablet {display: block !important;}}
+		@media (min-width: 992px) {&.carousel_img_desktop {display: block !important;}}
+	}
+}

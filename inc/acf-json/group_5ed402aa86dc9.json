@@ -1,0 +1,83 @@
+{
+    "key": "group_5ed402aa86dc9",
+    "title": "Filter widget",
+    "fields": [
+        {
+            "key": "field_5ed41e1444651",
+            "label": "Display type desktop",
+            "name": "filter_display_type_desktop",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "filter_desktop_list": "List",
+                "filter_desktop_dropdown": "Dropdown",
+                "filter_desktop_collapse": "Collapse"
+            },
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_5ed402b45938b",
+            "label": "Display type mobile",
+            "name": "filter_display_type_mobile",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "filter_mobile_list": "List",
+                "filter_mobile_dropdown": "Dropdown",
+                "filter_mobile_collapse": "Collapse"
+            },
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "widget",
+                "operator": "==",
+                "value": "woocommerce_layered_nav"
+            }
+        ],
+        [
+            {
+                "param": "widget",
+                "operator": "==",
+                "value": "woocommerce_price_filter"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1591022118
+}

@@ -1,0 +1,120 @@
+// logged/unlogged users
+.user_logged .display_logout {display: none !important;}
+.user_unlogged .display_logged {display: none !important;}
+
+
+// menu-items
+.menu-item > a, .wishlist_products_counter {
+	@include flex_align(flex-start);
+	color: inherit;
+	flex-wrap: nowrap;
+	position: relative;
+	transition: all 0.1s linear;
+	.menu_icon {
+		display: block;
+		margin-right: 3px;
+		order: -1;
+		width: 1em;
+		svg {width: 100%;}
+	}
+	.screen-reader-text ~ .menu_icon, &.no-txt .menu_icon {margin-right: 0;}
+}
+.menu-item {
+	img[srcset$="svg"] {width: 100%;}
+	.notifications_text, .wishlist_products_counter_number {
+		position: absolute;
+		left: -1.3em;
+		top: -0.3em;
+	}
+}
+
+
+// subnavs - dropdowns
+svg.arrow {
+	height: 0.7em;
+	margin-left: 3px;
+	width: 0.7em;
+}
+[aria-expanded="true"] svg.arrow {transform: rotate(200grad);}
+.menu_nested_dropdown .dropdown-menu {color: inherit;}
+@media (min-width: 768px) {
+	.dropdown_left:not(.menu_nested_list) {
+		.sub-menu {
+			svg.arrow {transform: rotate(-100grad);}
+			.sub-menu {
+				left: 100%;
+				top: 0;
+			}
+		}
+	}
+	.dropdown_right:not(.menu_nested_list) {
+		> .dropdown-menu {
+			left: auto;
+			right: 0;
+		}
+		.sub-menu {
+			svg.arrow {
+				order: -1;
+				margin: 0 3px 0 0;
+				transform: rotate(100grad);
+			}
+			.sub-menu {
+				left: auto;
+				right: 100%;
+				top: 0;
+			}
+		}
+	}
+}
+.dropdown_fullwidth {
+	position: static;
+	> .sub-menu {
+		left: 0 !important;
+		margin: -1px 0 0;
+		width: 100%;
+		> li {flex-grow: 1;}
+	}
+}
+.arrow_hide > [data-toggle="dropdown"], .arrow_hide > [data-toggle="collapse"] {> svg.arrow {display: none;}}
+
+
+// menu list
+.menu_nested_list {
+	position: static;
+	> a {display: none;}
+	> .dropdown-menu {
+		background: none;
+		border: none;
+		box-shadow: none;
+		color: inherit;
+		float: none;
+		font-size: inherit;
+		margin: 0;
+		min-width: 0;
+		position: static;
+		> li > .dropdown-item {
+			background: none;
+			color: inherit;
+			padding: 0;
+		}
+	}
+}
+
+
+// menu collapse
+@mixin nested_collapse() {
+	> .collapse, > .collapsing {
+		background: #fff;
+		top: 100%;
+		left: 0px;
+		max-height: 70vh;
+		overflow: auto;
+		position: absolute;
+		width: 100%;
+		z-index: 9;
+		> li {margin-bottom: 0;}
+		a {padding: 10px 20px;}
+	}
+}
+@media (min-width: 992px) {.menu_nested_collapse {@include nested_collapse();}}
+@media (max-width: 991px) {.menu > .menu_nested_collapse {@include nested_collapse();}}

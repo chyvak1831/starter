@@ -1,0 +1,52 @@
+// styles for next/prev buttons
+.wrap_carousel {position: relative;}
+.carousel_control_prev, .carousel_control_next {
+	@include flex_align();
+	bottom: 0;
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	z-index: 2;
+	svg {
+		fill: $primary;
+		font-size: 15px;
+		height: 2em;
+		width: 2em;
+	}
+	&.swiper-button-disabled {display: none !important;}
+}
+.carousel_control_prev {left: 0;}
+.carousel_control_next {
+	right: 0;
+	transform: rotate(200grad);
+}
+
+// thumbnail carousel
+.thumbnail_carousel {
+	margin: 0 auto;
+	padding: 0 30px;
+	max-width: 570px; // carousel width + 2 arrows
+	width: 100%;
+	.thumbnail {
+		cursor: pointer;
+		display: inline-block;
+		font-size: 10px;
+		height: 8em;
+		width: 8em;
+	}
+	.is_active {border: 2px solid $primary;}
+}
+
+// full-container item's carousel
+.wrap_carousel .wraper_product {
+	margin-bottom: 56px;
+	padding: 10px;
+	@media (max-width: 767px) {padding: 5px;}
+}
+.container_product_carousel {
+	@media (min-width: 1200px) {max-width: 1160px;}
+	@media (min-width: 992px) and (max-width: 1199px) {max-width: 980px;}
+	@media (min-width: 768px) and (max-width: 991px) {max-width: 740px;}
+	@media (min-width: 576px) and (max-width: 767px) {max-width: 550px;}
+	@media (max-width: 575px) {padding: 0;}
+}

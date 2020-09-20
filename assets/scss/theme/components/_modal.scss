@@ -1,0 +1,38 @@
+.modal {
+	.modal-title {
+		font-size: 14px;
+		font-weight: 600;
+		text-transform: uppercase;
+	}
+	.close svg {
+		font-size: 10px;
+		height: 2em;
+		width: 2em;
+	}
+
+	// image modal
+	&.img_modal {
+		.modal-dialog {
+			margin: 0 auto !important;
+			max-width: 960px;
+			width: 100%;
+		}
+		.modal-body {padding-bottom: 0;padding-top: 0;}
+		.item_img {cursor: pointer;}
+		.thumbnail_carousel {
+			@media (max-width: 767px) and (min-width: 480px) {max-width: 400px;}
+			@media (max-width: 479px) {max-width: 315px;}
+		}
+	}
+
+	// comment confirm modal
+	&.comment_confirm_modal {
+		.alert svg {
+			height: 3em;
+			float: left;
+			margin-right: 20px;
+			width: 3em;
+		}
+		.modal-footer .row {width: 100%;}
+	}
+}

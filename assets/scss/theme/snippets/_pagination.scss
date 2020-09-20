@@ -1,0 +1,10 @@
+.woocommerce-pagination {
+	width: 100%;
+	a {
+		@include flex_align();
+		border: 1px solid;
+		line-height: 1em;
+		padding: 8px 10px;
+		text-decoration: none!important;
+	}
+}

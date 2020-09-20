@@ -1,0 +1,12 @@
+.item_img {
+	@include flex_align(center);
+	overflow: hidden;
+	max-width: 100%;
+	img {max-height: 100%;}
+}
+.object_fit img {
+	object-fit: cover;
+	height: 100%;
+	max-height: none !important;
+	width: 100%;
+}

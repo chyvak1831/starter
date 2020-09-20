@@ -1,0 +1,25 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "Ready workspace for frontend for many tasks. JS: clean unnecessary js for bootstrap.js, concatenation all js files into one minified files; css: clean unnecessary css, compilation scss to css, concatenation all css files into one minified files, extracts & inlines critical (above-the-fold) CSS to html; images: image optimization",
+  "author": "Ivan Frolov, Vitalii Mykhailov",
+  "license": "ISC",
+  "dependencies": {
+    "browser-sync": "2.26.7",
+    "critical": "0.9.1",
+    "gulp": "4.0.2",
+    "gulp-autoprefixer": "7.0.1",
+    "gulp-changed": "4.0.2",
+    "gulp-clean-css": "4.3.0",
+    "gulp-concat": "2.6.1",
+    "gulp-if": "3.0.0",
+    "gulp-sass": "4.0.2",
+    "gulp-sourcemaps": "2.6.5",
+    "jquery": "3.4.1",
+    "bootstrap": "4.4.0",
+    "popper.js": "1.16.1",
+    "lazysizes": "5.2.0",
+    "swiper": "5.3.1",
+    "blueimp-file-upload": "10.8.0"
+  }
+}

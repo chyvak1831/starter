@@ -1,0 +1,26 @@
+.wrap_rating_list {
+	font-size: 12px;
+	position: relative;
+	.list {
+		flex-wrap: nowrap;
+		overflow: hidden;
+		li {
+			margin: 0 1px;
+			&::after {display: none;}
+		}
+	}
+	svg {
+		height: 1em;
+		width: 1em;
+	}
+	.filled_star {
+		left: 0;
+		position: absolute;
+		top: 0;
+		transition: width 0.2s linear;
+	}
+}
+.count_votes {
+	font-size: 14px;
+	line-height: 1em;
+}
