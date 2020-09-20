@@ -1,0 +1,2 @@
+# starter
+Starter WooCommerce theme.
