@@ -68,7 +68,7 @@ Probably Starter will works with other plugin versions - but with versions below
   <img src="https://github.com/chyvak1831/starter_img/blob/master/ewww.jpg?raw=true" alt="EWWW settings"></details>
 *  [TinyMCE Advanced](https://wordpress.org/plugins/tinymce-advanced/) >= 5.5.0
     <details><summary>Show details</summary>
-    After installation go to settings copy settings
+    After installation copy settings
     
       ```json
       {
@@ -90,9 +90,10 @@ Probably Starter will works with other plugin versions - but with versions below
         }
       }
     ```
+    Go to settings 
     <img src="https://github.com/chyvak1831/starter_img/blob/master/wysiwyg_01.jpg?raw=true" alt="TinyMCE settings 1">
     <img src="https://github.com/chyvak1831/starter_img/blob/master/wysiwyg_02.jpg?raw=true" alt="TinyMCE settings 2">
-    and paste here
+    And paste here
     <img src="https://github.com/chyvak1831/starter_img/blob/master/wysiwyg_03.jpg?raw=true" alt="TinyMCE settings 3">
     </details>
 * [WooCommerce](https://wordpress.org/plugins/woocommerce/) >= 4.4.1
@@ -120,7 +121,7 @@ Probably Starter will works with other plugin versions - but with versions below
   ```bash
   gulp
   ```  
-Add port 4000 for to get browserSync reloads.
+Open site with port 4000 for to get (browserSync)[https://browsersync.io/docs/gulp] reloads.
 
 **Production task**:
   ```bash
