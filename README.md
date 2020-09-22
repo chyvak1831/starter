@@ -300,36 +300,36 @@ Wordpress menus extended by ACF so it allows **to generate header** prototype.
 There are 6 menu locations are provided by Starter: 'Header Top Area', 'Header Main Area', 'Header Mobile Top Area', 'Header Mobile Area', 'Footer Area', 'Service Area'.  
 
 ### How to use
-**I)** Add **simple menu** - that's default wordpress menu.
+I) Add simple menu - that's default wordpress menu.
 <details><summary><strong>Simple menu GIF example</strong></summary>
   <img src="https://github.com/chyvak1831/starter_img/blob/master/menu_simple.gif?raw=true" alt="Menu Simple">
 </details>
 
-**II)** Add **image and icons** :
+II) Add image and icons:
  * image: it's possible to use any image format but highly recommended to use svg
  * icons: allowed svg only
 <details><summary><strong>Image and icons GIF example</strong></summary>
   <img src="https://github.com/chyvak1831/starter_img/blob/master/menu_img_icon.gif?raw=true" alt="Menu Image Icon">
 </details>
 
-**III)** Add **widgets to menus**: so far we used simple links in menus - let's to add **interactive elements**!  
-To use widgets in menus install plugin *WP Widget in Navigation* -> goto 'Appearance->Widgets' and **drag&drop** default widgets or widgets provided by plugins. 
+III) Add widgets to menus: so far we used simple links in menus - let's to add *interactive elements*!  
+To use widgets in menus install plugin *WP Widget in Navigation* -> goto 'Appearance->Widgets' and *drag&drop* default widgets or widgets provided by plugins. 
 See example below how to setup minicart, woo search and AWS search, TI wishlist.
 <details id="widgets_example"><summary><strong>Widgets (search, minicart, wishlist) in menu GIF example</strong></summary>
   <img src="https://github.com/chyvak1831/starter_img/blob/master/menu_widgets.gif?raw=true" alt="Menu Image Icon">
 </details>
 
-**IV)** **Nested menu settings**.
+IV) Nested menu settings.
 <details><summary><strong>Categories widget, nested menu settings GIF example</strong></summary>
   <img src="https://github.com/chyvak1831/starter_img/blob/master/menu_widgets.gif?raw=true" alt="Menu Image Icon">
 </details>
 
-**IV)** Add one more level menu (top).
+IV) Add one more level menu (top).
 <details><summary><strong>Top menu GIF example</strong></summary>
   <img src="https://github.com/chyvak1831/starter_img/blob/master/menu_top.gif?raw=true" alt="Menu Image Icon">
 </details>
 
-**V)** Add **mobile** menu.
+V) Add mobile menu.
 <details><summary><strong>Mobile menu GIF example</strong></summary>
   <img src="https://github.com/chyvak1831/starter_img/blob/master/menu_mobile.gif?raw=true" alt="Mobile Menu">
 </details>
