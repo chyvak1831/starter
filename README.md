@@ -121,7 +121,7 @@ Probably Starter will works with other plugin versions - but with versions below
   ```bash
   gulp
   ```  
-Open site with port 4000 for to get (browserSync)[https://browsersync.io/docs/gulp] reloads.
+Open site with port 4000 for to get [browserSync](https://browsersync.io/docs/gulp) reloads.
 
 **Production task**:
   ```bash
