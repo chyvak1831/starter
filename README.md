@@ -36,7 +36,6 @@ Open source, free to use - [MIT](https://choosealicense.com/licenses/mit/) licen
 
 
 # ❔ About
-You **don't like digging in woo hooks** to implement client's design? If yes - say 🖕 to hooks and develop woo shop using custom templates!  
 This theme **keeps your time**: it provides main ecommerce pages ready to easy and fast customize (home, catalog, single page) and a few great **features which usually used or must have**.
 
 #### ✔️ Pros
@@ -59,7 +58,7 @@ Probably Starter will works with other plugin versions - but with versions below
 * [WordPress](https://wordpress.org/) >= 5.5
 * [ACF](https://wordpress.org/plugins/advanced-custom-fields/) >= 5.9.0
   <details><summary>Show details</summary>
-  You can to install: "ACF Pro" - all features available or Basic ACF - is not available Home Page features and you'll not see comment images in admin due gallery and repeater features are not available in free version.<br>
+  You can to install: <strong>"ACF Pro"</strong> - <em>all features available</em> or <strong>Basic ACF</strong> - <em>is not available Home Page features</em> and you'll not see <em>comment images</em> in admin due gallery and repeater features are not available in free version.<br>
   After installation go to ACF and sync fields.
   <img src="https://github.com/chyvak1831/starter_img/blob/master/acf_sync.jpg?raw=true" alt="ACF sync settings"></details>
 * [Classic Editor](https://wordpress.org/plugins/classic-editor/) >= 1.6
@@ -98,6 +97,10 @@ Probably Starter will works with other plugin versions - but with versions below
     </details>
 * [WooCommerce](https://wordpress.org/plugins/woocommerce/) >= 4.4.1
 * [W3 Total Cache](https://wordpress.org/plugins/w3-total-cache/) >= 0.14.4
+  <details><summary>Show details</summary>
+  W3TC used for optimize page cache and js only.
+  <img src="https://github.com/chyvak1831/starter_img/blob/master/w3tc_01.jpg?raw=true" alt="W3TC settings 1">
+  <img src="https://github.com/chyvak1831/starter_img/blob/master/w3tc_02.jpg?raw=true" alt="W3TC settings 2"></details>
 * [Node.js](https://nodejs.org/) >= 14.8.0
 
 ### 🔧 Setup
@@ -112,7 +115,6 @@ Probably Starter will works with other plugin versions - but with versions below
     ```
 
 ### 🚀 Build commands
-Development preparation: open file ```config.js``` and replace each ```yourdomain``` into your local domain; ```URLtosinglepage``` should be replaced into URL to one of your single page (needs for generate critical CSS).  
 
 **Default task** (for development):
   ```bash
@@ -130,10 +132,14 @@ Add port 4000 for to get browserSync reloads.
 * [Advanced Woo Search](https://wordpress.org/plugins/advanced-woo-search/) >= 2.09 (example using [here](#user-content-widgets_example))
 * [WP Widget in Navigation](https://wordpress.org/plugins/wp-widget-in-navigation/) >= 2.0.1 (example using [here](#user-content-widgets_example))
 * [TI WooCommerce Wishlist](https://wordpress.org/plugins/ti-woocommerce-wishlist/) >= 1.21.2 (example using [here](#user-content-widgets_example))
-  <details><summary>Minimum recommnded settings</summary>
-    After installation go to TI Wishlist and setup custom images, enable 'Remove product from Wishlist on second click', disable 'Show button text' for catalog, single and counter. You can to play with other settings.</details>
+  <details><summary>Show details</summary>
+    After installation go to TI Wishlist and setup minimum recommnded settings. You can to play with other settings.
+  <img src="https://github.com/chyvak1831/starter_img/blob/master/ti_wishlist_01.jpg?raw=true" alt="TI Wishlist settings 1">
+  <img src="https://github.com/chyvak1831/starter_img/blob/master/ti_wishlist_02.jpg?raw=true" alt="TI Wishlist settings 2">
+  <img src="https://github.com/chyvak1831/starter_img/blob/master/ti_wishlist_03.jpg?raw=true" alt="TI Wishlist settings 3">
+  <img src="https://github.com/chyvak1831/starter_img/blob/master/ti_wishlist_04.jpg?raw=true" alt="TI Wishlist settings 4"></details>
 * [Yoast SEO](https://wordpress.org/plugins/wordpress-seo/) >= 14.8.1
-  <details><summary>Enable breadcrumb</summary>
+  <details><summary>Show details</summary>
   After installation go to SEO->Search Appearance-> tab Breadcrumbs and enable 'Enable Breadcrumbs'
   <img src="https://github.com/chyvak1831/starter_img/blob/master/breadcrumb.jpg?raw=true" alt="Breadcrumbs Yoast SEO"></details>
 ***
@@ -171,8 +177,10 @@ Plugins **combines into** one file ```assets\css\plugins.css``` by gulp, all fil
 In file ```assets\scss\plugins.scss``` you can to comment **bootstrap css modules which is not used** by you.  
 2. **Custom styles** ```assets\scss\theme``` combines into one file ```assets\css\styles.css``` by gulp, all files listed in file ```assets\scss\styles.scss```.  
 File ```assets\scss\wp_admin.scss``` contain *css which loads to WordPress admin*.
-3. **Critical CSS** and **preload**: for to avoid render-blocking CSS each rel='stylesheet' replaced into rel='preload'. As result there is [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) - so it's required to have *critical CSS*.  
-Critical CSS generates gulp using npm [Critical](https://www.npmjs.com/package/critical), all files listed into ```config.js``` array criticalSrcPages. If you need - feel free to edit this array how you need.
+3. **Critical CSS** and **preload**: for to avoid render-blocking CSS each rel='stylesheet' replaced into rel='preload' (file ```functions.php```). As result there is [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) - so it's required to have *critical CSS*.  
+Critical CSS generates gulp using npm [Critical](https://www.npmjs.com/package/critical), all files listed into ```config.js array criticalSrcPages```.  
+Open file ```config.js``` and replace each ```yourdomain``` into your local domain; ```URLtosinglepage``` should be replaced into URL to one of your single page.  
+Add more pages if you need to array.  
 
 ### JS
 1. **Plugins** downloads via npm, listed in file ```package.json```.  
