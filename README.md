@@ -18,6 +18,7 @@ Open source, free to use - [MIT](https://choosealicense.com/licenses/mit/) licen
   - [Gulp](#gulp)
   - [CSS](#css)
   - [JS](#js)
+  - [Images](#-images)
 - [Comments](#-comments)
 - [Filters](#-filters)
   - [Display types](#%EF%B8%8F%EF%B8%8F-display-types)
@@ -25,7 +26,6 @@ Open source, free to use - [MIT](https://choosealicense.com/licenses/mit/) licen
   - [Frontend filter logic](#-frontend-filter-logic)
   - [Code](#code)
 - [Fonts](#-fonts)
-- [Images](#-images)
 - [Menus](#-menus)
 - [Theme Structure](#-theme-structure)
 - [Contributing](#-contributing)
@@ -45,7 +45,7 @@ This theme **keeps your time**: it provides main ecommerce pages ready to easy a
 ✓ extended by a few cool features  
 
 #### ‼️ Cons
-frontend plugins are require **code integration** (shortcodes or functions usually) - due **theme does not used hooks** (i.e. just "install plugin and activate" - does not works)
+frontend plugins (which affects to home, archive, single) are require **code integration** shortcodes or functions usually - due **theme does not used hooks** (i.e. just "install plugin and activate" - does not works)
 ***
 <br>
 
@@ -190,6 +190,16 @@ Plugins **combines into** one file ```assets\js\plugins.js``` by gulp, all files
 ***
 <br>
 
+### 🌅 Images
+* Content images: optimized by EWWW Image Optimizer plugin. Each **image slices by each 200px** (200px, 400px, 600px etc) for deliver **best image sizes** for each device.  
+Starter support **webp images** with jpg/png fallback.
+* decor graphics: for decor elements uses **svg image spritesheet** ```assets\svg-icons.svg``` via ```starter_get_svg``` (fork of twentyseventeen/inc/icon-functions.php). This svg file loads via pure 'ajax' ```footer.php``` for make it cacheable.
+#### Code
+Whole code placed into file ```inc\image.php```.
+### More documentation and examples *coming soon*!
+***
+<br>
+
 
 
 # 💬 Comments
@@ -278,18 +288,6 @@ By default used 'Open Sans' font family.
 
 #### Code
 Whole code placed into file ```inc\tiny-mce-advanced.php``` comment "Google fonts feature"
-***
-<br>
-
-
-
-# 🌅 Images
-* Content images: optimized by EWWW Image Optimizer plugin. Each **image slices by each 200px** (200px, 400px, 600px etc) for deliver **best image sizes** for each device.  
-Starter support **webp images** with jpg/png fallback.
-* decor graphics: for decor elements uses **svg image spritesheet** ```assets\svg-icons.svg``` via ```starter_get_svg``` (fork of twentyseventeen/inc/icon-functions.php). This svg file loads via pure 'ajax' ```footer.php``` for make it cacheable.
-#### Code
-Whole code placed into file ```inc\image.php```.
-### More documentation and examples *coming soon*!
 ***
 <br>
 
