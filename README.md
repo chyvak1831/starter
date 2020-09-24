@@ -191,18 +191,21 @@ Plugins **combines into** one file ```assets\js\plugins.js``` by gulp, all files
 <br>
 
 ### 🌅 Images
-Decor graphics: for decor elements uses **svg image spritesheet** ```assets\svg-icons.svg``` via ```starter_get_svg```.
+#### Decor graphics
+For decor elements uses **svg image spritesheet** ```assets\svg-icons.svg``` via ```starter_get_svg```.
 ```php
 <?php echo starter_get_svg( array( 'icon' => 'bi-pen' ) ); ?>
 ```
-It display graphics in the same high quality on screen with any Pixel density because it's vector.  
-This svg file loads via pure 'ajax' in ```footer.php``` for make it cacheable.  
+It display graphics in the same high quality on screen with any pixel density because it's vector.  
+File ```assets\svg-icons.svg``` loads via pure 'ajax' in ```footer.php``` for make it cacheable.  
+Primary used [bootstrap icons](https://icons.getbootstrap.com/)
 
-Content images: optimized by EWWW Image Optimizer plugin. Each **image slices by each 200px** (200px, 400px, 600px etc) for deliver **best image sizes** for each device.  
+#### Content images
+Optimized by EWWW Image Optimizer plugin. Each **image slices by each 200px** (200px, 400px, 600px etc) for deliver **best image sizes** for each device.  
 Starter support **webp images** with jpg/png fallback.
 #### Code
 Decor graphics (svg): `inc\icon-functions.php` (fork of twentyseventeen/inc/icon-functions.php)  
-Content graphics: ```inc\image.php```.
+Content images: ```inc\image.php```.
 ### More documentation and examples *coming soon*!
 ***
 <br>
