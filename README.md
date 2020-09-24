@@ -191,11 +191,18 @@ Plugins **combines into** one file ```assets\js\plugins.js``` by gulp, all files
 <br>
 
 ### 🌅 Images
-* Content images: optimized by EWWW Image Optimizer plugin. Each **image slices by each 200px** (200px, 400px, 600px etc) for deliver **best image sizes** for each device.  
+Decor graphics: for decor elements uses **svg image spritesheet** ```assets\svg-icons.svg``` via ```starter_get_svg```.
+```php
+<?php echo starter_get_svg( array( 'icon' => 'bi-pen' ) ); ?>
+```
+It display graphics in the same high quality on screen with any Pixel density because it's vector.  
+This svg file loads via pure 'ajax' in ```footer.php``` for make it cacheable.  
+
+Content images: optimized by EWWW Image Optimizer plugin. Each **image slices by each 200px** (200px, 400px, 600px etc) for deliver **best image sizes** for each device.  
 Starter support **webp images** with jpg/png fallback.
-* decor graphics: for decor elements uses **svg image spritesheet** ```assets\svg-icons.svg``` via ```starter_get_svg``` (fork of twentyseventeen/inc/icon-functions.php). This svg file loads via pure 'ajax' ```footer.php``` for make it cacheable.
 #### Code
-Whole code placed into file ```inc\image.php```.
+Decor graphics (svg): `inc\icon-functions.php` (fork of twentyseventeen/inc/icon-functions.php)  
+Content graphics: ```inc\image.php```.
 ### More documentation and examples *coming soon*!
 ***
 <br>
