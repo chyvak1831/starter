@@ -202,6 +202,9 @@ It output inline svg which displays in the same high quality on screen with any 
 ```php
 <svg class="icon icon-bi-pen" aria-hidden="true" role="img"><use href="#icon-bi-pen" xlink:href="#icon-bi-pen"></use></svg>
 ```
+<details><summary><strong>Add bootstrap svg GIF example</strong></summary>
+  <img src="https://github.com/chyvak1831/starter_img/blob/master/bootstrapsvg.gif?raw=true" alt="Add bootstrap svg">
+</details>
 
 #### Content images
 Optimized and converted **to webp** by EWWW Image Optimizer plugin. Each **image slices by each 200px** (200px, 400px, 600px etc) for deliver **best image sizes** for each device.  
