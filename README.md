@@ -18,7 +18,7 @@ Open source, free to use - [MIT](https://choosealicense.com/licenses/mit/) licen
   - [Gulp](#gulp)
   - [CSS](#css)
   - [JS](#js)
-  - [Images](#-images)
+  - [Images](#images)
 - [Comments](#-comments)
 - [Filters](#-filters)
   - [Display types](#%EF%B8%8F%EF%B8%8F-display-types)
@@ -150,14 +150,15 @@ Open site with port 4000 to get [browserSync](https://browsersync.io/docs/gulp) 
 
 # 🌀 Overview
 ### Templates
-The main difference in development in Starter is **custom templates**: instead of hell with hooks just use **raw data** from woo! For example: instead of getting thumbnails with 💩-markup - just get ids array and use with any your own markup!
+The main difference in development in Starter is **custom templates**: instead of hell with hooks just use **raw data** from woo!  
+For example: instead of getting thumbnails with 💩-markup - just get ids array and use with any your own markup:
 ```php
 $product->get_gallery_image_ids() //get thumbnail ids on single page
 ```
 and use it with any markup
 ```php
 <?php foreach ( $starter_thumbnails as $starter_thumbnail_img ) : ?>
-  <picture class="thumbnail js_thumbnail" data-zoom-img="<?php echo esc_attr( wp_get_attachment_image_src( $starter_thumbnail_img, 'w2000' )[0] ); ?>">
+  <picture>
     <?php echo do_shortcode( "[img img_src='w200' img_sizes='70px' img_object=\"$starter_thumbnail_img\"]" ); ?>
   </picture>
 <?php endforeach; ?>
@@ -188,10 +189,10 @@ Add more pages to array if you need.
 Plugins **combines into** one file ```assets\js\plugins.js``` by gulp, all files listed in file ```assets\js\list_plugins.js```. In file ```assets\js\list_plugins.js``` you can to comment **bootstrap js modules which is not used** by you.  
 2. **Custom scripts** ```assets\js\modules``` combines into one file ```assets\js\scripts.js``` by gulp, all files listed in file ```assets\js\list_scripts.js```.
 
-### 🌅 Images
+### Images
 #### Decor graphics
 For decor elements uses **svg image spritesheet** ```assets\svg-icons.svg``` via ```starter_get_svg```.  
-File ```assets\svg-icons.svg``` loads via pure 'ajax' in ```footer.php``` for make it cacheable.  
+File ```assets\svg-icons.svg``` loads via pure 'ajax' in ```footer.php``` to make it cacheable.  
 Primary used [bootstrap icons](https://icons.getbootstrap.com/)
 #### How to use
 ```php
