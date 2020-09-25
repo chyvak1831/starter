@@ -105,7 +105,7 @@ Probably Starter will works with other plugin versions - but with versions below
 * [Node.js](https://nodejs.org/) >= 14.8.0
 
 ### 🔧 Setup
-1. Install  [Requirements](#requirements)
+1. Install  [Requirements](#-requirements)
 2. Install gulp globally (if it's not installed yet) - do it once
     ```bash
     npm i --global gulp-cli
