@@ -121,7 +121,7 @@ Probably Starter will works with other plugin versions - but with versions below
   ```bash
   gulp
   ```  
-Open site with port 4000 for to get [browserSync](https://browsersync.io/docs/gulp) reloads.
+Open site with port 4000 to get [browserSync](https://browsersync.io/docs/gulp) reloads.
 
 **Production task**:
   ```bash
@@ -163,7 +163,7 @@ and use it with any markup
 <?php endforeach; ?>
 ```
 Theme contain custom tempaltes for **home, archive, single**.  
-**Account/cart/checkout** are not ovverrided, they are styled using css (and a bit js for to add css classes) because usually these pages very similar and *it's not easy* to get raw data and *to maintain*  (due so much logic present on checkout for example).
+**Account/cart/checkout** are not ovverrided, they are styled using css (and a bit js to add css classes) because usually these pages very similar and *it's not easy* to get raw data and *to maintain*  (due so much logic present on checkout for example).
 
 ### Gulp
 Styles and scripts processed by gulp.  
@@ -172,37 +172,48 @@ File ```gulpfile.js``` contain gulp tasks.
 File ```config.js``` contain configs. 
 
 ### CSS
-Styles orginized by scss, there are postCSS autoprefixer - so please **forgot about prefixes**.
+Styles orginized by **scss**, there are postCSS **autoprefixer** - so please **forgot about prefixes**.
 1. **Plugins** downloads via npm, listed in file ```package.json```.  
 Plugins **combines into** one file ```assets\css\plugins.css``` by gulp, all files listed in file ```assets\scss\plugins.scss```.  
 In file ```assets\scss\plugins.scss``` you can to comment **bootstrap css modules which is not used** by you.  
 2. **Custom styles** ```assets\scss\theme``` combines into one file ```assets\css\styles.css``` by gulp, all files listed in file ```assets\scss\styles.scss```.  
 File ```assets\scss\wp_admin.scss``` contain *css which loads to WordPress admin*.
-3. **Critical CSS** and **preload**: for to avoid render-blocking CSS each rel='stylesheet' replaced into rel='preload' (file ```functions.php```). As result there is [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) - so it's required to have *critical CSS*.  
-Critical CSS generates gulp using npm [Critical](https://www.npmjs.com/package/critical), all files listed into ```config.js array criticalSrcPages```.  
+3. **Critical CSS** and **preload**: to avoid render-blocking CSS each rel='stylesheet' replaced into rel='preload' (file ```functions.php```). As result there is [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) - so it's required to have *critical CSS*.  
+Critical CSS generates by gulp using npm [Critical](https://www.npmjs.com/package/critical), all files listed into ```config.js array criticalSrcPages```.  
 Open file ```config.js``` and replace each ```yourdomain``` into your local domain; ```URLtosinglepage``` should be replaced into URL to one of your single page.  
-Add more pages if you need to array.  
+Add more pages to array if you need.  
 
 ### JS
 1. **Plugins** downloads via npm, listed in file ```package.json```.  
 Plugins **combines into** one file ```assets\js\plugins.js``` by gulp, all files listed in file ```assets\js\list_plugins.js```. In file ```assets\js\list_plugins.js``` you can to comment **bootstrap js modules which is not used** by you.  
 2. **Custom scripts** ```assets\js\modules``` combines into one file ```assets\js\scripts.js``` by gulp, all files listed in file ```assets\js\list_scripts.js```.
-***
-<br>
 
 ### 🌅 Images
 #### Decor graphics
-For decor elements uses **svg image spritesheet** ```assets\svg-icons.svg``` via ```starter_get_svg```.
+For decor elements uses **svg image spritesheet** ```assets\svg-icons.svg``` via ```starter_get_svg```.  
+File ```assets\svg-icons.svg``` loads via pure 'ajax' in ```footer.php``` for make it cacheable.  
+Primary used [bootstrap icons](https://icons.getbootstrap.com/)
+#### How to use
 ```php
 <?php echo starter_get_svg( array( 'icon' => 'bi-pen' ) ); ?>
 ```
-It display graphics in the same high quality on screen with any pixel density because it's vector.  
-File ```assets\svg-icons.svg``` loads via pure 'ajax' in ```footer.php``` for make it cacheable.  
-Primary used [bootstrap icons](https://icons.getbootstrap.com/)
+It output inline svg which displays in the same high quality on screen with any pixel density because it's vector.
+```php
+<svg class="icon icon-bi-pen" aria-hidden="true" role="img"><use href="#icon-bi-pen" xlink:href="#icon-bi-pen"></use></svg>
+```
 
 #### Content images
-Optimized by EWWW Image Optimizer plugin. Each **image slices by each 200px** (200px, 400px, 600px etc) for deliver **best image sizes** for each device.  
-Starter support **webp images** with jpg/png fallback.
+Optimized and converted **to webp** by EWWW Image Optimizer plugin. Each **image slices by each 200px** (200px, 400px, 600px etc) for deliver **best image sizes** for each device.  
+Since version 4.4 WordPress supports responsive images. Starter theme uses the same way for provide responsive images: it output image with **srcset and sizes** attributes so browser deciding what image resolution to load from array (**srcset attribute**) using **sizes attribute** and screen ppi (screen density).  
+So, everything what you need to get responsive images - it's to setup **correct sizes attribute**.  
+Starter uses custom shortcode ```img``` which require ```img_sizes``` (sizes attribute) and ```img_object``` (image ID).
+#### How to use
+```php
+<picture>
+  <?php echo do_shortcode( "[img img_src='w800' img_sizes='(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px' img_object=\"$starter_img\"]" ); ?>
+</picture>
+```
+
 #### Code
 Decor graphics (svg): `inc\icon-functions.php` (fork of twentyseventeen/inc/icon-functions.php)  
 Content images: ```inc\image.php```.
