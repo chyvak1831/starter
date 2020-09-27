@@ -249,39 +249,39 @@ Plugins **combines into** one file ```assets\js\plugins.js``` by gulp, all files
         Each URL in srcset has [width descriptor `w`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) which saying to browser what width has image by that URL.   
     
     2. **With lazyload**:
-    ```php
-    <picture>
-      <?php echo do_shortcode( "[img img_src='w800' img_sizes='(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px' img_object=\"$starter_img\"]" ); ?>
-    </picture>
-    ```
-    It output next markup to frontend:
-    ```html
-    <picture>
-      <source
-              type='image/webp'
-              srcset="http://local/wp-content/uploads/2020/08/woocommerce-placeholder-150x150.png"
-              data-srcset="http://local/wp-content/uploads/2020/09/beanie-2.jpg.webp 801w,
-                           http://local/wp-content/uploads/2020/09/beanie-2-150x150.jpg.webp 150w,
-                           http://local/wp-content/uploads/2020/09/beanie-2-200x200.jpg.webp 200w,
-                           http://local/wp-content/uploads/2020/09/beanie-2-400x400.jpg.webp 400w,
-                           http://local/wp-content/uploads/2020/09/beanie-2-600x600.jpg.webp 600w"
-              sizes='(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px'>
-      <img
-           class='img-fluid lazyload'
-           src="http://local/wp-content/uploads/2020/08/woocommerce-placeholder-150x150.png"
-           data-src="http://local/wp-content/uploads/2020/09/beanie-2.jpg"
-           srcset="http://local/wp-content/uploads/2020/08/woocommerce-placeholder-150x150.png"
-           data-srcset="http://local/wp-content/uploads/2020/09/beanie-2.jpg 801w,
-                        http://local/wp-content/uploads/2020/09/beanie-2-150x150.jpg 150w,
-                        http://local/wp-content/uploads/2020/09/beanie-2-200x200.jpg 200w,
-                        http://local/wp-content/uploads/2020/09/beanie-2-400x400.jpg 400w,
-                        http://local/wp-content/uploads/2020/09/beanie-2-600x600.jpg 600w"
-           alt='beanie-2.jpg'
-           sizes='(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px'>
-    </picture>
-    ```
-    Class ```lazyload``` and attribute ```data-srcset``` adds [image lazyload](https://github.com/aFarkas/lazysizes).  
-    When called with lazyload - image display placeholder (while image loading) using default [woocommerce placeholder feature](https://docs.woocommerce.com/document/change-the-placeholder-image/). 
+        ```php
+        <picture>
+          <?php echo do_shortcode( "[img img_src='w800' img_sizes='(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px' img_object=\"$starter_img\"]" ); ?>
+        </picture>
+        ```
+        It output next markup to frontend:
+        ```html
+        <picture>
+          <source
+                  type='image/webp'
+                  srcset="http://local/wp-content/uploads/2020/08/woocommerce-placeholder-150x150.png"
+                  data-srcset="http://local/wp-content/uploads/2020/09/beanie-2.jpg.webp 801w,
+                               http://local/wp-content/uploads/2020/09/beanie-2-150x150.jpg.webp 150w,
+                               http://local/wp-content/uploads/2020/09/beanie-2-200x200.jpg.webp 200w,
+                               http://local/wp-content/uploads/2020/09/beanie-2-400x400.jpg.webp 400w,
+                               http://local/wp-content/uploads/2020/09/beanie-2-600x600.jpg.webp 600w"
+                  sizes='(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px'>
+          <img
+               class='img-fluid lazyload'
+               src="http://local/wp-content/uploads/2020/08/woocommerce-placeholder-150x150.png"
+               data-src="http://local/wp-content/uploads/2020/09/beanie-2.jpg"
+               srcset="http://local/wp-content/uploads/2020/08/woocommerce-placeholder-150x150.png"
+               data-srcset="http://local/wp-content/uploads/2020/09/beanie-2.jpg 801w,
+                            http://local/wp-content/uploads/2020/09/beanie-2-150x150.jpg 150w,
+                            http://local/wp-content/uploads/2020/09/beanie-2-200x200.jpg 200w,
+                            http://local/wp-content/uploads/2020/09/beanie-2-400x400.jpg 400w,
+                            http://local/wp-content/uploads/2020/09/beanie-2-600x600.jpg 600w"
+               alt='beanie-2.jpg'
+               sizes='(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px'>
+        </picture>
+        ```
+        Class ```lazyload``` and attribute ```data-srcset``` adds [image lazyload](https://github.com/aFarkas/lazysizes).  
+        When called with lazyload - image display placeholder (while image loading) using default [woocommerce placeholder feature](https://docs.woocommerce.com/document/change-the-placeholder-image/). 
     <details><summary><strong>Add image GIF example</strong></summary>
       Everything what you need <strong>to provide optimized image size</strong> for specific device - it's to setup <strong>correct sizes attribute</strong>.  
       <img src="https://github.com/chyvak1831/starter_img/blob/master/addimage.gif?raw=true" alt="Add image">
