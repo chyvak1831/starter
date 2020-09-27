@@ -347,9 +347,14 @@ I) Add simple menu - that's default wordpress menu.
 II) Add image and icons:
  * image: it's possible to use any image format but highly recommended to use svg
  * icons: allowed svg only
-<details><summary><strong>Image and icons GIF example</strong></summary>
+<details id="menu_img_icon"><summary><strong>Image and icons GIF example</strong></summary>
   <img src="https://github.com/chyvak1831/starter_img/blob/master/menu_img_icon.gif?raw=true" alt="Menu Image Icon">
 </details>
+  <details><summary><strong>Load svg to Media common issue GIF example</strong></summary>
+    If you sees this error 1 (on screenshot) while uploading svg into Media
+    <img src="https://github.com/chyvak1831/starter_img/blob/master/svg_error.jpg?raw=true" alt="Add svg problem">
+   it means that svg is invalid. In most cases in svg file missing such first line 2 (on screenshot). Due svg is xml WordPress require xml declaration.
+  </details>
 
 III) Add widgets to menus: so far we used simple links in menus - let's to add *interactive elements*!  
 To use widgets in menus install plugin *WP Widget in Navigation* -> goto 'Appearance->Widgets' and *drag&drop* default widgets or widgets provided by plugins. 
