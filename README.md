@@ -199,7 +199,7 @@ Plugins **combines into** one file ```assets\js\plugins.js``` by gulp, all files
     <?php echo starter_get_svg( array( 'icon' => 'bi-pen' ) ); ?>
     ```
     It output inline svg which displays in the same high quality on screen with any pixel density because it's vector.
-    ```php
+    ```html
     <svg class="icon-bi-pen" aria-hidden="true" role="img">
       <use href="#bi-pen" xlink:href="#icon-bi-pen"></use>
     </svg>
