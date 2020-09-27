@@ -190,49 +190,68 @@ Plugins **combines into** one file ```assets\js\plugins.js``` by gulp, all files
 2. **Custom scripts** ```assets\js\modules``` combines into one file ```assets\js\scripts.js``` by gulp, all files listed in file ```assets\js\list_scripts.js```.
 
 ### Images
-#### Decor graphics
-For decor elements uses **svg image spritesheet** ```assets\svg-icons.svg``` via ```starter_get_svg```.  
-File ```assets\svg-icons.svg``` loads via pure 'ajax' in ```footer.php``` to make it cacheable.  
-Primary used [bootstrap icons](https://icons.getbootstrap.com/)
-#### How to use
-```php
-<?php echo starter_get_svg( array( 'icon' => 'bi-pen' ) ); ?>
-```
-It output inline svg which displays in the same high quality on screen with any pixel density because it's vector.
-```php
-<svg class="icon icon-bi-pen" aria-hidden="true" role="img">
-  <use href="#icon-bi-pen" xlink:href="#icon-bi-pen"></use>
-</svg>
-```
-<details><summary><strong>Add bootstrap svg GIF example</strong></summary>
-  <img src="https://github.com/chyvak1831/starter_img/blob/master/bootstrapsvg.gif?raw=true" alt="Add bootstrap svg">
-</details>
+1. #### Decor graphics
+    For decor elements uses **svg image spritesheet** ```assets\svg-icons.svg``` via ```starter_get_svg```.  
+    File ```assets\svg-icons.svg``` loads via pure 'ajax' in ```footer.php``` to make it cacheable.  
+    Primary used [bootstrap icons](https://icons.getbootstrap.com/)
+    #### How to use
+    ```php
+    <?php echo starter_get_svg( array( 'icon' => 'bi-pen' ) ); ?>
+    ```
+    It output inline svg which displays in the same high quality on screen with any pixel density because it's vector.
+    ```php
+    <svg class="icon icon-bi-pen" aria-hidden="true" role="img">
+      <use href="#icon-bi-pen" xlink:href="#icon-bi-pen"></use>
+    </svg>
+    ```
+    <details><summary><strong>Add bootstrap svg GIF example</strong></summary>
+      <img src="https://github.com/chyvak1831/starter_img/blob/master/bootstrapsvg.gif?raw=true" alt="Add bootstrap svg">
+    </details>
 
-#### Content images
-Optimized and converted **to webp** by [EWWW Image Optimizer plugin](#-requirements). Each **image slices by each 200px** (200px, 400px, 600px etc) for deliver **best image sizes** for each device.  
+2. #### Content images
+    Optimized and converted **to webp** by [EWWW Image Optimizer plugin](#-requirements). Each **image slices by each 200px** (200px, 400px, 600px etc) for deliver **best image sizes** for each device.  
 
-Since version 4.4 WordPress supports responsive images, shortly **how it works**: `<img>` contain attribute `srcset` with array of all available image sizes for current image and attribute `sizes` with info about image width for specific viewport width. **Browser** using attributes sizes and knowlenge about screen density (yes, browser knows that!)  **download best image size** (for current situation) from srcset attribute.  
-[Detailed article about WordPress images](https://www.smashingmagazine.com/2016/09/responsive-images-in-wordpress-with-art-direction/)
+    Since version 4.4 WordPress supports responsive images, shortly **how it works**: `<img>` contain attribute `srcset` with array of all available image sizes for current image and attribute `sizes` with info about image width for specific viewport width. **Browser** using attributes sizes and knowlenge about screen density (yes, browser knows that!)  **download best image size** (for current situation) from srcset attribute.  
+    [Detailed article about WordPress images](https://www.smashingmagazine.com/2016/09/responsive-images-in-wordpress-with-art-direction/)
 
-So, everything what you need **to provide optimized image size** for specific device - it's to setup **correct sizes attribute**.  
-Starter uses custom shortcode ```img``` which require ```img_sizes``` (sizes attribute) and ```img_object``` (image ID).
-#### How to use
-```php
-<picture>
-  <?php echo do_shortcode( "[img img_src='w800' img_sizes='(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px' img_object=\"$starter_img\"]" ); ?>
-</picture>
-```
-It output next markup to frontend:
-```html
-<picture>
-  <source type='image/webp' srcset="http://local.alexwp/wp-content/uploads/2020/08/woocommerce-placeholder-150x150.png" data-srcset="http://local.alexwp/wp-content/uploads/2020/09/beanie-2.jpg.webp 801w, http://local.alexwp/wp-content/uploads/2020/09/beanie-2-150x150.jpg.webp 150w, http://local.alexwp/wp-content/uploads/2020/09/beanie-2-200x200.jpg.webp 200w, http://local.alexwp/wp-content/uploads/2020/09/beanie-2-400x400.jpg.webp 400w, http://local.alexwp/wp-content/uploads/2020/09/beanie-2-600x600.jpg.webp 600w" sizes='(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px'>
-  <img class='img-fluid lazyload' src="http://local.alexwp/wp-content/uploads/2020/08/woocommerce-placeholder-150x150.png" data-src="http://local.alexwp/wp-content/uploads/2020/09/beanie-2.jpg" srcset="http://local.alexwp/wp-content/uploads/2020/08/woocommerce-placeholder-150x150.png" data-srcset="http://local.alexwp/wp-content/uploads/2020/09/beanie-2.jpg 801w, http://local.alexwp/wp-content/uploads/2020/09/beanie-2-150x150.jpg 150w, http://local.alexwp/wp-content/uploads/2020/09/beanie-2-200x200.jpg 200w, http://local.alexwp/wp-content/uploads/2020/09/beanie-2-400x400.jpg 400w, http://local.alexwp/wp-content/uploads/2020/09/beanie-2-600x600.jpg 600w" alt='beanie-2.jpg' sizes='(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px'>
-</picture>
-```
+    So, everything what you need **to provide optimized image size** for specific device - it's to setup **correct sizes attribute**.  
+    Starter uses custom shortcode ```img``` which require ```img_sizes``` (sizes attribute) and ```img_object``` (image ID).
+    #### How to use
+    ```php
+    <picture>
+      <?php echo do_shortcode( "[img img_src='w800' img_sizes='(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px' img_object=\"$starter_img\"]" ); ?>
+    </picture>
+    ```
+    It output next markup to frontend:
+    ```html
+    <picture>
+      <source
+              type='image/webp'
+              srcset="http://local.alexwp/wp-content/uploads/2020/08/woocommerce-placeholder-150x150.png"
+              data-srcset="http://local.alexwp/wp-content/uploads/2020/09/beanie-2.jpg.webp 801w,
+                           http://local.alexwp/wp-content/uploads/2020/09/beanie-2-150x150.jpg.webp 150w,
+                           http://local.alexwp/wp-content/uploads/2020/09/beanie-2-200x200.jpg.webp 200w,
+                           http://local.alexwp/wp-content/uploads/2020/09/beanie-2-400x400.jpg.webp 400w,
+                           http://local.alexwp/wp-content/uploads/2020/09/beanie-2-600x600.jpg.webp 600w"
+              sizes='(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px'>
+      <img
+           class='img-fluid lazyload'
+           src="http://local.alexwp/wp-content/uploads/2020/08/woocommerce-placeholder-150x150.png"
+           data-src="http://local.alexwp/wp-content/uploads/2020/09/beanie-2.jpg"
+           srcset="http://local.alexwp/wp-content/uploads/2020/08/woocommerce-placeholder-150x150.png"
+           data-srcset="http://local.alexwp/wp-content/uploads/2020/09/beanie-2.jpg 801w,
+                        http://local.alexwp/wp-content/uploads/2020/09/beanie-2-150x150.jpg 150w,
+                        http://local.alexwp/wp-content/uploads/2020/09/beanie-2-200x200.jpg 200w,
+                        http://local.alexwp/wp-content/uploads/2020/09/beanie-2-400x400.jpg 400w,
+                        http://local.alexwp/wp-content/uploads/2020/09/beanie-2-600x600.jpg 600w"
+           alt='beanie-2.jpg'
+           sizes='(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px'>
+    </picture>
+    ```
 
-<details><summary><strong>Add image GIF example</strong></summary>
-  <img src="https://github.com/chyvak1831/starter_img/blob/master/addimage.gif?raw=true" alt="Add image">
-</details>
+    <details><summary><strong>Add image GIF example</strong></summary>
+      <img src="https://github.com/chyvak1831/starter_img/blob/master/addimage.gif?raw=true" alt="Add image">
+    </details>
 
 #### Code
 Decor graphics (svg): `inc\icon-functions.php` (fork of twentyseventeen/inc/icon-functions.php)  
