@@ -200,8 +200,8 @@ Plugins **combines into** one file ```assets\js\plugins.js``` by gulp, all files
     ```
     It output inline svg which displays in the same high quality on screen with any pixel density because it's vector.
     ```php
-    <svg class="icon icon-bi-pen" aria-hidden="true" role="img">
-      <use href="#icon-bi-pen" xlink:href="#icon-bi-pen"></use>
+    <svg class="icon-bi-pen" aria-hidden="true" role="img">
+      <use href="#bi-pen" xlink:href="#icon-bi-pen"></use>
     </svg>
     ```
     <details><summary><strong>Add bootstrap svg GIF example</strong></summary>
