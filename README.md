@@ -227,23 +227,23 @@ Plugins **combines into** one file ```assets\js\plugins.js``` by gulp, all files
     <picture>
       <source
               type='image/webp'
-              srcset="http://local.alexwp/wp-content/uploads/2020/08/woocommerce-placeholder-150x150.png"
-              data-srcset="http://local.alexwp/wp-content/uploads/2020/09/beanie-2.jpg.webp 801w,
-                           http://local.alexwp/wp-content/uploads/2020/09/beanie-2-150x150.jpg.webp 150w,
-                           http://local.alexwp/wp-content/uploads/2020/09/beanie-2-200x200.jpg.webp 200w,
-                           http://local.alexwp/wp-content/uploads/2020/09/beanie-2-400x400.jpg.webp 400w,
-                           http://local.alexwp/wp-content/uploads/2020/09/beanie-2-600x600.jpg.webp 600w"
+              srcset="http://local/wp-content/uploads/2020/08/woocommerce-placeholder-150x150.png"
+              data-srcset="http://local/wp-content/uploads/2020/09/beanie-2.jpg.webp 801w,
+                           http://local/wp-content/uploads/2020/09/beanie-2-150x150.jpg.webp 150w,
+                           http://local/wp-content/uploads/2020/09/beanie-2-200x200.jpg.webp 200w,
+                           http://local/wp-content/uploads/2020/09/beanie-2-400x400.jpg.webp 400w,
+                           http://local/wp-content/uploads/2020/09/beanie-2-600x600.jpg.webp 600w"
               sizes='(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px'>
       <img
            class='img-fluid lazyload'
-           src="http://local.alexwp/wp-content/uploads/2020/08/woocommerce-placeholder-150x150.png"
-           data-src="http://local.alexwp/wp-content/uploads/2020/09/beanie-2.jpg"
-           srcset="http://local.alexwp/wp-content/uploads/2020/08/woocommerce-placeholder-150x150.png"
-           data-srcset="http://local.alexwp/wp-content/uploads/2020/09/beanie-2.jpg 801w,
-                        http://local.alexwp/wp-content/uploads/2020/09/beanie-2-150x150.jpg 150w,
-                        http://local.alexwp/wp-content/uploads/2020/09/beanie-2-200x200.jpg 200w,
-                        http://local.alexwp/wp-content/uploads/2020/09/beanie-2-400x400.jpg 400w,
-                        http://local.alexwp/wp-content/uploads/2020/09/beanie-2-600x600.jpg 600w"
+           src="http://local/wp-content/uploads/2020/08/woocommerce-placeholder-150x150.png"
+           data-src="http://local/wp-content/uploads/2020/09/beanie-2.jpg"
+           srcset="http://local/wp-content/uploads/2020/08/woocommerce-placeholder-150x150.png"
+           data-srcset="http://local/wp-content/uploads/2020/09/beanie-2.jpg 801w,
+                        http://local/wp-content/uploads/2020/09/beanie-2-150x150.jpg 150w,
+                        http://local/wp-content/uploads/2020/09/beanie-2-200x200.jpg 200w,
+                        http://local/wp-content/uploads/2020/09/beanie-2-400x400.jpg 400w,
+                        http://local/wp-content/uploads/2020/09/beanie-2-600x600.jpg 600w"
            alt='beanie-2.jpg'
            sizes='(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px'>
     </picture>
