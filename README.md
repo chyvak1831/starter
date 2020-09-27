@@ -214,9 +214,41 @@ Plugins **combines into** one file ```assets\js\plugins.js``` by gulp, all files
     Since version 4.4 WordPress supports responsive images, shortly **how it works**: `<img>` contain attribute `srcset` with array of all available image sizes for current image and attribute `sizes` with info about image width for specific viewport width. **Browser** using attributes sizes and knowlenge about screen density (yes, browser knows that!)  **download best image size** (for current situation) from srcset attribute.  
     [Detailed article about WordPress images](https://www.smashingmagazine.com/2016/09/responsive-images-in-wordpress-with-art-direction/)
 
-    So, everything what you need **to provide optimized image size** for specific device - it's to setup **correct sizes attribute**.  
-    Starter uses custom shortcode ```img``` which require ```img_sizes``` (sizes attribute) and ```img_object``` (image ID).
     #### How to use
+    Starter uses custom shortcode ```img``` which require ```img_sizes``` (sizes attribute) and ```img_object``` (image ID).  
+    1. **Without lazyload**:
+        ```php
+        <picture>
+          <?php echo do_shortcode( "[img img_src='w800' img_sizes='(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px' img_object=\"$starter_img\"] lazy='false'" ); ?>
+        </picture>
+        ```
+        It output next markup to frontend:
+        ```html
+        <picture>
+          <source
+                  type='image/webp'
+                  srcset="http://local/wp-content/uploads/2020/09/beanie-2.jpg.webp 801w,
+                          http://local/wp-content/uploads/2020/09/beanie-2-150x150.jpg.webp 150w,
+                          http://local/wp-content/uploads/2020/09/beanie-2-200x200.jpg.webp 200w,
+                          http://local/wp-content/uploads/2020/09/beanie-2-400x400.jpg.webp 400w,
+                          http://local/wp-content/uploads/2020/09/beanie-2-600x600.jpg.webp 600w"
+                  sizes='(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px'>
+          <img
+               class='img-fluid'
+               src="http://local/wp-content/uploads/2020/09/beanie-2.jpg"
+               srcset="http://local/wp-content/uploads/2020/09/beanie-2.jpg 801w,
+                       http://local/wp-content/uploads/2020/09/beanie-2-150x150.jpg 150w,
+                       http://local/wp-content/uploads/2020/09/beanie-2-200x200.jpg 200w,
+                       http://local/wp-content/uploads/2020/09/beanie-2-400x400.jpg 400w,
+                       http://local/wp-content/uploads/2020/09/beanie-2-600x600.jpg 600w"
+               alt='beanie-2.jpg'
+               sizes='(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px'>
+        </picture>
+        ```
+        Tag ```<source>``` provide webp image format.  
+        Each URL in srcset has [width descriptor `w`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) which saying to browser what width has image by that URL.   
+    
+    2. **With lazyload**:
     ```php
     <picture>
       <?php echo do_shortcode( "[img img_src='w800' img_sizes='(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px' img_object=\"$starter_img\"]" ); ?>
@@ -248,8 +280,10 @@ Plugins **combines into** one file ```assets\js\plugins.js``` by gulp, all files
            sizes='(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px'>
     </picture>
     ```
-
+    Class ```lazyload``` and attribute ```data-srcset``` adds [image lazyload](https://github.com/aFarkas/lazysizes).  
+    When called with lazyload - image display placeholder (while image loading) using default [woocommerce placeholder feature](https://docs.woocommerce.com/document/change-the-placeholder-image/). 
     <details><summary><strong>Add image GIF example</strong></summary>
+      Everything what you need <strong>to provide optimized image size</strong> for specific device - it's to setup <strong>correct sizes attribute</strong>.  
       <img src="https://github.com/chyvak1831/starter_img/blob/master/addimage.gif?raw=true" alt="Add image">
     </details>
 
