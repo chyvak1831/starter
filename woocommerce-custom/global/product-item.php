@@ -37,10 +37,22 @@ foreach( $terms as $term ){
 	<div class="position-relative">
 		<a href="<?php echo esc_url( get_the_permalink() ); ?>">
 			<picture class="main_img item_img">
-				<?php echo do_shortcode( "[img img_src='w600' img_sizes=\"$starter_img_sizes\" img_object=\"$starter_img\"]" ); ?>
+				<?php
+					echo starter_img_func([
+						'img_src'   => 'w600',
+						'img_sizes' => $starter_img_sizes,
+						'img_id'    => $starter_img
+					]);
+				?>
 			</picture>
 			<picture class="thumbnail_img item_img">
-				<?php echo do_shortcode( "[img img_src='w600' img_sizes=\"$starter_img_sizes\" img_object=\"$starter_thumbnails[0]\"]" ); ?>
+				<?php
+					echo starter_img_func([
+						'img_src'   => 'w600',
+						'img_sizes' => $starter_img_sizes,
+						'img_id'    => $starter_thumbnails[0]
+					]);
+				?>
 			</picture>
 		</a>
 		<ul class="list flex-column label_product_list">

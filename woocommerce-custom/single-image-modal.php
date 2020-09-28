@@ -17,11 +17,23 @@ defined( 'ABSPATH' ) || exit;
 			</div>
 			<div class="modal-body">
 				<picture class="item_img js_main_img">
-					<?php echo do_shortcode( "[img img_src='w1600' img_sizes='calc(100vw - 32px)' img_object=\"" . $starter_img . "\"]" ); ?>
+					<?php
+						echo starter_img_func([
+							'img_src'   => 'w1600',
+							'img_sizes' => 'calc(100vw - 32px)',
+							'img_id'    => $starter_img
+						]);
+					?>
 				</picture>
 				<!-- toggle pictures due chrome bug when change srcset -->
 				<picture class="item_img js_main_img d-none">
-					<?php echo do_shortcode( "[img img_src='w1600' img_sizes='calc(100vw - 32px)' img_object=\"" . $starter_img . "\"]" ); ?>
+					<?php
+						echo starter_img_func([
+							'img_src'   => 'w1600',
+							'img_sizes' => 'calc(100vw - 32px)',
+							'img_id'    => $starter_img
+						]);
+					?>
 				</picture>
 			</div>
 			<div class="modal-footer">
@@ -30,12 +42,26 @@ defined( 'ABSPATH' ) || exit;
 						<div class="swiper-wrapper">
 							<div class="swiper-slide">
 								<picture class="thumbnail js_thumbnail is_active">
-									<?php echo do_shortcode( "[img img_src='w200' img_sizes='70px' img_object=\"$starter_img\"]" ); ?>
+									<?php
+										echo starter_img_func([
+											'img_src'   => 'w200',
+											'img_sizes' => '70px',
+											'img_id'    => $starter_img
+										]);
+									?>
 								</picture>
 							</div>
 							<?php foreach ( $starter_thumbnails as $key => $starter_img ) : ?>
 								<div class="swiper-slide">
-									<picture class="thumbnail js_thumbnail"><?php echo do_shortcode( "[img img_src='w200' img_sizes='80px' img_object=\"" . $starter_img . "\"]" ); ?></picture>
+									<picture class="thumbnail js_thumbnail">
+										<?php
+											echo starter_img_func([
+												'img_src'   => 'w200',
+												'img_sizes' => '70px',
+												'img_id'    => $starter_img
+											]);
+										?>
+									</picture>
 								</div>
 							<?php endforeach; ?>
 						</div>

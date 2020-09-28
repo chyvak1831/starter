@@ -83,7 +83,13 @@ $starter_comment_verified        = ( 'yes' === get_option( 'woocommerce_review_r
 				<?php foreach ( $starter_comment_img_ids as $starter_img ) : ?>
 					<li class="js_comment_img_modal_btn">
 						<picture class="item_img">
-							<?php echo do_shortcode( "[img img_src='w200' img_sizes='90px' img_object=\"" . $starter_img . "\"]" ); ?>
+							<?php
+								echo starter_img_func([
+									'img_src'   => 'w200',
+									'img_sizes' => '90px',
+									'img_id'    => $starter_img
+								]);
+							?>
 						</picture>
 					</li>
 				<?php endforeach; ?>
