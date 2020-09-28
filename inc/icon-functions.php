@@ -90,7 +90,7 @@ function starter_get_svg( $args = array() ) {
 	 *
 	 * See https://core.trac.wordpress.org/ticket/38387.
 	 */
-	$svg .= ' <use href="#' . esc_html( $args['icon'] ) . '" xlink:href="#icon-' . esc_html( $args['icon'] ) . '"></use> ';
+	$svg .= ' <use href="#' . esc_html( $args['icon'] ) . '" xlink:href="' . esc_html( $args['icon'] ) . '"></use> ';
 
 	// Add some markup to use as a fallback for browsers that do not support SVGs.
 	if ( $args['fallback'] ) {
