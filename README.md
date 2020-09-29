@@ -215,7 +215,7 @@ Plugins **combines into** one file ```assets\js\plugins.js``` by gulp, all files
     [Detailed article about WordPress images](https://www.smashingmagazine.com/2016/09/responsive-images-in-wordpress-with-art-direction/)
 
     #### How to use
-    Starter uses custom shortcode ```img``` which require ```img_sizes``` (sizes attribute) and ```img_object``` (image ID).  
+    Starter uses function ```starter_img_func``` which require ```img_sizes``` (sizes attribute) and ```img_id``` (image ID).  
     1. **Without lazyload**:
         ```php
         <picture>
@@ -296,19 +296,19 @@ Plugins **combines into** one file ```assets\js\plugins.js``` by gulp, all files
         <picture>
           <source
                   type='image/webp'
-                  srcset="http://local.alexwp/wp-content/uploads/2020/08/woocommerce-placeholder-150x150.png"
-                  data-srcset="http://local.alexwp/wp-content/uploads/2020/09/sample-scaled.jpg.webp 2560w,
-                               http://local.alexwp/wp-content/uploads/2020/09/sample-150x150.jpg.webp 150w,
-                               http://local.alexwp/wp-content/uploads/2020/09/sample-200x200.jpg.webp 200w,
-                               http://local.alexwp/wp-content/uploads/2020/09/sample-400x400.jpg.webp 400w,
-                               http://local.alexwp/wp-content/uploads/2020/09/sample-600x600.jpg.webp 600w,
-                               http://local.alexwp/wp-content/uploads/2020/09/sample-800x800.jpg.webp 800w,
-                               http://local.alexwp/wp-content/uploads/2020/09/sample-1000x1000.jpg.webp 1000w,
-                               http://local.alexwp/wp-content/uploads/2020/09/sample-1200x1200.jpg.webp 1200w,
-                               http://local.alexwp/wp-content/uploads/2020/09/sample-1400x1400.jpg.webp 1400w,
-                               http://local.alexwp/wp-content/uploads/2020/09/sample-1600x1600.jpg.webp 1600w,
-                               http://local.alexwp/wp-content/uploads/2020/09/sample-1800x1800.jpg.webp 1800w,
-                               http://local.alexwp/wp-content/uploads/2020/09/sample-2000x2000.jpg.webp 2000w"
+                  srcset="http://local/wp-content/uploads/2020/08/woocommerce-placeholder-150x150.png"
+                  data-srcset="http://local/wp-content/uploads/2020/09/sample-scaled.jpg.webp 2560w,
+                               http://local/wp-content/uploads/2020/09/sample-150x150.jpg.webp 150w,
+                               http://local/wp-content/uploads/2020/09/sample-200x200.jpg.webp 200w,
+                               http://local/wp-content/uploads/2020/09/sample-400x400.jpg.webp 400w,
+                               http://local/wp-content/uploads/2020/09/sample-600x600.jpg.webp 600w,
+                               http://local/wp-content/uploads/2020/09/sample-800x800.jpg.webp 800w,
+                               http://local/wp-content/uploads/2020/09/sample-1000x1000.jpg.webp 1000w,
+                               http://local/wp-content/uploads/2020/09/sample-1200x1200.jpg.webp 1200w,
+                               http://local/wp-content/uploads/2020/09/sample-1400x1400.jpg.webp 1400w,
+                               http://local/wp-content/uploads/2020/09/sample-1600x1600.jpg.webp 1600w,
+                               http://local/wp-content/uploads/2020/09/sample-1800x1800.jpg.webp 1800w,
+                               http://local/wp-content/uploads/2020/09/sample-2000x2000.jpg.webp 2000w"
                   sizes='(max-width: 575px) calc(100vw - 10px),
                          (max-width: 767px) 530px,
                          (max-width: 991px) 340px,
@@ -316,21 +316,21 @@ Plugins **combines into** one file ```assets\js\plugins.js``` by gulp, all files
                          550px'>
           <img
                class='img-fluid lazyload'
-               src="http://local.alexwp/wp-content/uploads/2020/08/woocommerce-placeholder-150x150.png"
-               data-src="http://local.alexwp/wp-content/uploads/2020/09/sample-800x800.jpg"
-               srcset="http://local.alexwp/wp-content/uploads/2020/08/woocommerce-placeholder-150x150.png"
-               data-srcset="http://local.alexwp/wp-content/uploads/2020/09/sample-scaled.jpg 2560w,
-                            http://local.alexwp/wp-content/uploads/2020/09/sample-150x150.jpg 150w,
-                            http://local.alexwp/wp-content/uploads/2020/09/sample-200x200.jpg 200w,
-                            http://local.alexwp/wp-content/uploads/2020/09/sample-400x400.jpg 400w,
-                            http://local.alexwp/wp-content/uploads/2020/09/sample-600x600.jpg 600w,
-                            http://local.alexwp/wp-content/uploads/2020/09/sample-800x800.jpg 800w,
-                            http://local.alexwp/wp-content/uploads/2020/09/sample-1000x1000.jpg 1000w,
-                            http://local.alexwp/wp-content/uploads/2020/09/sample-1200x1200.jpg 1200w,
-                            http://local.alexwp/wp-content/uploads/2020/09/sample-1400x1400.jpg 1400w,
-                            http://local.alexwp/wp-content/uploads/2020/09/sample-1600x1600.jpg 1600w,
-                            http://local.alexwp/wp-content/uploads/2020/09/sample-1800x1800.jpg 1800w,
-                            http://local.alexwp/wp-content/uploads/2020/09/sample-2000x2000.jpg 2000w"
+               src="http://local/wp-content/uploads/2020/08/woocommerce-placeholder-150x150.png"
+               data-src="http://local/wp-content/uploads/2020/09/sample-800x800.jpg"
+               srcset="http://local/wp-content/uploads/2020/08/woocommerce-placeholder-150x150.png"
+               data-srcset="http://local/wp-content/uploads/2020/09/sample-scaled.jpg 2560w,
+                            http://local/wp-content/uploads/2020/09/sample-150x150.jpg 150w,
+                            http://local/wp-content/uploads/2020/09/sample-200x200.jpg 200w,
+                            http://local/wp-content/uploads/2020/09/sample-400x400.jpg 400w,
+                            http://local/wp-content/uploads/2020/09/sample-600x600.jpg 600w,
+                            http://local/wp-content/uploads/2020/09/sample-800x800.jpg 800w,
+                            http://local/wp-content/uploads/2020/09/sample-1000x1000.jpg 1000w,
+                            http://local/wp-content/uploads/2020/09/sample-1200x1200.jpg 1200w,
+                            http://local/wp-content/uploads/2020/09/sample-1400x1400.jpg 1400w,
+                            http://local/wp-content/uploads/2020/09/sample-1600x1600.jpg 1600w,
+                            http://local/wp-content/uploads/2020/09/sample-1800x1800.jpg 1800w,
+                            http://local/wp-content/uploads/2020/09/sample-2000x2000.jpg 2000w"
                alt='sample'
                sizes='(max-width: 575px) calc(100vw - 10px),
                       (max-width: 767px) 530px,
