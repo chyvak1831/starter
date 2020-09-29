@@ -344,7 +344,7 @@ Plugins **combines into** one file ```assets\js\plugins.js``` by gulp, all files
         ```js
         window.lazySizesConfig=window.lazySizesConfig||{},window.lazySizesConfig.expand=10,lazySizesConfig.expFactor=1.5;
         ```
-        When called with lazyload - image display placeholder (while image loading) using default [woocommerce placeholder feature](https://docs.woocommerce.com/document/change-the-placeholder-image/). 
+        When called with lazyload - image display **placeholder** (while image loading) using default [woocommerce placeholder feature](https://docs.woocommerce.com/document/change-the-placeholder-image/). 
     <details><summary><strong>Add image GIF example</strong></summary>
       Everything what you need <strong>to provide optimized image size</strong> for specific device - it's to setup <strong>correct sizes attribute</strong>.  
       <img src="https://github.com/chyvak1831/starter_img/blob/master/addimage.gif?raw=true" alt="Add image">
