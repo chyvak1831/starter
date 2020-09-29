@@ -153,7 +153,7 @@ Open site with port 4000 to get [browserSync](https://browsersync.io/docs/gulp) 
 The main difference in development in Starter is **custom templates**: instead of hell with hooks just use **raw data** from woo!  
 For example: instead of getting thumbnails with 💩-markup - just get ids array and use with any your own markup:
 ```php
-$product->get_gallery_image_ids() //get thumbnail ids on single page
+$starter_thumbnails = $product->get_gallery_image_ids() //get thumbnail ids on single page
 ```
 and use it with any markup
 ```php
@@ -179,8 +179,8 @@ Plugins **combines into** one file ```assets\css\plugins.css``` by gulp, all fil
 In file ```assets\scss\plugins.scss``` you can to comment **bootstrap css modules which is not used** by you.  
 2. **Custom styles** ```assets\scss\theme``` combines into one file ```assets\css\styles.css``` by gulp, all files listed in file ```assets\scss\styles.scss```.  
 File ```assets\scss\wp_admin.scss``` contain *css which loads to WordPress admin*.
-3. **Critical CSS** and **preload**: to avoid render-blocking CSS each rel='stylesheet' replaced into rel='preload' (file ```functions.php```). As result there is [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) - so it's required to have *critical CSS*.  
-Critical CSS generates by gulp using npm [Critical](https://www.npmjs.com/package/critical), all files listed into ```config.js array criticalSrcPages```.  
+3. **Critical CSS** and **preload**: to avoid render-blocking CSS each rel='stylesheet' replaced into rel='preload' (file ```functions.php``` function ```starter_css_loader_tag```). As result there is [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) - so it's required to have *critical CSS*.  
+Critical CSS generates by gulp using npm [Critical](https://www.npmjs.com/package/critical), all files listed into ```config.js array criticalSrcPages```. Injects via function ```starter_critical_css_to_wp_head``` file ```functions.php```.  
 Open file ```config.js``` and replace each ```yourdomain``` into your local domain; ```URLtosinglepage``` should be replaced into URL to one of your single page.  
 Add more pages to array if you need.  
 
