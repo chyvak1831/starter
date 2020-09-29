@@ -10,8 +10,8 @@ var paths = {
 var sync = {
   server: {
     files: ['{template-parts}/**/*.php', '*.php'],
-    proxy: 'yourdomain',
-    host: 'yourdomain',
+    proxy: 'http://local.alexwp',
+    host: 'http://local.alexwp',
     port: 4000,
     open: false,
     snippetOptions: {
@@ -39,18 +39,18 @@ var critical = {
 }
 var criticalSrcPages = [
     {
-      url: 'yourdomain',
+      url: 'http://local.alexwp',
       css: 'css/critical/home.css',
       include: [
         /.modal/,
       ]
     },
     {
-      url: 'yourdomain/shop/',
+      url: 'http://local.alexwp/shop/',
       css: 'css/critical/archive-product.css',
     },
     {
-      url: 'yourdomain/URLtosinglepage/',
+      url: 'http://local.alexwp/product/beanie/',
       css: 'css/critical/single-product.css',
     }
 ]
