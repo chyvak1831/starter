@@ -17,7 +17,7 @@ global $product;
 	<ul class="list mt-3">
 		<li>
 			<div class="count_block js_count_add_product">
-				<a href="#" class="count_block_btn js_minus_count_btn_product"><?php echo starter_get_svg( array( 'icon' => 'bi-dash' ) ); ?></a>
+				<a href="#" class="count_block_btn js_minus_count_btn_product"><?php echo starter_get_svg( array( 'icon' => 'bi-minus' ) ); ?></a>
 				<div class="wrap_count_input">
 				<?php
 					do_action( 'woocommerce_before_add_to_cart_quantity' );
