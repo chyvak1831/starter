@@ -31,7 +31,7 @@ add_filter( 'upload_mimes', 'starter_mime_types' );
  * @return string img html
  */
 function starter_img_func( $atts ) {
-	$img             = $atts['img_object'];
+	$img             = $atts['img_id'];
 	$img_one_pixel   = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 	$img_from_option = wp_get_attachment_image_src( get_option( 'woocommerce_placeholder_image', '' ) )[0];
 	$img_placeholder = is_null ( $img_from_option ) ? $img_one_pixel : $img_from_option;
@@ -63,7 +63,6 @@ function starter_img_func( $atts ) {
 			   "<img class='img-fluid lazyload' src=\"$img_placeholder\" data-src=\"$img_src\" srcset=\"$img_placeholder\" data-srcset=\"$img_srcset\" $img_alt $img_sizes>";
 	}
 }
-add_shortcode( 'img', 'starter_img_func' );
 
 /**
  * Remove default WP/woo image sizes.

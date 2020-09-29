@@ -15,7 +15,7 @@ global $product;
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 $starter_img             = $product->get_image_id();
-$starter_thumbnails      = $product->get_gallery_image_ids()[0] ? $product->get_gallery_image_ids()[0] : $starter_img;
+$starter_thumbnails      = $product->get_gallery_image_ids();
 $starter_price           = $product->get_regular_price();
 $starter_sale_price      = $product->get_sale_price();
 $starter_comment_enabled = wc_reviews_enabled() && $product->get_reviews_allowed() ? 1 : 0;
@@ -37,10 +37,22 @@ foreach( $terms as $term ){
 	<div class="position-relative">
 		<a href="<?php echo esc_url( get_the_permalink() ); ?>">
 			<picture class="main_img item_img">
-				<?php echo do_shortcode( "[img img_src='w600' img_sizes=\"$starter_img_sizes\" img_object=\"$starter_img\"]" ); ?>
+				<?php
+					echo starter_img_func([
+						'img_src'   => 'w600',
+						'img_sizes' => $starter_img_sizes,
+						'img_id'    => $starter_img
+					]);
+				?>
 			</picture>
 			<picture class="thumbnail_img item_img">
-				<?php echo do_shortcode( "[img img_src='w600' img_sizes=\"$starter_img_sizes\" img_object=\"$starter_thumbnails\"]" ); ?>
+				<?php
+					echo starter_img_func([
+						'img_src'   => 'w600',
+						'img_sizes' => $starter_img_sizes,
+						'img_id'    => $starter_thumbnails[0]
+					]);
+				?>
 			</picture>
 		</a>
 		<ul class="list flex-column label_product_list">

@@ -24,15 +24,33 @@ get_header();
 									<a href="<?php echo esc_url( $starter_url ); ?>">
 										<picture class="carousel_img_desktop" style="display: none;">
 											<?php $starter_home_image_desktop = get_sub_field( 'image_desktop' )[ 'ID' ]; ?>
-											<?php echo do_shortcode( "[img img_src='w1200' img_sizes='(max-width: 1199px) 940px, 1120px' img_object=\"$starter_home_image_desktop\"]" ); ?>
+											<?php
+												echo starter_img_func([
+													'img_src'   => 'w1200',
+													'img_sizes' => '(max-width: 1199px) 940px, 1120px',
+													'img_id'    => $starter_home_image_desktop
+												]);
+											?>
 										</picture>
 										<picture class="carousel_img_tablet" style="display: none;">
 											<?php $starter_home_image_tablet = ( get_sub_field( 'image_tablet' ) ) ? get_sub_field( 'image_tablet' )[ 'ID' ] : $starter_home_image_desktop; ?>
-											<?php echo do_shortcode( "[img img_src='w800' img_sizes='(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 700px' img_object=\"$starter_home_image_tablet\"]" ); ?>
+											<?php
+												echo starter_img_func([
+													'img_src'   => 'w800',
+													'img_sizes' => '(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 700px',
+													'img_id'    => $starter_home_image_tablet
+												]);
+											?>
 										</picture>
 										<picture class="carousel_img_mobile" style="display: none;">
 											<?php $starter_home_image_mobile = ( get_sub_field( 'image_mobile' ) ) ? get_sub_field( 'image_mobile' )[ 'ID' ] : $starter_home_image_desktop; ?>
-											<?php echo do_shortcode( "[img img_src='w400' img_sizes='(max-width: 375px) calc(100vw - 10px)' img_object=\"$starter_home_image_mobile\"]" ); ?>
+											<?php
+												echo starter_img_func([
+													'img_src'   => 'w400',
+													'img_sizes' => '(max-width: 375px) calc(100vw - 10px)',
+													'img_id'    => $starter_home_image_mobile
+												]);
+											?>
 										</picture>
 									</a>
 								</div>
