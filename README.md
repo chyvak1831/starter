@@ -45,7 +45,7 @@ This theme **keeps your time**: it provides main ecommerce pages ready to easy a
 ✓ extended by a few cool features  
 
 #### ‼️ Cons
-frontend plugins (which affects to home, archive, single) are require **code integration** shortcodes or functions usually - due **theme does not used hooks** (i.e. just "install plugin and activate" - does not works)
+frontend plugins (which affects to home, catalog, single) are require **code integration** via shortcodes or functions usually - due **theme does not used hooks** for these pages (i.e. just "install plugin and activate" - does not works)
 ***
 <br>
 
@@ -159,7 +159,13 @@ and use it with any markup
 ```php
 <?php foreach ( $starter_thumbnails as $starter_thumbnail_img ) : ?>
   <picture>
-    <?php echo do_shortcode( "[img img_src='w200' img_sizes='70px' img_object=\"$starter_thumbnail_img\"]" ); ?>
+      <?php
+        echo starter_img_func([
+          'img_src'   => 'w200',
+          'img_sizes' => '70px',
+          'img_id'    => $starter_thumbnail_img
+        ]);
+      ?>
   </picture>
 <?php endforeach; ?>
 ```
@@ -191,14 +197,14 @@ Plugins **combines into** one file ```assets\js\plugins.js``` by gulp, all files
 
 ### Images
 1. #### Decor graphics
-    For decor elements uses **svg image spritesheet** ```assets\svg-icons.svg``` via ```starter_get_svg```.  
+    For decor elements uses **svg image spritesheet** ```assets\svg-icons.svg``` via ```starter_get_svg``` function.  
     File ```assets\svg-icons.svg``` loads via pure 'ajax' in ```footer.php``` to make it cacheable.  
     Primary used [bootstrap icons](https://icons.getbootstrap.com/)
     #### How to use
     ```php
     <?php echo starter_get_svg( array( 'icon' => 'bi-pen' ) ); ?>
     ```
-    It output inline svg which displays in the same high quality on screen with any pixel density because it's vector.
+    It output inline svg which displays in the same high quality on screen with any pixel density because it's vector:
     ```html
     <svg class="icon-bi-pen" aria-hidden="true" role="img">
       <use href="#bi-pen" xlink:href="#bi-pen"></use>
@@ -342,7 +348,7 @@ Plugins **combines into** one file ```assets\js\plugins.js``` by gulp, all files
         </picture>
         ```
         Class ```lazyload``` and attribute ```data-srcset``` adds [image lazyload](https://github.com/aFarkas/lazysizes).  
-        File ```header.php``` contain setup configs for lazyload
+        File ```header.php``` contain setup configs for lazyload:
         ```js
         window.lazySizesConfig=window.lazySizesConfig||{},window.lazySizesConfig.expand=10,lazySizesConfig.expFactor=1.5;
         ```
@@ -353,7 +359,7 @@ Plugins **combines into** one file ```assets\js\plugins.js``` by gulp, all files
     </details>
 
 #### Code
-Decor graphics (svg): `inc\icon-functions.php` (fork of twentyseventeen/inc/icon-functions.php)  
+Decor graphics (svg): `inc\icon-functions.php` (fork of twentyseventeen/inc/icon-functions.php).  
 Content images: ```inc\image.php```, file ```header.php``` contain setup configs for lazyload.
 ### More documentation and examples *coming soon*!
 ***
