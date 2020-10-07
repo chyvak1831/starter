@@ -489,7 +489,7 @@ See example below how to setup minicart, woo search and AWS search, TI wishlist.
 
 IV) Nested menu settings.
 <details><summary><strong>Categories widget, nested menu settings GIF example</strong></summary>
-  <img src="https://github.com/chyvak1831/starter_img/blob/master/menu_widgets.gif?raw=true" alt="Menu Image Icon">
+  <img src="https://github.com/chyvak1831/starter_img/blob/master/menu_nested.gif?raw=true" alt="Menu Image Icon">
 </details>
 
 IV) Add one more level menu (top).
