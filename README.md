@@ -415,7 +415,7 @@ Starter **uses fork of default woo filters** ```inc\woocommerce\filterclass-wc-w
   <img src="https://github.com/chyvak1831/starter_img/blob/master/filter_demonstration.gif?raw=true" alt="Frontend filter logic">
 </details>
 
-In future filters will be added ajax support so all will works without reloads. 
+In future for filters will be added ajax support so all will works without reloads. 
 
 ### Code
 * ACF: ```Filter widget``` and ```Color taxonomy```
@@ -481,7 +481,7 @@ II) Add image and icons:
   </details>
 
 III) Add widgets to menus: so far we used simple links in menus - let's to add *interactive elements*!  
-To use widgets in menus install plugin *WP Widget in Navigation* -> goto 'Appearance->Widgets' and *drag&drop* default widgets or widgets provided by plugins. 
+To use widgets in menus install plugin [WP Widget in Navigation](#-highly-recommendedintegrated-to-theme-plugins) -> goto 'Appearance->Widgets' and *drag&drop* default widgets or widgets provided by plugins. 
 See example below how to setup minicart, woo search and AWS search, TI wishlist.
 <details id="widgets_example"><summary><strong>Widgets (search, minicart, wishlist) in menu GIF example</strong></summary>
   <img src="https://github.com/chyvak1831/starter_img/blob/master/menu_widgets.gif?raw=true" alt="Menu Image Icon">
