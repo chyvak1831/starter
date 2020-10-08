@@ -359,7 +359,7 @@ Plugins **combines into** one file ```assets\js\plugins.js``` by gulp, all files
     </details>
 
 3. #### Content images: item boxes with aspect ratio on responsive.
-    **The problem**: it's a common issue when clients asking to make the same product item height - but they use images with *different aspect ratio*. If just to setup image box height for all screens - *image will lost aspect ratio on responsive* (due width changes on responsive).  
+    **The problem**: it's a common issue when clients asking to make the same product item height - but they use images with *different aspect ratio*. If just to setup height for all screens - *image will lost aspect ratio on responsive* (due width changes on responsive).  
     **The solution**: **go through each breakpoint and setup height** keeping aspect ratio. Starter uses scss mixin ```imgHeightItem``` which makes this process so fast and easy: mixin accepts two parameters ```aspect ratio``` and ```array of image width for each breakpoint``` - that's array exactly the same which used in sizes attribute (preious [point 2](#user-content-content-images)). Using these two parameters *mixin calulate correct height for each breakpoint*.  
     **How to use**: copy-paste array from html to css and setup desired aspect ratio!
 
