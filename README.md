@@ -360,7 +360,7 @@ Plugins **combines into** one file ```assets\js\plugins.js``` by gulp, all files
 
 3. #### Content images: item boxes with aspect ratio on responsive.
     It's a common problem when clients use images with **different aspect ratio** for product lists (e.g. catalog), but at the same time they require to keep the same height for product items.  
-    If just to setup height (once in CSS) - *image will lost aspect ratio on responsive* (due width changes on responsive). The solution is **go through each breakpoint and setup height**, exactly like we did for attribute sizes in previous point for img in html - but now needs to do it's in CSS.
+    If just to setup height (once in CSS) - *image will lost aspect ratio on responsive* (due width changes on responsive). The solution is **go through each breakpoint and setup height** keeping aspect ratio, exactly like we did for attribute sizes in previous point for img in html - but now needs to do it's in CSS and to setup aspect ratio for image item.  
 
 #### Code
 Decor graphics (svg): `inc\icon-functions.php` (fork of twentyseventeen/inc/icon-functions.php).  
