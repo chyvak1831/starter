@@ -51,14 +51,14 @@ defined( 'ABSPATH' ) || exit;
 									?>
 								</picture>
 							</div>
-							<?php foreach ( $starter_thumbnails as $key => $starter_img ) : ?>
+							<?php foreach ( $starter_thumbnails as $key => $starter_modal_img ) : ?>
 								<div class="swiper-slide">
 									<picture class="thumbnail js_thumbnail">
 										<?php
 											echo starter_img_func([
 												'img_src'   => 'w200',
 												'img_sizes' => '70px',
-												'img_id'    => $starter_img
+												'img_id'    => $starter_modal_img
 											]);
 										?>
 									</picture>

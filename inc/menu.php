@@ -106,7 +106,7 @@ function starter_nav_menu_objects( $sorted_menu_items, $args ) {
 			if ( 'menu_item_icon_on' == $icon_img_toggler && $icon ) {
 				$item->title .= '<span class="menu_icon">' .  file_get_contents( wp_get_attachment_image_src( $icon['ID'] )[0] ) . "</span>";
 			} elseif ( 'menu_item_img_on' == $icon_img_toggler && $img ) {
-				$item->title .= '<picture style="max-width:' . $img_width . '">' . starter_img_func([ 'img_src' => 'w1000', 'img_sizes' => $img_width, 'img_id' => $img['ID'], 'lazy' => false ]) . '</picture>';
+				$item->title .= '<picture style="max-width:' . $img_width . '">' . starter_img_func([ 'img_src' => 'w1000', 'img_sizes' => $img_width, 'img_id' => $img['ID'], 'lazy' => 'false' ]) . '</picture>';
 			}
 		}
 

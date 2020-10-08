@@ -80,14 +80,14 @@ $starter_comment_verified        = ( 'yes' === get_option( 'woocommerce_review_r
 			<?php /* translators: count of images. */ ?>
 			<h6><?php printf( esc_html( _n( 'Attached %s Photo', 'Attached %s Photos', $starter_comment_total_img, 'starter' ) ), esc_html( $starter_comment_total_img ) ); ?></h5>
 			<ul class="list object_fit">
-				<?php foreach ( $starter_comment_img_ids as $starter_img ) : ?>
+				<?php foreach ( $starter_comment_img_ids as $starter_comment_img ) : ?>
 					<li class="js_comment_img_modal_btn">
 						<picture class="item_img">
 							<?php
 								echo starter_img_func([
 									'img_src'   => 'w200',
 									'img_sizes' => '90px',
-									'img_id'    => $starter_img
+									'img_id'    => $starter_comment_img
 								]);
 							?>
 						</picture>

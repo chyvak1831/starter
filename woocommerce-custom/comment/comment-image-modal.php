@@ -51,14 +51,14 @@ $starter_comment_total_img  = count( $starter_comment_thumbnails );
 				<div class="wrap_carousel thumbnail_carousel js_thumbnail_carousel">
 					<div class="swiper-container object_fit">
 						<div class="swiper-wrapper">
-							<?php foreach ( $starter_comment_thumbnails as $key => $starter_img ) : ?>
+							<?php foreach ( $starter_comment_thumbnails as $key => $starter_comment_modal_img ) : ?>
 								<div class="swiper-slide">
 									<picture class="thumbnail js_thumbnail">
 										<?php
 											echo starter_img_func([
 												'img_src'   => 'w200',
 												'img_sizes' => '80px',
-												'img_id'    => $starter_img
+												'img_id'    => $starter_comment_modal_img
 											]);
 										?>
 									</picture>
