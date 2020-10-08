@@ -358,10 +358,13 @@ Plugins **combines into** one file ```assets\js\plugins.js``` by gulp, all files
       <img src="https://github.com/chyvak1831/starter_img/blob/master/addimg.gif?raw=true" alt="Add image">
     </details>
 
+3. #### Content images: item boxes with aspect ratio on responsive.
+It's a common problem when clients use images with **different aspect ratio** for product lists (e.g. catalog), but at the same time they require to keep the same height for product items.  
+If just to setup height (once in CSS) - *image will lost aspect ratio on responsive* (due width changes on responsive). The solution is **go through each breakpoint and setup height**, exactly like we did for attribute sizes in previous point for img in html - but now needs to do it's in CSS.
+
 #### Code
 Decor graphics (svg): `inc\icon-functions.php` (fork of twentyseventeen/inc/icon-functions.php).  
 Content images: ```inc\image.php```, file ```header.php``` contain setup configs for lazyload.
-### More documentation and examples *coming soon*!
 ***
 <br>
 
