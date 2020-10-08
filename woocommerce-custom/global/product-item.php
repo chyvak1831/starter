@@ -23,10 +23,10 @@ $starter_comment_count   = $product->get_review_count();
 $starter_comment_rating  = $product->get_average_rating();
 
 // new label
-$terms      = wp_get_post_terms( get_the_id(), 'product_tag' );
-$term_array = array();
-foreach( $terms as $term ){
-	$term_array[] = $term->name;
+$starter_terms      = wp_get_post_terms( get_the_id(), 'product_tag' );
+$starter_term_array = array();
+foreach( $starter_terms as $starter_term ){
+	$starter_term_array[] = $starter_term->name;
 }
 // END new label
 ?>
@@ -59,7 +59,7 @@ foreach( $terms as $term ){
 			<?php if ( is_plugin_active( 'ti-woocommerce-wishlist/ti-woocommerce-wishlist.php' ) && tinv_get_option( 'add_to_wishlist_catalog', 'show_in_loop' ) ) : ?>
 				<li><div class="wrap_label"><?php echo do_shortcode( "[ti_wishlists_addtowishlist loop=yes]" ); ?></div></li>
 			<?php endif; ?>
-			<?php if ( in_array( 'new', $term_array ) ) : ?>
+			<?php if ( in_array( 'new', $starter_term_array ) ) : ?>
 				<li><div class="wrap_label"><?php esc_html_e( 'New', 'starter' ); ?></div></li>
 			<?php endif; ?>
 			<?php if ( $product->is_on_sale() ) : ?>
