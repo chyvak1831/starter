@@ -198,7 +198,7 @@ Plugins **combines into** one file ```assets\js\plugins.js``` by gulp, all files
 ### Images
 1. #### Decor graphics
     For decor elements uses **svg image spritesheet** ```assets\svg-icons.svg``` via ```starter_get_svg``` function.  
-    File ```assets\svg-icons.svg``` loads via pure 'ajax' in ```footer.php``` to make it cacheable.  
+    File ```assets\svg-icons.svg``` loads via XHR (XmlHttpRequest - i.e. pure 'ajax') in ```footer.php``` to make it cacheable.  
     Primary used [bootstrap icons](https://icons.getbootstrap.com/)
     #### How to use
     ```php
