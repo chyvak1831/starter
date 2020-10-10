@@ -364,8 +364,8 @@ Plugins **combines into** one file ```assets\js\plugins.js``` by gulp, all files
     **How to use**: copy-paste array from html to css and setup desired aspect ratio!
 
 #### Code
-Decor graphics (svg): file with all icons is ```assets\svg-icons.svg```; ```footer.php``` contain script for load file with icons via XHR;  `inc\icon-functions.php` (fork of twentyseventeen/inc/icon-functions.php).  
-Content images: ```inc\image.php```, file ```header.php``` contain setup configs for lazyload.
+**Decor graphics (svg)**: file with all icons is ```assets\svg-icons.svg```; ```footer.php``` contain script for load file with icons via XHR;  `inc\icon-functions.php` (fork of twentyseventeen/inc/icon-functions.php).  
+**Content images**: ```inc\image.php```; file ```header.php``` contain setup configs for lazyload.
 ***
 <br>
 
