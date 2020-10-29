@@ -14,7 +14,7 @@ register_nav_menus(
 		'header_mobile_top_nav' => __( 'Header Mobile Top Area', 'starter' ),
 		'header_mobile_nav'     => __( 'Header Mobile Area', 'starter' ),
 		'footer_nav'            => __( 'Footer Area', 'starter' ),
-		'service_nav'           => __( 'Service Area', 'starter' ),
+		'support_nav'           => __( 'Support Area', 'starter' ),
 	)
 );
 

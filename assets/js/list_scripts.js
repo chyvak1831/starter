@@ -19,10 +19,6 @@ var scripts = [
 
 	// single product page
 	'./assets/js/modules/single_product.js',
-
-	// customer service page
-	'./assets/js/modules/step_nav.js',
-
 ];
 
 module.exports = {

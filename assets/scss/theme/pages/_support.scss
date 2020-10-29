@@ -1,0 +1,16 @@
+// left navigation
+.support_nav {
+	li::after {display: none !important;}
+	.list > li, .menu_nested_list > .sub-menu {
+		width: 100%;
+		> li {width: 100%;}
+	}
+	.dropdown_fullwidth {position: relative;}
+	.widget_text {margin: 15px 0 0;}
+	a {
+		border: 1px solid $gray-400;
+		margin-top: -1px;
+		padding: 10px 15px !important;
+		width: 100%;
+	}
+}
