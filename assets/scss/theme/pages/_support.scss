@@ -1,5 +1,5 @@
 // left navigation
-.support_nav {
+.support_nav, .support_nav_mobile {
 	li::after {display: none !important;}
 	.list > li, .menu_nested_list > .sub-menu {
 		width: 100%;

@@ -16,6 +16,8 @@ get_header();
 		} ?>
 		<!-- END breadcrumb -->
 		<div class="row mt-4">
+
+			<!-- desktop nav -->
 			<?php if ( has_nav_menu( 'support_nav' ) ) : ?>
 				<div class="col-md-3 pr-md-5 support_nav">
 					<nav aria-label="<?php esc_attr_e( 'Support navigation', 'starter' ); ?>">
@@ -30,6 +32,25 @@ get_header();
 					</nav>
 				</div>
 			<?php endif; ?>
+			<!-- END desktop nav -->
+
+			<!-- mobile nav -->
+			<?php if ( has_nav_menu( 'support_nav_mobile' ) ) : ?>
+				<div class="col-md-3 pr-md-5 support_nav_mobile">
+					<nav aria-label="<?php esc_attr_e( 'Support navigation', 'starter' ); ?>">
+						<?php
+							wp_nav_menu(
+								array(
+									'theme_location' => 'support_nav_mobile',
+									'menu_class'     => 'list-unstyled menu list',
+								)
+							);
+						?>
+					</nav>
+				</div>
+			<?php endif; ?>
+			<!-- END mobile nav -->
+
 			<div class="col-md-9">
 				<?php
 					while ( have_posts() ) :
@@ -39,6 +60,7 @@ get_header();
 					<?php the_content(); ?>
 				<?php endwhile; ?>
 			</div>
+
 		</div>
 	</div>
 </div>

@@ -9,12 +9,13 @@
 /* Register menus locations */
 register_nav_menus(
 	array(
-		'header_top_nav'        => __( 'Header Top Area', 'starter' ),
-		'header_main_nav'       => __( 'Header Main Area', 'starter' ),
-		'header_mobile_top_nav' => __( 'Header Mobile Top Area', 'starter' ),
-		'header_mobile_nav'     => __( 'Header Mobile Area', 'starter' ),
-		'footer_nav'            => __( 'Footer Area', 'starter' ),
-		'support_nav'           => __( 'Support Area', 'starter' ),
+		'header_top_nav'         => __( 'Header Top Area', 'starter' ),
+		'header_top_nav_mobile'  => __( 'Header Top Area Mobile', 'starter' ),
+		'header_main_nav'        => __( 'Header Main Area', 'starter' ),
+		'header_main_nav_mobile' => __( 'Header Main Area Mobile', 'starter' ),
+		'footer_nav'             => __( 'Footer Area', 'starter' ),
+		'support_nav'            => __( 'Support Area', 'starter' ),
+		'support_nav_mobile'     => __( 'Support Area Mobile', 'starter' )
 	)
 );
 
@@ -117,7 +118,7 @@ function starter_nav_menu_objects( $sorted_menu_items, $args ) {
 			}
 		}
 
-		if ( in_array( 'menu-item-has-children', $item->classes ) && 'menu_nested_collapse' !== $item_nested_type ) {
+		if ( in_array( 'menu-item-has-children', $item->classes ) ) {
 			array_push( $item->classes, 'dropdown' );
 			array_push( $item->classes, $dropdown_align );
 		}

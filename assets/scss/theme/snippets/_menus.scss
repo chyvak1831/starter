@@ -1,3 +1,7 @@
+// show/hide desktop/mobile menus
+@media (min-width: 768px) {.header_top_nav_mobile, .header_main_nav_mobile, .support_nav_mobile {display: none;}}
+@media (max-width: 767px) {.header_top_nav, .header_main_nav, .support_nav {display: none;}}
+
 // logged/unlogged users
 .user_logged .display_logout {display: none !important;}
 .user_unlogged .display_logged {display: none !important;}
@@ -101,25 +105,6 @@ svg.arrow {
 		}
 	}
 }
-
-
-// menu collapse
-@mixin nested_collapse() {
-	> .collapse, > .collapsing {
-		background: #fff;
-		top: 100%;
-		left: 0px;
-		max-height: 70vh;
-		overflow: auto;
-		position: absolute;
-		width: 100%;
-		z-index: 9;
-		> li {margin-bottom: 0;}
-		a {padding: 10px 20px;}
-	}
-}
-@media (min-width: 992px) {.menu_nested_collapse {@include nested_collapse();}}
-@media (max-width: 991px) {.menu > .menu_nested_collapse {@include nested_collapse();}}
 
 
 // widgets
