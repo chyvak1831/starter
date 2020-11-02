@@ -14,7 +14,7 @@
 					wp_nav_menu(
 						array(
 							'theme_location' => 'footer_nav',
-							'menu_class'     => 'list footer_list'
+							'menu_class'     => 'list footer_nav'
 						)
 					);
 				?>

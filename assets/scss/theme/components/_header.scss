@@ -11,9 +11,7 @@
 		padding: 15px 0;
 		position: relative;
 	}
-	@media (min-width: 768px) {.header_mobile_top_nav, .header_mobile_nav {display: none;}}
 	@media (max-width: 767px) {
-		.header_top_nav, .header_main_nav {display: none;}
 		.header_mobile_nav {
 			border-bottom: 1px solid $gray-700;
 			padding: 5px 10px;

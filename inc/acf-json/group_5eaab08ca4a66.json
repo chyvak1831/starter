@@ -330,8 +330,7 @@
             },
             "choices": {
                 "menu_nested_dropdown": "Dropdown",
-                "menu_nested_list": "List",
-                "menu_nested_collapse": "Collapse"
+                "menu_nested_list": "List"
             },
             "allow_null": 0,
             "other_choice": 0,
@@ -639,7 +638,7 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1596034271
+    "modified": 1603964546
 }

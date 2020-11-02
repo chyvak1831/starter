@@ -88,4 +88,11 @@ jQuery( document ).ready( function( $ ) {
 		$( this ).width( $( this ).attr( 'sizes' ) );
 	})
 
+
+	$( document ).on( 'shown.bs.dropdown', '.menu .dropdown-menu', function() {
+		$( this ).parents( '.menu-item' ).addClass( 'opened_menu_dropdown' );
+	})
+	$( document ).on( 'hidden.bs.dropdown', '.menu .dropdown-menu', function() {
+		$( this ).parents( '.menu-item' ).removeClass( 'opened_menu_dropdown' );
+	})
 })
