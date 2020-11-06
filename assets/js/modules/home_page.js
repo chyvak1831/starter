@@ -9,6 +9,7 @@ function initFullCarousel() {
 	$this.find( '.js_carousel' ).slick({
 		prevArrow: prevArrow,
 		nextArrow: nextArrow,
+		touchThreshold: 40,
 	});
 }
 initFullCarousel();
@@ -21,9 +22,10 @@ function initProductCarousel() {
 		var prevArrow = $this.find( '.js_carousel_control_prev' );
 		var nextArrow = $this.find( '.js_carousel_control_next' );
 		$this.find( '.js_carousel' ).slick({
-			infinite: false,
 			prevArrow: prevArrow,
 			nextArrow: nextArrow,
+			touchThreshold: 40,
+			infinite: false,
 			slidesToScroll: 1,
 			slidesToShow: 5,
 			responsive: [

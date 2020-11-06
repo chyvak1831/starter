@@ -61,9 +61,10 @@ function initThumbnailMainImgCarousel() {
 	var prevArrow = $this.find( '.js_carousel_control_prev' );
 	var nextArrow = $this.find( '.js_carousel_control_next' );
 	$this.find( '.js_carousel' ).slick({
-		infinite: false,
 		prevArrow: prevArrow,
 		nextArrow: nextArrow,
+		touchThreshold: 40,
+		infinite: false,
 		slidesToScroll: 1,
 		slidesToShow: 6,
 		responsive: [
@@ -95,9 +96,10 @@ function initThumbnailModalCarousel() {
 	var prevArrow = $this.find( '.js_carousel_control_prev' );
 	var nextArrow = $this.find( '.js_carousel_control_next' );
 	$this.find( '.js_carousel' ).slick({
-		infinite: false,
 		prevArrow: prevArrow,
 		nextArrow: nextArrow,
+		touchThreshold: 40,
+		infinite: false,
 		slidesToScroll: 1,
 		slidesToShow: 6,
 		responsive: [
