@@ -17,12 +17,34 @@ get_header();
 					<?php
 						while ( have_rows( 'home_carousel' ) ) :
 							the_row();
-							$starter_url = get_sub_field( 'url' );
+							$starter_home_url           = get_sub_field( 'url' );
+							$starter_home_image_desktop = get_sub_field( 'home_image_desktop' )[ 'ID' ];
+							$starter_home_image_tablet  = get_sub_field( 'home_image_tablet' ) ? get_sub_field( 'home_image_tablet' )[ 'ID' ] : $starter_home_image_desktop;
+							$starter_home_image_mobile  = get_sub_field( 'home_image_mobile' ) ? get_sub_field( 'home_image_mobile' )[ 'ID' ] : $starter_home_image_desktop;
 							?>
 							<div>
-								<a href="<?php echo esc_url( $starter_url ); ?>">
+								<?php if ( $starter_home_url ) : ?>
+								<a href="<?php echo esc_url( $starter_home_url ); ?>">
+								<?php endif; ?>
+									<picture class="carousel_img_mobile" style="display: none;">
+										<?php
+											echo starter_img_func([
+												'img_src'   => 'w600',
+												'img_sizes' => '(max-width: 575px) calc(100vw - 10px)',
+												'img_id'    => $starter_home_image_mobile
+											]);
+										?>
+									</picture>
+									<picture class="carousel_img_tablet" style="display: none;">
+										<?php
+											echo starter_img_func([
+												'img_src'   => 'w800',
+												'img_sizes' => '(max-width: 767px) 530px, (max-width: 991px) 700px',
+												'img_id'    => $starter_home_image_tablet
+											]);
+										?>
+									</picture>
 									<picture class="carousel_img_desktop" style="display: none;">
-										<?php $starter_home_image_desktop = get_sub_field( 'image_desktop' )[ 'ID' ]; ?>
 										<?php
 											echo starter_img_func([
 												'img_src'   => 'w1200',
@@ -31,34 +53,16 @@ get_header();
 											]);
 										?>
 									</picture>
-									<picture class="carousel_img_tablet" style="display: none;">
-										<?php $starter_home_image_tablet = ( get_sub_field( 'image_tablet' ) ) ? get_sub_field( 'image_tablet' )[ 'ID' ] : $starter_home_image_desktop; ?>
-										<?php
-											echo starter_img_func([
-												'img_src'   => 'w800',
-												'img_sizes' => '(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 700px',
-												'img_id'    => $starter_home_image_tablet
-											]);
-										?>
-									</picture>
-									<picture class="carousel_img_mobile" style="display: none;">
-										<?php $starter_home_image_mobile = ( get_sub_field( 'image_mobile' ) ) ? get_sub_field( 'image_mobile' )[ 'ID' ] : $starter_home_image_desktop; ?>
-										<?php
-											echo starter_img_func([
-												'img_src'   => 'w400',
-												'img_sizes' => '(max-width: 375px) calc(100vw - 10px)',
-												'img_id'    => $starter_home_image_mobile
-											]);
-										?>
-									</picture>
+								<?php if ( $starter_home_url ) : ?>
 								</a>
+								<?php endif; ?>
 							</div>
 					<?php
 						endwhile;
 					?>
 				</div>
-				<div class="carousel_control_prev js_carousel_control_prev"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></div>
-				<div class="carousel_control_next js_carousel_control_next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></div>
+				<button class="btn carousel_control_prev js_carousel_control_prev"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
+				<button class="btn carousel_control_next js_carousel_control_next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
 			</div>
 		<?php endif; ?>
 		<!-- END full slider -->
@@ -92,11 +96,13 @@ get_header();
 			}
 			$starter_loop = new WP_Query( $starter_featured_products );
 			?>
+			<?php if ( $starter_title ) : ?>
 			<div class="container">
 				<h2 class="title_section"><span><?php echo esc_html( $starter_title ); ?></span></h2>
 			</div>
-			<div class="container container_product_carousel">
-				<div class="wrap_carousel js_product_carousel">
+			<?php endif; ?>
+			<div class="container">
+				<div class="wrap_carousel product_carousel js_product_carousel">
 					<div class="js_carousel">
 						<?php
 							while ( $starter_loop->have_posts() ) {
@@ -111,8 +117,8 @@ get_header();
 							wp_reset_postdata();
 						?>
 					</div>
-					<div class="carousel_control_prev js_carousel_control_prev"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></div>
-					<div class="carousel_control_next js_carousel_control_next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></div>
+					<button class="btn carousel_control_prev js_carousel_control_prev"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
+					<button class="btn carousel_control_next js_carousel_control_next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
 				</div>
 			</div>
 			<?php

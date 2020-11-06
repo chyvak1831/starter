@@ -40,10 +40,10 @@
                 {
                     "key": "field_5cda7ff5a7063",
                     "label": "Image (desktop)",
-                    "name": "image_desktop",
+                    "name": "home_image_desktop",
                     "type": "image",
-                    "instructions": "Best fit image with aspect ratio 2.458:1\r\ne.g. width=2360px and height=960px",
-                    "required": 0,
+                    "instructions": "Best fit image with aspect ratio 2.5:1\r\ne.g. width=2240px and height=896px",
+                    "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
@@ -64,9 +64,9 @@
                 {
                     "key": "field_5d7f6593bf564",
                     "label": "Image (tablet)",
-                    "name": "image_tablet",
+                    "name": "home_image_tablet",
                     "type": "image",
-                    "instructions": "Best fit image with aspect ratio 1.823:1\r\ne.g. width=1400px and height=768px",
+                    "instructions": "Best fit image with aspect ratio 2:1\r\ne.g. width=1400px and height=700px",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -88,9 +88,9 @@
                 {
                     "key": "field_5d7f65e0bf565",
                     "label": "Image (mobile)",
-                    "name": "image_mobile",
+                    "name": "home_image_mobile",
                     "type": "image",
-                    "instructions": "Best fit image with aspect ratio 1.521:1\r\ne.g. width=730px and height=480px",
+                    "instructions": "Best fit image with aspect ratio 1.5:1\r\ne.g. width=1130px and height=754px",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -226,9 +226,10 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": [
-        "the_content"
+        "the_content",
+        "featured_image"
     ],
     "active": true,
     "description": "",
-    "modified": 1604485866
+    "modified": 1604663258
 }
