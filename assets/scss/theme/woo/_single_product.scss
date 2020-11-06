@@ -34,7 +34,10 @@
 	transition: opacity 300ms ease-in-out;
 	&.zoomOn {opacity: 1;}
 }
-.wrap_single_images .thumbnail_carousel {@media (max-width: 1199px) {max-width: 400px;}}
+.wrap_single_images .thumbnail_carousel {
+	@media (max-width: 1199px) {width: 470px;}
+	@media (max-width: 991px) {width: 306px;}
+}
 
 
 // right part
@@ -137,6 +140,7 @@
 	}
 	picture {cursor: pointer;}
 	.item_img {
+		margin-bottom: 15px;
 		$imgBoxWidth: (
 			xs: 90px,
 			sm: 90px,

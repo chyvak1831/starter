@@ -18,8 +18,8 @@ var plugins = [
 	// lazysizes
 	'./node_modules/lazysizes/lazysizes.js',
 
-    // swiper
-    './node_modules/swiper/js/swiper.js'
+    // slick
+    './node_modules/slick-carousel/slick/slick.min.js'
 ];
 
 module.exports = {

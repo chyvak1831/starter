@@ -29,24 +29,22 @@ if ( $related_products ) : ?>
 			<h2 class="title_section"><span><?php echo esc_html( $heading ); ?></h2>
 		<?php endif; ?>
 	</div>
-	<div class="container container_product_carousel">
-		<div class="wrap_carousel js_wrap_product_carousel">
-			<div class="swiper-container js_product_carousel">
-				<div class="swiper-wrapper">
-					<?php foreach ( $related_products as $related_product ) {
-						$post_object = get_post( $related_product->get_id() );
-						setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
-						echo "<div class='swiper-slide'>";
-						echo "<div class='wraper_product js_product'>";
-						$starter_img_sizes = '(max-width: 575px) calc(50vw - 10px), (max-width: 767px) 260px, (max-width: 991px) 220px, (max-width: 1199px) 220px, 208px';
-						require get_stylesheet_directory() . '/woocommerce-custom/global/product-item.php';
-						echo '</div>';
-						echo '</div>';
-					} ?>
-				</div>
+	<div class="container">
+		<div class="wrap_carousel product_carousel js_product_carousel">
+			<div class="js_carousel">
+				<?php foreach ( $related_products as $related_product ) {
+					$post_object = get_post( $related_product->get_id() );
+					setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
+					echo "<div>";
+					echo "<div class='wraper_product js_product'>";
+					$starter_img_sizes = '(max-width: 575px) calc(50vw - 10px), (max-width: 767px) 260px, (max-width: 991px) 220px, (max-width: 1199px) 220px, 208px';
+					require get_stylesheet_directory() . '/woocommerce-custom/global/product-item.php';
+					echo '</div>';
+					echo '</div>';
+				} ?>
 			</div>
-			<div class="carousel_control_prev js_carousel_control_prev"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></div>
-			<div class="carousel_control_next js_carousel_control_next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></div>
+			<button class="btn carousel_control_prev js_carousel_control_prev"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
+			<button class="btn carousel_control_next js_carousel_control_next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
 		</div>
 	</div>
 </section>
