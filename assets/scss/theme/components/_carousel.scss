@@ -2,6 +2,7 @@
 .wrap_carousel {position: relative;}
 .carousel_control_prev, .carousel_control_next {
 	@include flex_align();
+	display: flex !important;
 	bottom: 0;
 	cursor: pointer;
 	position: absolute;
@@ -13,23 +14,24 @@
 		height: 2em;
 		width: 2em;
 	}
-	&.swiper-button-disabled {display: none !important;}
+	&.slick-disabled, &.slick-hidden {display: none !important;}
 }
 .carousel_control_prev {left: 0;}
 .carousel_control_next {
 	right: 0;
 	transform: rotate(200grad);
 }
+.slick-track {margin: 0;}
 
 // thumbnail carousel
 .thumbnail_carousel {
 	margin: 0 auto;
 	padding: 0 30px;
-	max-width: 570px; // carousel width + 2 arrows
+	max-width: 564px; // carousel width + 2 arrows
 	width: 100%;
 	.thumbnail {
 		cursor: pointer;
-		display: inline-block;
+		display: block;
 		font-size: 10px;
 		height: 8em;
 		width: 8em;

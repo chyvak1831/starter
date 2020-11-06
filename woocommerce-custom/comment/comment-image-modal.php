@@ -48,23 +48,21 @@ $starter_comment_total_img  = count( $starter_comment_thumbnails );
 				</picture>
 			</div>
 			<div class="modal-footer">
-				<div class="wrap_carousel thumbnail_carousel js_thumbnail_carousel">
-					<div class="swiper-container object_fit">
-						<div class="swiper-wrapper">
-							<?php foreach ( $starter_comment_thumbnails as $key => $starter_comment_modal_img ) : ?>
-								<div class="swiper-slide">
-									<picture class="thumbnail js_thumbnail">
-										<?php
-											echo starter_img_func([
-												'img_src'   => 'w200',
-												'img_sizes' => '80px',
-												'img_id'    => $starter_comment_modal_img
-											]);
-										?>
-									</picture>
-								</div>
-							<?php endforeach; ?>
-						</div>
+				<div class="wrap_carousel thumbnail_carousel object_fit js_thumbnail_carousel_modal">
+					<div class="js_carousel">
+						<?php foreach ( $starter_comment_thumbnails as $key => $starter_comment_modal_img ) : ?>
+							<div>
+								<picture class="thumbnail js_thumbnail">
+									<?php
+										echo starter_img_func([
+											'img_src'   => 'w200',
+											'img_sizes' => '80px',
+											'img_id'    => $starter_comment_modal_img
+										]);
+									?>
+								</picture>
+							</div>
+						<?php endforeach; ?>
 					</div>
 					<div class="carousel_control_prev js_carousel_control_prev"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></div>
 					<div class="carousel_control_next js_carousel_control_next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></div>

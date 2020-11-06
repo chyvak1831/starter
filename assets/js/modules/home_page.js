@@ -1,18 +1,14 @@
 jQuery( document ).ready( function( $ ) {
 
+
 // fullwidth carousel
 function initFullCarousel() {
-	$( '.js_fullwidth_carousel' ).each( function () {
-		var $this = $( this );
-		var prevArrow = $this.closest( '.js_wrap_fullwidth_carousel' ).find( '.js_carousel_control_prev' );
-		var nextArrow = $this.closest( '.js_wrap_fullwidth_carousel' ).find( '.js_carousel_control_next' );
-		new Swiper ( $this, {
-			loop: true,
-			navigation: {
-				nextEl: nextArrow,
-				prevEl: prevArrow,
-			},
-		});
+	var $this = $( '.js_fullwidth_carousel' );
+	var prevArrow = $this.find( '.js_carousel_control_prev' );
+	var nextArrow = $this.find( '.js_carousel_control_next' );
+	$this.find( '.js_carousel' ).slick({
+		prevArrow: prevArrow,
+		nextArrow: nextArrow,
 	});
 }
 initFullCarousel();
@@ -22,21 +18,28 @@ initFullCarousel();
 function initProductCarousel() {
 	$( '.js_product_carousel' ).each( function () {
 		var $this = $( this );
-		var prevArrow = $this.closest( '.js_wrap_product_carousel' ).find( '.js_carousel_control_prev' );
-		var nextArrow = $this.closest( '.js_wrap_product_carousel' ).find( '.js_carousel_control_next' );
-		new Swiper ( $this, {
-			loop: false,
-			spaceBetween: 0,
-			navigation: {
-				nextEl: nextArrow,
-				prevEl: prevArrow,
-			},
-			breakpoints: {
-				320: {slidesPerView: 2},
-				768: {slidesPerView: 3},
-				992: {slidesPerView: 4},
-				1200: {slidesPerView: 5}
-			}
+		var prevArrow = $this.find( '.js_carousel_control_prev' );
+		var nextArrow = $this.find( '.js_carousel_control_next' );
+		$this.find( '.js_carousel' ).slick({
+			infinite: false,
+			prevArrow: prevArrow,
+			nextArrow: nextArrow,
+			slidesToScroll: 1,
+			slidesToShow: 5,
+			responsive: [
+				{
+					breakpoint: 1199,
+					settings: { slidesToShow: 4 }
+				},
+				{
+					breakpoint: 991,
+					settings: { slidesToShow: 3 }
+				},
+				{
+					breakpoint: 767,
+					settings: { slidesToShow: 2 }
+				}
+			]
 		});
 	});
 }

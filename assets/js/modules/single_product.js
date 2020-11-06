@@ -55,36 +55,38 @@ $( '.js_main_img img' ).on( 'load', function() {
 });
 
 
-// thumbnails carousel
-function initThumbnailsCarousel( selector, breakpoints ) {
-	var carousel = selector.find( '.swiper-container' );
-	var initialCarousel = new Swiper ( carousel, {
-		loop: false,
-		navigation: {
-			nextEl: selector.find( '.js_carousel_control_next' ),
-			prevEl: selector.find( '.js_carousel_control_prev' ),
-		},
-		breakpoints: breakpoints,
-		on: {
-			init: function () {
-				carousel.find( '.swiper-slide' ).first().find( '.js_thumbnail' ).addClass( 'is_active' );
+// thumbnails carousel for main img
+function initThumbnailMainImgCarousel() {
+	var $this = $( '.js_thumbnail_carousel_main_img' );
+	var prevArrow = $this.find( '.js_carousel_control_prev' );
+	var nextArrow = $this.find( '.js_carousel_control_next' );
+	$this.find( '.js_carousel' ).slick({
+		infinite: false,
+		prevArrow: prevArrow,
+		nextArrow: nextArrow,
+		slidesToScroll: 1,
+		slidesToShow: 6,
+		responsive: [
+			{
+				breakpoint: 1199,
+				settings: { slidesToShow: 5 }
+			},
+			{
+				breakpoint: 991,
+				settings: { slidesToShow: 3 }
+			},
+			{
+				breakpoint: 767,
+				settings: { slidesToShow: 4 }
+			},
+			{
+				breakpoint: 479,
+				settings: { slidesToShow: 3 }
 			}
-		}
+		]
 	});
 }
-
-
-// init thumbnail carousel below main image
-if ( $( '.js_thumbnail_carousel_main_img' ).length ) {
-	var breakpoints = {
-		320: {slidesPerView: 3},
-		480: {slidesPerView: 4},
-		768: {slidesPerView: 3},
-		992: {slidesPerView: 4},
-		1200: {slidesPerView: 6}
-	};
-	initThumbnailsCarousel( $( '.js_thumbnail_carousel_main_img' ), breakpoints );
-}
+initThumbnailMainImgCarousel();
 
 
 // set modal fullheight
@@ -97,13 +99,38 @@ function calcSizeImageModal( selector ) {
 
 
 // image modal
+function initThumbnailModalCarousel() {
+	var $this = $( '.js_thumbnail_carousel_modal' );
+	var prevArrow = $this.find( '.js_carousel_control_prev' );
+	var nextArrow = $this.find( '.js_carousel_control_next' );
+	$this.find( '.js_carousel' ).slick({
+		infinite: false,
+		prevArrow: prevArrow,
+		nextArrow: nextArrow,
+		slidesToScroll: 1,
+		slidesToShow: 6,
+		responsive: [
+			{
+				breakpoint: 1199,
+				settings: { slidesToShow: 4 }
+			},
+			{
+				breakpoint: 991,
+				settings: { slidesToShow: 3 }
+			},
+			{
+				breakpoint: 767,
+				settings: { slidesToShow: 4 }
+			},
+			{
+				breakpoint: 479,
+				settings: { slidesToShow: 3 }
+			}
+		]
+	});
+}
 $( document ).on( 'shown.bs.modal', '.js_img_modal', function() {
-	var breakpoints = {
-		320: {slidesPerView: 3},
-		480: {slidesPerView: 4},
-		768: {slidesPerView: 6}
-	};
-	initThumbnailsCarousel( $( '.js_img_modal.show' ), breakpoints );
+	initThumbnailModalCarousel();
 	calcSizeImageModal( $( '.js_img_modal.show' ) );
 	$( window ).resize( function() {
 		if ( $( '.js_img_modal.show' ).hasClass( 'show' ) ) {
@@ -111,14 +138,16 @@ $( document ).on( 'shown.bs.modal', '.js_img_modal', function() {
 		}
 	});
 });
-
+$( document ).on( 'hidden.bs.modal', '.js_img_modal', function() {
+	$( '.js_thumbnail_carousel_modal .js_carousel' ).slick( 'unslick' );
+})
 
 // switch img by click on main image inside modal
 $( document ).on( 'click', '.modal .js_main_img', function(e) {
 	e.preventDefault();
 	var modal = $( this ).closest( '.modal' );
 	var activeSlide = modal.find( '.is_active' );
-	activeSlide.closest( '.swiper-slide' ).next().find( '.js_thumbnail' ).click();
+	activeSlide.closest( '.slick-slide' ).next().find( '.js_thumbnail' ).click();
 });
 
 

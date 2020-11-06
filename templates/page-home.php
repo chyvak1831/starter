@@ -12,52 +12,50 @@ get_header();
 	<div class="container">
 		<!-- full slider -->
 		<?php if ( have_rows( 'home_carousel' ) ) : ?>
-			<div class="wrap_carousel fullwidth_carousel js_wrap_fullwidth_carousel">
-				<div class="swiper-container js_fullwidth_carousel">
-					<div class="swiper-wrapper">
-						<?php
-							while ( have_rows( 'home_carousel' ) ) :
-								the_row();
-								$starter_url = get_sub_field( 'url' );
-								?>
-								<div class="swiper-slide">
-									<a href="<?php echo esc_url( $starter_url ); ?>">
-										<picture class="carousel_img_desktop" style="display: none;">
-											<?php $starter_home_image_desktop = get_sub_field( 'image_desktop' )[ 'ID' ]; ?>
-											<?php
-												echo starter_img_func([
-													'img_src'   => 'w1200',
-													'img_sizes' => '(max-width: 1199px) 940px, 1120px',
-													'img_id'    => $starter_home_image_desktop
-												]);
-											?>
-										</picture>
-										<picture class="carousel_img_tablet" style="display: none;">
-											<?php $starter_home_image_tablet = ( get_sub_field( 'image_tablet' ) ) ? get_sub_field( 'image_tablet' )[ 'ID' ] : $starter_home_image_desktop; ?>
-											<?php
-												echo starter_img_func([
-													'img_src'   => 'w800',
-													'img_sizes' => '(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 700px',
-													'img_id'    => $starter_home_image_tablet
-												]);
-											?>
-										</picture>
-										<picture class="carousel_img_mobile" style="display: none;">
-											<?php $starter_home_image_mobile = ( get_sub_field( 'image_mobile' ) ) ? get_sub_field( 'image_mobile' )[ 'ID' ] : $starter_home_image_desktop; ?>
-											<?php
-												echo starter_img_func([
-													'img_src'   => 'w400',
-													'img_sizes' => '(max-width: 375px) calc(100vw - 10px)',
-													'img_id'    => $starter_home_image_mobile
-												]);
-											?>
-										</picture>
-									</a>
-								</div>
-						<?php
-							endwhile;
-						?>
-					</div>
+			<div class="wrap_carousel fullwidth_carousel js_fullwidth_carousel">
+				<div class="js_carousel">
+					<?php
+						while ( have_rows( 'home_carousel' ) ) :
+							the_row();
+							$starter_url = get_sub_field( 'url' );
+							?>
+							<div>
+								<a href="<?php echo esc_url( $starter_url ); ?>">
+									<picture class="carousel_img_desktop" style="display: none;">
+										<?php $starter_home_image_desktop = get_sub_field( 'image_desktop' )[ 'ID' ]; ?>
+										<?php
+											echo starter_img_func([
+												'img_src'   => 'w1200',
+												'img_sizes' => '(max-width: 1199px) 940px, 1120px',
+												'img_id'    => $starter_home_image_desktop
+											]);
+										?>
+									</picture>
+									<picture class="carousel_img_tablet" style="display: none;">
+										<?php $starter_home_image_tablet = ( get_sub_field( 'image_tablet' ) ) ? get_sub_field( 'image_tablet' )[ 'ID' ] : $starter_home_image_desktop; ?>
+										<?php
+											echo starter_img_func([
+												'img_src'   => 'w800',
+												'img_sizes' => '(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 700px',
+												'img_id'    => $starter_home_image_tablet
+											]);
+										?>
+									</picture>
+									<picture class="carousel_img_mobile" style="display: none;">
+										<?php $starter_home_image_mobile = ( get_sub_field( 'image_mobile' ) ) ? get_sub_field( 'image_mobile' )[ 'ID' ] : $starter_home_image_desktop; ?>
+										<?php
+											echo starter_img_func([
+												'img_src'   => 'w400',
+												'img_sizes' => '(max-width: 375px) calc(100vw - 10px)',
+												'img_id'    => $starter_home_image_mobile
+											]);
+										?>
+									</picture>
+								</a>
+							</div>
+					<?php
+						endwhile;
+					?>
 				</div>
 				<div class="carousel_control_prev js_carousel_control_prev"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></div>
 				<div class="carousel_control_next js_carousel_control_next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></div>
@@ -98,22 +96,20 @@ get_header();
 				<h2 class="title_section"><span><?php echo esc_html( $starter_title ); ?></span></h2>
 			</div>
 			<div class="container container_product_carousel">
-				<div class="wrap_carousel js_wrap_product_carousel">
-					<div class="swiper-container js_product_carousel">
-						<div class="swiper-wrapper">
-							<?php
-								while ( $starter_loop->have_posts() ) {
-									$starter_loop->the_post();
-									echo "<div class='swiper-slide'>";
-									echo "<div class='wraper_product js_product'>";
-									$starter_img_sizes = '(max-width: 575px) calc(50vw - 10px), (max-width: 767px) 260px, (max-width: 991px) 220px, (max-width: 1199px) 220px, 208px';
-									require get_stylesheet_directory() . '/woocommerce-custom/global/product-item.php';
-									echo '</div>';
-									echo '</div>';
-								}
-								wp_reset_postdata();
-							?>
-						</div>
+				<div class="wrap_carousel js_product_carousel">
+					<div class="js_carousel">
+						<?php
+							while ( $starter_loop->have_posts() ) {
+								$starter_loop->the_post();
+								echo "<div>";
+								echo "<div class='wraper_product js_product'>";
+								$starter_img_sizes = '(max-width: 575px) calc(50vw - 10px), (max-width: 767px) 260px, (max-width: 991px) 220px, (max-width: 1199px) 220px, 208px';
+								require get_stylesheet_directory() . '/woocommerce-custom/global/product-item.php';
+								echo '</div>';
+								echo '</div>';
+							}
+							wp_reset_postdata();
+						?>
 					</div>
 					<div class="carousel_control_prev js_carousel_control_prev"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></div>
 					<div class="carousel_control_next js_carousel_control_next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></div>

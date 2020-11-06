@@ -88,34 +88,32 @@ while ( have_posts() ) :
 						<a href="#singleMainImgModal" class="loop_btn" data-toggle="modal" role="button" aria-label="<?php esc_attr_e( 'Image zoom', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-plus-circle' ) ); ?></a>
 					</div>
 					<?php if ( $starter_thumbnails ) : ?>
-						<div class="wrap_carousel thumbnail_carousel js_thumbnail_carousel_main_img">
-							<div class="swiper-container object_fit">
-								<div class="swiper-wrapper">
-									<div class="swiper-slide">
-										<picture class="thumbnail js_thumbnail" data-zoom-img="<?php echo esc_attr( wp_get_attachment_image_src( $starter_img, 'w2000' )[0] ); ?>">
+						<div class="wrap_carousel thumbnail_carousel object_fit js_thumbnail_carousel_main_img">
+							<div class="js_carousel">
+								<div>
+									<picture class="thumbnail js_thumbnail" data-zoom-img="<?php echo esc_attr( wp_get_attachment_image_src( $starter_img, 'w2000' )[0] ); ?>">
+										<?php
+											echo starter_img_func([
+												'img_src'   => 'w200',
+												'img_sizes' => '70px',
+												'img_id'    => $starter_img
+											]);
+										?>
+									</picture>
+								</div>
+								<?php foreach ( $starter_thumbnails as $starter_thumbnail_img ) : ?>
+									<div>
+										<picture class="thumbnail js_thumbnail" data-zoom-img="<?php echo esc_attr( wp_get_attachment_image_src( $starter_thumbnail_img, 'w2000' )[0] ); ?>">
 											<?php
 												echo starter_img_func([
 													'img_src'   => 'w200',
 													'img_sizes' => '70px',
-													'img_id'    => $starter_img
+													'img_id'    => $starter_thumbnail_img
 												]);
 											?>
 										</picture>
 									</div>
-									<?php foreach ( $starter_thumbnails as $starter_thumbnail_img ) : ?>
-										<div class="swiper-slide">
-											<picture class="thumbnail js_thumbnail" data-zoom-img="<?php echo esc_attr( wp_get_attachment_image_src( $starter_thumbnail_img, 'w2000' )[0] ); ?>">
-												<?php
-													echo starter_img_func([
-														'img_src'   => 'w200',
-														'img_sizes' => '70px',
-														'img_id'    => $starter_thumbnail_img
-													]);
-												?>
-											</picture>
-										</div>
-									<?php endforeach; ?>
-								</div>
+								<?php endforeach; ?>
 							</div>
 							<div class="carousel_control_prev js_carousel_control_prev"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></div>
 							<div class="carousel_control_next js_carousel_control_next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></div>
