@@ -91,7 +91,7 @@ while ( have_posts() ) :
 						<div class="wrap_carousel thumbnail_carousel object_fit js_thumbnail_carousel_main_img">
 							<div class="js_carousel">
 								<div>
-									<picture class="thumbnail js_thumbnail" data-zoom-img="<?php echo esc_attr( wp_get_attachment_image_src( $starter_img, 'w2000' )[0] ); ?>">
+									<picture class="thumbnail js_thumbnail is_active" data-zoom-img="<?php echo esc_attr( wp_get_attachment_image_src( $starter_img, 'w2000' )[0] ); ?>">
 										<?php
 											echo starter_img_func([
 												'img_src'   => 'w200',
@@ -115,8 +115,8 @@ while ( have_posts() ) :
 									</div>
 								<?php endforeach; ?>
 							</div>
-							<div class="carousel_control_prev js_carousel_control_prev"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></div>
-							<div class="carousel_control_next js_carousel_control_next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></div>
+							<button class="btn carousel_control_prev js_carousel_control_prev"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
+							<button class="btn carousel_control_next js_carousel_control_next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
 						</div>
 					<?php endif; ?>
 				</div>

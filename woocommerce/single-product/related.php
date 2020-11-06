@@ -29,8 +29,8 @@ if ( $related_products ) : ?>
 			<h2 class="title_section"><span><?php echo esc_html( $heading ); ?></h2>
 		<?php endif; ?>
 	</div>
-	<div class="container container_product_carousel">
-		<div class="wrap_carousel js_product_carousel">
+	<div class="container">
+		<div class="wrap_carousel product_carousel js_product_carousel">
 			<div class="js_carousel">
 				<?php foreach ( $related_products as $related_product ) {
 					$post_object = get_post( $related_product->get_id() );
@@ -43,8 +43,8 @@ if ( $related_products ) : ?>
 					echo '</div>';
 				} ?>
 			</div>
-			<div class="carousel_control_prev js_carousel_control_prev"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></div>
-			<div class="carousel_control_next js_carousel_control_next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></div>
+			<button class="btn carousel_control_prev js_carousel_control_prev"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
+			<button class="btn carousel_control_next js_carousel_control_next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
 		</div>
 	</div>
 </section>

@@ -19,10 +19,7 @@
 		}
 		.modal-body {padding-bottom: 0;padding-top: 0;}
 		.item_img {cursor: pointer;}
-		.thumbnail_carousel {
-			@media (max-width: 767px) and (min-width: 480px) {max-width: 400px;}
-			@media (max-width: 479px) {max-width: 315px;}
-		}
+		@media (max-width: 575px) {.thumbnail_carousel {width: 306px;}}
 	}
 
 	// comment confirm modal
