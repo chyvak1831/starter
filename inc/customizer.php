@@ -9,53 +9,6 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Recaptcha keys .
- *
- * @since starter 1.0
- */
-$wp_customize->add_section(
-	'recaptcha_section',
-	array(
-		'title'    => 'Google recaptcha keys',
-		'priority' => 1,
-		'panel'    => 'woocommerce',
-	)
-);
-$wp_customize->add_setting(
-	'public_recaptcha_key',
-	array(
-		'default'   => '1',
-		'type'      => 'theme_mod',
-		'transport' => 'postMessage',
-	)
-);
-$wp_customize->add_control(
-	'public_recaptcha_key',
-	array(
-		'section' => 'recaptcha_section',
-		'label'   => 'Set public key',
-		'type'    => 'text',
-	)
-);
-$wp_customize->add_setting(
-	'private_recaptcha_key',
-	array(
-		'default'   => '1',
-		'type'      => 'theme_mod',
-		'transport' => 'postMessage',
-	)
-);
-$wp_customize->add_control(
-	'private_recaptcha_key',
-	array(
-		'section' => 'recaptcha_section',
-		'label'   => 'Set private key',
-		'type'    => 'text',
-	)
-);
-
-
-/**
  * Set upsell products
  *
  * @since starter 1.0
