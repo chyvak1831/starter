@@ -17,8 +17,20 @@ function starter_add_woocommerce_support() {
 }
 add_action( 'after_setup_theme', 'starter_add_woocommerce_support' );
 
-/*Remove woo css*/
-add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+/**
+ * Extend comment feature
+ */
+require_once get_stylesheet_directory() . '/inc/woocommerce/comment/comment.php';
+
+/**
+ * Extend filter feature
+ */
+require_once get_stylesheet_directory() . '/inc/woocommerce/filter/filter.php';
+
+/**
+ * Extend upsell/related feature
+ */
+require_once get_stylesheet_directory() . '/inc/woocommerce/upsell-related.php';
 
 /**
  * Remove woo assets
@@ -30,30 +42,7 @@ function starter_woocommerce_assets_cleaner() {
 	wp_dequeue_style( 'wc-block-style' );
 }
 add_action( 'wp_enqueue_scripts', 'starter_woocommerce_assets_cleaner', 99 );
-
-// add extended comment feature
-require_once get_stylesheet_directory() . '/inc/woocommerce/comment/comment.php';
-
-/*filter*/
-require_once get_stylesheet_directory() . '/inc/woocommerce/filter/filter.php';
-
-/**
- * Change number of upsells output
- */
-function starter_change_number_upsells_products() {
-	$limit = get_theme_mod( 'qty_upsell_products', -1 );
-	return $limit;
-}
-add_filter( 'woocommerce_upsells_total', 'starter_change_number_upsells_products' );
-
-/**
- * Change number of related products
- */
-function starter_related_products_args( $args ) {
-	$args['posts_per_page'] = get_theme_mod( 'qty_related_products', 10 );
-	return $args;
-}
-add_filter( 'woocommerce_output_related_products_args', 'starter_related_products_args', 20 );
+add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 
 /**
  * Fix search: remove aws plugin's parameter

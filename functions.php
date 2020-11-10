@@ -109,18 +109,6 @@ function starter_admin_style() {
 add_action( 'admin_enqueue_scripts', 'starter_admin_style' );
 
 /**
- * Customizer: recaptcha keys.
- *
- * @since starter 1.0
- *
- * @param object $wp_customize .
- */
-function starter_customizer( $wp_customize ) {
-	require_once get_stylesheet_directory() . '/inc/customizer.php';
-}
-add_action( 'customize_register', 'starter_customizer', 50 );
-
-/**
  * Custom path save acf fields.
  *
  * @since starter 1.0
