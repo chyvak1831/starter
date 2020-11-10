@@ -11,9 +11,6 @@ var scripts = [
 	// homepage
 	'./assets/js/modules/home_page.js',
 
-	// product add remove
-	'./assets/js/modules/product_add_remove.js',
-
 	// product hover
 	'./assets/js/modules/product_hover.js',
 
