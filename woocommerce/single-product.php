@@ -202,14 +202,11 @@ while ( have_posts() ) :
 								</div>
 							</li>
 							<li>
-								<div>
 								<!-- add to cart -->
-									<?php
-										$button_class = 'btn-outline-primary btn-lg';
-										require get_stylesheet_directory() . '/woocommerce-custom/global/add-to-cart.php';
-									?>
-								<!-- END add to cart -->
+								<div>
+									<?php woocommerce_template_loop_add_to_cart( 'btn_class=btn-outline-primary btn btn-block btn-lg' ); ?>
 								</div>
+								<!-- END add to cart -->
 							</li>
 						</ul>
 					<?php endif; ?>

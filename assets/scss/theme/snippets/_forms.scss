@@ -119,11 +119,11 @@ input[type="number"] {
 	&.loading {
 		opacity: 0.5;
 		pointer-events: none;
-		.btn_static_txt, .added_to_cart_txt {display: none !important;}
+		.default_txt, .added_to_cart_txt {display: none !important;}
 		.loading_txt {display: inline !important;}
 	}
 	&.added {
-		.add_to_cart_txt {display: none;}
+		.default_txt {display: none;}
 		.added_to_cart_txt {display: inline;}
 	}
 }

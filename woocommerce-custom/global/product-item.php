@@ -111,10 +111,7 @@ foreach( $starter_terms as $starter_term ){
 
 		<!-- add to cart -->
 		<div class="pl-md-3 pr-md-3">
-			<?php
-				$button_class = 'btn-outline-primary btn-sm';
-				require get_stylesheet_directory() . '/woocommerce-custom/global/add-to-cart.php';
-			?>
+			<?php woocommerce_template_loop_add_to_cart( 'btn_class=btn-outline-primary btn btn-block btn-sm' ); ?>
 		</div>
 		<!-- END add to cart -->
 
