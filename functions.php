@@ -22,6 +22,11 @@ require_once get_stylesheet_directory() . '/inc/image.php';
 require_once get_stylesheet_directory() . '/inc/menu.php';
 
 /**
+ * Recaptcha feature
+ */
+require_once get_stylesheet_directory() . '/inc/recaptcha.php';
+
+/**
  * Remove unnecessary Wordpress assets
  */
 require_once get_stylesheet_directory() . '/inc/remove-wp-assets.php';

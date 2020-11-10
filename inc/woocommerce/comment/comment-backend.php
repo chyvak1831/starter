@@ -39,19 +39,14 @@ function starter_save_comment() {
 		}
 	}
 
-	if ( isset( $_POST['hiddenRecaptchaComment'] ) ) {
+	if ( get_theme_mod( 'comment_recaptcha', false ) ) {
 		if ( ! empty( $_POST['g-recaptcha-response'] ) && ! empty( $_SERVER['REMOTE_ADDR'] ) ) {
-			require_once get_stylesheet_directory() . '/inc/recaptchalib.php';
-			$recaptcha = new ReCaptcha( get_theme_mod( 'private_recaptcha_key' ) );
-			$response  = $recaptcha->verifyResponse(
-				sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ),
-				sanitize_text_field( wp_unslash( $_POST['g-recaptcha-response'] ) )
-			);
-			if ( ! $response->success ) {
-				$errors['g-recaptcha-response'] = true;
+			$response = starter_validate_recaptcha( $_POST['g-recaptcha-response'] );
+			if ( ! $response['success'] ) {
+				$errors['g-recaptcha-response'] = true; // missing recaptcha field and other cases
 			}
 		} else {
-			$errors['g-recaptcha-response'] = true;
+			$errors['g-recaptcha-response'] = true; // recaptcha textarea wrong value
 		}
 	}
 
