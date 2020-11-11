@@ -1,6 +1,6 @@
 // sticky footer
-html, body, .main_wrap {height: 100%;}
-.main_wrap {display: flex;flex-direction: column;}
+html, body {height: 100%;}
+.main_wrap {display: flex;flex-direction: column;min-height: 100%;}
 .main_header, .main_footer {flex: none;}
 .content_wrapper {flex: 1 0 auto;padding-top: 25px;padding-bottom: 40px;}
 
