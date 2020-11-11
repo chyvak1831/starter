@@ -18,7 +18,7 @@ $starter_img             = $product->get_image_id();
 $starter_thumbnails      = $product->get_gallery_image_ids();
 $starter_price           = $product->get_regular_price();
 $starter_sale_price      = $product->get_sale_price();
-$starter_comment_enabled = wc_reviews_enabled() && $product->get_reviews_allowed() ? 1 : 0;
+$starter_comment_enabled = wc_reviews_enabled() && $product->get_reviews_allowed() ? 1 : 0; // check if all reviews and for certain product enabled
 $starter_comment_count   = $product->get_review_count();
 $starter_comment_rating  = $product->get_average_rating();
 
@@ -74,7 +74,7 @@ foreach( $starter_terms as $starter_term ){
 			<h3 class="main_heading"><a href="<?php echo esc_url( get_the_permalink() ); ?>"><?php echo esc_html( the_title() ); ?></a></h3>
 
 			<!-- rating -->
-			<?php if ( $starter_comment_enabled ) : ?>
+			<?php if ( $starter_comment_enabled && $starter_comment_count ) : ?>
 				<div class="d-flex align-items-center justify-content-center">
 					<?php
 						if ( wc_review_ratings_enabled() && $starter_comment_rating ) {
