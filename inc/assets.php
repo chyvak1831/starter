@@ -87,7 +87,7 @@ function starter_preloader_tag() {
 	}
 }
 add_action( 'wp_head', 'starter_preloader_tag' );
-// add_action( 'wp_enqueue_scripts', 'starter_preloader_tag' );
+add_action( 'wp_enqueue_scripts', 'starter_preloader_tag' );
 
 /**
  * Include critical css to head.

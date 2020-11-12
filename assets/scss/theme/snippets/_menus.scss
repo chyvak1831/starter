@@ -98,6 +98,7 @@ svg.arrow {
 		margin: 0;
 		min-width: 0;
 		position: static;
+		z-index: 1;
 		> li > .dropdown-item {
 			background: none;
 			color: inherit;

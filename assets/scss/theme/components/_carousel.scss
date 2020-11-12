@@ -16,7 +16,6 @@
 	right: 0;
 	transform: rotate(200grad);
 }
-.slick-track {margin: 0;}
 
 // thumbnail carousel
 .thumbnail_carousel {
@@ -48,3 +47,8 @@
 		@media (max-width: 767px) {padding: 5px;}
 	}
 }
+
+// slick fixes
+.slick-track {display: flex;margin: 0;}
+.slick-slide {height: auto;}
+.slick-initialized .slick-slide {display: flex;}

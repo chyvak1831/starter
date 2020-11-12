@@ -15,7 +15,7 @@ global $product;
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 $starter_img             = $product->get_image_id();
-$starter_thumbnails      = $product->get_gallery_image_ids();
+$starter_thumbnails      = $product->get_gallery_image_ids()[0] ? $product->get_gallery_image_ids()[0] : $starter_img;
 $starter_price           = $product->get_regular_price();
 $starter_sale_price      = $product->get_sale_price();
 $starter_comment_enabled = wc_reviews_enabled() && $product->get_reviews_allowed() ? 1 : 0; // check if all reviews and for certain product enabled
@@ -50,7 +50,7 @@ foreach( $starter_terms as $starter_term ){
 					echo starter_img_func([
 						'img_src'   => 'w600',
 						'img_sizes' => $starter_img_sizes,
-						'img_id'    => $starter_thumbnails[0]
+						'img_id'    => $starter_thumbnails
 					]);
 				?>
 			</picture>
