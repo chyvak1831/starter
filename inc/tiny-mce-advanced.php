@@ -87,7 +87,7 @@ add_filter( 'tiny_mce_before_init', 'starter_tiny_mce_custom_settings' );
  * Google fonts feature
  * Customizer: add google font.
  *
- * @since ilnp 1.0
+ * @since starter 1.0
  *
  * @param string $wp_customize .
  */
@@ -117,7 +117,7 @@ add_action( 'customize_register', 'customizer_google_fonts', 50 );
 /**
  * Extract URL from google font <link>.
  *
- * @since ilnp 1.0
+ * @since starter 1.0
  */
 function starter_get_google_fonts_url() {
 	$google_fonts = get_theme_mod( 'google_fonts', '<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">' );
