@@ -107,11 +107,9 @@ get_header();
 						<?php
 							while ( $starter_loop->have_posts() ) {
 								$starter_loop->the_post();
-								echo "<div>";
 								echo "<div class='wraper_product js_product'>";
 								$starter_img_sizes = '(max-width: 575px) calc(50vw - 10px), (max-width: 767px) 260px, (max-width: 991px) 220px, (max-width: 1199px) 220px, 208px';
 								require get_stylesheet_directory() . '/woocommerce-custom/global/product-item.php';
-								echo '</div>';
 								echo '</div>';
 							}
 							wp_reset_postdata();

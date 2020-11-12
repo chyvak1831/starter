@@ -1,6 +1,7 @@
 .tinv-wishlist .tinvwl_add_to_wishlist_button {
 	@include flex_align();
 	margin: 0 !important;
+	outline: none;
 	padding: 0 !important;
 	&.tinvwl-icon-custom img {
 		height: 1.35em !important;
@@ -21,6 +22,7 @@
 			width: 1.35em !important;
 		}
 	}
+	&.ftinvwl-pulse {animation: ftinvwl-pulse 2s linear infinite;}
 }
 .wishlist_products_counter {
 	padding: 0 !important;
