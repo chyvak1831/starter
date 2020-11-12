@@ -123,3 +123,13 @@ function starter_custom_acf_load( $paths ) {
 	return $paths;
 }
 add_filter( 'acf/settings/load_json', 'starter_custom_acf_load' );
+
+/**
+ * Change dismiss text site wide notice
+ *
+ * @since ilnp 1.0
+ */
+function starter_replace_dismiss( $notice ) {
+	return str_replace( 'Dismiss', starter_get_svg( array( 'icon' => 'bi-remove' ) ), $notice );
+}
+add_filter( 'woocommerce_demo_store','starter_replace_dismiss' );
