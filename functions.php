@@ -7,6 +7,11 @@
  */
 
 /**
+ * Manage assets
+ */
+require_once get_stylesheet_directory() . '/inc/assets.php';
+
+/**
  * Fork of twentyseventeen/inc/icon-functions.php.
  */
 require_once get_stylesheet_directory() . '/inc/icon-functions.php';
@@ -25,11 +30,6 @@ require_once get_stylesheet_directory() . '/inc/menu.php';
  * Recaptcha feature
  */
 require_once get_stylesheet_directory() . '/inc/recaptcha.php';
-
-/**
- * Remove unnecessary Wordpress assets
- */
-require_once get_stylesheet_directory() . '/inc/remove-wp-assets.php';
 
 /**
  * WYSIWYG improvements: remove "Add media" button, add font-sizes/font-families/line-height/letter-spacing.
@@ -98,17 +98,6 @@ function starter_unique_id( $prefix = '' ) {
 }
 
 /**
- * Add custom css file into wordpress admin.
- *
- * @since starter 1.0
- */
-function starter_admin_style() {
-	$starter_admin_css = '/assets/css/wp_admin.css';
-	wp_enqueue_style( 'admin-styles', get_template_directory_uri() . $starter_admin_css, '', filemtime( get_stylesheet_directory() . $starter_admin_css ) );
-}
-add_action( 'admin_enqueue_scripts', 'starter_admin_style' );
-
-/**
  * Custom path save acf fields.
  *
  * @since starter 1.0
@@ -134,53 +123,3 @@ function starter_custom_acf_load( $paths ) {
 	return $paths;
 }
 add_filter( 'acf/settings/load_json', 'starter_custom_acf_load' );
-
-/**
- * Replace stylesheet attr into preload for all pages exception cart/checkout/account
- *
- * @since starter 1.0
- *
- * @param string $tag <link> tag.
- * @return string $tag modified <link> tag.
- */
-function starter_css_loader_tag( $tag ) {
-	$tag = preg_replace( "/rel='stylesheet'/", "rel='preload' as='style' onload=\"this.rel='stylesheet'\" ", $tag );
-	return $tag;
-}
-function starter_preloader_tag() {
-	if ( !is_cart() && !is_checkout() && !is_account_page() ) {
-		add_filter( 'style_loader_tag', 'starter_css_loader_tag' );
-	}
-}
-add_action( 'wp_head', 'starter_preloader_tag' );
-add_action( 'wp_enqueue_scripts', 'starter_preloader_tag' );
-
-/**
- * Include critical css to head.
- *
- * @since starter 1.0
- */
-function starter_critical_css_to_wp_head() {
-	global $template;
-	$starter_name_template = substr( basename( $template ), 0, -4 );
-	$starter_path_css      = get_stylesheet_directory() . '/assets/css/critical/' . $starter_name_template . '.css';
-	echo '<style>';
-	echo file_get_contents( $starter_path_css );
-	echo '</style>';
-}
-add_action( 'wp_head', 'starter_critical_css_to_wp_head' );
-
-/**
- * Enqueues scripts and styles.
- *
- * @since starter 1.0
- */
-function starter_enqueues_styles_scripts() {
-	wp_enqueue_style( 'plugins', get_template_directory_uri() . '/assets/css/plugins.css', false, filemtime( get_stylesheet_directory() . '/assets/css/plugins.css' ) );
-	wp_enqueue_style( 'styles', get_template_directory_uri() . '/assets/css/styles.css', false, filemtime( get_stylesheet_directory() . '/assets/css/styles.css' ) );
-	wp_enqueue_script( 'plugins', get_template_directory_uri() . '/assets/js/plugins.js', array ( 'jquery' ), filemtime( get_stylesheet_directory() . '/assets/js/plugins.js' ), true );
-	wp_add_inline_script( 'plugins', file_get_contents( get_stylesheet_directory() . '/assets/js/iosPreloadFix.js' ) );
-	wp_enqueue_script( 'script', get_template_directory_uri() . '/assets/js/scripts.js', array ( 'jquery', 'plugins' ), filemtime( get_stylesheet_directory() . '/assets/js/scripts.js' ), true );
-	wp_localize_script( 'script', 'starter_ajax', array( 'ajax_url' => WC()->ajax_url() ) );
-}
-add_action( 'get_footer', 'starter_enqueues_styles_scripts' );
