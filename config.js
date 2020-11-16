@@ -63,6 +63,11 @@ var criticalSrcPages = [
       include: [ /.modal/, /.slick(.*)/ ]
     },
     {
+      url: 'http://local.alexwp',
+      css: 'css/critical/index.css',
+      include: [ /.modal/, /.slick(.*)/ ]
+    },
+    {
       url: 'http://local.alexwp/shop/',
       css: 'css/critical/archive-product.css',
       include: [ /.modal/, /.slick(.*)/ ]
