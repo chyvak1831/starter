@@ -129,7 +129,7 @@ $starter_comment_rating      = 0;
 	<div class="row">
 		<div class="col-lg-5 col-sm-6">
 			<button type="submit" class="btn btn-block btn-lg btn-primary js_comment_submit" disabled>
-				<span class="btn_static_txt"><?php esc_html_e( 'Submit review', 'starter' ); ?></span>
+				<span class="default_txt"><?php esc_html_e( 'Submit review', 'starter' ); ?></span>
 				<span class="loading_txt"><?php esc_html_e( 'Loading...', 'starter' ); ?></span>
 			</button>
 		</div>

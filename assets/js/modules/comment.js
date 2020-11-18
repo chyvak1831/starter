@@ -154,9 +154,6 @@ function processingResponse( form, response ) {
 		// custom errors
 		for ( const error in errors ) {
 			switch ( error ) {
-				case 'author': form.find( '[name="author"]' ).addClass( 'is-invalid' ); break;
-				case 'email': form.find( '[name="email"]' ).addClass( 'is-invalid' ); break;
-				case 'comment': form.find( '[name="comment"]' ).addClass( 'is-invalid' ); break;
 				case 'limit_files':
 					form.find( '.js_wrap_upload_files' ).addClass( 'is-invalid' );
 					form.find( '.js_filelength_invalid_feedback' ).addClass( 'd-block' );
