@@ -17,7 +17,7 @@ $starter_comment_price_rating    = get_field( 'rating_group', $starter_comment )
 $starter_comment_quality_rating  = get_field( 'rating_group', $starter_comment )['quality'];
 $starter_comment_shipping_rating = get_field( 'rating_group', $starter_comment )['shipping'];
 $starter_comment_average_rating  = ( $starter_comment_price_rating + $starter_comment_quality_rating + $starter_comment_shipping_rating ) / 3;
-$starter_comment_verified        = ( 'yes' === get_option( 'woocommerce_review_rating_verification_label', 'yes' ) ) ? wc_review_is_from_verified_owner( $starter_comment->comment_ID ) : 0;
+$starter_comment_verified        = ( 'yes' === get_option( 'woocommerce_review_rating_verification_label', 'yes' ) ) ? wc_review_is_from_verified_owner( $starter_comment->comment_ID ) : 0; // woo feature
 ?>
 
 <div class="wrap_comment js_comment" data-comment_id="<?php echo esc_attr( $starter_comment_id ); ?>">

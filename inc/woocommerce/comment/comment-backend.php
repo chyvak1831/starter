@@ -24,9 +24,9 @@ function starter_save_comment() {
 		array_push( $require, 'price_rating', 'shipping_rating', 'quality_rating' );
 	}
 
-	// bugfix for rating enable and owner only features
-	$starter_rating_disabled     = ( !wc_review_ratings_enabled() && $_POST['rating'] ) ? 1 : 0;
-	$starter_customer_not_bought = ( 'yes' === get_option( 'woocommerce_review_rating_verification_required', 'no' ) && !wc_customer_bought_product( '', get_current_user_id(), $_POST['product_id'] ) ) ? 1 : 0;
+	// bugfix for rating enable and review owner only features
+	$starter_rating_disabled     = ( ! wc_review_ratings_enabled() && $_POST['rating'] ) ? 1 : 0;
+	$starter_customer_not_bought = ( 'yes' === get_option( 'woocommerce_review_rating_verification_required', 'no' ) && ! wc_customer_bought_product( '', get_current_user_id(), absint( $_POST['comment_post_ID'] ) ) ) ? 1 : 0; // woo feature
 	if ( $starter_rating_disabled || $starter_customer_not_bought ) {
 		wp_send_json_error( __( 'Something went wrong, please reload page and try again', 'starter' ) );
 	}

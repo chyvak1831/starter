@@ -39,7 +39,7 @@ while ( have_posts() ) :
 	$starter_sale_price      = $product->get_sale_price();
 	$starter_product_id      = $product->get_id();
 	$starter_short_desc      = has_excerpt() ? get_the_excerpt() : '';
-	$starter_comment_enabled = wc_reviews_enabled() && $product->get_reviews_allowed() ? 1 : 0;
+	$starter_comment_enabled = wc_reviews_enabled() && $product->get_reviews_allowed() ? 1 : 0; // woo feature - check if all reviews and for certain product enabled
 	$starter_comment_count   = $product->get_review_count();
 	$starter_comment_rating  = $product->get_average_rating();
 ?>

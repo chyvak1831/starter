@@ -37,8 +37,8 @@ function starter_comment_load() {
 	}
 	$starter_product_id       = sanitize_text_field( wp_unslash( $_POST['product_id'] ) );
 	$starter_offset           = sanitize_text_field( wp_unslash( $_POST['offset'] ) );
-	$starter_comment_quantity = get_option( 'comments_per_page', 2 );
-	$starter_comment_order    = get_option( 'comment_order', 'DESK' );
+	$starter_comment_quantity = get_option( 'page_comments', 0 ) ? get_option( 'comments_per_page', 2 ) : 0; // wp feature
+	$starter_comment_order    = get_option( 'comment_order', 'DESK' ); // wp feature
 	// phpcs:enable
 	$starter_param = array(
 		'offset'  => $starter_offset,

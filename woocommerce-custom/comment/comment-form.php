@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$starter_name_email_required = (bool) get_option( 'require_name_email', 1 ) ? 'required' : '';
+$starter_name_email_required = get_option( 'require_name_email', 1 ) ? 'required' : '';
 $starter_rating_required     = wc_review_ratings_required() ? 'required' : '';
 $starter_comment_recaptcha   = get_theme_mod( 'comment_recaptcha', false );
 $starter_comment_rating      = 0;
