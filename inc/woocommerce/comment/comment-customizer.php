@@ -13,11 +13,29 @@ $wp_customize->add_section(
 	)
 );
 
+// enable "Privacy Policy" checkbox
+$wp_customize->add_setting(
+	'comment_privacy',
+	array(
+		'default'   => true,
+		'type'      => 'theme_mod',
+		'transport' => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	'comment_privacy',
+	array(
+		'section' => 'comments_section',
+		'label'   => 'Enable "Privacy Policy" checkbox',
+		'type'    => 'checkbox',
+	)
+);
+
 // enable recaptcha
 $wp_customize->add_setting(
 	'comment_recaptcha',
 	array(
-		'default'   => true,
+		'default'   => false,
 		'type'      => 'theme_mod',
 		'transport' => 'postMessage',
 	)

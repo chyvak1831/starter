@@ -1,6 +1,7 @@
 jQuery( document ).ready( function( $ ) {
 
 
+// load recaptcha ONCE only when existing it's enabled in customizer
 $( document ).on( 'click', '.js_comment_form', function() {
 	$( '.js_comment_submit[disabled]' ).removeAttr( 'disabled' );
 	if ( $( 'body' ).hasClass( 'loaded_recaptcha' ) || !$( '#js_comment_hidden_recaptcha' ).length ) {
@@ -15,10 +16,12 @@ $( document ).on( 'click', '.js_comment_form', function() {
  // validate comment form 
 function commentValidation( form ) {
 	form.addClass( 'was-validated' );
+	// recaptcha: check if enabled AND return validation 'false' if recaptcha failed
 	var res = $( '#js_comment_hidden_recaptcha' ).length ? form.find( '.g-recaptcha-response' ).val() : true;
 	if ( res == '' || res == undefined || res.length == 0 ) {
 		form.find( '#js_comment_hidden_recaptcha' ).addClass( 'is-invalid' );
 		return false;
+	// END recaptcha: check if enabled AND return validation 'false' if recaptcha failed
 	} else if ( form[0].checkValidity() === false || form.find( '.is-invalid' ).length ) {
 		return false;
 	} else {
@@ -140,12 +143,7 @@ function submitComment( form ) {
 }
 function processingResponse( form, response ) {
 	if ( response.success ) {
-		if ( form.hasClass( 'js_comment_form_myaccount' ) ) {
-			location.reload();
-		} else {
-			$( '.js_comment_form' ).slideUp();
-			$( '.js_comment_form_sent' ).slideDown();
-		}
+		$( '.js_comment_form, .js_comment_form_sent' ).slideToggle();
 	} else {
 		if ( $( '#js_comment_hidden_recaptcha' ).length ) {
 			grecaptcha.reset( recaptchaIdComment );
@@ -288,6 +286,12 @@ function uploadImageCommentForm( selector, list_file_upload, form ) {
 		processingResponse( form, data.result );
 	});
 }
+
+
+// reset privacy validation when privacy true
+$( '.js_comment_privacy' ).change( function() {
+	$( this ).removeClass( 'is-invalid' );
+})
 
 
 // comment confirm modal

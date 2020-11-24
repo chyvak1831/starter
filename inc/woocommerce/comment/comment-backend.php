@@ -15,14 +15,10 @@ defined( 'ABSPATH' ) || exit;
  * @since starter 1.0
  */
 function starter_save_comment() {
+	// validation error array
+	$errors = [];
+
 	check_ajax_referer( 'comment', 'security' );
-
-	$require = [ 'privacy_policy' ];
-
-	// make rating require if rating enabled
-	if ( wc_review_ratings_enabled() && wc_review_ratings_required() ) {
-		array_push( $require, 'price_rating', 'shipping_rating', 'quality_rating' );
-	}
 
 	// bugfix for rating enable and review owner only features
 	$starter_rating_disabled     = ( ! wc_review_ratings_enabled() && $_POST['rating'] ) ? 1 : 0;
@@ -31,22 +27,31 @@ function starter_save_comment() {
 		wp_send_json_error( __( 'Something went wrong, please reload page and try again', 'starter' ) );
 	}
 
-	// Validations
-	$errors = [];
-	foreach ( $require as $item ) {
-		if ( empty( $_POST[ $item ] ) ) {
-			$errors[ $item ] = true;
-		}
+	// privacy validation
+	if ( get_theme_mod( 'comment_privacy', true ) && ! $_POST['privacy_policy'] ) {
+		$errors['privacy_policy'] = false;
 	}
 
+	// recaptcha validation
 	if ( get_theme_mod( 'comment_recaptcha', false ) ) {
 		if ( ! empty( $_POST['g-recaptcha-response'] ) && ! empty( $_SERVER['REMOTE_ADDR'] ) ) {
 			$response = starter_validate_recaptcha( $_POST['g-recaptcha-response'] );
 			if ( ! $response['success'] ) {
-				$errors['g-recaptcha-response'] = true; // missing recaptcha field and other cases
+				$errors['g-recaptcha-response'] = false; // missing recaptcha field and other cases
 			}
 		} else {
-			$errors['g-recaptcha-response'] = true; // recaptcha textarea wrong value
+			$errors['g-recaptcha-response'] = false; // recaptcha textarea wrong value
+		}
+	}
+
+	// make rating require if rating enabled
+	if ( wc_review_ratings_enabled() && wc_review_ratings_required() ) {
+		array_push( $require, 'price_rating', 'shipping_rating', 'quality_rating' );
+	}
+
+	foreach ( $require as $item ) {
+		if ( empty( $_POST[ $item ] ) ) {
+			$errors[ $item ] = true;
 		}
 	}
 

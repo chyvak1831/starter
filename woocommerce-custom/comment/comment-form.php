@@ -10,6 +10,7 @@ defined( 'ABSPATH' ) || exit;
 $starter_name_email_required = get_option( 'require_name_email', 1 ) ? 'required' : '';
 $starter_rating_required     = wc_review_ratings_required() ? 'required' : '';
 $starter_comment_recaptcha   = get_theme_mod( 'comment_recaptcha', false );
+$starter_comment_privacy     = get_theme_mod( 'comment_privacy', true );
 $starter_comment_rating      = 0;
 ?>
 <!-- rating -->
@@ -110,6 +111,7 @@ $starter_comment_rating      = 0;
 			?>
 		</small>
 	</div>
+
 	<?php if ( $starter_comment_recaptcha ) : ?>
 		<div class="mb-4">
 			<div class="g-recaptcha" data-callback="recaptchaCallbackComment"></div>
@@ -117,11 +119,15 @@ $starter_comment_rating      = 0;
 			<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
 		</div>
 	<?php endif; ?>
-	<div class="custom-control custom-checkbox mb-4">
-		<input name="privacy_policy" type="checkbox" class="custom-control-input" id="check_privacy_policy_<?php echo esc_attr( $starter_product_id ); ?>" required checked>
-		<label class="custom-control-label" for="check_privacy_policy_<?php echo esc_attr( $starter_product_id ); ?>"><?php esc_html_e( 'I have read & accept the Privacy Policy', 'starter' ); ?></label>
-		<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
-	</div>
+
+	<?php if ( $starter_comment_privacy ) : ?>
+		<div class="custom-control custom-checkbox mb-4">
+			<input name="privacy_policy" type="checkbox" class="custom-control-input js_comment_privacy" id="check_privacy_policy_<?php echo esc_attr( $starter_product_id ); ?>" required checked>
+			<label class="custom-control-label" for="check_privacy_policy_<?php echo esc_attr( $starter_product_id ); ?>"><?php esc_html_e( 'I have read & accept the Privacy Policy', 'starter' ); ?></label>
+			<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
+		</div>
+	<?php endif; ?>
+
 	<input type="hidden" name="product_id" value="<?php echo esc_attr( $starter_product_id ); ?>">
 	<input type="hidden" name="comment_post_ID" value="<?php echo esc_attr( $starter_product_id ); ?>">
 	<input type="hidden" name="action" value="starter_send_comment">
@@ -187,8 +193,8 @@ $starter_comment_rating      = 0;
 <script>
 	function recaptchaCallbackComment() {
 		var response = grecaptcha.getResponse();
-		document.getElementById( 'js_comment_hidden_recaptcha' ).val( response );
 		document.getElementById( 'js_comment_hidden_recaptcha' ).classList.remove( 'is-invalid' );
+		document.getElementById( 'js_comment_hidden_recaptcha' ).val( response );
 	}
 	var onloadCallback = function() {
 		var recaptchaComment = document.querySelector( '.js_comment_form .g-recaptcha' );
