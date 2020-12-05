@@ -114,7 +114,7 @@ $starter_comment_rating      = 0;
 
 	<?php if ( $starter_comment_recaptcha ) : ?>
 		<div class="mb-4">
-			<div class="g-recaptcha" data-callback="recaptchaCallbackComment"></div>
+			<div class="g-recaptcha" data-callback="recaptchaCallbackComment" data-recaptchapublickey="<?php echo esc_attr( get_theme_mod( 'public_recaptcha_key' ) ); ?>"></div>
 			<input type="hidden" class="form-control" id="js_comment_hidden_recaptcha" required name="hiddenRecaptchaComment">
 			<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
 		</div>
@@ -134,7 +134,7 @@ $starter_comment_rating      = 0;
 	<input type="hidden" name="security" value="<?php echo esc_html( wp_create_nonce( 'comment' ) ); ?>">
 	<div class="row">
 		<div class="col-lg-5 col-sm-6">
-			<button type="submit" class="btn btn-block btn-lg btn-primary js_comment_submit" disabled>
+			<button type="submit" class="btn btn-block btn-lg btn-primary js_comment_submit">
 				<span class="default_txt"><?php esc_html_e( 'Submit review', 'starter' ); ?></span>
 				<span class="loading_txt"><?php esc_html_e( 'Loading...', 'starter' ); ?></span>
 			</button>
@@ -188,22 +188,6 @@ $starter_comment_rating      = 0;
 	</div>
 </div>
 <!-- END confirm modal if low rating -->
-
-<?php if ( $starter_comment_recaptcha ) : ?>
-<script>
-	function recaptchaCallbackComment() {
-		var response = grecaptcha.getResponse();
-		document.getElementById( 'js_comment_hidden_recaptcha' ).classList.remove( 'is-invalid' );
-		document.getElementById( 'js_comment_hidden_recaptcha' ).val( response );
-	}
-	var onloadCallback = function() {
-		var recaptchaComment = document.querySelector( '.js_comment_form .g-recaptcha' );
-		recaptchaIdComment = grecaptcha.render( recaptchaComment, {
-			'sitekey' : '<?php echo esc_html( get_theme_mod( 'public_recaptcha_key' ) ); ?>'
-		});
-	};
-</script>
-<?php endif; ?>
 
 <?php
 	$starter_blueimp_script = array(

@@ -1,19 +1,14 @@
+function recaptchaCallbackComment() {
+	var response = grecaptcha.getResponse();
+	document.getElementById( 'js_comment_hidden_recaptcha' ).classList.remove( 'is-invalid' );
+	document.getElementById( 'js_comment_hidden_recaptcha' ).val( response );
+}
+
+
 jQuery( document ).ready( function( $ ) {
 
 
-// load recaptcha ONCE only when existing it's enabled in customizer
-$( document ).on( 'click', '.js_comment_form', function() {
-	$( '.js_comment_submit[disabled]' ).removeAttr( 'disabled' );
-	if ( $( 'body' ).hasClass( 'loaded_recaptcha' ) || !$( '#js_comment_hidden_recaptcha' ).length ) {
-		return;
-	} else {
-		$( 'body' ).addClass( 'loaded_recaptcha' );
-		$.getScript( 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit' );
-	}
-});
-
-
- // validate comment form 
+// validate comment form 
 function commentValidation( form ) {
 	form.addClass( 'was-validated' );
 	// recaptcha: check if enabled AND return validation 'false' if recaptcha failed
@@ -146,7 +141,7 @@ function processingResponse( form, response ) {
 		$( '.js_comment_form, .js_comment_form_sent' ).slideToggle();
 	} else {
 		if ( $( '#js_comment_hidden_recaptcha' ).length ) {
-			grecaptcha.reset( recaptchaIdComment );
+			grecaptcha.reset( recaptchaId );
 		}
 		var errors = response.data;
 		// custom errors
