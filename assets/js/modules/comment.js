@@ -1,10 +1,3 @@
-function recaptchaCallbackComment() {
-	var response = grecaptcha.getResponse();
-	document.getElementById( 'js_comment_hidden_recaptcha' ).classList.remove( 'is-invalid' );
-	document.getElementById( 'js_comment_hidden_recaptcha' ).val( response );
-}
-
-
 jQuery( document ).ready( function( $ ) {
 
 
@@ -12,9 +5,9 @@ jQuery( document ).ready( function( $ ) {
 function commentValidation( form ) {
 	form.addClass( 'was-validated' );
 	// recaptcha: check if enabled AND return validation 'false' if recaptcha failed
-	var res = $( '#js_comment_hidden_recaptcha' ).length ? form.find( '.g-recaptcha-response' ).val() : true;
+	var res = form.find( '.g-recaptcha-response' ).length ? form.find( '.g-recaptcha-response' ).val() : true;
 	if ( res == '' || res == undefined || res.length == 0 ) {
-		form.find( '#js_comment_hidden_recaptcha' ).addClass( 'is-invalid' );
+		form.find( '.g-recaptcha' ).addClass( 'is-invalid' );
 		return false;
 	// END recaptcha: check if enabled AND return validation 'false' if recaptcha failed
 	} else if ( form[0].checkValidity() === false || form.find( '.is-invalid' ).length ) {
@@ -140,7 +133,7 @@ function processingResponse( form, response ) {
 	if ( response.success ) {
 		$( '.js_comment_form, .js_comment_form_sent' ).slideToggle();
 	} else {
-		if ( $( '#js_comment_hidden_recaptcha' ).length ) {
+		if ( form.find( '.g-recaptcha' ).length ) {
 			grecaptcha.reset( recaptchaId );
 		}
 		var errors = response.data;
@@ -159,7 +152,7 @@ function processingResponse( form, response ) {
 					form.find( '.js_wrap_upload_files' ).addClass( 'is-invalid' );
 					form.find( '.js_type_invalid_feedback' ).addClass( 'd-block' );
 					break;
-				case 'g-recaptcha-response': form.find( '#js_comment_hidden_recaptcha' ).addClass( 'is-invalid' ); break;
+				case 'g-recaptcha-response': form.find( '.g-recaptcha' ).addClass( 'is-invalid' ); break;
 				case 'privacy_policy': form.find( '[name="privacy_policy"]' ).addClass( 'is-invalid' ); break;
 				case 'price_rating': form.find( '[name="price_rating"]' ).addClass( 'is-invalid' ); break;
 				case 'shipping_rating': form.find( '[name="shipping_rating"]' ).addClass( 'is-invalid' ); break;

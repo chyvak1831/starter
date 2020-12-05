@@ -16,6 +16,9 @@ function recaptchaOnloadCallback() {
  */
 function loadRecaptchaOnClick() {
 	var form = document.getElementsByClassName( 'js_form_with_recaptcha' );
+	if ( ! document.querySelector( '.js_form_with_recaptcha .g-recaptcha' ) ) {
+		return false;
+	}
 	for( var i =0; i < form.length; i++ ) {
 		form[i].addEventListener( 'click', function() {
 			let recaptchaEl = this.querySelector( '.g-recaptcha');
@@ -33,3 +36,10 @@ function loadRecaptchaOnClick() {
 	}
 }
 loadRecaptchaOnClick();
+
+/**
+ * Callback recaptcha function
+ */
+function recaptchaCallback() {
+	document.querySelector( '[data-widget-id="' + recaptchaId + '"]' ).classList.remove( 'is-invalid' );
+}
