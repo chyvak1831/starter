@@ -20,6 +20,7 @@ function starter_save_comment() {
 
 	check_ajax_referer( 'comment', 'security' );
 
+
 	// bugfix for rating enable and review owner only features
 	$starter_rating_disabled     = ( ! wc_review_ratings_enabled() && $_POST['rating'] ) ? 1 : 0;
 	$starter_customer_not_bought = ( 'yes' === get_option( 'woocommerce_review_rating_verification_required', 'no' ) && ! wc_customer_bought_product( '', get_current_user_id(), absint( $_POST['comment_post_ID'] ) ) ) ? 1 : 0; // woo feature
@@ -27,10 +28,12 @@ function starter_save_comment() {
 		wp_send_json_error( __( 'Something went wrong, please reload page and try again', 'starter' ) );
 	}
 
+
 	// privacy validation
 	if ( get_theme_mod( 'comment_privacy', true ) && ! $_POST['privacy_policy'] ) {
 		$errors['privacy_policy'] = false;
 	}
+
 
 	// recaptcha validation
 	if ( get_theme_mod( 'comment_recaptcha', false ) ) {
@@ -44,6 +47,36 @@ function starter_save_comment() {
 		}
 	}
 
+
+	// image validation
+	if ( isset( $_FILES['files'] ) && get_theme_mod( 'comment_file', false ) ) {
+		$starter_maximum_length = get_theme_mod( 'comment_maximum_files', 10 ); /*maximum files*/
+		$starter_maximum_weight = get_theme_mod( 'comment_maximum_weight', 15 ) * 1048576; /*MB, each file maximum weight*/
+		$starter_allowed_types  = array( 'image/jpeg', 'image/jpg', 'image/png' );
+
+		$starter_files          = $_FILES['files'];
+		$starter_files_tmp_name = $starter_files['tmp_name'];
+
+		if ( $starter_maximum_length < count( $starter_files_tmp_name ) ) {
+			$errors['limit_files'] = true;
+			wp_send_json_error( $errors );
+		}
+
+		foreach ( $starter_files_tmp_name as $key => $file ) {
+			$starter_img_size = $starter_files['size'][$key];
+			if ( $starter_maximum_weight < $starter_img_size ) {
+				$errors['limit_file_size'] = true;
+				wp_send_json_error( $errors );
+			}
+
+			if ( ! in_array( $starter_files['type'][$key], $starter_allowed_types ) ) {
+				$errors['not_allowed_type'] = true;
+				wp_send_json_error( $errors );
+			}
+		}
+	}
+
+
 	// make rating require if rating enabled
 	if ( wc_review_ratings_enabled() && wc_review_ratings_required() ) {
 		array_push( $require, 'price_rating', 'shipping_rating', 'quality_rating' );
@@ -52,34 +85,6 @@ function starter_save_comment() {
 	foreach ( $require as $item ) {
 		if ( empty( $_POST[ $item ] ) ) {
 			$errors[ $item ] = true;
-		}
-	}
-
-	if ( isset( $_FILES['files'] ) && ! empty( $_FILES['files']['tmp_name'][0] ) && ! empty( $_FILES['files']['name'][0] ) ) {
-		$starter_maximum_length = get_theme_mod( 'comment_maximum_files', 10 ); /*maximum files*/
-		$starter_maximum_weight = get_theme_mod( 'comment_maximum_weight', 15 ) * 1048576; /*MB, each file maximum weight*/
-
-		$allowed_types  = array( 'jpg','jpeg','png' );
-		$files          = $_FILES['files'];
-		$files_tmp_name = $files['tmp_name'];
-
-		if ( $starter_maximum_length < count( $files_tmp_name ) ) {
-			$errors['limit_files'] = true;
-			wp_send_json_error( $errors );
-		}
-
-		foreach ( $files_tmp_name as $key => $file ) {
-			$name        = $files['name'][$key];
-			$type        = pathinfo( $name, PATHINFO_EXTENSION );
-			$size        = $files['size'][$key];
-			if ( $starter_maximum_weight < $size ) {
-				$errors['limit_file_size'] = true;
-				wp_send_json_error( $errors );
-			}
-			if ( ! in_array( $type, $allowed_types ) ) {
-				$errors['not_allowed_type'] = true;
-				wp_send_json_error( $errors );
-			}
 		}
 	}
 
@@ -108,15 +113,26 @@ function starter_save_comment() {
 			update_field( 'rating_group', $rating_group, $comment );
 		}
 
-		if ( isset( $_FILES['files'] ) && ! empty( $_FILES['files']['tmp_name'][0] ) && ! empty( $_FILES['files']['name'][0] ) ) {
-			$files          = $_FILES['files'];
-			$files_tmp_name = $files['tmp_name'];
-
-			foreach ( $files_tmp_name as $key => $file ) {
-				$name     = $files['name'][$key];
-				$tmp_name = $files['tmp_name'][$key];
-				starter_send_image_to_comment( $comment->comment_ID, $name, $tmp_name );
+		// upload image if enabled
+		if ( isset( $_FILES['files'] ) && get_theme_mod( 'comment_file', false ) ) {
+			require_once( ABSPATH . 'wp-admin/includes/file.php' );
+			$starter_files   = $_FILES['files'];
+			$starter_img_ids = [];
+			foreach ( $starter_files['name'] as $key => $value ) {
+				$starter_file = array(
+					'name'     => $starter_files['name'][$key],
+					'type'     => $starter_files['type'][$key],
+					'tmp_name' => $starter_files['tmp_name'][$key],
+					'error'    => $starter_files['error'][$key],
+					'size'     => $starter_files['size'][$key]
+				);
+				$_FILES = array ( 'allfiles' => $starter_file );
+				foreach ( $_FILES as $starter_file => $array ) {
+					$starter_upload_id = media_handle_upload( $starter_file, 0 );
+					array_push( $starter_img_ids, $starter_upload_id );
+				}
 			}
+			update_field( 'comment_image', $starter_img_ids, get_comment( $comment->comment_ID ) );
 		}
 
 		WC_Comments::clear_transients( $comment->comment_post_ID );
@@ -131,64 +147,3 @@ function starter_save_comment() {
 }
 add_action( 'wp_ajax_starter_send_comment', 'starter_save_comment' );
 add_action( 'wp_ajax_nopriv_starter_send_comment', 'starter_save_comment' );
-
-
-/**
- * Uploads an image from tmp directory to WP media
- *
- * @param string $temp_file path to uploaded tmp file.
- * @param string $image image name.
- *
- * @return mixed $attach_id or false
- * @since starter 1.0
- */
-function starter_upload_images_from_url( $temp_file, $image ) {
-	if ( ! is_wp_error( $temp_file ) ) {
-		$filetype = wp_check_filetype( basename( $temp_file ) );
-		$file     = array(
-			'name'     => $image,
-			'type'     => $filetype['type'],
-			'tmp_name' => $temp_file,
-			'error'    => 0,
-			'size'     => filesize( $temp_file ),
-		);
-		$results  = wp_handle_sideload(
-			$file,
-			array(
-				'test_form' => false,
-				'test_size' => true,
-			)
-		);
-
-		$filetype    = wp_check_filetype( basename( $results['url'] ) );
-		$attachment  = array(
-			'guid'           => $results['url'],
-			'post_mime_type' => $filetype['type'],
-			'post_title'     => $image,
-			'post_content'   => '',
-			'post_status'    => 'inherit',
-		);
-		$attach_id   = wp_insert_attachment( $attachment, $results['file'] );
-		$attach_data = wp_generate_attachment_metadata( $attach_id, $results['file'] );
-		wp_update_attachment_metadata( $attach_id, $attach_data );
-
-		return $attach_id;
-	}
-
-	return false;
-}
-
-
-/**
- * Upload images to WP media and attach them to comment.
- *
- * @since starter 1.0
- */
-function starter_send_image_to_comment( $comment_id, $file_name, $file_tmp_name ) {
-	$name = sanitize_file_name( wp_unslash( $file_name ) );
-	$id   = starter_upload_images_from_url( $file_tmp_name, $name );
-	add_comment_meta( $comment_id, 'images_ids', $id );
-
-	$all_ids = get_comment_meta( $comment_id, 'images_ids' );
-	update_field( 'comment_image', $all_ids, get_comment( $comment_id ) );
-}

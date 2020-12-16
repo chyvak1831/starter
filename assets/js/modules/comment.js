@@ -1,7 +1,7 @@
 jQuery( document ).ready( function( $ ) {
 
 
-// validate comment form 
+// validate simple fields (name, email, comment, privacy) and recaptcha function
 function commentValidation( form ) {
 	form.addClass( 'was-validated' );
 	// recaptcha: check if enabled AND return validation 'false' if recaptcha failed
@@ -18,7 +18,200 @@ function commentValidation( form ) {
 }
 
 
-// rating
+// submit form function
+function submitComment( form ) {
+	if ( form.find( '.js_list_file_upload .template-upload' ).length ) {// send form and files if present
+		$( '.js_field_file_upload' ).fileupload( 'send', { files: filelistform } );
+	} else {// send form when no files
+		$.ajax({
+			url: woocommerce_params.ajax_url,
+			type: 'POST',
+			data: new FormData( form[0] ),
+			cache: false,
+			contentType: false,
+			processData: false,
+			xhr: function() {
+				return $.ajaxSettings.xhr();
+			},
+			success: function ( data ) {
+				processingResponse( form, data );
+			},
+			error: function ( data ) {
+				location.reload();
+			}
+		});
+	}
+}
+// parse server response function
+function processingResponse( form, response ) {
+	if ( response.success ) {
+		$( '.js_comment_form, .js_comment_form_sent' ).slideToggle();
+	} else {
+		if ( form.find( '.g-recaptcha' ).length ) {
+			grecaptcha.reset( recaptchaId );
+		}
+		var errors = response.data;
+		// custom errors
+		for ( const error in errors ) {
+			switch ( error ) {
+				case 'limit_files':
+					form.find( '.js_wrap_upload_files' ).addClass( 'is-invalid' );
+					form.find( '.js_filelength_invalid_feedback' ).addClass( 'd-block' );
+					break;
+				case 'limit_file_size':
+					form.find( '.js_wrap_upload_files' ).addClass( 'is-invalid' );
+					form.find( '.js_filesize_invalid_feedback' ).addClass( 'd-block' );
+					break;
+				case 'not_allowed_type':
+					form.find( '.js_wrap_upload_files' ).addClass( 'is-invalid' );
+					form.find( '.js_type_invalid_feedback' ).addClass( 'd-block' );
+					break;
+				case 'g-recaptcha-response': form.find( '.g-recaptcha' ).addClass( 'is-invalid' ); break;
+				case 'privacy_policy': form.find( '[name="privacy_policy"]' ).addClass( 'is-invalid' ); break;
+				case 'price_rating': form.find( '[name="price_rating"]' ).addClass( 'is-invalid' ); break;
+				case 'shipping_rating': form.find( '[name="shipping_rating"]' ).addClass( 'is-invalid' ); break;
+				case 'quality_rating': form.find( '[name="quality_rating"]' ).addClass( 'is-invalid' ); break;
+			}
+		}
+		// default wp/woo errors
+		if ( 'string' == typeof errors ) {
+			$( '#write_comment' ).append( $( '.js_custom_alert' ).html() ).find( '.js_custom_alert_txt' ).html( errors );
+		}
+		form.find( '.js_comment_submit' ).removeClass( 'loading' );
+	}
+}
+// submit form event
+$( '.js_comment_form' ).submit( function( e ) {
+	e.preventDefault();
+	e.stopPropagation();
+	var form = $( this );
+	if ( !commentValidation( form ) ) {
+		return;
+	}
+	form.find( '.js_comment_submit' ).addClass( 'loading' );
+	if ( $( '.js_total_ratings' ).length ) {
+		commentMinimumRating( form );
+	} else {
+		submitComment( form );
+	}
+});
+
+
+// reset privacy validation when privacy true
+$( '.js_comment_privacy' ).change( function() {
+	$( this ).removeClass( 'is-invalid' );
+})
+
+
+
+
+// FILEUPLOADER
+// validate file function
+function validateFile ( fileInput ) {
+	var parentSelector = $( fileInput ).closest( '.js_wrap_upload_files' );
+	var fileList = parentSelector.find( '.js_list_file_upload' );
+	var lengthFiles = fileList.find( 'li' ).length;
+	var maximumFiles = +parentSelector.find( '.js_field_file_upload' ).data( 'length' );
+	var maximumWeight = +parentSelector.find( '.js_field_file_upload' ).data( 'weight' )*1000000;
+	parentSelector.removeClass( 'is-invalid' );
+	parentSelector.find( '.js_field_file_upload' ).removeClass( 'not_empty' );
+	parentSelector.find( '.invalid-feedback' ).removeClass( 'd-block' );
+	if ( fileList.children().length )
+		parentSelector.find( '.js_field_file_upload' ).addClass( 'not_empty' );
+	if ( lengthFiles > maximumFiles ) {
+		parentSelector.addClass( 'is-invalid' );
+		parentSelector.find( '.js_filelength_invalid_feedback' ).addClass( 'd-block' );
+	}
+	for ( var i = 0; i < lengthFiles; i++ ) {
+		var size = fileList.find( 'li' ).eq( i ).find( '.js_file_size' ).data( 'size' );
+		if ( maximumWeight < size ) {
+			parentSelector.addClass( 'is-invalid' );
+			fileList.find( 'li' ).eq( i ).addClass( 'error_filesize' );
+			parentSelector.find( '.js_filesize_invalid_feedback' ).addClass( 'd-block' );
+		}
+	}
+}
+// load script function
+function loadScript ( arr, index, callback ) {
+	if ( index != arr.length ) {
+		$.getScript( arr[ index ] ).done( function() {
+			loadScript( arr, index + 1, callback );
+		} );
+	} else {
+		callback();
+	}
+}
+// init file upload function
+function initFileUpload() {
+	$( '.js_field_file_upload' ).each( function() {
+		var $this = $( this ),
+			form = $this.closest( 'form' ),
+			list_file_upload = form.find( '.js_list_file_upload' );
+		uploadImageCommentForm( $this, list_file_upload, form );
+	});
+}
+// load fileuploader by click
+$( document ).on( 'click', '.js_field_file_upload', function() {
+	if ( $( 'body' ).hasClass( 'loaded_fileuploader' ) ) {
+		return;
+	} else {
+		$( 'body' ).addClass( 'loaded_fileuploader' );
+		loadScript( blueimp_script, 0, initFileUpload );
+	}
+});
+// form with file upload/send function
+var filelistform = new Array();
+function uploadImageCommentForm( selector, list_file_upload, form ) {
+	selector.fileupload({
+		url: woocommerce_params.ajax_url,
+		dataType: 'json',
+		previewMaxWidth: 96,
+		previewMaxHeight: 96,
+		previewCrop: true,
+		filesContainer: list_file_upload,
+		uploadTemplateId: null,
+		downloadTemplateId: null,
+		uploadTemplate: function ( o ) {
+			var rows = $();
+			$.each( o.files, function ( index, file ) {
+				var file_type = file.type.split( '/' );
+				if ( 'image' === file_type[0] ) {
+					var size_file = o.formatFileSize( file.size );
+					var row = $( $( '.js_fileupload_tpl' ).html() );
+					row.find( '.js_file_name' ).text( file.name );
+					row.find( '.js_file_size' ).text( size_file ).attr( 'data-size', file.size );
+					rows = rows.add( row );
+				}
+			});
+			return rows;
+		},
+		downloadTemplate: function ( o ) {
+			var rows = $();
+			$.each( o.files, function () {
+				var row = $( '<li></li>' );
+				rows = rows.add( row );
+			});
+			return rows;
+		}
+	}).on( 'fileuploadadded', function ( e, data ) {
+		for ( var i = 0; i < data.files.length; i++ ) {
+			filelistform.push( data.files[i] );
+		}
+		validateFile( e.target );
+	}).on( 'fileuploadfailed', function ( e, data ) {
+		var indexElem = filelistform.indexOf( data.files[0] );
+		filelistform.splice( indexElem, 1 );
+		validateFile( e.target );
+	}).on( 'fileuploaddone', function ( e, data ) {
+		processingResponse( form, data.result );
+	});
+}
+
+
+
+
+// RATING
+// rating function
 function RatingProduct( selector ) {
 	this.rating            = selector;
 	this.parent_rating     = this.rating.closest( '.js_ratings_list' );
@@ -29,7 +222,6 @@ function RatingProduct( selector ) {
 	this.bindEvents();
 };
 RatingProduct.prototype = {
-
 	init: function() {
 		var value = this.rating.closest( '.js_rating' ).find( '.js_rating_input' ).val();
 		this.rating.find( '.filled_star' ).css( 'width', value * this.width_elem_rating );
@@ -78,211 +270,22 @@ RatingProduct.prototype = {
 		this.parent_rating.find( '.js_avarage_rating' ).val( Math.round( average_rating ) );
 	}
 }
+// init rating
 $( '.js_rating .wrap_rating_list' ).each( function() {
 	var selector = $( this );
 	new RatingProduct( selector );
 } );
-
-
- // submit form 
-$( '.js_comment_form' ).submit( function( e ) {
-	e.preventDefault();
-	e.stopPropagation();
-	var form = $( this );
-	if ( !commentValidation( form ) ) {
-		return;
-	}
-	form.find( '.js_comment_submit' ).addClass( 'loading' );
-	if ( $( '.js_total_ratings' ).length ) {
-		var minimumRating = form.find( '[data-minimum-rating]' ).data( 'minimum-rating' );
-		var rating = +form.find( '.js_total_ratings' ).text();
-		if ( rating >= minimumRating || 0 == rating ) {
-			submitComment( form );
-		} else {
-			form.addClass( 'js_submiting_form' );
-			$( '.js_comment_confirm_modal' ).modal( 'show' );
-		}
-	} else {
-		submitComment( form );
-	}
-});
-function submitComment( form ) {
-	if ( form.find( '.js_list_file_upload .template-upload' ).length ) {
-		$( '.js_field_file_upload' ).fileupload( 'send', { files: filelistform } );
-	} else {
-		$.ajax({
-			url: woocommerce_params.ajax_url,
-			type: 'POST',
-			data: new FormData( form[0] ),
-			cache: false,
-			contentType: false,
-			processData: false,
-			xhr: function() {
-				return $.ajaxSettings.xhr();
-			},
-			success: function ( data ) {
-				processingResponse( form, data );
-			},
-			error: function ( data ) {
-				location.reload();
-			}
-		});
-	}
-}
-function processingResponse( form, response ) {
-	if ( response.success ) {
-		$( '.js_comment_form, .js_comment_form_sent' ).slideToggle();
-	} else {
-		if ( form.find( '.g-recaptcha' ).length ) {
-			grecaptcha.reset( recaptchaId );
-		}
-		var errors = response.data;
-		// custom errors
-		for ( const error in errors ) {
-			switch ( error ) {
-				case 'limit_files':
-					form.find( '.js_wrap_upload_files' ).addClass( 'is-invalid' );
-					form.find( '.js_filelength_invalid_feedback' ).addClass( 'd-block' );
-					break;
-				case 'limit_file_size':
-					form.find( '.js_wrap_upload_files' ).addClass( 'is-invalid' );
-					form.find( '.js_filesize_invalid_feedback' ).addClass( 'd-block' );
-					break;
-				case 'not_allowed_type':
-					form.find( '.js_wrap_upload_files' ).addClass( 'is-invalid' );
-					form.find( '.js_type_invalid_feedback' ).addClass( 'd-block' );
-					break;
-				case 'g-recaptcha-response': form.find( '.g-recaptcha' ).addClass( 'is-invalid' ); break;
-				case 'privacy_policy': form.find( '[name="privacy_policy"]' ).addClass( 'is-invalid' ); break;
-				case 'price_rating': form.find( '[name="price_rating"]' ).addClass( 'is-invalid' ); break;
-				case 'shipping_rating': form.find( '[name="shipping_rating"]' ).addClass( 'is-invalid' ); break;
-				case 'quality_rating': form.find( '[name="quality_rating"]' ).addClass( 'is-invalid' ); break;
-			}
-		}
-		// default wp/woo errors
-		if ( 'string' == typeof errors ) {
-			$( '#write_comment' ).append( $( '.js_custom_alert' ).html() ).find( '.js_custom_alert_txt' ).html( errors );
-		}
-		form.find( '.js_comment_submit' ).removeClass( 'loading' );
-	}
-}
-
-
-// validate file
-function validateFile ( fileInput ) {
-	var parentSelector = $( fileInput ).closest( '.js_wrap_upload_files' );
-	var fileList = parentSelector.find( '.js_list_file_upload' );
-	var lengthFiles = fileList.find( 'li' ).length;
-	var maximumFiles = +parentSelector.find( '.js_field_file_upload' ).data( 'length' );
-	var maximumWeight = +parentSelector.find( '.js_field_file_upload' ).data( 'weight' )*1000000;
-	parentSelector.removeClass( 'is-invalid' );
-	parentSelector.find( '.js_field_file_upload' ).removeClass( 'not_empty' );
-	parentSelector.find( '.invalid-feedback' ).removeClass( 'd-block' );
-	if ( fileList.children().length )
-		parentSelector.find( '.js_field_file_upload' ).addClass( 'not_empty' );
-	if ( lengthFiles > maximumFiles ) {
-		parentSelector.addClass( 'is-invalid' );
-		parentSelector.find( '.js_filelength_invalid_feedback' ).addClass( 'd-block' );
-	}
-	for ( var i = 0; i < lengthFiles; i++ ) {
-		var size = fileList.find( 'li' ).eq( i ).find( '.js_file_size' ).data( 'size' );
-		if ( maximumWeight < size ) {
-			parentSelector.addClass( 'is-invalid' );
-			fileList.find( 'li' ).eq( i ).addClass( 'error_filesize' );
-			parentSelector.find( '.js_filesize_invalid_feedback' ).addClass( 'd-block' );
-		}
-	}
-}
-
-
-// file upload
-// load script function
-function loadScript( currentScript, lengthScripts, callback ) {
-	if ( currentScript === ( lengthScripts - 1 ) ) {
-		$.getScript( blueimp_script[ currentScript ] ).done( function() {
-			callback();
-		} );
-	} else {
-		$.getScript( blueimp_script[ currentScript ] ).done( function() {
-			loadScript( currentScript + 1, lengthScripts, callback );
-		} );
-	}
-}
-// init file upload function
-function initFileUpload() {
-	$( '.js_field_file_upload' ).each( function() {
-		var $this = $( this ),
-			form = $this.closest( 'form' ),
-			list_file_upload = form.find( '.js_list_file_upload' );
-		uploadImageCommentForm( $this, list_file_upload, form );
-	});
-}
-// load fileuploader by click
-$( document ).on( 'click', '.js_comment_form', function() {
-	if ( $('body').hasClass( 'loaded_fileuploader' ) ) {
-		return;
-	} else {
-		$( 'body' ).addClass( 'loaded_fileuploader' );
-		var lengthBlueimpScript = blueimp_script.length;
-		loadScript( 0, lengthBlueimpScript, initFileUpload );
-	}
-});
-var filelistform = new Array();
-function uploadImageCommentForm( selector, list_file_upload, form ) {
-	selector.fileupload({
-		url: woocommerce_params.ajax_url,
-		dataType: 'json',
-		previewMaxWidth: 96,
-		previewMaxHeight: 96,
-		previewCrop: true,
-		filesContainer: list_file_upload,
-		uploadTemplateId: null,
-		downloadTemplateId: null,
-		uploadTemplate: function ( o ) {
-			var rows = $();
-			$.each( o.files, function ( index, file ) {
-				var row = '';
-				var file_type = file.type.split( '/' );
-				if ( 'image' === file_type[0] ) {
-					var size_file = o.formatFileSize( file.size );
-					var row = $( $( '.js_fileupload_tpl' ).html() );
-					row.find( '.js_file_name' ).text( file.name );
-					row.find( '.js_file_size' ).text( size_file ).attr( 'data-size', file.size );
-					rows = rows.add( row );
-				}
-			});
-			return rows;
-		},
-		downloadTemplate: function ( o ) {
-			var rows = $();
-			$.each( o.files, function () {
-				var row = $( '<li></li>' );
-				rows = rows.add( row );
-			});
-			return rows;
-		}
-	}).on( 'fileuploadadded', function ( e, data ) {
-		for ( var i = 0; i < data.files.length; i++ ) {
-			filelistform.push( data.files[i] );
-		}
-		validateFile( e.target );
-	}).on( 'fileuploadfailed', function ( e, data ) {
-		var indexElem = filelistform.indexOf( data.files[0] );
-		filelistform.splice( indexElem, 1 );
-		validateFile( e.target );
-	}).on( 'fileuploaddone', function ( e, data ) {
-		processingResponse( form, data.result );
-	});
-}
-
-
-// reset privacy validation when privacy true
-$( '.js_comment_privacy' ).change( function() {
-	$( this ).removeClass( 'is-invalid' );
-})
-
-
 // comment confirm modal
+function commentMinimumRating( form ) {
+	var minimumRating = form.find( '[data-minimum-rating]' ).data( 'minimum-rating' );
+	var rating = +form.find( '.js_total_ratings' ).text();
+	if ( rating >= minimumRating || 0 == rating ) {
+		submitComment( form );
+	} else {
+		form.addClass( 'js_submiting_form' );
+		$( '.js_comment_confirm_modal' ).modal( 'show' );
+	}
+}
 $( document ).on( 'click', '.js_comment_submit_anyway', function( e ) {
 	e.preventDefault();
 	var form = $( '.js_submiting_form' );
@@ -298,6 +301,8 @@ $( '.js_comment_confirm_modal' ).on( 'hidden.bs.modal ', function ( e ) {
 	$( '.js_lowrate_comment_sent' ).removeClass( 'js_lowrate_comment_sent' );
 	form.removeClass( '.js_submiting_form' );
 });
+
+
 
 
 // load more comments

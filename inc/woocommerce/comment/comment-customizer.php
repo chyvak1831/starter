@@ -49,6 +49,24 @@ $wp_customize->add_control(
 	)
 );
 
+// enable file
+$wp_customize->add_setting(
+	'comment_file',
+	array(
+		'default'   => false,
+		'type'      => 'theme_mod',
+		'transport' => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	'comment_file',
+	array(
+		'section' => 'comments_section',
+		'label'   => 'Enable file',
+		'type'    => 'checkbox',
+	)
+);
+
 // maximum amount of attached files
 $wp_customize->add_setting(
 	'comment_maximum_files',
