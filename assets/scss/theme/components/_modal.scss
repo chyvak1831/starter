@@ -22,8 +22,8 @@
 		@media (max-width: 575px) {.thumbnail_carousel {width: 306px;}}
 	}
 
-	// comment confirm modal
-	&.comment_confirm_modal {
+	// comment low-rating modal
+	&.low_rating_modal {
 		.alert svg {
 			height: 3em;
 			float: left;

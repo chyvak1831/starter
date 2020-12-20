@@ -13,6 +13,42 @@ $wp_customize->add_section(
 	)
 );
 
+// enable extended rating
+$wp_customize->add_setting(
+	'comment_extended_rating',
+	array(
+		'default'   => false,
+		'type'      => 'theme_mod',
+		'transport' => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	'comment_extended_rating',
+	array(
+		'section' => 'comments_section',
+		'label'   => 'Enable extended rating',
+		'type'    => 'checkbox',
+	)
+);
+
+// enable low-rating modal
+$wp_customize->add_setting(
+	'comment_low_rating_modal',
+	array(
+		'default'   => false,
+		'type'      => 'theme_mod',
+		'transport' => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	'comment_low_rating_modal',
+	array(
+		'section' => 'comments_section',
+		'label'   => 'Enable low-rating popup',
+		'type'    => 'checkbox',
+	)
+);
+
 // enable "Privacy Policy" checkbox
 $wp_customize->add_setting(
 	'comment_privacy',

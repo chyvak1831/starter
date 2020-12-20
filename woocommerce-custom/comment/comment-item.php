@@ -13,21 +13,36 @@ $starter_comment_author          = $starter_comment->comment_author;
 $starter_comment_date            = $starter_comment->comment_date_gmt;
 $starter_comment_img_ids         = get_field( 'comment_image', $starter_comment );
 $starter_comment_total_img       = $starter_comment_img_ids ? count( $starter_comment_img_ids ) : false;
+$starter_comment_verified        = ( 'yes' === get_option( 'woocommerce_review_rating_verification_label', 'yes' ) ) ? wc_review_is_from_verified_owner( $starter_comment->comment_ID ) : 0; // woo feature
+
+$starter_default_rating          = get_comment_meta( $starter_comment->comment_ID, 'rating', true );
+$starter_extended_rating         = get_theme_mod( 'comment_extended_rating', false );
 $starter_comment_price_rating    = get_field( 'rating_group', $starter_comment )['price'];
 $starter_comment_quality_rating  = get_field( 'rating_group', $starter_comment )['quality'];
 $starter_comment_shipping_rating = get_field( 'rating_group', $starter_comment )['shipping'];
 $starter_comment_average_rating  = ( $starter_comment_price_rating + $starter_comment_quality_rating + $starter_comment_shipping_rating ) / 3;
-$starter_comment_verified        = ( 'yes' === get_option( 'woocommerce_review_rating_verification_label', 'yes' ) ) ? wc_review_is_from_verified_owner( $starter_comment->comment_ID ) : 0; // woo feature
 ?>
 
 <div class="wrap_comment js_comment" data-comment_id="<?php echo esc_attr( $starter_comment_id ); ?>">
-	<?php if ( wc_review_ratings_enabled() && $starter_comment_average_rating ) : ?>
+	<!-- display default rating if extended disabled -->
+	<?php if ( wc_review_ratings_enabled() && ! $starter_extended_rating && $starter_default_rating ) : ?>
+		<div class="dropdown d-flex align-items-center mb-2">
+			<?php
+				$starter_comment_rating = $starter_default_rating;
+				require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php';
+			?>
+		</div>
+	<?php endif; ?>
+	<!-- END display default rating if extended disabled -->
+
+	<!-- display extended rating if enabled -->
+	<?php if ( wc_review_ratings_enabled() && $starter_extended_rating && $starter_comment_average_rating ) : ?>
 		<div class="dropdown d-flex align-items-center mb-2">
 			<?php
 				$starter_comment_rating = $starter_comment_average_rating;
 				require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php';
 			?>
-			<a href="#" class="text-decoration-none ml-1" data-toggle="dropdown"><?php echo esc_html( number_format( round( $starter_comment_average_rating, 1 ), 1, '.', '') ); ?></a>
+			<a href="#" class="ml-1" data-toggle="dropdown"><?php echo esc_html( number_format( round( $starter_comment_average_rating, 1 ), 1, '.', '') ); ?></a>
 			<div class="dropdown-menu">
 				<table class="table table_ratings">
 					<tr>
@@ -61,7 +76,9 @@ $starter_comment_verified        = ( 'yes' === get_option( 'woocommerce_review_r
 			</div>
 		</div>
 	<?php endif; ?>
+	<!-- END display extended rating if enabled -->
 
+	<!-- author, date and verified badge -->
 	<ul class="list details_comment_list">
 		<?php if ( $starter_comment_author ) : ?>
 		<li>
@@ -73,7 +90,9 @@ $starter_comment_verified        = ( 'yes' === get_option( 'woocommerce_review_r
 		<?php endif; ?>
 		<li><?php echo esc_html( date( 'F j, Y', strtotime( $starter_comment_date ) ) ); ?></li>
 	</ul>
+	<!-- END author, date and verified badge -->
 
+	<!-- text and image comment content -->
 	<?php echo esc_html( $starter_comment_description ); ?>
 	<?php if ( 0 < $starter_comment_total_img ) : ?>
 		<div class="attached_img_comment">
@@ -96,4 +115,5 @@ $starter_comment_verified        = ( 'yes' === get_option( 'woocommerce_review_r
 			</ul>
 		</div>
 	<?php endif; ?>
+	<!-- END text and image comment content -->
 </div>

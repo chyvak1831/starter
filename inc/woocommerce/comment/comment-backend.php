@@ -79,40 +79,36 @@ function starter_save_comment() {
 
 	// make rating require if rating enabled
 	if ( wc_review_ratings_enabled() && wc_review_ratings_required() ) {
-		array_push( $require, 'price_rating', 'shipping_rating', 'quality_rating' );
-	}
-
-	foreach ( $require as $item ) {
-		if ( empty( $_POST[ $item ] ) ) {
-			$errors[ $item ] = true;
+		if ( get_theme_mod( 'comment_extended_rating', false ) ) {
+			if ( ! $_POST['price_rating'] ) {
+				$errors['price_rating'] = false;
+			}
+			if ( ! $_POST['quality_rating'] ) {
+				$errors['quality_rating'] = false;
+			}
+			if ( ! $_POST['shipping_rating'] ) {
+				$errors['shipping_rating'] = false;
+			}
+		}
+		if ( ! get_theme_mod( 'comment_extended_rating', false ) && ! $_POST['rating'] ) {
+			$errors['rating'] = false;
 		}
 	}
 
+
+	// send errors if they are
 	if ( $errors ) {
 		wp_send_json_error( $errors );
 	}
 
+
+	// run default wordpress submit comment function
 	$comment = wp_handle_comment_submission( wp_unslash( $_POST ) );
+
 
 	if ( is_wp_error( $comment ) ) {
 		wp_send_json_error( $comment->get_error_message() );
 	} else {
-		// setup custom rating if rating enabled
-		if ( wc_review_ratings_enabled() ) {
-			$price_rating    = $_POST['price_rating'];
-			$shipping_rating = $_POST['shipping_rating'];
-			$quality_rating  = $_POST['quality_rating'];
-			$price           = ( $price_rating > 5 || $price_rating < 0 ) ? 5 : $price_rating;
-			$shipping        = ( $shipping_rating > 5 || $shipping_rating < 0 ) ? 5 : $shipping_rating;
-			$quality         = ( $quality_rating > 5 || $quality_rating < 0 ) ? 5 : $quality_rating;
-			$rating_group = array(
-				'price'    => intval( $price ),
-				'shipping' => intval( $shipping ),
-				'quality'  => intval( $quality ),
-			);
-			update_field( 'rating_group', $rating_group, $comment );
-		}
-
 		// upload image if enabled
 		if ( isset( $_FILES['files'] ) && get_theme_mod( 'comment_file', false ) ) {
 			require_once( ABSPATH . 'wp-admin/includes/file.php' );
@@ -133,6 +129,17 @@ function starter_save_comment() {
 				}
 			}
 			update_field( 'comment_image', $starter_img_ids, get_comment( $comment->comment_ID ) );
+		}
+		// setup custom rating if rating enabled
+		if ( wc_review_ratings_enabled() && get_theme_mod( 'comment_extended_rating', false ) ) {
+			$options = [ 'options' => [ 'default' => 5, 'min_range' => 1, 'max_range' => 5 ] ];
+			$rating_group = array(
+				'price'    => filter_var( $_POST['price_rating'], FILTER_VALIDATE_INT, $options ),
+				'quality'  => filter_var( $_POST['quality_rating'], FILTER_VALIDATE_INT, $options ),
+				'shipping' => filter_var( $_POST['shipping_rating'], FILTER_VALIDATE_INT, $options )
+			);
+			update_field( 'rating_group', $rating_group, $comment );
+			update_comment_meta( $comment->comment_ID, 'rating', round( array_sum( $rating_group ) / 3 ), true );
 		}
 
 		WC_Comments::clear_transients( $comment->comment_post_ID );

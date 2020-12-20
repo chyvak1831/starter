@@ -71,6 +71,7 @@ function processingResponse( form, response ) {
 				case 'price_rating': form.find( '[name="price_rating"]' ).addClass( 'is-invalid' ); break;
 				case 'shipping_rating': form.find( '[name="shipping_rating"]' ).addClass( 'is-invalid' ); break;
 				case 'quality_rating': form.find( '[name="quality_rating"]' ).addClass( 'is-invalid' ); break;
+				case 'rating': form.find( '[name="rating"]' ).addClass( 'is-invalid' ); break;
 			}
 		}
 		// default wp/woo errors
@@ -89,7 +90,7 @@ $( '.js_comment_form' ).submit( function( e ) {
 		return;
 	}
 	form.find( '.js_comment_submit' ).addClass( 'loading' );
-	if ( $( '.js_total_ratings' ).length ) {
+	if ( $( '.js_low_rating_modal' ).length ) {
 		commentMinimumRating( form );
 	} else {
 		submitComment( form );
@@ -248,7 +249,7 @@ RatingProduct.prototype = {
 
 	click: function( e ) {
 		this.calcFilledStar( e );
-		this.rating.closest( '.js_rating' ).find( '.js_rating_input' ).val( this.count_filled_star );
+		this.rating.closest( '.js_rating' ).find( '.js_rating_input' ).val( this.count_filled_star ).removeClass( 'is-invalid' );
 		this.calcAverageRating();
 	},
 
@@ -267,7 +268,7 @@ RatingProduct.prototype = {
 		});
 		average_rating = average_rating / count_ratings;
 		this.parent_rating.find( '.js_total_ratings' ).html( average_rating.toFixed(2) );
-		this.parent_rating.find( '.js_avarage_rating' ).val( Math.round( average_rating ) );
+		this.parent_rating.find( '.js_average_rating' ).val( Math.round( average_rating ) );
 	}
 }
 // init rating
@@ -275,15 +276,15 @@ $( '.js_rating .wrap_rating_list' ).each( function() {
 	var selector = $( this );
 	new RatingProduct( selector );
 } );
-// comment confirm modal
+// comment low-rating modal
 function commentMinimumRating( form ) {
-	var minimumRating = form.find( '[data-minimum-rating]' ).data( 'minimum-rating' );
-	var rating = +form.find( '.js_total_ratings' ).text();
+	var minimumRating = $( '[data-minimum-rating]' ).data( 'minimum-rating' );
+	var rating = +form.find( '.js_average_rating' ).val();
 	if ( rating >= minimumRating || 0 == rating ) {
 		submitComment( form );
 	} else {
 		form.addClass( 'js_submiting_form' );
-		$( '.js_comment_confirm_modal' ).modal( 'show' );
+		$( '.js_low_rating_modal' ).modal( 'show' );
 	}
 }
 $( document ).on( 'click', '.js_comment_submit_anyway', function( e ) {
@@ -291,9 +292,9 @@ $( document ).on( 'click', '.js_comment_submit_anyway', function( e ) {
 	var form = $( '.js_submiting_form' );
 	submitComment( form );
 	$( '.js_comment_submit_anyway' ).addClass( 'js_lowrate_comment_sent' );
-	$( '.js_comment_confirm_modal' ).modal( 'hide' );
+	$( '.js_low_rating_modal' ).modal( 'hide' );
 });
-$( '.js_comment_confirm_modal' ).on( 'hidden.bs.modal ', function ( e ) {
+$( '.js_low_rating_modal' ).on( 'hidden.bs.modal ', function ( e ) {
 	var form = $( '.js_submiting_form' );
 	if ( ! $( '.js_lowrate_comment_sent' ).length ) {
 		form.find( '.js_comment_submit' ).removeClass( 'loading' );
