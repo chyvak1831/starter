@@ -30,7 +30,7 @@ function starter_save_comment() {
 
 
 	// privacy validation
-	if ( get_theme_mod( 'comment_privacy', true ) && ! $_POST['privacy_policy'] ) {
+	if ( get_theme_mod( 'comment_privacy', false ) && ! $_POST['privacy_policy'] ) {
 		$errors['privacy_policy'] = false;
 	}
 

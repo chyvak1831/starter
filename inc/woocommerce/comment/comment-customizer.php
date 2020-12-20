@@ -13,7 +13,7 @@ $wp_customize->add_section(
 	)
 );
 
-// enable extended rating
+// extended rating
 $wp_customize->add_setting(
 	'comment_extended_rating',
 	array(
@@ -26,12 +26,12 @@ $wp_customize->add_control(
 	'comment_extended_rating',
 	array(
 		'section' => 'comments_section',
-		'label'   => 'Enable extended rating',
+		'label'   => 'Extended rating',
 		'type'    => 'checkbox',
 	)
 );
 
-// enable low-rating modal
+// low-rating modal
 $wp_customize->add_setting(
 	'comment_low_rating_modal',
 	array(
@@ -44,16 +44,16 @@ $wp_customize->add_control(
 	'comment_low_rating_modal',
 	array(
 		'section' => 'comments_section',
-		'label'   => 'Enable low-rating popup',
+		'label'   => 'Low-rating popup',
 		'type'    => 'checkbox',
 	)
 );
 
-// enable "Privacy Policy" checkbox
+// "Privacy Policy" checkbox
 $wp_customize->add_setting(
 	'comment_privacy',
 	array(
-		'default'   => true,
+		'default'   => false,
 		'type'      => 'theme_mod',
 		'transport' => 'postMessage',
 	)
@@ -62,12 +62,12 @@ $wp_customize->add_control(
 	'comment_privacy',
 	array(
 		'section' => 'comments_section',
-		'label'   => 'Enable "Privacy Policy" checkbox',
+		'label'   => '"Privacy Policy" checkbox',
 		'type'    => 'checkbox',
 	)
 );
 
-// enable recaptcha
+// recaptcha
 $wp_customize->add_setting(
 	'comment_recaptcha',
 	array(
@@ -80,12 +80,12 @@ $wp_customize->add_control(
 	'comment_recaptcha',
 	array(
 		'section' => 'comments_section',
-		'label'   => 'Enable recaptcha',
+		'label'   => 'Recaptcha',
 		'type'    => 'checkbox',
 	)
 );
 
-// enable file
+// file
 $wp_customize->add_setting(
 	'comment_file',
 	array(
@@ -98,7 +98,7 @@ $wp_customize->add_control(
 	'comment_file',
 	array(
 		'section' => 'comments_section',
-		'label'   => 'Enable file',
+		'label'   => 'File',
 		'type'    => 'checkbox',
 	)
 );

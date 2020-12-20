@@ -15,8 +15,8 @@ $starter_comment_img_ids         = get_field( 'comment_image', $starter_comment 
 $starter_comment_total_img       = $starter_comment_img_ids ? count( $starter_comment_img_ids ) : false;
 $starter_comment_verified        = ( 'yes' === get_option( 'woocommerce_review_rating_verification_label', 'yes' ) ) ? wc_review_is_from_verified_owner( $starter_comment->comment_ID ) : 0; // woo feature
 
-$starter_default_rating          = get_comment_meta( $starter_comment->comment_ID, 'rating', true );
-$starter_extended_rating         = get_theme_mod( 'comment_extended_rating', false );
+$starter_comment_default_rating  = get_comment_meta( $starter_comment->comment_ID, 'rating', true );
+$starter_comment_extended_rating = get_theme_mod( 'comment_extended_rating', false );
 $starter_comment_price_rating    = get_field( 'rating_group', $starter_comment )['price'];
 $starter_comment_quality_rating  = get_field( 'rating_group', $starter_comment )['quality'];
 $starter_comment_shipping_rating = get_field( 'rating_group', $starter_comment )['shipping'];
@@ -25,10 +25,10 @@ $starter_comment_average_rating  = ( $starter_comment_price_rating + $starter_co
 
 <div class="wrap_comment js_comment" data-comment_id="<?php echo esc_attr( $starter_comment_id ); ?>">
 	<!-- display default rating if extended disabled -->
-	<?php if ( wc_review_ratings_enabled() && ! $starter_extended_rating && $starter_default_rating ) : ?>
+	<?php if ( wc_review_ratings_enabled() && ! $starter_comment_extended_rating && $starter_comment_default_rating ) : ?>
 		<div class="dropdown d-flex align-items-center mb-2">
 			<?php
-				$starter_comment_rating = $starter_default_rating;
+				$starter_comment_rating = $starter_comment_default_rating;
 				require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php';
 			?>
 		</div>
@@ -36,7 +36,7 @@ $starter_comment_average_rating  = ( $starter_comment_price_rating + $starter_co
 	<!-- END display default rating if extended disabled -->
 
 	<!-- display extended rating if enabled -->
-	<?php if ( wc_review_ratings_enabled() && $starter_extended_rating && $starter_comment_average_rating ) : ?>
+	<?php if ( wc_review_ratings_enabled() && $starter_comment_extended_rating && $starter_comment_average_rating ) : ?>
 		<div class="dropdown d-flex align-items-center mb-2">
 			<?php
 				$starter_comment_rating = $starter_comment_average_rating;
