@@ -1,0 +1,77 @@
+// comments
+.comment_list {
+	overflow-wrap: break-word;
+	margin: auto;
+	max-width: 700px;
+	.wrap_comment {
+		border: 1px solid $gray-100;
+		margin-bottom: 27px;
+		padding: 20px;
+		&:nth-child(odd) {background: $gray-100;}
+	}
+	.wrap_rating_list {font-size: 16px;}
+	.dropdown-menu {
+		overflow: hidden;
+		padding: 0;
+	}
+}
+.table_ratings {
+	font-size: 13px;
+	font-weight: 600;
+	margin-bottom: 0;
+	tr:nth-child(even) td {background: $gray-100;}
+	.wrap_rating_list {font-size: 20px;}
+}
+.details_comment_list {
+	font-size: 11px;
+	font-weight: 600;
+	margin-bottom: 8px;
+	svg {
+		height: 1.455em;
+		margin-left: 6px;
+		width: 1.455em;
+	}
+}
+.attached_img_comment {
+	margin-top: 32px;
+	h6 {
+		color: $gray-500;
+		font-size: 12px;
+		font-weight: 600;
+		margin-bottom: 9px;
+		text-transform: uppercase;
+	}
+	picture {cursor: pointer;}
+	.item_img {
+		margin-bottom: 15px;
+		$imgBoxWidth: (
+			xs: 90px,
+			sm: 90px,
+			md: 90px,
+			lg: 90px,
+			xl: 90px
+		);
+		$imgAspectRatio: 1.323529411764706;
+		@include imgHeightItem($imgBoxWidth, $imgAspectRatio);
+		width: 90px;
+	}
+}
+
+// comment form
+.ratings_list {
+	box-shadow: none;
+	font-size: 14px;
+	font-weight: 600;
+	height: auto;
+	margin-bottom: 20px;
+	padding: 0;
+	> li {
+		@include flex_align(space-between, center, nowrap);
+		padding: 20px;
+		&:nth-child(odd) {background: $gray-100;}
+	}
+	.wrap_rating_list {
+		font-size: 20px;
+		li {cursor: pointer;}
+	}
+}

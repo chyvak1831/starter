@@ -50,7 +50,7 @@
                     "name": "price",
                     "type": "select",
                     "instructions": "",
-                    "required": 1,
+                    "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "33",
@@ -64,7 +64,7 @@
                         "4": "4",
                         "5": "5"
                     },
-                    "default_value": [],
+                    "default_value": false,
                     "allow_null": 1,
                     "multiple": 0,
                     "ui": 0,
@@ -78,7 +78,7 @@
                     "name": "quality",
                     "type": "select",
                     "instructions": "",
-                    "required": 1,
+                    "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "33",
@@ -92,7 +92,7 @@
                         "4": "4",
                         "5": "5"
                     },
-                    "default_value": [],
+                    "default_value": false,
                     "allow_null": 1,
                     "multiple": 0,
                     "ui": 0,
@@ -106,7 +106,7 @@
                     "name": "shipping",
                     "type": "select",
                     "instructions": "",
-                    "required": 1,
+                    "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "33",
@@ -120,7 +120,7 @@
                         "4": "4",
                         "5": "5"
                     },
-                    "default_value": [],
+                    "default_value": false,
                     "allow_null": 1,
                     "multiple": 0,
                     "ui": 0,
@@ -151,7 +151,7 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1591083141
+    "modified": 1608289823
 }

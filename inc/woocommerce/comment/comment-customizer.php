@@ -13,11 +13,65 @@ $wp_customize->add_section(
 	)
 );
 
-// enable recaptcha
+// extended rating
+$wp_customize->add_setting(
+	'comment_extended_rating',
+	array(
+		'default'   => false,
+		'type'      => 'theme_mod',
+		'transport' => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	'comment_extended_rating',
+	array(
+		'section' => 'comments_section',
+		'label'   => 'Extended rating',
+		'type'    => 'checkbox',
+	)
+);
+
+// low-rating modal
+$wp_customize->add_setting(
+	'comment_low_rating_modal',
+	array(
+		'default'   => false,
+		'type'      => 'theme_mod',
+		'transport' => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	'comment_low_rating_modal',
+	array(
+		'section' => 'comments_section',
+		'label'   => 'Low-rating popup',
+		'type'    => 'checkbox',
+	)
+);
+
+// "Privacy Policy" checkbox
+$wp_customize->add_setting(
+	'comment_privacy',
+	array(
+		'default'   => false,
+		'type'      => 'theme_mod',
+		'transport' => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	'comment_privacy',
+	array(
+		'section' => 'comments_section',
+		'label'   => '"Privacy Policy" checkbox',
+		'type'    => 'checkbox',
+	)
+);
+
+// recaptcha
 $wp_customize->add_setting(
 	'comment_recaptcha',
 	array(
-		'default'   => true,
+		'default'   => false,
 		'type'      => 'theme_mod',
 		'transport' => 'postMessage',
 	)
@@ -26,7 +80,25 @@ $wp_customize->add_control(
 	'comment_recaptcha',
 	array(
 		'section' => 'comments_section',
-		'label'   => 'Enable recaptcha',
+		'label'   => 'Recaptcha',
+		'type'    => 'checkbox',
+	)
+);
+
+// file
+$wp_customize->add_setting(
+	'comment_file',
+	array(
+		'default'   => false,
+		'type'      => 'theme_mod',
+		'transport' => 'postMessage',
+	)
+);
+$wp_customize->add_control(
+	'comment_file',
+	array(
+		'section' => 'comments_section',
+		'label'   => 'File',
 		'type'    => 'checkbox',
 	)
 );

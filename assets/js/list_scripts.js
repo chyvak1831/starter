@@ -2,6 +2,9 @@ var scripts = [
 	// common
 	'./assets/js/modules/common.js',
 
+	// recaptcha
+	'./assets/js/modules/recaptcha.js',
+
 	// comment
 	'./assets/js/modules/comment.js',
 
