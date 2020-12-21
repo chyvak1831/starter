@@ -24,7 +24,7 @@ function submitComment( form ) {
 		$( '.js_field_file_upload' ).fileupload( 'send', { files: filelistform } );
 	} else {// send form when no files
 		$.ajax({
-			url: woocommerce_params.ajax_url,
+			url: starter_ajax.ajax_url,
 			type: 'POST',
 			data: new FormData( form[0] ),
 			cache: false,
@@ -164,7 +164,7 @@ $( document ).on( 'click', '.js_field_file_upload', function() {
 var filelistform = new Array();
 function uploadImageCommentForm( selector, list_file_upload, form ) {
 	selector.fileupload({
-		url: woocommerce_params.ajax_url,
+		url: starter_ajax.ajax_url,
 		dataType: 'json',
 		previewMaxWidth: 96,
 		previewMaxHeight: 96,
@@ -268,7 +268,6 @@ RatingProduct.prototype = {
 		});
 		average_rating = average_rating / count_ratings;
 		this.parent_rating.find( '.js_total_ratings' ).html( average_rating.toFixed(2) );
-		this.parent_rating.find( '.js_average_rating' ).val( Math.round( average_rating ) );
 	}
 }
 // init rating
@@ -279,7 +278,7 @@ $( '.js_rating .wrap_rating_list' ).each( function() {
 // comment low-rating modal
 function commentMinimumRating( form ) {
 	var minimumRating = $( '[data-minimum-rating]' ).data( 'minimum-rating' );
-	var rating = +form.find( '.js_average_rating' ).val();
+	var rating = +form.find( '.js_total_ratings' ).text();
 	if ( rating >= minimumRating || 0 == rating ) {
 		submitComment( form );
 	} else {
@@ -312,7 +311,7 @@ $( document ).on( 'click', '.js_comment_show_more', function( e ) {
 	var btn = $( this );
 	btn.addClass( 'loading' );
 	var product_id = btn.data( 'product_id' );
-	var offset = $( '.js_comment' ).length;
+	var offset = $( '.js_comment_item' ).length;
 	var data = {
 		action: 'comment_load',
 		product_id: product_id,
@@ -320,9 +319,9 @@ $( document ).on( 'click', '.js_comment_show_more', function( e ) {
 	};
 	$.post( starter_ajax['ajax_url'], data, function( response ) {
 		$( '.js_comment_list' ).append( response );
-		var commentsList = $('.js_comment_list');
-		var totalComments = commentsList.data( 'total' );
-		var show_comments = commentsList.find('.js_comment').length;
+		var commentsList = $( '.js_comment_list' );
+		var totalComments = commentsList.data( 'comment-total' );
+		var show_comments = commentsList.find( '.js_comment_item' ).length;
 		if ( show_comments == totalComments ) {
 			btn.remove();
 		} else {
@@ -335,14 +334,14 @@ $( document ).on( 'click', '.js_comment_show_more', function( e ) {
 // comment image modal
 $( document ).on( 'click', '.js_comment_img_modal_btn', function( e ) {
 	e.preventDefault();
-	$( 'body' ).addClass( 'main_loading' );
-	var comment_id = $( this ).closest( '.js_comment' ).attr( 'data-comment_id' );
+	$( '.main_wrap' ).addClass( 'main_loading' );
+	var comment_id = $( this ).closest( '.js_comment_item' ).attr( 'data-comment_id' );
 	var data = {
 		action: 'comment_image',
 		comment_id: comment_id,
 	};
 	$.post( starter_ajax['ajax_url'], data, function( response ) {
-		$( 'body' ).append( response ).removeClass( 'main_loading' );
+		$( '.main_wrap' ).append( response ).removeClass( 'main_loading' );
 		$( '.js_comment_img_modal' ).modal( 'show' );
 		// call on load img due modal loaded via ajax
 		$( '.js_comment_img_modal .js_main_img img' ).on( 'load', function() {

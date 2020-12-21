@@ -49,7 +49,7 @@ function starter_save_comment() {
 
 
 	// image validation
-	if ( isset( $_FILES['files'] ) && get_theme_mod( 'comment_file', false ) ) {
+	if ( isset( $_FILES['files'] ) && ! empty( $_FILES['files']['name'][0] ) && get_theme_mod( 'comment_file', false ) ) {
 		$starter_maximum_length = get_theme_mod( 'comment_maximum_files', 10 ); /*maximum files*/
 		$starter_maximum_weight = get_theme_mod( 'comment_maximum_weight', 15 ) * 1048576; /*MB, each file maximum weight*/
 		$starter_allowed_types  = array( 'image/jpeg', 'image/jpg', 'image/png' );
@@ -110,7 +110,7 @@ function starter_save_comment() {
 		wp_send_json_error( $comment->get_error_message() );
 	} else {
 		// upload image if enabled
-		if ( isset( $_FILES['files'] ) && get_theme_mod( 'comment_file', false ) ) {
+		if ( isset( $_FILES['files'] ) && ! empty( $_FILES['files']['name'][0] ) && get_theme_mod( 'comment_file', false ) ) {
 			require_once( ABSPATH . 'wp-admin/includes/file.php' );
 			$starter_files   = $_FILES['files'];
 			$starter_img_ids = [];
@@ -132,7 +132,7 @@ function starter_save_comment() {
 		}
 		// setup custom rating if rating enabled
 		if ( wc_review_ratings_enabled() && get_theme_mod( 'comment_extended_rating', false ) ) {
-			$options = [ 'options' => [ 'default' => 5, 'min_range' => 1, 'max_range' => 5 ] ];
+			$options = [ 'options' => [ 'default' => 5, 'min_range' => 0, 'max_range' => 5 ] ];
 			$rating_group = array(
 				'price'    => filter_var( $_POST['price_rating'], FILTER_VALIDATE_INT, $options ),
 				'quality'  => filter_var( $_POST['quality_rating'], FILTER_VALIDATE_INT, $options ),

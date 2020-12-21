@@ -26,9 +26,10 @@ $starter_comment_rating      = 0;
 					<span><?php esc_html_e( 'Rating:', 'starter' ); ?></span>
 					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem-width="22">
 						<?php require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php'; ?>
-						<input type="text" name="rating" class="js_rating_input js_average_rating" <?php echo esc_attr( $starter_rating_required ); ?> hidden>
+						<input value="0" name="rating" class="js_rating_input" <?php echo esc_attr( $starter_rating_required ); ?> hidden>
 						<div class="invalid-feedback"><?php esc_html_e( 'Rating is required.', 'starter' ); ?></div>
 					</div>
+					<span class="d-none js_total_ratings"></span>
 				</li>
 			</ul>
 		<?php endif; ?>
@@ -41,7 +42,7 @@ $starter_comment_rating      = 0;
 					<span><?php esc_html_e( 'Price:', 'starter' ); ?></span>
 					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem-width="22">
 						<?php require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php'; ?>
-						<input type="text" name="price_rating" id="price_rating_<?php echo esc_attr( $starter_product_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_rating_required ); ?> hidden>
+						<input value="0" name="price_rating" id="price_rating_<?php echo esc_attr( $starter_product_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_rating_required ); ?> hidden>
 						<div class="invalid-feedback"><?php esc_html_e( 'Price rating is required.', 'starter' ); ?></div>
 					</div>
 				</li>
@@ -49,7 +50,7 @@ $starter_comment_rating      = 0;
 					<span><?php esc_html_e( 'Quality:', 'starter' ); ?></span>
 					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem-width="22">
 						<?php require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php'; ?>
-						<input type="text" name="quality_rating" id="quality_rating_<?php echo esc_attr( $starter_product_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_rating_required ); ?> hidden>
+						<input value="0" name="quality_rating" id="quality_rating_<?php echo esc_attr( $starter_product_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_rating_required ); ?> hidden>
 						<div class="invalid-feedback"><?php esc_html_e( 'Quality rating is required.', 'starter' ); ?></div>
 					</div>
 				</li>
@@ -57,14 +58,13 @@ $starter_comment_rating      = 0;
 					<span><?php esc_html_e( 'Shipping:', 'starter' ); ?></span>
 					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem-width="22">
 						<?php require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php'; ?>
-						<input type="text" name="shipping_rating" id="shipping_rating_<?php echo esc_attr( $starter_product_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_rating_required ); ?> hidden>
+						<input value="0" name="shipping_rating" id="shipping_rating_<?php echo esc_attr( $starter_product_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_rating_required ); ?> hidden>
 						<div class="invalid-feedback"><?php esc_html_e( 'Shipping rating is required.', 'starter' ); ?></div>
 					</div>
 				</li>
 				<li class="total_row">
 					<span class="text_total_row"><?php esc_html_e( 'Your Overall Rating:', 'starter' ); ?></span>
 					<span class="text_total_rating js_total_ratings"></span>
-					<input name="rating" class="js_average_rating" hidden>
 				</li>
 			</ul>
 		<?php endif; ?>

@@ -23,7 +23,7 @@ $starter_comment_shipping_rating = get_field( 'rating_group', $starter_comment )
 $starter_comment_average_rating  = ( $starter_comment_price_rating + $starter_comment_quality_rating + $starter_comment_shipping_rating ) / 3;
 ?>
 
-<div class="wrap_comment js_comment" data-comment_id="<?php echo esc_attr( $starter_comment_id ); ?>">
+<div class="wrap_comment js_comment_item" data-comment_id="<?php echo esc_attr( $starter_comment_id ); ?>">
 	<!-- display default rating if extended disabled -->
 	<?php if ( wc_review_ratings_enabled() && ! $starter_comment_extended_rating && $starter_comment_default_rating ) : ?>
 		<div class="dropdown d-flex align-items-center mb-2">

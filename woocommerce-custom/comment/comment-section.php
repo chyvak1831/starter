@@ -25,7 +25,7 @@ $starter_only_verified    = ( 'yes' === get_option( 'woocommerce_review_rating_v
 <div class="container mt-4" id="comments_wrap">
 	<!-- comments -->
 	<h2 class="title_section"><span><?php esc_html_e( 'Customer Reviews', 'starter' ); ?></span></h2>
-	<div class="comment_list js_comment_list" data-total="<?php echo esc_attr( $starter_comment_count ); ?>">
+	<div class="comment_list js_comment_list" data-comment-total="<?php echo esc_attr( $starter_comment_count ); ?>">
 		<?php
 		foreach ( $starter_comments_query as $starter_comment ) {
 			$starter_comment_id = $starter_comment->comment_ID;
