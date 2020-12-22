@@ -208,7 +208,7 @@ while ( have_posts() ) :
 
 		<!-- related products -->
 		<?php
-			if ( get_field( 'upsell_products' ) && get_theme_mod( 'qty_upsell_products' ) ) {
+			if ( get_field( 'upsell_products' ) && get_theme_mod( 'qty_upsell_products', -1 ) ) {
 				add_action( 'starter_single_product_upsell', 'woocommerce_upsell_display', 20 );
 				do_action( 'starter_single_product_upsell' );
 			}
