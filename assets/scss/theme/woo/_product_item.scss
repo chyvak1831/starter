@@ -43,10 +43,17 @@
 		font-weight: 600;
 	}
 	.wrap_price {
+		.price {@include flex_align(center);}
 		font-weight: 600;
 		margin: 10px 0;
+		del {
+			color: $gray-600;
+			font-size: 0.8em;
+			margin-left: 5px;
+			order: 1;
+		}
+		ins {text-decoration: none;}
 	}
-	.old_price {color: $gray-500;}
 	.wc-forward {display: none;}
 }
 

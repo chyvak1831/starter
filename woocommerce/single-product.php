@@ -35,8 +35,6 @@ while ( have_posts() ) :
 	the_post();
 	$starter_img             = $product->get_image_id();
 	$starter_thumbnails      = $product->get_gallery_image_ids();
-	$starter_price           = $product->get_regular_price();
-	$starter_sale_price      = $product->get_sale_price();
 	$starter_product_id      = $product->get_id();
 	$starter_short_desc      = has_excerpt() ? get_the_excerpt() : '';
 	$starter_comment_enabled = wc_reviews_enabled() && $product->get_reviews_allowed() ? 1 : 0; // woo feature - check if all reviews and for certain product enabled
@@ -115,8 +113,8 @@ while ( have_posts() ) :
 									</div>
 								<?php endforeach; ?>
 							</div>
-							<button class="btn carousel_control_prev js_carousel_control_prev"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
-							<button class="btn carousel_control_next js_carousel_control_next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
+							<button class="btn carousel_control_prev js_carousel_control_prev" aria-label="Carousel scroll previous"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
+							<button class="btn carousel_control_next js_carousel_control_next" aria-label="Carousel scroll next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
 						</div>
 					<?php endif; ?>
 				</div>
@@ -156,10 +154,10 @@ while ( have_posts() ) :
 							<a href="#" class="link_dropdown" data-toggle="dropdown" role="button"><?php echo starter_get_svg( array( 'icon' => 'share' ) ); ?><?php esc_html_e( 'share', 'starter' ); ?></a>
 							<ul class="list-unstyled dropdown-menu dropdown-menu-right">
 								<li>
-									<a class="twitter" href="https://twitter.com/share?url=<?php echo esc_url( get_the_permalink() ); ?>" target="_blank"><?php echo starter_get_svg( array( 'icon' => 'twitter' ) ); ?><?php esc_html_e( 'Twitter', 'starter' ); ?></a>
+									<a class="twitter" href="https://twitter.com/share?url=<?php echo esc_url( get_the_permalink() ); ?>" rel="noopener" target="_blank"><?php echo starter_get_svg( array( 'icon' => 'twitter' ) ); ?><?php esc_html_e( 'Twitter', 'starter' ); ?></a>
 								</li>
 								<li>
-									<a class="facebook" href="https://www.facebook.com/sharer.php?u=<?php echo esc_url( get_the_permalink() ); ?>" target="_blank"><?php echo starter_get_svg( array( 'icon' => 'facebook' ) ); ?><?php esc_html_e( 'Facebook', 'starter' ); ?></a>
+									<a class="facebook" href="https://www.facebook.com/sharer.php?u=<?php echo esc_url( get_the_permalink() ); ?>" rel="noopener" target="_blank"><?php echo starter_get_svg( array( 'icon' => 'facebook' ) ); ?><?php esc_html_e( 'Facebook', 'starter' ); ?></a>
 								</li>
 							</ul>
 						</li>
@@ -170,19 +168,10 @@ while ( have_posts() ) :
 
 					<!-- price -->
 					<div class="wrap_price">
-						<?php if ( $starter_price ) : ?>
-							<?php if ( $product->is_in_stock() ) : ?>
-								<?php if ( $product->is_on_sale() ) : ?>
-									<span class="new_price"><?php echo wc_price( $starter_sale_price ); ?></span>
-									<del class="old_price"><?php echo wc_price( $starter_price ); ?></del>
-								<?php else : ?>
-									<span><?php echo wc_price( $starter_price ); ?></span>
-								<?php endif; ?>
-							<?php else : ?>
-								<span><?php esc_html_e( 'Sold Out', 'starter' ); ?></span>
-							<?php endif; ?>
-						<?php elseif ( $product->is_type( 'variable' ) ) : ?>
-							<span><?php echo $product->get_price_html(); ?></span>
+						<?php if ( $product->is_in_stock() ) : ?>
+							<?php wc_get_template( 'loop/price.php' ); ?>
+						<?php else : ?>
+							<span><?php esc_html_e( 'Sold Out', 'starter' ); ?></span>
 						<?php endif; ?>
 					</div>
 					<!-- END price -->
@@ -197,7 +186,7 @@ while ( have_posts() ) :
 							<li>
 								<div class="count_block js_count_add_product">
 									<a href="#" class="count_block_btn js_minus_count_btn_product" role="button" aria-label="<?php esc_attr_e( 'Minus product', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-minus' ) ); ?></a>
-									<div class="wrap_count_input"><input type="number" class="form-control" value="1" readonly></div>
+									<div class="wrap_count_input"><input aria-label="count add to cart" type="number" class="form-control" value="1" readonly></div>
 									<a href="#" class="count_block_btn js_plus_count_btn_product" role="button" aria-label="<?php esc_attr_e( 'Plus product', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-plus' ) ); ?></a>
 								</div>
 							</li>

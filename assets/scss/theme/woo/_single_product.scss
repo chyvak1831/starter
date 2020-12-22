@@ -85,9 +85,16 @@
 }
 .single_main_content {
 	.wrap_price {
+		.price {@include flex_align();}
 		font-size: 30px;
 		margin-bottom: 10px;
-		.old_price {color: $gray-500;}
+		del {
+			color: $gray-600;
+			font-size: 0.8em;
+			margin-left: 5px;
+			order: 1;
+		}
+		ins {text-decoration: none;}
 	}
 	.count_block {font-size: 15px;}
 	.wc-forward {display: none !important;}

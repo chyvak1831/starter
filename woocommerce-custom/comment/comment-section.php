@@ -42,7 +42,7 @@ $starter_only_verified    = ( 'yes' === get_option( 'woocommerce_review_rating_v
 		</div>
 	<?php endif; ?>
 	<?php if ( !$starter_comment_count ) : ?>
-		<h6 class="text-center"><?php esc_html_e( 'Create review - be first!', 'starter' ); ?></h6>
+		<p class="text-center h5"><?php esc_html_e( 'Create review - be first!', 'starter' ); ?></p>
 	<?php endif; ?>
 	<!-- END comments -->
 
