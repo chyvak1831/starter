@@ -32,6 +32,12 @@ var settingsAutoprefixer = {
 var critical = {
   base: 'assets/',
   ignore: ['@font-face',/url\(/],
+  css: [
+        'assets/css/plugins.css',
+        'assets/css/styles.css',
+        '../../plugins/advanced-woo-search/assets/css/common.css',
+        '../../plugins/ti-woocommerce-wishlist/assets/css/public.min.css'
+       ],
   timeout: 1000000000,
   penthouse: {
     renderWaitTime: 500
@@ -79,7 +85,7 @@ var criticalSrcPages = [
     },
     {
       url: 'http://local.alexwp/shop/',
-      css: 'css/critical/taxonomy-product_cat.css',
+      css: 'css/critical/taxonomy-product-cat.css',
       include: [ /.modal/, /.slick(.*)/ ]
     }
 ]

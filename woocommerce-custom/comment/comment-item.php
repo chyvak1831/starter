@@ -97,7 +97,7 @@ $starter_comment_average_rating  = ( $starter_comment_price_rating + $starter_co
 	<?php if ( 0 < $starter_comment_total_img ) : ?>
 		<div class="attached_img_comment">
 			<?php /* translators: count of images. */ ?>
-			<h6><?php printf( esc_html( _n( 'Attached %s Photo', 'Attached %s Photos', $starter_comment_total_img, 'starter' ) ), esc_html( $starter_comment_total_img ) ); ?></h5>
+			<span class="h6"><?php printf( esc_html( _n( 'Attached %s Photo', 'Attached %s Photos', $starter_comment_total_img, 'starter' ) ), esc_html( $starter_comment_total_img ) ); ?></span>
 			<ul class="list object_fit">
 				<?php foreach ( $starter_comment_img_ids as $starter_comment_img ) : ?>
 					<li class="js_comment_img_modal_btn">

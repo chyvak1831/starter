@@ -34,7 +34,7 @@ $starter_all_count_item = $wp_query->found_posts;
 	} ?>
 	<!-- END breadcrumb -->
 
-	<h1 class="mt-5 mb-5 text-center">
+	<h1 class="mt-5 mb-0 text-center">
 		<?php
 			if ( is_product_taxonomy() ) {
 				woocommerce_page_title();
@@ -44,8 +44,8 @@ $starter_all_count_item = $wp_query->found_posts;
 				esc_html_e( 'All products', 'starter' );
 			}
 		?>
-		<span class="text-muted"><?php echo esc_html( $starter_all_count_item ); ?></span>
 	</h1>
+	<h2 class="mb-5 text-center text-muted"><small>(<?php echo esc_html( $starter_all_count_item ); ?><?php esc_html_e( ' products', 'starter' ); ?>)</small></h2>
 
 	<div class="row">
 
