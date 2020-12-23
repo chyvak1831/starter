@@ -16,8 +16,6 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 $starter_img             = $product->get_image_id();
 $starter_thumbnails      = $product->get_gallery_image_ids()[0] ? $product->get_gallery_image_ids()[0] : $starter_img;
-$starter_price           = $product->get_regular_price();
-$starter_sale_price      = $product->get_sale_price();
 $starter_comment_enabled = wc_reviews_enabled() && $product->get_reviews_allowed() ? 1 : 0; // woo feature - check if all reviews and for certain product enabled
 $starter_comment_count   = $product->get_review_count();
 $starter_comment_rating  = $product->get_average_rating();
@@ -90,19 +88,10 @@ foreach( $starter_terms as $starter_term ){
 
 			<!-- price -->
 			<div class="wrap_price">
-				<?php if ( $starter_price ) : ?>
-					<?php if ( $product->is_in_stock() ) : ?>
-						<?php if ( $product->is_on_sale() ) : ?>
-							<span class="new_price"><?php echo wc_price( $starter_sale_price ); ?></span>
-							<del class="old_price"><?php echo wc_price( $starter_price ); ?></del>
-						<?php else : ?>
-							<span><?php echo wc_price( $starter_price ); ?></span>
-						<?php endif; ?>
-					<?php else : ?>
-						<span><?php esc_html_e( 'Sold Out', 'starter' ); ?></span>
-					<?php endif; ?>
-				<?php elseif ( $product->is_type( 'variable' ) ) : ?>
-					<span><?php echo $product->get_price_html(); ?></span>
+				<?php if ( $product->is_in_stock() ) : ?>
+					<?php wc_get_template( 'loop/price.php' ); ?>
+				<?php else : ?>
+					<span><?php esc_html_e( 'Sold Out', 'starter' ); ?></span>
 				<?php endif; ?>
 			</div>
 			<!-- END price -->

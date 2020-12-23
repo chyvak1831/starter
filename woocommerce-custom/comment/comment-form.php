@@ -116,7 +116,7 @@ $starter_comment_rating      = 0;
 						$starter_maximum_weight = get_theme_mod( 'comment_maximum_weight', 15 ); /*MB, each file maximum weight*/
 					?>
 					<input class="custom-file-input js_field_file_upload" data-length="<?php echo esc_attr( $starter_maximum_length ); ?>" data-weight="<?php echo esc_attr( $starter_maximum_weight ); ?>" id="comment_fileupload_<?php echo esc_attr( $starter_product_id ); ?>" type="file" name="files[]" multiple accept="image/jpeg,image/jpg,image/png" aria-describedby="fileHelp">
-					<label><?php esc_html_e( 'Attachment (Optional)', 'starter' ); ?></label>
+					<label for="comment_fileupload_<?php echo esc_attr( $starter_product_id ); ?>"><?php esc_html_e( 'Attachment (Optional)', 'starter' ); ?></label>
 					<label class="file_label" for="comment_fileupload_<?php echo esc_attr( $starter_product_id ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-image' ) ); ?></label>
 					<ul class="list-unstyled list_file_upload js_list_file_upload"></ul>
 					<div class="invalid-feedback js_filelength_invalid_feedback d-none">

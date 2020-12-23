@@ -12,7 +12,7 @@ $starter_is_logged = is_user_logged_in() ? ' user_logged' : ' user_unlogged';
 <html <?php language_attributes(); ?>>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script>window.lazySizesConfig=window.lazySizesConfig||{},window.lazySizesConfig.expand=10,lazySizesConfig.expFactor=1.5;</script>
 	<?php wp_head(); ?>
 </head>
@@ -43,7 +43,7 @@ $starter_is_logged = is_user_logged_in() ? ' user_logged' : ' user_unlogged';
 
 		<!-- TOP MOBILE NAV AREA -->
 			<?php if ( has_nav_menu( 'header_top_nav_mobile' ) ) : ?>
-				<nav class="header_top_nav_mobile position-relative" aria-label="<?php esc_attr_e( 'Header Top Mobile Nav', 'starter' ); ?>">
+				<nav class="header_top_nav_mobile" aria-label="<?php esc_attr_e( 'Header Top Mobile Nav', 'starter' ); ?>">
 					<?php
 						wp_nav_menu(
 							array(
@@ -76,7 +76,7 @@ $starter_is_logged = is_user_logged_in() ? ' user_logged' : ' user_unlogged';
 		<!-- END MAIN NAV AREA -->
 
 		<!-- MOBILE NAV AREA -->
-			<?php if ( has_nav_menu( 'header_main_nav_mobile position-relative' ) ) : ?>
+			<?php if ( has_nav_menu( 'header_main_nav_mobile' ) ) : ?>
 				<nav class="header_main_nav_mobile" aria-label="<?php esc_attr_e( 'Header Mobile Nav', 'starter' ); ?>">
 					<?php
 						wp_nav_menu(

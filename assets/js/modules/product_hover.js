@@ -1,5 +1,6 @@
 jQuery( document ).ready( function( $ ) {
 
+
 var touch = false;
 window.addEventListener( 'touchstart', function() {
 	touch = true;

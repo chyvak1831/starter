@@ -13,5 +13,6 @@ html, body {height: 100%;}
 		align-items: flex-start;
 		flex-direction: column;
 	}
+	.sub-menu > li {margin: 3px 0;}
 	@media (max-width: 767px) {> li {width: 50%;}}
 }
