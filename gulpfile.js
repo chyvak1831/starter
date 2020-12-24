@@ -76,7 +76,7 @@ function eachSourcesCritical( index, array, callback ) {
       include: config.criticalSrcPages[index].include,
       ignore: config.critical.ignore,
       src: config.criticalSrcPages[index].url,
-      css: [ 'assets/css/plugins.css', 'assets/css/styles.css' ],
+      css: config.critical.css,
       dest: config.criticalSrcPages[index].css,
       minify: config.critical.minify,
       timeout: config.critical.timeout,
