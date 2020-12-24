@@ -1,7 +1,14 @@
 # STARTER
 
-Starter WooCommerce theme.  
+Starter WooCommerce theme, how it looks/works by default see here https://starter.rsdev.in/.  
 Open source, free to use - [MIT](https://choosealicense.com/licenses/mit/) license.
+
+
+# TWO IMPORTAN THINGS
+1. THE THEME IS UNDER ACTIVE DEVELOPMENT (RELEASED TWO ALPHA VERSIONS) BUT IT'S PRETTY CLOSE TO **FIRST STABLE RELEASE** - FIRST RELEASE IS PLANNING **BEFORE NEW YEAR**!
+2. DUE IT'S ALPHA VERSION _SOME DOCIMENTATION UNACTUAL_, IT **WILL BE FIXED BEFORE FIRST STABLE RELEASE**.
+3. STAY WITH US :-)
+
 
 
 
@@ -88,7 +95,8 @@ Probably Starter will works with other plugin versions - but with versions below
   W3TC used for optimize page cache and js only.
   <img src="https://github.com/chyvak1831/starter_img/blob/master/w3tc_01.jpg?raw=true" alt="W3TC settings 1">
   <img src="https://github.com/chyvak1831/starter_img/blob/master/w3tc_02.jpg?raw=true" alt="W3TC settings 2"></details>
-* [Node.js](https://nodejs.org/) >= 14.8.0
+* [Node.js](https://nodejs.org/) = 14.8.0
+* gulp = 2.3.0 (how to install - see below)
 
 ### 🔧 Setup
 1. Install [Requirements](#-requirements)
