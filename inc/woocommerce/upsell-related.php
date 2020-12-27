@@ -3,6 +3,7 @@
  * Upsell/related products count and customizer
  *
  * @package starter
+ * @since starter 1.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -62,6 +63,10 @@ add_action( 'customize_register', 'starter_upsell_related_customizer', 50 );
 
 /**
  * Change number of upsells output
+ *
+ * @since starter 1.0
+ *
+ * @return string $limit amount of upsells products
  */
 function starter_change_number_upsells_products() {
 	$limit = get_theme_mod( 'qty_upsell_products', -1 );
@@ -71,6 +76,11 @@ add_filter( 'woocommerce_upsells_total', 'starter_change_number_upsells_products
 
 /**
  * Change number of related products
+ *
+ * @since starter 1.0
+ *
+ * @param array $args Amount and ordering of related products.
+ * @return array $args Modified by customizer amount of related products
  */
 function starter_related_products_args( $args ) {
 	$args['posts_per_page'] = get_theme_mod( 'qty_related_products', 10 );

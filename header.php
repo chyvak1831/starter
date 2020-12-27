@@ -65,7 +65,7 @@ $starter_is_logged = is_user_logged_in() ? ' user_logged' : ' user_unlogged';
 								wp_nav_menu(
 									array(
 										'theme_location' => 'header_main_nav',
-										'menu_class'     => 'menu list'
+										'menu_class'     => 'menu list',
 									)
 								);
 							?>

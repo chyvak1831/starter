@@ -39,7 +39,6 @@ add_action( 'after_setup_theme', 'starter_setup' );
 
 /**
  * Get unique ID - fork from twentyseventeen/functions.php.
-
  *
  * This is a PHP implementation of Underscore's uniqueId method. A static variable
  * contains an integer that is incremented with each call. This number is returned

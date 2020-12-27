@@ -31,29 +31,39 @@ add_action( 'widgets_init', 'starter_override_woocommerce_attr_widget', 15 );
  * @return array $params modified sort array.
  */
 function starter_price_filter_layout( $params ) {
-	// get widget vars
+	/*get widget vars*/
 	$widget_name = $params[0]['widget_name'];
-	$widget_id = $params[0]['widget_id'];	
-	// apply to "Filter Products by Price widget" only
-	if( $widget_name != 'Filter Products by Price' ) {
+	$widget_id   = $params[0]['widget_id'];
+	/*apply to "Filter Products by Price widget" only*/
+	if ( 'Filter Products by Price' !== $widget_name ) {
 		return $params;
 	}
-	// get widget title
+	/*get widget title*/
 	global $wp_registered_widgets;
-	$instance = $wp_registered_widgets[$widget_id]['callback'][0];
+	$instance = $wp_registered_widgets[ $widget_id ]['callback'][0];
 	// @see https://developer.wordpress.org/reference/classes/wp_widget/get_settings/
 	$settings = $instance->get_settings();
-	$num = $wp_registered_widgets[$widget_id]['params'][0]['number'];
+	$num      = $wp_registered_widgets[ $widget_id ]['params'][0]['number'];
 	if ( isset( $settings[ $num ]['title'] ) ) {
 		$widget_title = $settings[ $num ]['title'];
 	}
-	// get price filter ACF
+	/*get price filter ACF*/
 	$filter_view_mobile  = get_field( 'filter_display_type_mobile', 'widget_' . $widget_id );
 	$filter_view_desktop = get_field( 'filter_display_type_desktop', 'widget_' . $widget_id );
-	// modify output html
+	/*modify output html*/
 	$params[0]['before_widget'] .= '<div class="dropdown ' . $filter_view_desktop . ' ' . $filter_view_mobile . '">';
-	$params[0]['before_widget'] .= '<a href="#" class="widget-title" data-toggle="dropdown">' . $widget_title . '<span class="notifications_text js_count_selected_filter d-none">0</span>' . starter_get_svg( array( 'icon' => 'bi-chevron-down', 'class' => 'arrow' ) ) . '</a>';
-	$params[0]['before_widget'] .= '<a href="#collapse_filter_' . $widget_id . '" class="widget-title" data-toggle="collapse">' . $widget_title . '<span class="notifications_text js_count_selected_filter d-none">0</span>' . starter_get_svg( array( 'icon' => 'bi-chevron-down', 'class' => 'arrow' ) ) . '</a>';
+	$params[0]['before_widget'] .= '<a href="#" class="widget-title" data-toggle="dropdown">' . $widget_title . '<span class="notifications_text js_count_selected_filter d-none">0</span>' . starter_get_svg(
+		array(
+			'icon'  => 'bi-chevron-down',
+			'class' => 'arrow',
+		)
+	) . '</a>';
+	$params[0]['before_widget'] .= '<a href="#collapse_filter_' . $widget_id . '" class="widget-title" data-toggle="collapse">' . $widget_title . '<span class="notifications_text js_count_selected_filter d-none">0</span>' . starter_get_svg(
+		array(
+			'icon'  => 'bi-chevron-down',
+			'class' => 'arrow',
+		)
+	) . '</a>';
 	$params[0]['before_widget'] .= '<div class="collapse" id="collapse_filter_' . $widget_id . '">';
 	return $params;
 
@@ -80,12 +90,12 @@ add_filter( 'woocommerce_price_filter_widget_step', 'starter_change_price_filter
  */
 function starter_wc_customize_product_sorting( $sorting_options ) {
 	$sorting_options = array(
-		'title'           => __( 'Name A-Z', 'starter' ),
-		'title-desc'      => __( 'Name Z-A', 'starter' ),
-		'price-desc'      => __( 'Price to low', 'starter' ),
-		'price'           => __( 'Price to high', 'starter' ),
-		'date'            => __( 'Newest', 'starter' ),
-		'popularity'      => __( 'Most popular', 'starter' ),
+		'title'      => __( 'Name A-Z', 'starter' ),
+		'title-desc' => __( 'Name Z-A', 'starter' ),
+		'price-desc' => __( 'Price to low', 'starter' ),
+		'price'      => __( 'Price to high', 'starter' ),
+		'date'       => __( 'Newest', 'starter' ),
+		'popularity' => __( 'Most popular', 'starter' ),
 	);
 	return $sorting_options;
 }

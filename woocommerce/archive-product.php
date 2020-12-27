@@ -25,24 +25,29 @@ $starter_all_count_item = $wp_query->found_posts;
 <!-- get active filters - used when 'No products found' so .js_form_filter form is empty -->
 <script>selected_filters = <?php echo wp_json_encode( WC_Query::get_layered_nav_chosen_attributes() ); ?>;</script>
 
-<?php if ( is_search() ) $starter_search_page = ' search_page'; ?>
-<div class="content_wrapper container archive_product <?php echo esc_attr ( $starter_search_page ) ?>" role="main">
+<?php
+if ( is_search() ) {
+	$starter_search_page = ' search_page';}
+?>
+<div class="content_wrapper container archive_product <?php echo esc_attr( $starter_search_page ); ?>" role="main">
 
 	<!-- breadcrumb -->
-	<?php if ( function_exists( 'yoast_breadcrumb' ) ) {
+	<?php
+	if ( function_exists( 'yoast_breadcrumb' ) ) {
 		yoast_breadcrumb( '<div class="yoast_breadcrumb">', '</div>' );
-	} ?>
+	}
+	?>
 	<!-- END breadcrumb -->
 
 	<h1 class="mt-5 mb-0 text-center">
 		<?php
-			if ( is_product_taxonomy() ) {
-				woocommerce_page_title();
-			} elseif ( is_search() ) {
-				printf( 'Search Results for: “%s”', '<span>' . get_search_query() . '</span>' );
-			} else {
-				esc_html_e( 'All products', 'starter' );
-			}
+		if ( is_product_taxonomy() ) {
+			woocommerce_page_title();
+		} elseif ( is_search() ) {
+			printf( 'Search Results for: “%s”', '<span>' . get_search_query() . '</span>' );
+		} else {
+			esc_html_e( 'All products', 'starter' );
+		}
 		?>
 	</h1>
 	<h2 class="mb-5 text-center text-muted"><small>(<?php echo esc_html( $starter_all_count_item ); ?><?php esc_html_e( ' products', 'starter' ); ?>)</small></h2>
@@ -79,19 +84,20 @@ $starter_all_count_item = $wp_query->found_posts;
 		<!-- END filters -->
 
 		<div class="col-xl-5_per_line_wrap_4_items col-lg-9 col-md-8"><div class="row">
-		<?php if ( wc_get_loop_prop( 'total' ) ) {
-				while ( have_posts() ) {
-					the_post();
-					global $product;
-					echo "<div class='wraper_product col-xl-3 col-lg-4 col-md-6 col-6 js_product'>";
-					$starter_img_sizes = '(max-width: 575px) calc(50vw - 10px), (max-width: 767px) 260px, (max-width: 991px) 220px, (max-width: 1199px) 220px, 208px';
-					require get_stylesheet_directory() . '/woocommerce-custom/global/product-item.php';
-					echo '</div>';
-				}
-				wp_reset_postdata();
-			} else {
-				esc_html_e( 'No products found', 'starter' );
+		<?php
+		if ( wc_get_loop_prop( 'total' ) ) {
+			while ( have_posts() ) {
+				the_post();
+				global $product;
+				echo "<div class='wraper_product col-xl-3 col-lg-4 col-md-6 col-6 js_product'>";
+				$starter_img_sizes = '(max-width: 575px) calc(50vw - 10px), (max-width: 767px) 260px, (max-width: 991px) 220px, (max-width: 1199px) 220px, 208px';
+				require get_stylesheet_directory() . '/woocommerce-custom/global/product-item.php';
+				echo '</div>';
 			}
+				wp_reset_postdata();
+		} else {
+			esc_html_e( 'No products found', 'starter' );
+		}
 			do_action( 'woocommerce_after_shop_loop' );
 		?>
 		</div></div>

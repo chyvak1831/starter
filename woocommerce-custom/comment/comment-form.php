@@ -115,7 +115,7 @@ $starter_comment_rating      = 0;
 						$starter_maximum_length = get_theme_mod( 'comment_maximum_files', 10 ); /*maximum files*/
 						$starter_maximum_weight = get_theme_mod( 'comment_maximum_weight', 15 ); /*MB, each file maximum weight*/
 					?>
-					<input class="custom-file-input js_field_file_upload" data-length="<?php echo esc_attr( $starter_maximum_length ); ?>" data-weight="<?php echo esc_attr( $starter_maximum_weight ); ?>" id="comment_fileupload_<?php echo esc_attr( $starter_product_id ); ?>" type="file" name="files[]" multiple accept="image/jpeg,image/jpg,image/png" aria-describedby="fileHelp">
+					<input class="custom-file-input js_field_file_upload" data-length="<?php echo esc_attr( $starter_maximum_length ); ?>" data-weight="<?php echo esc_attr( $starter_maximum_weight ); ?>" id="comment_fileupload_<?php echo esc_attr( $starter_product_id ); ?>" type="file" name="files[]" multiple aria-describedby="fileHelp">
 					<label for="comment_fileupload_<?php echo esc_attr( $starter_product_id ); ?>"><?php esc_html_e( 'Attachment (Optional)', 'starter' ); ?></label>
 					<label class="file_label" for="comment_fileupload_<?php echo esc_attr( $starter_product_id ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-image' ) ); ?></label>
 					<ul class="list-unstyled list_file_upload js_list_file_upload"></ul>
@@ -240,9 +240,9 @@ $starter_comment_rating      = 0;
 		get_template_directory_uri() . '/assets/js/blueimp/jquery.fileupload-process.js',
 		get_template_directory_uri() . '/assets/js/blueimp/jquery.fileupload-image.js',
 		get_template_directory_uri() . '/assets/js/blueimp/jquery.fileupload-validate.js',
-		get_template_directory_uri() . '/assets/js/blueimp/jquery.fileupload-ui.js'
+		get_template_directory_uri() . '/assets/js/blueimp/jquery.fileupload-ui.js',
 	);
-?>
+	?>
 <script>
 	var blueimp_script = <?php echo wp_json_encode( $starter_blueimp_script ); ?>;
 </script>

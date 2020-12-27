@@ -40,7 +40,7 @@ function starter_comment_load() {
 	$starter_comment_quantity = get_option( 'page_comments', 0 ) ? get_option( 'comments_per_page', 2 ) : 0; // wp feature
 	$starter_comment_order    = get_option( 'comment_order', 'DESK' ); // wp feature
 	// phpcs:enable
-	$starter_param = array(
+	$starter_param          = array(
 		'offset'  => $starter_offset,
 		'status'  => 'approve',
 		'post_id' => $starter_product_id,
@@ -48,7 +48,7 @@ function starter_comment_load() {
 		'order'   => $starter_comment_order,
 		'number'  => $starter_comment_quantity,
 	);
-	$starter_comments_query   = get_comments( $starter_param );
+	$starter_comments_query = get_comments( $starter_param );
 	foreach ( $starter_comments_query as $starter_comment ) {
 		$starter_comment_id = $starter_comment->comment_ID;
 		require get_stylesheet_directory() . '/woocommerce-custom/comment/comment-item.php';

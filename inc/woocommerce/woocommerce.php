@@ -3,6 +3,7 @@
  * Woocommerce only code
  *
  * @package starter
+ * @since starter 1.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -50,6 +51,7 @@ add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
  * @since starter 1.0
  *
  * @param string $markup .
+ * @return string $markup modified aws markup - without input [type_aws].
  */
 function starter_aws_searchbox_markup( $markup ) {
 	$pattern = '/(<input type="hidden" name="type_aws" value="true">)/i';
@@ -60,12 +62,17 @@ add_filter( 'aws_searchbox_markup', 'starter_aws_searchbox_markup' );
 
 /**
  * Show cart contents / total Ajax
+ *
+ * @since starter 1.0
+ *
+ * @param array $fragments Cart fragments .
+ * @return array $fragments .
  */
 function starter_woocommerce_header_add_to_cart_fragment( $fragments ) {
 	global $woocommerce;
 	ob_start();
 	?>
-	<span class="notifications_text"><?php echo $woocommerce->cart->cart_contents_count;?></span>
+	<span class="notifications_text"><?php echo esc_html( $woocommerce->cart->cart_contents_count ); ?></span>
 	<?php
 	$fragments['.cart-counter .notifications_text'] = ob_get_clean();
 	return $fragments;

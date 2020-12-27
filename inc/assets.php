@@ -1,6 +1,6 @@
 <?php
 /**
- * Remove unnecessary Wordpress assets
+ * Remove unnecessary WordPress assets
  *
  * @package starter
  * @since 1.0
@@ -51,9 +51,9 @@ add_action( 'wp_enqueue_scripts', 'starter_remove_block_library_css' );
  * @since starter 1.0
  */
 function starter_enqueues_scripts() {
-	wp_enqueue_script( 'plugins', get_template_directory_uri() . '/assets/js/plugins.js', array ( 'jquery' ), filemtime( get_stylesheet_directory() . '/assets/js/plugins.js' ), true );
+	wp_enqueue_script( 'plugins', get_template_directory_uri() . '/assets/js/plugins.js', array( 'jquery' ), filemtime( get_stylesheet_directory() . '/assets/js/plugins.js' ), true );
 	wp_add_inline_script( 'plugins', file_get_contents( get_stylesheet_directory() . '/assets/js/iosPreloadFix.js' ) );
-	wp_enqueue_script( 'script', get_template_directory_uri() . '/assets/js/scripts.js', array ( 'jquery', 'plugins' ), filemtime( get_stylesheet_directory() . '/assets/js/scripts.js' ), true );
+	wp_enqueue_script( 'script', get_template_directory_uri() . '/assets/js/scripts.js', array( 'jquery', 'plugins' ), filemtime( get_stylesheet_directory() . '/assets/js/scripts.js' ), true );
 	wp_localize_script( 'script', 'starter_ajax', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 }
 add_action( 'wp_enqueue_scripts', 'starter_enqueues_scripts' );
@@ -70,7 +70,7 @@ function starter_enqueues_styles() {
 add_action( 'wp_enqueue_scripts', 'starter_enqueues_styles' );
 
 /**
- * Replace stylesheet attr into preload for all pages exception cart/checkout/account
+ * Replace stylesheet attr into preload
  *
  * @since starter 1.0
  *
@@ -81,8 +81,14 @@ function starter_css_preloader_tag( $tag ) {
 	$tag = preg_replace( "/rel='stylesheet'/", "rel='preload' as='style' onload=\"this.rel='stylesheet'\" ", $tag );
 	return $tag;
 }
+
+/**
+ * Apply preload filter for all pages exception cart/checkout/account
+ *
+ * @since starter 1.0
+ */
 function starter_preloader_tag() {
-	if ( !is_cart() && !is_checkout() && !is_account_page() ) {
+	if ( ! is_cart() && ! is_checkout() && ! is_account_page() ) {
 		add_filter( 'style_loader_tag', 'starter_css_preloader_tag' );
 	}
 }
@@ -96,18 +102,20 @@ add_action( 'wp_enqueue_scripts', 'starter_preloader_tag' );
  */
 function starter_enqueues_critical_styles() {
 	global $template;
-	$starter_name_template = substr( basename( $template ), 0, -4 );
-	$starter_path_css      = get_stylesheet_directory() . '/assets/css/critical/' . $starter_name_template . '.css';
-	if ( file_exists( $starter_path_css ) ) {
+	$name_template = substr( basename( $template ), 0, -4 );
+	$path_css      = get_stylesheet_directory() . '/assets/css/critical/' . $name_template . '.css';
+	if ( file_exists( $path_css ) ) {
 		echo '<style>';
-		echo file_get_contents( $starter_path_css );
+		// @codingStandardsIgnoreStart - safe css generated locally by gulp. DOES NOT USE esc_html - will be wrong css.
+		echo file_get_contents( $path_css );
+		// @codingStandardsIgnoreEnd
 		echo '</style>';
 	}
 }
 add_action( 'wp_enqueue_scripts', 'starter_enqueues_critical_styles' );
 
 /**
- * Add custom css file into wordpress admin.
+ * Add custom css file into WordPress admin.
  *
  * @since starter 1.0
  */

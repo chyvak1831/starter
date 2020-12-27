@@ -2,7 +2,12 @@
 /**
  * Comments setting in customizer
  *
+ * @package starter
  * @since starter 1.0
+ */
+
+/**
+ * Add Comments section
  */
 $wp_customize->add_section(
 	'comments_section',
@@ -13,7 +18,9 @@ $wp_customize->add_section(
 	)
 );
 
-// extended rating
+/**
+ * Extended rating
+ */
 $wp_customize->add_setting(
 	'comment_extended_rating',
 	array(
@@ -31,7 +38,9 @@ $wp_customize->add_control(
 	)
 );
 
-// low-rating modal
+/**
+ * Low-rating modal
+ */
 $wp_customize->add_setting(
 	'comment_low_rating_modal',
 	array(
@@ -49,7 +58,9 @@ $wp_customize->add_control(
 	)
 );
 
-// "Privacy Policy" checkbox
+/**
+ * "Privacy Policy" checkbox
+ */
 $wp_customize->add_setting(
 	'comment_privacy',
 	array(
@@ -67,7 +78,9 @@ $wp_customize->add_control(
 	)
 );
 
-// recaptcha
+/**
+ * Recaptcha
+ */
 $wp_customize->add_setting(
 	'comment_recaptcha',
 	array(
@@ -85,7 +98,9 @@ $wp_customize->add_control(
 	)
 );
 
-// file
+/**
+ * File
+ */
 $wp_customize->add_setting(
 	'comment_file',
 	array(
@@ -103,7 +118,9 @@ $wp_customize->add_control(
 	)
 );
 
-// maximum amount of attached files
+/**
+ * Maximum amount of attached files
+ */
 $wp_customize->add_setting(
 	'comment_maximum_files',
 	array(
@@ -121,7 +138,9 @@ $wp_customize->add_control(
 	)
 );
 
-// maximum weight of each attached file
+/**
+ * Maximum weight of each attached file
+ */
 $wp_customize->add_setting(
 	'comment_maximum_weight',
 	array(

@@ -11,9 +11,11 @@ get_header();
 <div class="content_wrapper" role="main">
 	<div class="container">
 		<!-- breadcrumb -->
-		<?php if ( function_exists( 'yoast_breadcrumb' ) ) {
+		<?php
+		if ( function_exists( 'yoast_breadcrumb' ) ) {
 			yoast_breadcrumb( '<div class="yoast_breadcrumb">', '</div>' );
-		} ?>
+		}
+		?>
 		<!-- END breadcrumb -->
 		<div class="row mt-4">
 
@@ -53,9 +55,9 @@ get_header();
 
 			<div class="col-md-9">
 				<?php
-					while ( have_posts() ) :
+				while ( have_posts() ) :
 					the_post();
-				?>
+					?>
 					<h1 class="main_page_title"><?php the_title(); ?></h1>
 					<?php the_content(); ?>
 				<?php endwhile; ?>
