@@ -95,8 +95,12 @@ Probably Starter will works with other plugin versions - but with versions below
   W3TC used for optimize page cache and js only.
   <img src="https://github.com/chyvak1831/starter_img/blob/master/w3tc_01.jpg?raw=true" alt="W3TC settings 1">
   <img src="https://github.com/chyvak1831/starter_img/blob/master/w3tc_02.jpg?raw=true" alt="W3TC settings 2"></details>
-* [Node.js](https://nodejs.org/) = 14.8.0
-* gulp = 2.3.0 (how to install - see below)
+* [Node.js](https://nodejs.org/) = 14.x
+    <details><summary>Version's details</summary>
+      Tested with versions <a href="https://nodejs.org/download/release/v14.8.0/">v14.8.0</a> and <a href="https://nodejs.org/download/release/v14.15.3/">v14.15.3</a>, but it should works with any 14.x version.<br>
+      Due short life-cycle of node <a href="https://nodejs.org/en/about/releases/">v15</a> Starter <strong>will never officially compatible with node v15</strong>.
+    </details>
+* gulp = 2.3.0 (how to install - see next step Setup)
 
 ### 🔧 Setup
 1. Install [Requirements](#-requirements)
