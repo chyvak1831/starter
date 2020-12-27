@@ -90,5 +90,4 @@ $starter_is_logged = is_user_logged_in() ? ' user_logged' : ' user_unlogged';
 			<?php endif; ?>
 		<!-- END MOBILE NAV AREA -->
 
-		<div class="backdrop"></div>
 	</header>
