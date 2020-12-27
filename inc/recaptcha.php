@@ -64,12 +64,15 @@ add_action( 'customize_register', 'starter_customizer_recaptcha', 50 );
  *
  * @since starter 1.0
  *
- * @param string $response .
+ * @param string $response String of $_POST['g-recaptcha-response'].
+ * @return recatpcha object
  */
 function starter_validate_recaptcha( $response ) {
-   $starter_secret_key = get_theme_mod( 'private_recaptcha_key' );
-   $starter_ip_user    = $_SERVER['REMOTE_ADDR'];
-   $starter_request    = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode( $starter_secret_key ) . '&response=' . urlencode( $response ) . '&remoteip=' . urlencode( $starter_ip_user );
-   $starter_response   = json_decode( file_get_contents( $starter_request ), true );
-   return $starter_response;
+	$secret_key = get_theme_mod( 'private_recaptcha_key' );
+	// @codingStandardsIgnoreStart safe to use due provided by server https://stackoverflow.com/a/39180087/7569674
+	$ip_user = $_SERVER['REMOTE_ADDR'];
+	// @codingStandardsIgnoreEnd
+	$request  = 'https://www.google.com/recaptcha/api/siteverify?secret=' . rawurlencode( $secret_key ) . '&response=' . rawurlencode( $response ) . '&remoteip=' . rawurlencode( $ip_user );
+	$response = json_decode( wp_remote_get( $request )['body'], true );
+	return $response;
 }

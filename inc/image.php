@@ -34,7 +34,7 @@ function starter_img_func( $atts ) {
 	$img             = $atts['img_id'];
 	$img_one_pixel   = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 	$img_from_option = wp_get_attachment_image_src( get_option( 'woocommerce_placeholder_image', '' ) )[0];
-	$img_placeholder = is_null ( $img_from_option ) ? $img_one_pixel : $img_from_option;
+	$img_placeholder = is_null( $img_from_option ) ? $img_one_pixel : $img_from_option;
 	$img_srcset      = $img_placeholder;
 	$img_src         = $img_placeholder;
 	$img_alt         = 'alt="Image"';
@@ -53,14 +53,14 @@ function starter_img_func( $atts ) {
 		$img_width  = "width='" . wp_get_attachment_image_src( $img, 'full' )[1] . "'";
 		$img_height = "height='" . wp_get_attachment_image_src( $img, 'full' )[2] . "'";
 	}
-	$img_srcset_webp = str_ireplace( [ '.jpg ', '.jpeg ', '.png ' ], [ '.jpg.webp ', '.jpeg.webp ', '.png.webp ' ], $img_srcset );
+	$img_srcset_webp = str_ireplace( array( '.jpg ', '.jpeg ', '.png ' ), array( '.jpg.webp ', '.jpeg.webp ', '.png.webp ' ), $img_srcset );
 	$img_sizes       = "sizes='" . $atts['img_sizes'] . "'";
-	if ( $atts['lazy'] == 'false' ) {
-		return "<source type='image/webp' srcset=\"$img_srcset_webp\" $img_sizes>" . 
-			   "<img width='auto' height='auto' class='img-fluid' src=\"$img_src\" srcset=\"$img_srcset\" $img_alt $img_sizes>";
+	if ( array_key_exists( 'lazy', $atts ) ) {
+		return "<source type='image/webp' srcset=\"$img_srcset_webp\" $img_sizes>" .
+		"<img width='auto' height='auto' class='img-fluid' src=\"$img_src\" srcset=\"$img_srcset\" $img_alt $img_sizes>";
 	} else {
-		return "<source type='image/webp' srcset=\"$img_placeholder\" data-srcset=\"$img_srcset_webp\" $img_sizes>" . 
-			   "<img class='img-fluid lazyload' src=\"$img_placeholder\" data-src=\"$img_src\" srcset=\"$img_placeholder\" data-srcset=\"$img_srcset\" $img_alt $img_sizes>";
+		return "<source type='image/webp' srcset=\"$img_placeholder\" data-srcset=\"$img_srcset_webp\" $img_sizes>" .
+		"<img class='img-fluid lazyload' src=\"$img_placeholder\" data-src=\"$img_src\" srcset=\"$img_placeholder\" data-srcset=\"$img_srcset\" $img_alt $img_sizes>";
 	}
 }
 
@@ -73,7 +73,7 @@ function starter_img_func( $atts ) {
  * @return array $default_sizes Updated image names
  */
 function starter_remove_default_image_sizes( $default_sizes ) {
-	return array_diff( $default_sizes, [ 'medium', 'medium_large', 'large', '1536x1536', '2048x2048', 'woocommerce_thumbnail', 'woocommerce_single', 'woocommerce_gallery_thumbnail', 'shop_catalog', 'shop_single', 'shop_thumbnail' ] );
+	return array_diff( $default_sizes, array( 'medium', 'medium_large', 'large', '1536x1536', '2048x2048', 'woocommerce_thumbnail', 'woocommerce_single', 'woocommerce_gallery_thumbnail', 'shop_catalog', 'shop_single', 'shop_thumbnail' ) );
 }
 add_action( 'intermediate_image_sizes', 'starter_remove_default_image_sizes', 999 );
 
