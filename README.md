@@ -128,9 +128,9 @@ Open site with port 4000 to get [browserSync](https://browsersync.io/docs/gulp) 
 
 
 ### 👍 Highly recommended/integrated to theme plugins
-* [Advanced Woo Search](https://wordpress.org/plugins/advanced-woo-search/) >= 2.09 (example using [here](#user-content-widgets_example))
-* [WP Widget in Navigation](https://wordpress.org/plugins/wp-widget-in-navigation/) >= 2.0.1 (example using [here](#user-content-widgets_example))
-* [TI WooCommerce Wishlist](https://wordpress.org/plugins/ti-woocommerce-wishlist/) >= 1.21.2 (example using [here](#user-content-widgets_example))
+* [Advanced Woo Search](https://wordpress.org/plugins/advanced-woo-search/) >= 2.09 (see [Widgets (search, minicart, wishlist) in menu](https://github.com/chyvak1831/starter/wiki/Menus))
+* [WP Widget in Navigation](https://wordpress.org/plugins/wp-widget-in-navigation/) >= 2.0.1 (see [Widgets (search, minicart, wishlist) in menu](https://github.com/chyvak1831/starter/wiki/Menus))
+* [TI WooCommerce Wishlist](https://wordpress.org/plugins/ti-woocommerce-wishlist/) >= 1.21.2 (see [Widgets (search, minicart, wishlist) in menu](https://github.com/chyvak1831/starter/wiki/Menus))
   <details><summary>Show details</summary>
     After installation go to TI Wishlist and setup minimum recommnded settings. You can to play with other settings.
   <img src="https://github.com/chyvak1831/starter_img/blob/master/ti_wishlist_01.jpg?raw=true" alt="TI Wishlist settings 1">

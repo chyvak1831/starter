@@ -38,7 +38,9 @@ var critical = {
         '../../plugins/advanced-woo-search/assets/css/common.css',
         '../../plugins/ti-woocommerce-wishlist/assets/css/public.min.css'
        ],
-  timeout: 1000000000,
+  penthouse: {
+    timeout: 1000000000,
+  },
   penthouse: {
     renderWaitTime: 500
   },
@@ -51,10 +53,6 @@ var critical = {
   }]
 }
 var criticalSrcPages = [
-    {
-      url: 'http://local.alexwp/404',
-      css: 'css/critical/404.css'
-    },
     {
       url: 'http://local.alexwp/sample-page/',
       css: 'css/critical/page.css'
@@ -72,6 +70,10 @@ var criticalSrcPages = [
       url: 'http://local.alexwp',
       css: 'css/critical/index.css',
       include: [ /.modal/, /.slick(.*)/ ]
+    },
+    {
+      url: 'http://local.alexwp',
+      css: 'css/critical/404.css'
     },
     {
       url: 'http://local.alexwp/shop/',

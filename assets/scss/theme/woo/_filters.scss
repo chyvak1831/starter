@@ -6,12 +6,6 @@
 		font-weight: 600;
 		text-transform: uppercase;
 	}
-	.filter_title {
-		color: $gray-600;
-		font-size: 0.9em;
-		display: block;
-		margin: 0 0 10px 0;
-	}
 	.woocommerce-result-count, .woocommerce-notices-wrapper {display: none !important;}
 	.widget-title {
 		border-bottom: 1px solid $gray-400;
@@ -36,13 +30,7 @@
 .filter_apply_reset {display: none;}
 .filtered .filter_apply_reset {display: block;}
 
-// reset default list styles
-#sidebar > ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	> li {margin-bottom: 20px;}
-}
+.sidebar_list > li {margin-bottom: 20px;}
 
 // price filter
 .widget_price_filter {
@@ -118,9 +106,8 @@
 	.filter_mobile_dropdown {@include filter_dropdown();}
 	.filter_mobile_collapse {@include filter_collapse();}
 	.mobile_filters_btn {@include flex_align(center, center, nowrap);}
-	.filter_block .filter_title {display: none;}
-	#sidebar {
-		> ul > li {
+	.sidebar_list {
+		> li {
 			border-bottom: 1px solid $gray-400;
 			margin: 0;
 			padding: 0 30px;

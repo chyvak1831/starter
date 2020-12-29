@@ -69,7 +69,7 @@ gulp.task( 'minify', function() {
 });
 // critical css
 function eachSourcesCritical( index, array, callback ) {
-  if ( index != array ) {
+  if ( index < array ) {
     critical.generate({
       base: config.critical.base,
       inline: false,
@@ -77,14 +77,17 @@ function eachSourcesCritical( index, array, callback ) {
       ignore: config.critical.ignore,
       src: config.criticalSrcPages[index].url,
       css: config.critical.css,
-      dest: config.criticalSrcPages[index].css,
+      target: {
+        css: config.criticalSrcPages[index].css,
+      },
       minify: config.critical.minify,
-      timeout: config.critical.timeout,
-      height: config.critical.height,
-      width: config.critical.width
-    }).then( function ( output ) {
+      penthouse: config.critical.penthouse,
+      dimensions: config.critical.dimensions
+    }).then( function () {
       eachSourcesCritical( index + 1, array );
     });
+  } else {
+    gulp.task( 'minify' )();
   }
 }
 gulp.task( 'critical', ( callback ) => {

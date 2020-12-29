@@ -58,7 +58,7 @@ if ( is_search() ) {
 		<div class="col-xl-5_per_line col-lg-3 col-md-4 d-flex justify-content-between d-md-block">
 			<div class="filter_block js_form_filter">
 				<?php if ( wc_get_loop_prop( 'total' ) ) : ?>
-					<span class="filter_title"><?php esc_html_e( 'Sort by:', 'starter' ); ?></span>
+					<span class="widget-title border-0"><?php esc_html_e( 'Sort by', 'starter' ); ?></span>
 					<?php do_action( 'woocommerce_before_shop_loop' ); ?>
 				<?php else : /*for a case when no results*/ ?>
 					<form class="woocommerce-ordering" method="get">
@@ -68,7 +68,6 @@ if ( is_search() ) {
 			</div>
 			<?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
 				<div class="filter_block all_filters js_wrap_filters">
-					<span class="filter_title"><?php esc_html_e( 'Filter by:', 'starter' ); ?></span>
 					<?php do_action( 'woocommerce_sidebar' ); ?>
 					<div class="filter_apply_reset">
 						<button class="btn btn-primary btn-block js_submit_filters"><?php esc_html_e( 'Apply', 'starter' ); ?></button>
