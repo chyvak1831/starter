@@ -116,7 +116,7 @@ Probably Starter will works with other plugin versions - but with versions below
     ```bash
     npm i
     ```
-4. Setup your local domain in `config.js`: replace each `yourdomain` into your local domain; `URLtosinglepage` should be replaced into URL to one of your single page - it's required for [browserSync](https://browsersync.io/docs/gulp) and for [Critical CSS](https://github.com/chyvak1831/starter/wiki/CSS)
+4. Setup your local domain in `config.js`: replace each `yourdomain` into your local domain - it's required for [browserSync](https://browsersync.io/docs/gulp) and for [Critical CSS](https://github.com/chyvak1831/starter/wiki/CSS)
 
 ### 🚀 Build commands
 
