@@ -57,10 +57,10 @@ function starter_img_func( $atts ) {
 	$img_sizes       = "sizes='" . $atts['img_sizes'] . "'";
 	if ( array_key_exists( 'lazy', $atts ) ) {
 		return "<source type='image/webp' srcset=\"$img_srcset_webp\" $img_sizes>" .
-		"<img width='auto' height='auto' class='img-fluid' src=\"$img_src\" srcset=\"$img_srcset\" $img_alt $img_sizes>";
+		"<img class='img-fluid' src=\"$img_placeholder\" srcset=\"$img_srcset\" $img_alt $img_sizes $img_width $img_height>";
 	} else {
 		return "<source type='image/webp' srcset=\"$img_placeholder\" data-srcset=\"$img_srcset_webp\" $img_sizes>" .
-		"<img class='img-fluid lazyload' src=\"$img_placeholder\" data-src=\"$img_src\" srcset=\"$img_placeholder\" data-srcset=\"$img_srcset\" $img_alt $img_sizes>";
+		"<img class='img-fluid lazyload' src=\"$img_placeholder\" data-src=\"$img_src\" srcset=\"$img_placeholder\" data-srcset=\"$img_srcset\" $img_alt $img_sizes $img_width $img_height>";
 	}
 }
 
@@ -95,3 +95,22 @@ function starter_custom_thumbnail_size() {
 	add_image_size( 'w2000', 2000 );
 }
 add_action( 'after_setup_theme', 'starter_custom_thumbnail_size', 999 );
+
+/**
+ * Add source to allowed wp_kses_post tags
+ *
+ * @param array  $tags Allowed tags, attributes, and/or entities.
+ * @param string $context Context to judge allowed tags by.
+ *
+ * @return array
+ */
+function starter_wpkses_post_tags( $tags, $context ) {
+	$tags['source'] = array(
+		'srcset'      => true,
+		'data-srcset' => true,
+		'sizes'       => true,
+		'type'        => true,
+	);
+	return $tags;
+}
+add_filter( 'wp_kses_allowed_html', 'starter_wpkses_post_tags', 10, 2 );

@@ -31,13 +31,23 @@ Open source, free to use - [MIT](https://choosealicense.com/licenses/mit/) licen
 # ❔ About
 This theme **keeps your time**: it provides main ecommerce pages ready to easy and fast customize (home, catalog, single page) and a few great **features which usually used or must have**.
 
-#### ✔️ Pros
-✓ easy to customize layout  
-✓ load speed ready  
-✓ retina ready  
-✓ extended by a few cool features  
+#### ✔️ 6 main reasons to use Starter
+1. **easy to customize** [layout](https://github.com/chyvak1831/starter/wiki/Templates)  
+2. it developed in according with [WPCS](https://github.com/WordPress/WordPress-Coding-Standards) so existing custom **code is secure**  
+3. **load speed ready**: load time for dekstop is **under 1 second**, for is mobile **under 3 seconds**; the weight of homepage and catalog is only **about 300kb**, the weight of single product page is only **about 200kb**.
+    <details><summary>Details</summary>
+   <img src="https://github.com/chyvak1831/starter_img/blob/master/weight_shop.jpg?raw=true" alt="Weight shop page">
+   <img src="https://github.com/chyvak1831/starter_img/blob/master/weight_single.jpg?raw=true" alt="Weight single product page">
+   <strong>Please note</strong>: load time and weight of pages described above - it's Starter as is, without any third-party resources. When you'll add google analitycs, gtm etc - it will down and it's ok.</details>  
+4. **lighthouse**: seo, best practice, accessability is **100**! Performance (aka google pagespeed): it's **90-100** for homepage, shop, category, support and simple pages, but for single unknown reason it's 80+ for single page.
+    <details><summary>Details</summary>
+   <img src="https://github.com/chyvak1831/starter_img/blob/master/lighthouse.jpg?raw=true" alt="Lighthouse">
+   <strong>Please note #1</strong>: lighthouse metrics described above - it's Starter as is, without any third-party resources. When you'll add google analitycs, gtm etc - it will down and it's ok.  
+   <strong>Please note #2</strong>: Performance metric is vary from time to time +-5 points and it's ok.</details> 
+5. [retina ready](https://github.com/chyvak1831/starter/wiki/Images)  
+6. extended by a few **cool features**: [filters](https://github.com/chyvak1831/starter/wiki/Filters), [google fonts](https://github.com/chyvak1831/starter/wiki/Fonts), [comments](https://github.com/chyvak1831/starter/wiki/Comments), [menus](https://github.com/chyvak1831/starter/wiki/Menus).  
 
-#### ‼️ Cons
+#### ‼️ 1 reason not to use
 frontend plugins (which affects to home, catalog, single) are require **code integration** via shortcodes or functions usually - due **theme does not used hooks** for these pages (i.e. just "install plugin and activate" - does not works)
 ***
 <br>
