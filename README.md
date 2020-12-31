@@ -93,6 +93,7 @@ Probably Starter will works with other plugin versions - but with versions below
     <img src="https://github.com/chyvak1831/starter_img/blob/master/wysiwyg_03.jpg?raw=true" alt="TinyMCE settings 3">
     </details>
 * [WooCommerce](https://wordpress.org/plugins/woocommerce/) >= 4.4.1
+* [Advanced Woo Search](https://wordpress.org/plugins/advanced-woo-search/) >= 2.09 (see [Widgets (search, minicart, wishlist) in menu](https://github.com/chyvak1831/starter/wiki/Menus))
 * [W3 Total Cache](https://wordpress.org/plugins/w3-total-cache/) >= 0.14.4
   <details><summary>Show details</summary>
   W3TC used for optimize page cache and js only.
@@ -115,6 +116,7 @@ Probably Starter will works with other plugin versions - but with versions below
     ```bash
     npm i
     ```
+4. Setup your local domain in `config.js`: replace each `yourdomain` into your local domain; `URLtosinglepage` should be replaced into URL to one of your single page - it's required for [browserSync](https://browsersync.io/docs/gulp) and for [Critical CSS](https://github.com/chyvak1831/starter/wiki/CSS)
 
 ### 🚀 Build commands
 
@@ -131,7 +133,6 @@ Open site with port 4000 to get [browserSync](https://browsersync.io/docs/gulp) 
 
 
 ### 👍 Highly recommended/integrated to theme plugins
-* [Advanced Woo Search](https://wordpress.org/plugins/advanced-woo-search/) >= 2.09 (see [Widgets (search, minicart, wishlist) in menu](https://github.com/chyvak1831/starter/wiki/Menus))
 * [WP Widget in Navigation](https://wordpress.org/plugins/wp-widget-in-navigation/) >= 2.0.1 (see [Widgets (search, minicart, wishlist) in menu](https://github.com/chyvak1831/starter/wiki/Menus))
 * [TI WooCommerce Wishlist](https://wordpress.org/plugins/ti-woocommerce-wishlist/) >= 1.21.2 (see [Widgets (search, minicart, wishlist) in menu](https://github.com/chyvak1831/starter/wiki/Menus))
   <details><summary>Show details</summary>

@@ -10,8 +10,8 @@ var paths = {
 var sync = {
   server: {
     files: ['{template-parts}/**/*.php', '*.php'],
-    proxy: 'http://local.alexwp',
-    host: 'http://local.alexwp',
+    proxy: 'yourdomain',
+    host: 'yourdomain',
     port: 4000,
     open: false,
     snippetOptions: {
@@ -35,8 +35,7 @@ var critical = {
   css: [
         'assets/css/plugins.css',
         'assets/css/styles.css',
-        '../../plugins/advanced-woo-search/assets/css/common.css',
-        '../../plugins/ti-woocommerce-wishlist/assets/css/public.min.css'
+        '../../plugins/advanced-woo-search/assets/css/common.css'
        ],
   penthouse: {
     timeout: 1000000000,
@@ -54,39 +53,39 @@ var critical = {
 }
 var criticalSrcPages = [
     {
-      url: 'http://local.alexwp/sample-page/',
+      url: 'yourdomain/sample-page/',
       css: 'css/critical/page.css'
     },
     {
-      url: 'http://local.alexwp/support/',
+      url: 'yourdomain/support/',
       css: 'css/critical/page-support.css'
     },
     {
-      url: 'http://local.alexwp',
+      url: 'yourdomain',
       css: 'css/critical/page-home.css',
       include: [ /.modal/, /.slick(.*)/ ]
     },
     {
-      url: 'http://local.alexwp',
+      url: 'yourdomain',
       css: 'css/critical/index.css',
       include: [ /.modal/, /.slick(.*)/ ]
     },
     {
-      url: 'http://local.alexwp',
+      url: 'yourdomain',
       css: 'css/critical/404.css'
     },
     {
-      url: 'http://local.alexwp/shop/',
+      url: 'yourdomain/shop/',
       css: 'css/critical/archive-product.css',
       include: [ /.modal/, /.slick(.*)/ ]
     },
     {
-      url: 'http://local.alexwp/product/beanie/',
+      url: 'yourdomain/product/beanie/',
       css: 'css/critical/single-product.css',
       include: [ /.modal/, /.slick(.*)/ ]
     },
     {
-      url: 'http://local.alexwp/shop/',
+      url: 'yourdomain/shop/',
       css: 'css/critical/taxonomy-product-cat.css',
       include: [ /.modal/, /.slick(.*)/ ]
     }
