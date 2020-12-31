@@ -4,13 +4,6 @@ Starter WooCommerce theme, how it looks/works by default see here https://starte
 Open source, free to use - [MIT](https://choosealicense.com/licenses/mit/) license.
 
 
-# TWO IMPORTAN THINGS
-1. THE THEME IS UNDER ACTIVE DEVELOPMENT (RELEASED TWO ALPHA VERSIONS) BUT IT'S PRETTY CLOSE TO **FIRST STABLE RELEASE** - FIRST RELEASE IS PLANNING **BEFORE NEW YEAR**!
-2. DUE IT'S ALPHA VERSION _SOME DOCIMENTATION UNACTUAL_, IT **WILL BE FIXED BEFORE FIRST STABLE RELEASE**.  
-#### STAY WITH US :-)
-<br><br>
-
-
 
 # Table of content
 
@@ -48,7 +41,7 @@ This theme **keeps your time**: it provides main ecommerce pages ready to easy a
 6. extended by a few **cool features**: [filters](https://github.com/chyvak1831/starter/wiki/Filters), [google fonts](https://github.com/chyvak1831/starter/wiki/Fonts), [comments](https://github.com/chyvak1831/starter/wiki/Comments), [menus](https://github.com/chyvak1831/starter/wiki/Menus).  
 
 #### ‼️ 1 reason not to use
-frontend plugins (which affects to home, catalog, single) are require **code integration** via shortcodes or functions usually - due **theme does not used hooks** for these pages (i.e. just "install plugin and activate" - does not works)
+1. frontend plugins (which affects to home, catalog, single) are require **code integration** via shortcodes or functions usually - due **theme does not used hooks** for these pages (i.e. just "install plugin and activate" - does not works)
 ***
 <br>
 
