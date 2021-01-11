@@ -19,8 +19,8 @@ function starter_customizer_dev_panel( $wp_customize ) {
 	$wp_customize->add_panel(
 		'dev_panel',
 		array(
-			'title'       => __( 'Dev functions' ),
-			'description' => __( 'Dev functions description' ),
+			'title'       => __( 'Dev functions', 'starter' ),
+			'description' => __( 'Dev functions description', 'starter' ),
 			'priority'    => 1000,
 		)
 	);
@@ -38,7 +38,7 @@ function starter_customizer_css_optimization( $wp_customize ) {
 	$wp_customize->add_section(
 		'css_optimization_section',
 		array(
-			'title'    => 'CSS optimization',
+			'title'    => __( 'CSS optimization', 'starter' ),
 			'priority' => 1,
 			'panel'    => 'dev_panel',
 		)
@@ -55,7 +55,7 @@ function starter_customizer_css_optimization( $wp_customize ) {
 		'preload_css',
 		array(
 			'section' => 'css_optimization_section',
-			'label'   => 'Enable preload',
+			'label'   => __( 'Enable preload', 'starter' ),
 			'type'    => 'checkbox',
 		)
 	);
@@ -71,7 +71,7 @@ function starter_customizer_css_optimization( $wp_customize ) {
 		'critical_css',
 		array(
 			'section' => 'css_optimization_section',
-			'label'   => 'Enable critical',
+			'label'   => __( 'Enable critical', 'starter' ),
 			'type'    => 'checkbox',
 		)
 	);
@@ -89,7 +89,7 @@ function starter_customizer_image_optimization( $wp_customize ) {
 	$wp_customize->add_section(
 		'image_optimization_section',
 		array(
-			'title'    => 'Image optimization',
+			'title'    => __( 'Image optimization', 'starter' ),
 			'priority' => 2,
 			'panel'    => 'dev_panel',
 		)
@@ -106,7 +106,7 @@ function starter_customizer_image_optimization( $wp_customize ) {
 		'image_webp',
 		array(
 			'section' => 'image_optimization_section',
-			'label'   => 'Enable WebP',
+			'label'   => __( 'Enable WebP', 'starter' ),
 			'type'    => 'checkbox',
 		)
 	);
