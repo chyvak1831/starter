@@ -82,7 +82,7 @@ if ( is_search() ) {
 		</div>
 		<!-- END filters -->
 
-		<div class="col-xl-5_per_line_wrap_4_items col-lg-9 col-md-8"><div class="row">
+		<div class="col-xl-5_per_line_wrap_4_items col-lg-9 col-md-8 js_archive_wrap_products"><div class="row">
 		<?php
 		if ( wc_get_loop_prop( 'total' ) ) {
 			while ( have_posts() ) {

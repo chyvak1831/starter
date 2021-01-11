@@ -57,4 +57,33 @@ $( document ).on( 'input', '.js_label_on_input .form-control', function() {
 $( '.aws-search-field' ).attr( 'aria-label', 'Search' );
 
 
+// category pagination
+function woo_ajax_pagination( currentLink, pushToHistory = false ) {
+	$( '.js_archive_wrap_products' ).addClass( 'main_loading' );
+	if ( pushToHistory ) {
+		history.pushState( null, null, currentLink );
+	}
+	$.ajax({
+		url: currentLink,
+		success: function ( data ) {
+			$( '.js_archive_wrap_products' ).removeClass( 'main_loading' );
+			$( '.js_archive_wrap_products' ).html( $( data ).find( '.js_archive_wrap_products' ).html() );
+		},
+		error: function ( data ) {
+			$( '.js_archive_wrap_products' ).removeClass( 'main_loading' );
+			location.reload();
+		}
+	})
+}
+$( document ).on( 'click', '.woocommerce-pagination .page-numbers', function( e ) {
+	currentLink = $( this ).attr( 'href' )
+	woo_ajax_pagination( currentLink, true );
+	e.stopPropagation();
+	e.preventDefault();
+})
+window.onpopstate = function() {
+	woo_ajax_pagination( location.href );
+}
+
+
 })
