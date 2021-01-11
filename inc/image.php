@@ -40,6 +40,7 @@ function starter_img_func( $atts ) {
 	$img_alt         = 'alt="Image"';
 	$img_width       = '';
 	$img_height      = '';
+	$img_markup      = '';
 	if ( $img ) {
 		$img_src    = esc_url( wp_get_attachment_image_url( $img, $atts['img_src'] ) );
 		$img_srcset = wp_get_attachment_image_srcset( $img );
@@ -56,12 +57,17 @@ function starter_img_func( $atts ) {
 	$img_srcset_webp = str_ireplace( array( '.jpg ', '.jpeg ', '.png ' ), array( '.jpg.webp ', '.jpeg.webp ', '.png.webp ' ), $img_srcset );
 	$img_sizes       = "sizes='" . $atts['img_sizes'] . "'";
 	if ( array_key_exists( 'lazy', $atts ) ) {
-		return "<source type='image/webp' srcset=\"$img_srcset_webp\" $img_sizes>" .
-		"<img class='img-fluid' src=\"$img_placeholder\" srcset=\"$img_srcset\" $img_alt $img_sizes $img_width $img_height>";
+		if ( get_theme_mod( 'image_webp', true ) ) {
+			$img_markup = "<source type='image/webp' srcset=\"$img_srcset_webp\" $img_sizes>";
+		}
+		$img_markup .= "<img class='img-fluid' src=\"$img_placeholder\" srcset=\"$img_srcset\" $img_alt $img_sizes $img_width $img_height>";
 	} else {
-		return "<source type='image/webp' srcset=\"$img_placeholder\" data-srcset=\"$img_srcset_webp\" $img_sizes>" .
-		"<img class='img-fluid lazyload' src=\"$img_placeholder\" data-src=\"$img_src\" srcset=\"$img_placeholder\" data-srcset=\"$img_srcset\" $img_alt $img_sizes $img_width $img_height>";
+		if ( get_theme_mod( 'image_webp', true ) ) {
+			$img_markup = "<source type='image/webp' srcset=\"$img_placeholder\" data-srcset=\"$img_srcset_webp\" $img_sizes>";
+		}
+		$img_markup .= "<img class='img-fluid lazyload' src=\"$img_placeholder\" data-src=\"$img_src\" srcset=\"$img_placeholder\" data-srcset=\"$img_srcset\" $img_alt $img_sizes $img_width $img_height>";
 	}
+	return $img_markup;
 }
 
 /**
@@ -98,6 +104,8 @@ add_action( 'after_setup_theme', 'starter_custom_thumbnail_size', 999 );
 
 /**
  * Add source to allowed wp_kses_post tags
+ *
+ * @since starter 1.0
  *
  * @param array  $tags Allowed tags, attributes, and/or entities.
  * @param string $context Context to judge allowed tags by.

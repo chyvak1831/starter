@@ -52,7 +52,9 @@ add_action( 'wp_enqueue_scripts', 'starter_remove_block_library_css' );
  */
 function starter_enqueues_scripts() {
 	wp_enqueue_script( 'plugins', get_template_directory_uri() . '/assets/js/plugins.js', array( 'jquery' ), filemtime( get_stylesheet_directory() . '/assets/js/plugins.js' ), true );
-	wp_add_inline_script( 'plugins', file_get_contents( get_stylesheet_directory() . '/assets/js/iosPreloadFix.js' ) );
+	if ( get_theme_mod( 'preload_css', true ) ) {
+		wp_add_inline_script( 'plugins', file_get_contents( get_stylesheet_directory() . '/assets/js/iosPreloadFix.js' ) );
+	}
 	wp_enqueue_script( 'script', get_template_directory_uri() . '/assets/js/scripts.js', array( 'jquery', 'plugins' ), filemtime( get_stylesheet_directory() . '/assets/js/scripts.js' ), true );
 	wp_localize_script( 'script', 'starter_ajax', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 }
@@ -92,8 +94,10 @@ function starter_preloader_tag() {
 		add_filter( 'style_loader_tag', 'starter_css_preloader_tag' );
 	}
 }
-add_action( 'wp_head', 'starter_preloader_tag' );
-add_action( 'wp_enqueue_scripts', 'starter_preloader_tag' );
+if ( get_theme_mod( 'preload_css', true ) ) {
+	add_action( 'wp_head', 'starter_preloader_tag' );
+	add_action( 'wp_enqueue_scripts', 'starter_preloader_tag' );
+}
 
 /**
  * Include critical css to head.
@@ -112,7 +116,9 @@ function starter_enqueues_critical_styles() {
 		echo '</style>';
 	}
 }
-add_action( 'wp_enqueue_scripts', 'starter_enqueues_critical_styles' );
+if ( get_theme_mod( 'critical_css', true ) ) {
+	add_action( 'wp_enqueue_scripts', 'starter_enqueues_critical_styles' );
+}
 
 /**
  * Add custom css file into WordPress admin.

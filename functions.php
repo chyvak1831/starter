@@ -12,6 +12,11 @@
 require_once get_stylesheet_directory() . '/inc/assets.php';
 
 /**
+ * Dev functions.
+ */
+require_once get_stylesheet_directory() . '/inc/dev.php';
+
+/**
  * Image function & settings.
  */
 require_once get_stylesheet_directory() . '/inc/image.php';

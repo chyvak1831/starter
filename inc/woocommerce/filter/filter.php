@@ -104,6 +104,8 @@ add_filter( 'woocommerce_catalog_orderby', 'starter_wc_customize_product_sorting
 /**
  * Register Archive page widget area - for display filter.
  *
+ * @since starter 1.0
+ *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
 function starter_widgets_init() {
