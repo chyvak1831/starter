@@ -14,7 +14,7 @@ $( '.dropdown-menu [data-toggle="dropdown"]' ).on( 'click', function( e ) {
 	if ( $( this ).closest( '.dropdown-menu' ).parents().eq(0).hasClass( 'menu_nested_list' ) ) {
 		return;
 	}
-	if ( !$( this ).next().hasClass( 'show' ) ) {
+	if ( $( this ).next().hasClass( 'show' ) ) {
 		$( this ).parents( '.dropdown-menu' ).first().find( '.show' ).removeClass( 'show' );
 	}
 	$( this ).attr( 'aria-expanded', function( index, attr ) {
