@@ -40,7 +40,7 @@ function starter_img_func( $atts ) {
 	$img_alt         = 'alt="Image"';
 	$img_width       = '';
 	$img_height      = '';
-	$img_sizes = "sizes='" . $atts['img_sizes'] . "'";
+	$img_sizes       = "sizes='" . $atts['img_sizes'] . "'";
 
 	if ( $img ) {
 		$img_src    = esc_url( wp_get_attachment_image_url( $img, $atts['img_src'] ) );
@@ -53,7 +53,7 @@ function starter_img_func( $atts ) {
 			$img_alt = "alt='" . get_post( $img )->post_title . "'";
 		}
 		if ( 0 != $img_width ) {
-			$img_width  = "width='" . wp_get_attachment_image_src( $img, 'full' )[1] . "'";
+			$img_width = "width='" . wp_get_attachment_image_src( $img, 'full' )[1] . "'";
 		}
 		$img_height = "height='" . wp_get_attachment_image_src( $img, 'full' )[2] . "'";
 	}
