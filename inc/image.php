@@ -35,14 +35,16 @@ function starter_img_func( $atts ) {
 	$img_one_pixel   = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 	$img_from_option = wp_get_attachment_image_src( get_option( 'woocommerce_placeholder_image', '' ) )[0];
 	$img_placeholder = is_null( $img_from_option ) ? $img_one_pixel : $img_from_option;
-	$img_srcset      = $img_placeholder;
 	$img_src         = $img_placeholder;
+	$img_srcset      = $img_placeholder . '.webp';
 	$img_alt         = 'alt="Image"';
 	$img_width       = '';
 	$img_height      = '';
+	$img_sizes = "sizes='" . $atts['img_sizes'] . "'";
+
 	if ( $img ) {
 		$img_src    = esc_url( wp_get_attachment_image_url( $img, $atts['img_src'] ) );
-		$img_srcset = wp_get_attachment_image_srcset( $img );
+		$img_srcset = str_ireplace( array( '.jpg ', '.jpeg ', '.png ' ), array( '.jpg.webp ', '.jpeg.webp ', '.png.webp ' ), wp_get_attachment_image_srcset( $img ) );
 		if ( ! $img_srcset ) {
 			$img_srcset = $img_src;
 		}
@@ -50,18 +52,13 @@ function starter_img_func( $atts ) {
 		if ( ! get_post_meta( $img, '_wp_attachment_image_alt', true ) ) {
 			$img_alt = "alt='" . get_post( $img )->post_title . "'";
 		}
-		$img_width  = "width='" . wp_get_attachment_image_src( $img, 'full' )[1] . "'";
+		if ( 0 != $img_width ) {
+			$img_width  = "width='" . wp_get_attachment_image_src( $img, 'full' )[1] . "'";
+		}
 		$img_height = "height='" . wp_get_attachment_image_src( $img, 'full' )[2] . "'";
 	}
-	$img_srcset_webp = str_ireplace( array( '.jpg ', '.jpeg ', '.png ' ), array( '.jpg.webp ', '.jpeg.webp ', '.png.webp ' ), $img_srcset );
-	$img_sizes       = "sizes='" . $atts['img_sizes'] . "'";
-	if ( array_key_exists( 'lazy', $atts ) ) {
-		return "<source type='image/webp' srcset=\"$img_srcset_webp\" $img_sizes>" .
-		"<img class='img-fluid' src=\"$img_placeholder\" srcset=\"$img_srcset\" $img_alt $img_sizes $img_width $img_height>";
-	} else {
-		return "<source type='image/webp' srcset=\"$img_placeholder\" data-srcset=\"$img_srcset_webp\" $img_sizes>" .
-		"<img class='img-fluid lazyload' src=\"$img_placeholder\" data-src=\"$img_src\" srcset=\"$img_placeholder\" data-srcset=\"$img_srcset\" $img_alt $img_sizes $img_width $img_height>";
-	}
+
+	return "<source type='image/webp' srcset=\"$img_srcset\" $img_sizes><img class='img-fluid' loading='lazy' src=\"$img_src\" $img_alt $img_sizes $img_width $img_height>";
 }
 
 /**

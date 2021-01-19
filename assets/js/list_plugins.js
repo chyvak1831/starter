@@ -15,9 +15,6 @@ var plugins = [
 	// './node_modules/bootstrap/js/dist/scrollspy.js',
 	// './node_modules/bootstrap/js/dist/tab.js',
 
-	// lazysizes
-	'./node_modules/lazysizes/lazysizes.js',
-
     // slick
     './node_modules/slick-carousel/slick/slick.min.js'
 ];
