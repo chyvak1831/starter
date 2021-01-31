@@ -98,6 +98,8 @@ add_action( 'after_setup_theme', 'starter_custom_thumbnail_size', 999 );
 /**
  * Add source to allowed wp_kses_post tags
  *
+ * @since starter 1.0
+ *
  * @param array  $tags Allowed tags, attributes, and/or entities.
  * @param string $context Context to judge allowed tags by.
  *
