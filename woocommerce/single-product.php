@@ -70,7 +70,6 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 												'img_src'   => 'w800',
 												'img_sizes' => '(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px',
 												'img_id'    => $starter_img,
-												'lazy'      => 'false',
 											)
 										),
 										wp_kses_allowed_html( 'post' )

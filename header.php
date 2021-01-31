@@ -13,7 +13,6 @@ $starter_is_logged = is_user_logged_in() ? ' user_logged' : ' user_unlogged';
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script>window.lazySizesConfig=window.lazySizesConfig||{},window.lazySizesConfig.expand=10,lazySizesConfig.expFactor=1.5;</script>
 	<?php wp_head(); ?>
 </head>
 <body id="topPage" class="<?php echo esc_attr( $starter_is_logged ); ?>">

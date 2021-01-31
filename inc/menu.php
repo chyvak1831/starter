@@ -117,7 +117,6 @@ function starter_nav_menu_objects( $sorted_menu_items, $args ) {
 						'img_src'   => 'w1000',
 						'img_sizes' => $img_width,
 						'img_id'    => $img['ID'],
-						'lazy'      => 'false',
 					)
 				) . '</picture>';
 			}
