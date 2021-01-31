@@ -149,6 +149,7 @@ $starter_comment_rating      = 0;
 	<!-- recaptcha field -->
 		<?php if ( $starter_comment_recaptcha ) : ?>
 			<div class="mb-4">
+				<input type="hidden" class="js_recaptcha_input">
 				<div class="g-recaptcha" data-callback="recaptchaCallback" data-recaptchapublickey="<?php echo esc_attr( get_theme_mod( 'public_recaptcha_key' ) ); ?>"></div>
 				<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
 			</div>
