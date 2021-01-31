@@ -173,7 +173,7 @@ function starter_recaptcha_markup() { ?>
 		<div class="g-recaptcha" data-callback="recaptchaCallback" data-recaptchapublickey="<?php echo esc_attr( get_theme_mod( 'public_recaptcha_key' ) ); ?>"></div>
 		<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
 	</div>
-<?php
+	<?php
 }
 
 /**
