@@ -1,16 +1,10 @@
 jQuery( document ).ready( function( $ ) {
 
 
-// validate simple fields (name, email, comment, privacy) and recaptcha function
+// validate simple fields (name, email, comment, privacy)
 function commentValidation( form ) {
 	form.addClass( 'was-validated' );
-	// recaptcha: check if enabled AND return validation 'false' if recaptcha failed
-	var res = form.find( '.g-recaptcha-response' ).length ? form.find( '.g-recaptcha-response' ).val() : true;
-	if ( res == '' || res == undefined || res.length == 0 ) {
-		form.find( '.g-recaptcha' ).addClass( 'is-invalid' );
-		return false;
-	// END recaptcha: check if enabled AND return validation 'false' if recaptcha failed
-	} else if ( form[0].checkValidity() === false || form.find( '.is-invalid' ).length ) {
+	if ( form[0].checkValidity() === false || form.find( '.is-invalid' ).length ) {
 		return false;
 	} else {
 		return true;
@@ -48,7 +42,7 @@ function processingResponse( form, response ) {
 		$( '.js_comment_form, .js_comment_form_sent' ).slideToggle();
 	} else {
 		if ( form.find( '.g-recaptcha' ).length ) {
-			grecaptcha.reset( recaptchaId );
+			grecaptcha.reset();
 		}
 		var errors = response.data;
 		// custom errors

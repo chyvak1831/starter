@@ -36,29 +36,36 @@ function starter_img_func( $atts ) {
 	$img_from_option = wp_get_attachment_image_src( get_option( 'woocommerce_placeholder_image', '' ) )[0];
 	$img_placeholder = is_null( $img_from_option ) ? $img_one_pixel : $img_from_option;
 	$img_src         = $img_placeholder;
-	$img_srcset      = $img_placeholder . '.webp';
-	$img_alt         = 'alt="Image"';
-	$img_width       = '';
-	$img_height      = '';
-	$img_sizes       = "sizes='" . $atts['img_sizes'] . "'";
+	if ( get_theme_mod( 'image_webp', true ) ) {
+		$img_src = $img_placeholder . '.webp';
+	}
+	$img_srcset = $img_placeholder . '.webp';
+	$img_alt    = 'alt="Image"';
+	$img_width  = '';
+	$img_height = '';
+	$img_sizes  = "sizes='" . $atts['img_sizes'] . "'";
+	$img_markup = '';
 
 	if ( $img ) {
-		$img_src    = esc_url( wp_get_attachment_image_url( $img, $atts['img_src'] ) );
-		$img_srcset = str_ireplace( array( '.jpg ', '.jpeg ', '.png ' ), array( '.jpg.webp ', '.jpeg.webp ', '.png.webp ' ), wp_get_attachment_image_srcset( $img ) );
-		if ( ! $img_srcset ) {
-			$img_srcset = $img_src;
+		$img_src = esc_url( wp_get_attachment_image_url( $img, $atts['img_src'] ) );
+
+		if ( get_theme_mod( 'image_webp', true ) && wp_get_attachment_image_srcset( $img ) ) {
+			$img_srcset = str_ireplace( array( '.jpg ', '.jpeg ', '.png ' ), array( '.jpg.webp ', '.jpeg.webp ', '.png.webp ' ), wp_get_attachment_image_srcset( $img ) );
+			$img_markup = "<source type='image/webp' srcset=\"$img_srcset\" $img_sizes>";
 		}
+
 		$img_alt = "alt='" . esc_attr( get_post_meta( $img, '_wp_attachment_image_alt', true ) ) . "'";
 		if ( ! get_post_meta( $img, '_wp_attachment_image_alt', true ) ) {
 			$img_alt = "alt='" . get_post( $img )->post_title . "'";
 		}
-		if ( 0 != $img_width ) {
+
+		if ( 0 != wp_get_attachment_image_src( $img, 'full' )[1] ) {
 			$img_width = "width='" . wp_get_attachment_image_src( $img, 'full' )[1] . "'";
 		}
 		$img_height = "height='" . wp_get_attachment_image_src( $img, 'full' )[2] . "'";
 	}
 
-	return "<source type='image/webp' srcset=\"$img_srcset\" $img_sizes><img class='img-fluid' loading='lazy' src=\"$img_src\" $img_alt $img_sizes $img_width $img_height>";
+	return $img_markup . "<img class='img-fluid' loading='lazy' src=\"$img_src\" $img_alt $img_width $img_height>";
 }
 
 /**
