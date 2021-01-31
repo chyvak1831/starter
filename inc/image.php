@@ -34,22 +34,17 @@ function starter_img_func( $atts ) {
 	$img             = $atts['img_id'];
 	$img_one_pixel   = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 	$img_from_option = wp_get_attachment_image_src( get_option( 'woocommerce_placeholder_image', '' ) )[0];
-	$img_placeholder = is_null( $img_from_option ) ? $img_one_pixel : $img_from_option;
-	$img_src         = $img_placeholder;
-	if ( get_theme_mod( 'image_webp', true ) ) {
-		$img_src = $img_placeholder . '.webp';
-	}
-	$img_srcset = $img_placeholder . '.webp';
-	$img_alt    = 'alt="Image"';
-	$img_width  = '';
-	$img_height = '';
-	$img_sizes  = "sizes='" . $atts['img_sizes'] . "'";
-	$img_markup = '';
+	$img_src         = is_null( $img_from_option ) ? $img_one_pixel : $img_from_option;
+	$img_alt         = 'alt="Image"';
+	$img_width       = '';
+	$img_height      = '';
+	$img_markup      = '';
 
 	if ( $img ) {
 		$img_src = esc_url( wp_get_attachment_image_url( $img, $atts['img_src'] ) );
 
 		if ( get_theme_mod( 'image_webp', true ) && wp_get_attachment_image_srcset( $img ) ) {
+			$img_sizes  = "sizes='" . $atts['img_sizes'] . "'";
 			$img_srcset = str_ireplace( array( '.jpg ', '.jpeg ', '.png ' ), array( '.jpg.webp ', '.jpeg.webp ', '.png.webp ' ), wp_get_attachment_image_srcset( $img ) );
 			$img_markup = "<source type='image/webp' srcset=\"$img_srcset\" $img_sizes>";
 		}
