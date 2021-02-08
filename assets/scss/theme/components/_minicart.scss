@@ -21,8 +21,9 @@
 		&:hover {opacity: 0.35;}
 	}
 	img {
-		height: 50px;
+		height: auto;
 		margin-right: 5px;
+		max-height: 50px;
 		width: 50px;
 	}
 	.quantity {
