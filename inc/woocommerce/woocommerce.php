@@ -78,3 +78,15 @@ function starter_woocommerce_header_add_to_cart_fragment( $fragments ) {
 	return $fragments;
 }
 add_filter( 'woocommerce_add_to_cart_fragments', 'starter_woocommerce_header_add_to_cart_fragment' );
+
+/**
+ * Change dismiss text site wide notice
+ *
+ * @since ilnp 1.0
+ *
+ * @param string $notice .
+ */
+function starter_replace_dismiss( $notice ) {
+	return str_replace( 'Dismiss', '<span class="screen-reader-text">Dismiss notification</span>' . starter_get_svg( array( 'icon' => 'bi-remove' ) ), $notice );
+}
+add_filter( 'woocommerce_demo_store', 'starter_replace_dismiss' );
