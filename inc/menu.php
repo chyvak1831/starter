@@ -70,7 +70,7 @@ function starter_nested_menu_style( $item_output, $item ) {
 		                       #menu-item-' . $item->db_id . ' .sub-menu a:hover, #menu-item-' . $item->db_id . ' .sub-menu a:focus, #menu-item-' . $item->db_id . ' .sub-menu .current-menu-item > a:focus{color:' . $color_hover . ';}
 		                       #menu-item-' . $item->db_id . ' .sub-menu .menu_icon{font-size:' . $icon_size . 'px !important;}
 		                       #menu-item-' . $item->db_id . ' > .sub-menu > li::after{content:"' . $separator . '";margin: 0 ' . $space . 'px;}</style>';
-		$item_output .= $menu_style;
+		$item_output = $menu_style . $item_output;
 	}
 	return $item_output;
 }
