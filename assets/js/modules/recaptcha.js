@@ -3,22 +3,27 @@
  */
 function recaptchaOnloadCallback() {
 	let activeRecaptcha = document.querySelector( '.js_active_recaptcha' );
-	recaptchaId = grecaptcha.render( activeRecaptcha, {
+	grecaptcha.render( activeRecaptcha, {
 		'sitekey' : activeRecaptcha.dataset.recaptchapublickey
 	});
-	activeRecaptcha.setAttribute( 'data-widget-id', recaptchaId );
 	activeRecaptcha.classList.add( 'recaptcha_inited' );
 	activeRecaptcha.classList.remove( 'js_active_recaptcha' );
 }
 
 /**
- * Load recaptcha by click on certain contact form7
+ * Load recaptcha by click on certain form
  */
 function loadRecaptchaOnClick() {
-	var form = document.getElementsByClassName( 'js_form_with_recaptcha' );
-	if ( ! document.querySelector( '.js_form_with_recaptcha .g-recaptcha' ) ) {
+	// return if no recaptcha
+	if ( ! document.querySelector( '.g-recaptcha' ) ) {
 		return false;
 	}
+	// add class to each form with recaptcha
+	Array.from( document.querySelectorAll( '.js_recaptcha_input' ) ).forEach( function(e) {
+		e.form.classList.add( 'js_form_with_recaptcha' );
+	});
+	// proccess recaptcha by click
+	var form = document.getElementsByClassName( 'js_form_with_recaptcha' );
 	for( var i =0; i < form.length; i++ ) {
 		form[i].addEventListener( 'click', function() {
 			let recaptchaEl = this.querySelector( '.g-recaptcha');
@@ -38,8 +43,21 @@ function loadRecaptchaOnClick() {
 loadRecaptchaOnClick();
 
 /**
+ * Recaptcha validation
+ */
+document.querySelectorAll( '.js_form_with_recaptcha' ).forEach( form => form.addEventListener( 'submit', function(e) {
+	var res = form.querySelector( '.g-recaptcha-response' ).value;
+	if ( res == '' || res == undefined || res.length == 0 ) {
+		form.querySelector( '.g-recaptcha' ).classList.add( 'is-invalid' );
+		e.preventDefault();
+	}
+}, false));
+
+/**
  * Callback recaptcha function
  */
 function recaptchaCallback() {
-	document.querySelector( '[data-widget-id="' + recaptchaId + '"]' ).classList.remove( 'is-invalid' );
+	Array.from( document.querySelectorAll( '.g-recaptcha' ) ).forEach( function(e) {
+		e.classList.remove( 'is-invalid' );
+	});
 }

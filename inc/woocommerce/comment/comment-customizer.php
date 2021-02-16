@@ -79,26 +79,6 @@ $wp_customize->add_control(
 );
 
 /**
- * Recaptcha
- */
-$wp_customize->add_setting(
-	'comment_recaptcha',
-	array(
-		'default'   => false,
-		'type'      => 'theme_mod',
-		'transport' => 'postMessage',
-	)
-);
-$wp_customize->add_control(
-	'comment_recaptcha',
-	array(
-		'section' => 'comments_section',
-		'label'   => 'Recaptcha',
-		'type'    => 'checkbox',
-	)
-);
-
-/**
  * File
  */
 $wp_customize->add_setting(
