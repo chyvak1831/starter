@@ -1,7 +1,7 @@
 // common styles, indicator
 .filter_block {
 	margin-bottom: 30px;
-	&, .orderby {
+	&, .woocommerce-ordering select {
 		font-size: 12px;
 		font-weight: 600;
 		text-transform: uppercase;
@@ -26,17 +26,28 @@
 	.wrap_text {font-size: 12px;}
 }
 
-// apply/reset buttons
-.filter_apply_reset {display: none;}
-.filtered .filter_apply_reset {display: block;}
-
+// woo filter list styles
+.woocommerce-widget-layered-nav-list {
+	list-style: none;
+	padding-left: 0;
+	a {
+		padding: 2px 0 0;
+		text-decoration: none !important;
+	}
+}
 .sidebar_list > li {margin-bottom: 20px;}
 
+// reset button
+.filtered .filter_reset_btn {display: block !important;}
+
 // price filter
+.product_filter_sort_ajax .price_filter_btn {display: none;}
 .widget_price_filter {
-	.button, .price_label {display: none !important;}
+	.price_filter_btn {margin: 5px 10px;}
+	.price_label {display: none !important;}
 	.price_slider {
 		background-color: $gray-500;
+		display: block !important;
 		height: 0.5em;
 		font-size: 10px;
 		margin: 5px 0.75em 20px;

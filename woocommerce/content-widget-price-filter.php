@@ -20,14 +20,14 @@ defined( 'ABSPATH' ) || exit;
 ?>
 <?php do_action( 'woocommerce_widget_price_filter_start', $args ); ?>
 
-<form class="dropdown-menu" method="get" action="<?php echo esc_url( $form_action ); ?>">
+<form class="js_wrap_price_filter" method="get" action="<?php echo esc_url( $form_action ); ?>">
 	<div class="price_slider_wrapper">
 		<div class="price_slider" style="display:none;"></div>
 		<div class="price_slider_amount row" data-step="<?php echo esc_attr( $step ); ?>">
 			<div class="col-6"><input aria-label="minimum price filter" class="form-control" id="min_price" name="min_price" value="<?php echo esc_attr( $current_min_price ); ?>" data-min="<?php echo esc_attr( $min_price ); ?>" placeholder="<?php echo esc_attr__( 'Min price', 'woocommerce' ); ?>"></div>
 			<div class="col-6"><input aria-label="maximum price filter" class="form-control" id="max_price" name="max_price" value="<?php echo esc_attr( $current_max_price ); ?>" data-max="<?php echo esc_attr( $max_price ); ?>" placeholder="<?php echo esc_attr__( 'Max price', 'woocommerce' ); ?>"></div>
 			<?php /* translators: Filter: verb "to filter" */ ?>
-			<button type="submit" class="button"><?php echo esc_html__( 'Filter', 'woocommerce' ); ?></button>
+			<button type="submit" class="btn btn-primary price_filter_btn"><?php echo esc_html__( 'Filter', 'woocommerce' ); ?></button>
 			<div class="price_label" style="display:none;">
 				<?php echo esc_html__( 'Price:', 'woocommerce' ); ?> <span class="from"></span> &mdash; <span class="to"></span>
 			</div>
@@ -35,6 +35,7 @@ defined( 'ABSPATH' ) || exit;
 			<div class="clear"></div>
 		</div>
 	</div>
+	<input class="js_price_slider_file" type="text" hidden="hidden" value="<?php echo esc_attr( WC()->plugin_url() . '/assets/js/frontend/price-slider.min.js' ); ?>">
 </form>
 </div>
 </div>

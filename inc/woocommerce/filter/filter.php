@@ -9,21 +9,7 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Fork of Widget filter woocommerce/includes/widgets/class-wc-widget-layered-nav.php - Woo version 4.4.1
- *
- * @since starter 1.0
- */
-function starter_override_woocommerce_attr_widget() {
-	if ( class_exists( 'WC_Widget_Layered_Nav_Filters' ) ) {
-		unregister_widget( 'WC_Widget_Layered_Nav_Filters' );
-	}
-	include_once get_stylesheet_directory() . '/inc/woocommerce/filter/class-wc-widget-layered-nav.php';
-	register_widget( 'starter_WC_Widget_Layered_Nav' );
-}
-add_action( 'widgets_init', 'starter_override_woocommerce_attr_widget', 15 );
-
-/**
- * Filter price: add data from ACF.
+ * Filters: add dropdown/collapse markup and ACF setting.
  *
  * @since starter 1.0
  *
@@ -31,13 +17,8 @@ add_action( 'widgets_init', 'starter_override_woocommerce_attr_widget', 15 );
  * @return array $params modified sort array.
  */
 function starter_price_filter_layout( $params ) {
-	/*get widget vars*/
-	$widget_name = $params[0]['widget_name'];
-	$widget_id   = $params[0]['widget_id'];
-	/*apply to "Filter Products by Price widget" only*/
-	if ( 'Filter Products by Price' !== $widget_name ) {
-		return $params;
-	}
+	/*get widget id*/
+	$widget_id = $params[0]['widget_id'];
 	/*get widget title*/
 	global $wp_registered_widgets;
 	$instance = $wp_registered_widgets[ $widget_id ]['callback'][0];
@@ -47,12 +28,12 @@ function starter_price_filter_layout( $params ) {
 	if ( isset( $settings[ $num ]['title'] ) ) {
 		$widget_title = $settings[ $num ]['title'];
 	}
-	/*get price filter ACF*/
+	/*get ACF*/
 	$filter_view_mobile  = get_field( 'filter_display_type_mobile', 'widget_' . $widget_id );
 	$filter_view_desktop = get_field( 'filter_display_type_desktop', 'widget_' . $widget_id );
 	/*modify output html*/
 	$params[0]['before_widget'] .= '<div class="dropdown ' . $filter_view_desktop . ' ' . $filter_view_mobile . '">';
-	$params[0]['before_widget'] .= '<a href="#" class="widget-title" data-toggle="dropdown">' . $widget_title . '<span class="notifications_text js_count_selected_filter d-none">0</span>' . starter_get_svg(
+	$params[0]['before_widget'] .= '<a href="#" class="widget-title" data-toggle="dropdown" data-display="static">' . $widget_title . '<span class="notifications_text js_count_selected_filter d-none">0</span>' . starter_get_svg(
 		array(
 			'icon'  => 'bi-chevron-down',
 			'class' => 'arrow',
@@ -64,7 +45,7 @@ function starter_price_filter_layout( $params ) {
 			'class' => 'arrow',
 		)
 	) . '</a>';
-	$params[0]['before_widget'] .= '<div class="collapse" id="collapse_filter_' . $widget_id . '">';
+	$params[0]['before_widget'] .= '<div class="collapse" id="collapse_filter_' . $widget_id . '"><div class="dropdown-menu">';
 	return $params;
 
 }
@@ -104,6 +85,8 @@ add_filter( 'woocommerce_catalog_orderby', 'starter_wc_customize_product_sorting
 /**
  * Register Archive page widget area - for display filter.
  *
+ * @since starter 1.0
+ *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
 function starter_widgets_init() {
@@ -120,3 +103,92 @@ function starter_widgets_init() {
 	);
 }
 add_action( 'widgets_init', 'starter_widgets_init' );
+
+/**
+ * Filters: add color markup and ACF.
+ *
+ * @since starter 1.2
+ *
+ * @param string $term_html .
+ * @param object $term filter item.
+ * @param string $link filter link url.
+ * @param int $count filter count.
+ * @return string $term_html modified markup.
+ */
+function starter_filter_link_markup( $term_html, $term, $link, $count ) {
+	$indicator_color    = '';
+	$color_field_status = get_field( 'color_field_toggler', $term->taxonomy . '_' . $term->term_id );
+	if ( $color_field_status ) {
+		$color           = strtolower( get_field( 'color_taxonomy', $term->taxonomy . '_' . $term->term_id ) );
+		$indicator_color = '<span class="indicator_color" style="background:' . $color . ';"></span>';
+	}
+	$term_html = '<span class="custom-control custom-checkbox">' .
+				 '<input class="custom-control-input" type="checkbox">' .
+				 '<a class="custom-control-label" rel="nofollow" href="' . esc_url( $link ) . '">' .
+				 		$indicator_color . '<span class="wrap_text">' . esc_html( $term->name ) . '</span>' .
+				 		apply_filters( 'woocommerce_layered_nav_count', '<small class="text-muted count">(' . absint( $count ) . ')</small>', $count, $term ) .
+		 		  '</a>' .
+		 		  '</span>';
+	return $term_html;
+}
+add_filter( 'woocommerce_layered_nav_term_html', 'starter_filter_link_markup', 10, 4 );
+
+/**
+ * Customizer: ajax filter & sort feature
+ *
+ * @since starter 1.2
+ *
+ * @param object $wp_customize Instance of the WP_Customize_Manager class.
+ */
+function starter_customizer_filter_ajax( $wp_customize ) {
+	/**
+	 * Add section
+	 */
+	$wp_customize->add_section(
+		'ajax_section',
+		array(
+			'title'    => 'Ajax',
+			'priority' => 1,
+			'panel'    => 'woocommerce',
+		)
+	);
+	/**
+	 * Filter
+	 */
+	$wp_customize->add_setting(
+		'product_filter_sort_ajax',
+		array(
+			'default'   => true,
+			'type'      => 'theme_mod',
+			'transport' => 'postMessage',
+		)
+	);
+	$wp_customize->add_control(
+		'product_filter_sort_ajax',
+		array(
+			'section' => 'ajax_section',
+			'label'   => 'Filter & sort',
+			'type'    => 'checkbox',
+		)
+	);
+	/**
+	 * Pagination
+	 */
+	$wp_customize->add_setting(
+		'product_pagination_ajax',
+		array(
+			'default'   => true,
+			'type'      => 'theme_mod',
+			'transport' => 'postMessage',
+		)
+	);
+	$wp_customize->add_control(
+		'product_pagination_ajax',
+		array(
+			'section' => 'ajax_section',
+			'label'   => 'Pagination',
+			'type'    => 'checkbox',
+		)
+	);
+}
+add_action( 'customize_register', 'starter_customizer_filter_ajax', 50 );
