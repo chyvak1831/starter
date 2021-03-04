@@ -9,7 +9,6 @@ $( document ).on( 'click', '.js_wrap_filters .widget .dropdown-menu', function (
 
 // show/hide reset filter button
 function checkIfFiltered() {
-	if ( !$( '.js_wrap_filters .woocommerce-ordering' ).length > 0 ) return;
 	if ( $( '.js_wrap_filters .woocommerce-ordering' ).children( 'input:not([name="paged"], [name="s"], [name="post_type"])' ).length > 0 ) {
 		$( 'html' ).addClass( 'filtered' );
 	} else {
