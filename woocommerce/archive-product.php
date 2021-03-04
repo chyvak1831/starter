@@ -22,12 +22,12 @@ global $wp_query;
 $starter_all_count_item = $wp_query->found_posts;
 global $wp;
 if ( '' === get_option( 'permalink_structure' ) ) {
-	$archive_url = remove_query_arg( array( 'page', 'paged', 'product-page' ), add_query_arg( $wp->query_string, '', home_url( $wp->request ) ) );
+	$starter_archive_url = remove_query_arg( array( 'page', 'paged', 'product-page' ), add_query_arg( $wp->query_string, '', home_url( $wp->request ) ) );
 } else {
-	$archive_url = preg_replace( '%\/page/[0-9]+%', '', home_url( trailingslashit( $wp->request ) ) );
+	$starter_archive_url = preg_replace( '%\/page/[0-9]+%', '', home_url( trailingslashit( $wp->request ) ) );
 }
 ?>
-<input class="js_archive_url" type="hidden" value="<?php echo esc_url( $archive_url ); ?>">
+<input class="js_archive_url" type="hidden" value="<?php echo esc_url( $starter_archive_url ); ?>">
 
 <?php
 if ( is_search() ) {
@@ -73,7 +73,7 @@ if ( is_search() ) {
 			<?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
 				<div class="filter_block all_filters">
 					<?php do_action( 'woocommerce_sidebar' ); ?>
-					<a href="<?php echo esc_url( $archive_url ); ?>" class="btn btn-outline-primary d-none filter_reset_btn js_reset_filters" role="button"><?php esc_html_e( 'Reset', 'starter' ); ?></a>
+					<a href="<?php echo esc_url( $starter_archive_url ); ?>" class="btn btn-outline-primary d-none filter_reset_btn js_reset_filters" role="button"><?php esc_html_e( 'Reset', 'starter' ); ?></a>
 					<a href="#" class="close_filters js_close_filters" role="button" aria-label="<?php esc_attr_e( 'Close filters', 'starter' ); ?>">
 						<?php echo starter_get_svg( array( 'icon' => 'bi-remove' ) ); ?>
 					</a>

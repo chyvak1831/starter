@@ -23,8 +23,8 @@ function starter_price_filter_layout( $params ) {
 	global $wp_registered_widgets;
 	$instance = $wp_registered_widgets[ $widget_id ]['callback'][0];
 	// @see https://developer.wordpress.org/reference/classes/wp_widget/get_settings/
-	$settings = $instance->get_settings();
-	$num      = $wp_registered_widgets[ $widget_id ]['params'][0]['number'];
+	$settings     = $instance->get_settings();
+	$num          = $wp_registered_widgets[ $widget_id ]['params'][0]['number'];
 	$widget_title = '';
 	if ( isset( $settings[ $num ]['title'] ) ) {
 		$widget_title = $settings[ $num ]['title'];
@@ -113,7 +113,7 @@ add_action( 'widgets_init', 'starter_widgets_init' );
  * @param string $term_html .
  * @param object $term filter item.
  * @param string $link filter link url.
- * @param int $count filter count.
+ * @param int    $count filter count.
  * @return string $term_html modified markup.
  */
 function starter_filter_link_markup( $term_html, $term, $link, $count ) {
@@ -126,10 +126,10 @@ function starter_filter_link_markup( $term_html, $term, $link, $count ) {
 	$term_html = '<span class="custom-control custom-checkbox">' .
 				 '<input class="custom-control-input" type="checkbox">' .
 				 '<a class="custom-control-label" rel="nofollow" href="' . esc_url( $link ) . '">' .
-				 		$indicator_color . '<span class="wrap_text">' . esc_html( $term->name ) . '</span>' .
-				 		apply_filters( 'woocommerce_layered_nav_count', '<small class="text-muted count">(' . absint( $count ) . ')</small>', $count, $term ) .
-		 		  '</a>' .
-		 		  '</span>';
+						$indicator_color . '<span class="wrap_text">' . esc_html( $term->name ) . '</span>' .
+						apply_filters( 'woocommerce_layered_nav_count', '<small class="text-muted count">(' . absint( $count ) . ')</small>', $count, $term ) .
+				 '</a>' .
+				 '</span>';
 	return $term_html;
 }
 add_filter( 'woocommerce_layered_nav_term_html', 'starter_filter_link_markup', 10, 4 );
