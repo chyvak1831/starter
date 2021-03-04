@@ -20,16 +20,20 @@ defined( 'ABSPATH' ) || exit;
 get_header();
 global $wp_query;
 $starter_all_count_item = $wp_query->found_posts;
+global $wp;
+if ( '' === get_option( 'permalink_structure' ) ) {
+	$starter_archive_url = remove_query_arg( array( 'page', 'paged', 'product-page' ), add_query_arg( $wp->query_string, '', home_url( $wp->request ) ) );
+} else {
+	$starter_archive_url = preg_replace( '%\/page/[0-9]+%', '', home_url( trailingslashit( $wp->request ) ) );
+}
 ?>
-
-<!-- get active filters - used when 'No products found' so .js_form_filter form is empty -->
-<script>selected_filters = <?php echo wp_json_encode( WC_Query::get_layered_nav_chosen_attributes() ); ?>;</script>
+<input class="js_archive_url" type="hidden" value="<?php echo esc_url( $starter_archive_url ); ?>">
 
 <?php
 if ( is_search() ) {
 	$starter_search_page = ' search_page';}
 ?>
-<div class="content_wrapper container archive_product <?php echo esc_attr( $starter_search_page ); ?>" role="main">
+<div class="content_wrapper container mt-5 archive_product js_wrap_archive <?php echo esc_attr( $starter_search_page ); ?>" role="main">
 
 	<!-- breadcrumb -->
 	<?php
@@ -39,7 +43,7 @@ if ( is_search() ) {
 	?>
 	<!-- END breadcrumb -->
 
-	<h1 class="mt-5 mb-0 text-center">
+	<h1 class="mb-0 text-center">
 		<?php
 		if ( is_product_taxonomy() ) {
 			woocommerce_page_title();
@@ -55,24 +59,21 @@ if ( is_search() ) {
 	<div class="row">
 
 		<!-- filters -->
-		<div class="col-xl-5_per_line col-lg-3 col-md-4 d-flex justify-content-between d-md-block">
-			<div class="filter_block js_form_filter">
+		<div class="col-xl-5_per_line col-lg-3 col-md-4 d-flex justify-content-between d-md-block js_wrap_filters">
+			<div class="filter_block">
 				<?php if ( wc_get_loop_prop( 'total' ) ) : ?>
 					<span class="widget-title border-0"><?php esc_html_e( 'Sort by', 'starter' ); ?></span>
 					<?php do_action( 'woocommerce_before_shop_loop' ); ?>
 				<?php else : /*for a case when no results*/ ?>
-					<form class="woocommerce-ordering" method="get">
-						<input type="hidden" name="paged" value="1">
+					<form class="woocommerce-ordering">
+						<input type="hidden" name="noresults" value="1">
 					</form>
 				<?php endif; ?>
 			</div>
 			<?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
-				<div class="filter_block all_filters js_wrap_filters">
+				<div class="filter_block all_filters">
 					<?php do_action( 'woocommerce_sidebar' ); ?>
-					<div class="filter_apply_reset">
-						<button class="btn btn-primary btn-block js_submit_filters"><?php esc_html_e( 'Apply', 'starter' ); ?></button>
-						<button class="btn btn-outline-primary btn-block js_reset_filters"><?php esc_html_e( 'Reset', 'starter' ); ?></button>
-					</div>
+					<a href="<?php echo esc_url( $starter_archive_url ); ?>" class="btn btn-outline-primary d-none filter_reset_btn js_reset_filters" role="button"><?php esc_html_e( 'Reset', 'starter' ); ?></a>
 					<a href="#" class="close_filters js_close_filters" role="button" aria-label="<?php esc_attr_e( 'Close filters', 'starter' ); ?>">
 						<?php echo starter_get_svg( array( 'icon' => 'bi-remove' ) ); ?>
 					</a>

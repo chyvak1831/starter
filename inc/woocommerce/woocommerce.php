@@ -26,7 +26,7 @@ require_once get_stylesheet_directory() . '/inc/woocommerce/comment/comment.php'
 /**
  * Extend filter feature
  */
-require_once get_stylesheet_directory() . '/inc/woocommerce/filter/filter.php';
+require_once get_stylesheet_directory() . '/inc/woocommerce/filter.php';
 
 /**
  * Extend upsell/related feature

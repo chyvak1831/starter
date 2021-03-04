@@ -1,4 +1,5 @@
 .woocommerce-pagination {
+	padding: 0 30px;
 	width: 100%;
 	a {
 		@include flex_align();

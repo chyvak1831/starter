@@ -7,7 +7,7 @@ window.addEventListener( 'touchstart', function() {
 	productTouch();
 });
 var productTouch = function () {
-	if ( touch == true ) {
+	if ( true == touch ) {
 		$( '.js_product' ).off( 'mouseenter mouseleave' );
 		$( '.js_product' ).on( 'click', function() {
 			$( '.js_product' ).removeClass( 'hover_effect' );
@@ -18,15 +18,13 @@ var productTouch = function () {
 			if ( $( e.target ).closest( '.js_product.hover_effect' ).length ) return;
 			$( '.js_product' ).removeClass( 'hover_effect' );
 		});
-	} else if ( touch == false ) {
-		$( '.js_product' ).on({
-			mouseenter: function () {
-				$( this ).addClass( 'hover_effect' );
-			},
-			mouseleave: function () {
-				$( this ).removeClass( 'hover_effect' );
-			}
-		});
+	} else if ( false == touch ) {
+		$( document ).on( 'mouseenter', '.js_product', function( e ) {
+			$( this ).addClass( 'hover_effect' );
+		})
+		$( document ).on( 'mouseleave', '.js_product', function( e ) {
+			$( this ).removeClass( 'hover_effect' );
+		})
 	}
 };
 productTouch();

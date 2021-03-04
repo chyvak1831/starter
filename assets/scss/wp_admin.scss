@@ -3,3 +3,6 @@
 
 // display classes for widgets
 .menu-item-yspl_win .field-css-classes {display: block !important;}
+
+// hide default widget display type
+.widget-inside [for$="display_type"], .widget-inside select[id$="display_type"] {display: none;}
