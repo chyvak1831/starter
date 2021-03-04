@@ -30,8 +30,10 @@ if ( '' === get_option( 'permalink_structure' ) ) {
 <input class="js_archive_url" type="hidden" value="<?php echo esc_url( $starter_archive_url ); ?>">
 
 <?php
+$starter_search_page = '';
 if ( is_search() ) {
-	$starter_search_page = ' search_page';}
+	$starter_search_page = ' search_page';
+}
 ?>
 <div class="content_wrapper container mt-5 archive_product js_wrap_archive <?php echo esc_attr( $starter_search_page ); ?>" role="main">
 

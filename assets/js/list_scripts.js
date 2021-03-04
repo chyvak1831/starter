@@ -1,12 +1,12 @@
 var scripts = [
+	// archive
+	'./assets/js/modules/archive.js',
+
 	// comment
 	'./assets/js/modules/comment.js',
 
 	// common
 	'./assets/js/modules/common.js',
-
-	// filters
-	'./assets/js/modules/filters.js',
 
 	// homepage
 	'./assets/js/modules/home_page.js',
