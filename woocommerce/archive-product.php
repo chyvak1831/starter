@@ -59,7 +59,7 @@ if ( is_search() ) {
 	<div class="row">
 
 		<!-- filters -->
-		<div class="col-xl-5_per_line col-lg-3 col-md-4 d-flex justify-content-between d-md-block">
+		<div class="col-xl-5_per_line col-lg-3 col-md-4 d-flex justify-content-between d-md-block js_wrap_filters">
 			<div class="filter_block">
 				<?php if ( wc_get_loop_prop( 'total' ) ) : ?>
 					<span class="widget-title border-0"><?php esc_html_e( 'Sort by', 'starter' ); ?></span>
@@ -71,7 +71,7 @@ if ( is_search() ) {
 				<?php endif; ?>
 			</div>
 			<?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
-				<div class="filter_block all_filters js_wrap_filters">
+				<div class="filter_block all_filters">
 					<?php do_action( 'woocommerce_sidebar' ); ?>
 					<a href="<?php echo esc_url( $archive_url ); ?>" class="btn btn-outline-primary d-none filter_reset_btn js_reset_filters" role="button"><?php esc_html_e( 'Reset', 'starter' ); ?></a>
 					<a href="#" class="close_filters js_close_filters" role="button" aria-label="<?php esc_attr_e( 'Close filters', 'starter' ); ?>">

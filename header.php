@@ -16,16 +16,6 @@ $starter_ajax_pagination  = get_theme_mod( 'product_pagination_ajax', true ) ? '
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<?php wp_head(); ?>
-
-<!-- Google Analytics -->
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-156564336-1', 'auto');
-ga('send', 'pageview');
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-<!-- End Google Analytics -->
-
 </head>
 <body id="topPage" class="<?php echo esc_attr( $starter_is_logged . $starter_ajax_filter_sort . $starter_ajax_pagination ); ?>">
 <a href="#topPage" class="scrollup js_scrollto" role="button" aria-label="<?php esc_attr_e( 'Scroll to top', 'starter' ); ?>">

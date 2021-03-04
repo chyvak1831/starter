@@ -25,6 +25,7 @@ function starter_price_filter_layout( $params ) {
 	// @see https://developer.wordpress.org/reference/classes/wp_widget/get_settings/
 	$settings = $instance->get_settings();
 	$num      = $wp_registered_widgets[ $widget_id ]['params'][0]['number'];
+	$widget_title = '';
 	if ( isset( $settings[ $num ]['title'] ) ) {
 		$widget_title = $settings[ $num ]['title'];
 	}

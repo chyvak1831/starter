@@ -2,15 +2,15 @@ jQuery( document ).ready( function( $ ) {
 
 
 // avoid close dropdown on click inside
-$( document ).on( 'click', '.widget .dropdown-menu', function ( e ) {
+$( document ).on( 'click', '.js_wrap_filters .widget .dropdown-menu', function ( e ) {
 	e.stopPropagation();
 });
 
 
 // show/hide reset filter button
 function checkIfFiltered() {
-	if ( !$( '.woocommerce-ordering' ).length > 0 ) return;
-	if ( $( '.woocommerce-ordering' ).children( 'input:not([name="paged"], [name="s"], [name="post_type"])' ).length > 0 ) {
+	if ( !$( '.js_wrap_filters .woocommerce-ordering' ).length > 0 ) return;
+	if ( $( '.js_wrap_filters .woocommerce-ordering' ).children( 'input:not([name="paged"], [name="s"], [name="post_type"])' ).length > 0 ) {
 		$( 'html' ).addClass( 'filtered' );
 	} else {
 		$( 'html' ).removeClass( 'filtered' );
@@ -21,7 +21,7 @@ checkIfFiltered();
 
 // display count of selected filters
 function setCountSelectedFilter() {
-	$( '.woocommerce-widget-layered-nav-list' ).each( function() {
+	$( '.js_wrap_filters .woocommerce-widget-layered-nav-list' ).each( function() {
 		var countSelected = $( this ).find( '.woocommerce-widget-layered-nav-list__item--chosen' ).length;
 		if ( countSelected != 0 ) {
 			$( this ).closest( '.widget' ).find( '.js_count_selected_filter' ).removeClass( 'd-none' ).html( countSelected );
@@ -29,7 +29,7 @@ function setCountSelectedFilter() {
 			$( this ).closest( '.widget' ).find( '.js_count_selected_filter' ).addClass( 'd-none' );
 		}
 		// set counter for mobile
-		var allCheckedFilters = $( '.woocommerce-widget-layered-nav-list__item--chosen' ).length;
+		var allCheckedFilters = $( '.js_wrap_filters .woocommerce-widget-layered-nav-list__item--chosen' ).length;
 		if ( allCheckedFilters > 0 ) {
 			$('.js_all_selected_filter').removeClass( 'd-none' ).html( allCheckedFilters );
 		} else {
@@ -53,7 +53,7 @@ $( document ).on( 'click', '.js_close_filters', function( e ) {
 
 // check selected filters
 function markSelectedFilter() {
-	$( '.woocommerce-widget-layered-nav-list__item--chosen' ).each( function() {
+	$( '.js_wrap_filters .woocommerce-widget-layered-nav-list__item--chosen' ).each( function() {
 		$( this ).find( '.custom-control-input' ).prop( 'checked', true );
 	});
 }
@@ -75,6 +75,9 @@ function yoastAjaxUpdate( data ) {
 
 // ajax request
 function woo_ajax_filter( currentLink, pushToHistory = false ) {
+	if ( !$( '.js_wrap_archive' ).length ) {
+		return;
+	}
 	$( '.js_wrap_archive' ).addClass( 'main_loading' );
 	if ( pushToHistory ) {
 		history.pushState( null, null, currentLink );
@@ -130,16 +133,16 @@ function changePrice() {
 	currentLink = $( '.js_wrap_price_filter' ).attr( 'action' ) + '?' + priceFormData;
 	woo_ajax_filter( currentLink, true );
 };
-$( document ).on( 'slidestop', '.product_filter_sort_ajax .price_slider', function() {
+$( document ).on( 'slidestop', '.product_filter_sort_ajax .js_wrap_archive .price_slider', function() {
 	changePrice();
 })
-$( document ).on( 'input change', '.product_filter_sort_ajax .price_slider_amount input', function () {
+$( document ).on( 'input change', '.product_filter_sort_ajax .js_wrap_archive .price_slider_amount input', function () {
 	changePrice();
 });
 
 
 // ajax attribute filter
-$( document ).on( 'click', '.product_filter_sort_ajax .woocommerce-widget-layered-nav-list__item a', function( e ) {
+$( document ).on( 'click', '.product_filter_sort_ajax .js_wrap_archive .woocommerce-widget-layered-nav-list__item a', function( e ) {
 	e.preventDefault();
 	currentLink = $( this ).attr( 'href' );
 	woo_ajax_filter( currentLink, true );
@@ -156,7 +159,7 @@ $( document ).on( 'click', '.product_filter_sort_ajax .js_reset_filters', functi
 
 
 // ajax pagination
-$( document ).on( 'click', '.product_pagination_ajax .woocommerce-pagination .page-numbers', function( e ) {
+$( document ).on( 'click', '.product_pagination_ajax .js_wrap_archive .woocommerce-pagination .page-numbers', function( e ) {
 	e.preventDefault();
 	currentLink = $( this ).attr( 'href' );
 	woo_ajax_filter( currentLink, true );
