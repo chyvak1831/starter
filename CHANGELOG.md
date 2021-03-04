@@ -1,6 +1,6 @@
 # Changelog
 
-# [1.1.0](https://github.com/chyvak1831/starter/releases/tag/v1.0.0) (2021-02-12)
+# [1.1.0](https://github.com/chyvak1831/starter/releases/tag/v1.1.0) (2021-02-12)
 
 ### Fix
 - menu bug: wrong down menu in submenus [#55](https://github.com/chyvak1831/starter/issues/55)
