@@ -142,20 +142,6 @@ add_filter( 'woocommerce_layered_nav_term_html', 'starter_filter_link_markup', 1
  * @param object $wp_customize Instance of the WP_Customize_Manager class.
  */
 function starter_customizer_filter_ajax( $wp_customize ) {
-	/**
-	 * Add section
-	 */
-	$wp_customize->add_section(
-		'ajax_section',
-		array(
-			'title'    => 'Ajax',
-			'priority' => 1,
-			'panel'    => 'woocommerce',
-		)
-	);
-	/**
-	 * Filter
-	 */
 	$wp_customize->add_setting(
 		'product_filter_sort_ajax',
 		array(
@@ -168,13 +154,10 @@ function starter_customizer_filter_ajax( $wp_customize ) {
 		'product_filter_sort_ajax',
 		array(
 			'section' => 'ajax_section',
-			'label'   => 'Filter & sort',
+			'label'   => 'Category: filter & sort',
 			'type'    => 'checkbox',
 		)
 	);
-	/**
-	 * Pagination
-	 */
 	$wp_customize->add_setting(
 		'product_pagination_ajax',
 		array(
@@ -187,7 +170,7 @@ function starter_customizer_filter_ajax( $wp_customize ) {
 		'product_pagination_ajax',
 		array(
 			'section' => 'ajax_section',
-			'label'   => 'Pagination',
+			'label'   => 'Category: pagination',
 			'type'    => 'checkbox',
 		)
 	);

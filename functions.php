@@ -74,3 +74,15 @@ function starter_custom_acf_load( $paths ) {
 	return $paths;
 }
 add_filter( 'acf/settings/load_json', 'starter_custom_acf_load' );
+
+/**
+ * Add analytics code into <head>.
+ *
+ * @since starter 1.2
+ */
+function starter_add_analytics() {
+	// @codingStandardsIgnoreStart can't filtered due unknow what code could be
+	echo get_theme_mod( 'analytics', '' );
+	// @codingStandardsIgnoreEnd
+}
+add_action( 'wp_head', 'starter_add_analytics' );

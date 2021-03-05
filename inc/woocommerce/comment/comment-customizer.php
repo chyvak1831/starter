@@ -13,8 +13,8 @@ $wp_customize->add_section(
 	'comments_section',
 	array(
 		'title'    => 'Comments',
-		'priority' => 3,
-		'panel'    => 'woocommerce',
+		'priority' => 30,
+		'panel'    => 'starter_theme_panel',
 	)
 );
 

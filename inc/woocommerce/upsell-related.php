@@ -19,9 +19,9 @@ function starter_upsell_related_customizer( $wp_customize ) {
 	$wp_customize->add_section(
 		'similar_products_section',
 		array(
-			'title'    => 'Qty upsell/related products',
-			'priority' => 5,
-			'panel'    => 'woocommerce',
+			'title'    => 'Upsell/related products',
+			'priority' => 80,
+			'panel'    => 'starter_theme_panel',
 		)
 	);
 	$wp_customize->add_setting(
@@ -36,7 +36,7 @@ function starter_upsell_related_customizer( $wp_customize ) {
 		'qty_upsell_products',
 		array(
 			'section'     => 'similar_products_section',
-			'label'       => 'Qty upsells',
+			'label'       => 'Quantity upsells',
 			'description' => '0 - hide upsells globally; -1 - display all upsells globally',
 			'type'        => 'number',
 		)
@@ -53,7 +53,7 @@ function starter_upsell_related_customizer( $wp_customize ) {
 		'qty_related_products',
 		array(
 			'section'     => 'similar_products_section',
-			'label'       => 'Qty related products',
+			'label'       => 'Quantity related products',
 			'description' => '0 - hide related products globally',
 			'type'        => 'number',
 		)

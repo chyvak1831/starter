@@ -1,6 +1,6 @@
 <?php
 /**
- * Dev function
+ * Starter theme customizer
  *
  * @package starter
  * @since 1.1
@@ -9,23 +9,95 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Customizer: add Dev panel
+ * Customizer: add Starter theme panel
  *
  * @since starter 1.1
  *
  * @param string $wp_customize .
  */
-function starter_customizer_dev_panel( $wp_customize ) {
+function starter_customizer_startertheme_panel( $wp_customize ) {
 	$wp_customize->add_panel(
-		'dev_panel',
+		'starter_theme_panel',
 		array(
-			'title'       => __( 'Dev functions', 'starter' ),
-			'description' => __( 'Dev functions description', 'starter' ),
-			'priority'    => 1000,
+			'title'       => __( 'Starter Theme', 'starter' ),
+			'description' => __( 'Starter theme features', 'starter' ),
+			'priority'    => 0,
 		)
 	);
 }
-add_action( 'customize_register', 'starter_customizer_dev_panel', 50 );
+add_action( 'customize_register', 'starter_customizer_startertheme_panel', 50 );
+
+/**
+ * Customizer: Add analytics
+ *
+ * @since starter 1.2
+ *
+ * @param string $wp_customize .
+ */
+function starter_customizer_analytics( $wp_customize ) {
+	$wp_customize->add_section(
+		'analytics_section',
+		array(
+			'title'    => __( 'Analytics', 'starter' ),
+			'priority' => 10,
+			'panel'    => 'starter_theme_panel',
+		)
+	);
+	$wp_customize->add_setting(
+		'analytics',
+		array(
+			'type'      => 'theme_mod',
+			'transport' => 'postMessage',
+		)
+	);
+	$wp_customize->add_control(
+		'analytics',
+		array(
+			'section' => 'analytics_section',
+			'label'   => __( 'Insert analytics like Google Analytics, Facebook etc.', 'starter' ),
+			'type'    => 'textarea',
+		)
+	);
+}
+add_action( 'customize_register', 'starter_customizer_analytics', 50 );
+
+/**
+ * Customizer: add ajax section
+ *
+ * @since starter 1.2
+ *
+ * @param object $wp_customize Instance of the WP_Customize_Manager class.
+ */
+function starter_customizer_ajax( $wp_customize ) {
+	$wp_customize->add_section(
+		'ajax_section',
+		array(
+			'title'    => 'Ajax',
+			'priority' => 20,
+			'panel'    => 'starter_theme_panel',
+		)
+	);
+}
+add_action( 'customize_register', 'starter_customizer_ajax', 50 );
+
+/**
+ * Add optimization section
+ *
+ * @since starter 1.1
+ *
+ * @param string $wp_customize .
+ */
+function starter_customizer_optimization( $wp_customize ) {
+	$wp_customize->add_section(
+		'optimization_section',
+		array(
+			'title'    => __( 'Optimization', 'starter' ),
+			'priority' => 50,
+			'panel'    => 'starter_theme_panel',
+		)
+	);
+}
+add_action( 'customize_register', 'starter_customizer_optimization', 50 );
 
 /**
  * Customizer: CSS optimization
@@ -35,14 +107,6 @@ add_action( 'customize_register', 'starter_customizer_dev_panel', 50 );
  * @param string $wp_customize .
  */
 function starter_customizer_css_optimization( $wp_customize ) {
-	$wp_customize->add_section(
-		'css_optimization_section',
-		array(
-			'title'    => __( 'CSS optimization', 'starter' ),
-			'priority' => 1,
-			'panel'    => 'dev_panel',
-		)
-	);
 	$wp_customize->add_setting(
 		'preload_css',
 		array(
@@ -54,8 +118,8 @@ function starter_customizer_css_optimization( $wp_customize ) {
 	$wp_customize->add_control(
 		'preload_css',
 		array(
-			'section' => 'css_optimization_section',
-			'label'   => __( 'Enable preload', 'starter' ),
+			'section' => 'optimization_section',
+			'label'   => __( 'Enable preload CSS', 'starter' ),
 			'type'    => 'checkbox',
 		)
 	);
@@ -70,8 +134,8 @@ function starter_customizer_css_optimization( $wp_customize ) {
 	$wp_customize->add_control(
 		'critical_css',
 		array(
-			'section' => 'css_optimization_section',
-			'label'   => __( 'Enable critical', 'starter' ),
+			'section' => 'optimization_section',
+			'label'   => __( 'Enable critical CSS', 'starter' ),
 			'type'    => 'checkbox',
 		)
 	);
@@ -86,14 +150,6 @@ add_action( 'customize_register', 'starter_customizer_css_optimization', 50 );
  * @param string $wp_customize .
  */
 function starter_customizer_image_optimization( $wp_customize ) {
-	$wp_customize->add_section(
-		'image_optimization_section',
-		array(
-			'title'    => __( 'Image optimization', 'starter' ),
-			'priority' => 2,
-			'panel'    => 'dev_panel',
-		)
-	);
 	$wp_customize->add_setting(
 		'image_webp',
 		array(
@@ -105,7 +161,7 @@ function starter_customizer_image_optimization( $wp_customize ) {
 	$wp_customize->add_control(
 		'image_webp',
 		array(
-			'section' => 'image_optimization_section',
+			'section' => 'optimization_section',
 			'label'   => __( 'Enable WebP', 'starter' ),
 			'type'    => 'checkbox',
 		)
