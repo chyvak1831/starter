@@ -41,8 +41,8 @@ function starter_customizer_recaptcha( $wp_customize ) {
 		'recaptcha_section',
 		array(
 			'title'    => 'Recaptcha',
-			'priority' => 1,
-			'panel'    => 'woocommerce',
+			'priority' => 70,
+			'panel'    => 'starter_theme_panel',
 		)
 	);
 	/**

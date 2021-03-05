@@ -90,6 +90,14 @@ add_filter( 'tiny_mce_before_init', 'starter_tiny_mce_custom_settings' );
  * @param object $wp_customize Instance of the WP_Customize_Manager class.
  */
 function starter_customizer_google_fonts( $wp_customize ) {
+	$wp_customize->add_section(
+		'font_section',
+		array(
+			'title'    => 'Fonts',
+			'priority' => 40,
+			'panel'    => 'starter_theme_panel',
+		)
+	);
 	$wp_customize->add_setting(
 		'google_fonts',
 		array(
@@ -103,7 +111,7 @@ function starter_customizer_google_fonts( $wp_customize ) {
 	$wp_customize->add_control(
 		'google_fonts',
 		array(
-			'section' => 'title_tagline',
+			'section' => 'font_section',
 			'type'    => 'textarea',
 			'label'   => 'Google fonts',
 		)
@@ -119,7 +127,7 @@ function starter_customizer_google_fonts( $wp_customize ) {
 	$wp_customize->add_control(
 		'default_google_font',
 		array(
-			'section' => 'title_tagline',
+			'section' => 'font_section',
 			'label'   => 'Default google font',
 		)
 	);
