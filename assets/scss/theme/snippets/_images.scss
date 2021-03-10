@@ -2,7 +2,10 @@
 	@include flex_align(center);
 	overflow: hidden;
 	max-width: 100%;
-	img {max-height: 100%;}
+	img {
+		max-height: 100%;
+		width: auto;
+	}
 }
 .object_fit img {
 	object-fit: cover;
