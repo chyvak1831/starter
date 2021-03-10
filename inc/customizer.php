@@ -168,3 +168,50 @@ function starter_customizer_image_optimization( $wp_customize ) {
 	);
 }
 add_action( 'customize_register', 'starter_customizer_image_optimization', 50 );
+
+/**
+ * Add product section
+ *
+ * @since starter 1.2
+ *
+ * @param string $wp_customize .
+ */
+function starter_customizer_product( $wp_customize ) {
+	$wp_customize->add_section(
+		'product_section',
+		array(
+			'title'    => __( 'Product', 'starter' ),
+			'priority' => 60,
+			'panel'    => 'starter_theme_panel',
+		)
+	);
+}
+add_action( 'customize_register', 'starter_customizer_product', 50 );
+
+
+/**
+ * Customizer: Product hover image
+ *
+ * @since starter 1.2
+ *
+ * @param string $wp_customize .
+ */
+function starter_customizer_hover_product_image( $wp_customize ) {
+	$wp_customize->add_setting(
+		'hover_product_image',
+		array(
+			'default'   => false,
+			'type'      => 'theme_mod',
+			'transport' => 'postMessage',
+		)
+	);
+	$wp_customize->add_control(
+		'hover_product_image',
+		array(
+			'section' => 'product_section',
+			'label'   => __( 'Enable hover product image', 'starter' ),
+			'type'    => 'checkbox',
+		)
+	);
+}
+add_action( 'customize_register', 'starter_customizer_hover_product_image', 50 );

@@ -54,6 +54,7 @@
 </script>
 
 <script>
+	/*detect ios*/
 	function getMobileOperatingSystemIOS() {
 		var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 		if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
@@ -61,6 +62,9 @@
 		}
 	}
 	getMobileOperatingSystemIOS();
+	/*END detect ios*/
+
+	/*detect android*/
 	function getMobileOperatingSystemAndroid() {
 		var userAgent = navigator.userAgent;
 		if (/Android/.test(userAgent)) {
@@ -68,6 +72,13 @@
 		}
 	}
 	getMobileOperatingSystemAndroid();
+	/*END detect android*/
+
+	/*detect touch*/
+	window.addEventListener( 'touchstart', function() {
+		document.getElementsByTagName( 'html' )[0].className += ' touch_device';
+	});
+	/*END detect touch*/
 </script>
 
 </body>

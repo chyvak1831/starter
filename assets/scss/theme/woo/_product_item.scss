@@ -58,23 +58,9 @@
 }
 
 // hover effect
-.box_product_item {
-	position: relative;
-	&::before {
-		bottom: 0;
-		content: '';
-		cursor: pointer;
-		left: 0;
-		position: absolute;
-		right: 0;
-		top: 0;
-		z-index: 2;
-	}
-}
-.hover_effect .box_product_item {
+html:not(.touch_device) .hover_product_image .box_product_item:hover {
 	box-shadow: 0px 2px 14px rgba(0, 0, 0, 0.1);
 	z-index: 3;
-	&::before {display: none;}
 	.main_img {opacity: 0;}
 	.thumbnail_img {opacity: 1;}
 }
