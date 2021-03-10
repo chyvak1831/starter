@@ -14,9 +14,6 @@ var scripts = [
 	// menus
 	'./assets/js/modules/menus.js',
 
-	// product hover
-	'./assets/js/modules/product_hover.js',
-
 	// recaptcha
 	'./assets/js/modules/recaptcha.js',
 
