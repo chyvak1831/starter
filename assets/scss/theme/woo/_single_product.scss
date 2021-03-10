@@ -9,7 +9,6 @@
 	);
 	$imgAspectRatio: 1.3;
 	@include imgHeightItem($imgBoxWidth, $imgAspectRatio);
-	img {width: auto;}
 }
 .loop_btn {
 	top: 5px;
