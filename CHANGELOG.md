@@ -1,5 +1,23 @@
 # Changelog
 
+# [1.2.0](https://github.com/chyvak1831/starter/releases/tag/v1.2.0) (2021-03-14)
+
+### Fix
+- var fix: search_page var undefined [#58](https://github.com/chyvak1831/starter/issues/58)
+- fix img aspect ratio [#64](https://github.com/chyvak1831/starter/issues/64)
+
+### Tweak
+- rename filter.js into archive.js [#58](https://github.com/chyvak1831/starter/issues/58)
+
+### Enhancement
+- product image hover: rewrite for NOT touch only, added setting for customizer (off by default) [#60](https://github.com/chyvak1831/starter/issues/60)
+- move all customizer settings into one panel [#59](https://github.com/chyvak1831/starter/issues/59)
+
+### New
+- added analytics (like GA) field to customizer [#59](https://github.com/chyvak1831/starter/issues/59)
+- added ajax for filter/sort/pagination (off by default in customizer) [#41](https://github.com/chyvak1831/starter/issues/41)
+
+
 # [1.1.0](https://github.com/chyvak1831/starter/releases/tag/v1.1.0) (2021-02-12)
 
 ### Fix
