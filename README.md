@@ -38,7 +38,7 @@ This theme **keeps your time**: it provides main ecommerce pages ready to easy a
    <strong>Please note #1</strong>: lighthouse metrics described above - it's Starter as is, without any third-party resources. When you'll add google analitycs, gtm etc - it will down and it's ok.  
    <strong>Please note #2</strong>: Performance metric is vary from time to time +-5 points and it's ok.</details> 
 5. [retina ready](https://github.com/chyvak1831/starter/wiki/Images)  
-6. extended by a few **cool features**: [filters](https://github.com/chyvak1831/starter/wiki/Filters), [google fonts](https://github.com/chyvak1831/starter/wiki/Fonts), [comments](https://github.com/chyvak1831/starter/wiki/Comments), [menus](https://github.com/chyvak1831/starter/wiki/Menus).  
+6. extended by a few **cool features** (plugin-less): [ajax filter/sort/pagination](https://github.com/chyvak1831/starter/wiki/Ajax), [filters](https://github.com/chyvak1831/starter/wiki/Filters), [google fonts](https://github.com/chyvak1831/starter/wiki/Fonts), [comments](https://github.com/chyvak1831/starter/wiki/Comments), [menus](https://github.com/chyvak1831/starter/wiki/Menus).  
 
 #### ‼️ 1 reason not to use
 1. frontend plugins (which affects to home, catalog, single) are require **code integration** via shortcodes or functions usually - due **theme does not used hooks** for these pages (i.e. just "install plugin and activate" - does not works)
