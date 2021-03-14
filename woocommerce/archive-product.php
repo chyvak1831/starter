@@ -20,6 +20,8 @@ defined( 'ABSPATH' ) || exit;
 get_header();
 global $wp_query;
 $starter_all_count_item = $wp_query->found_posts;
+
+/*filters - get canonical URL*/
 global $wp;
 if ( '' === get_option( 'permalink_structure' ) ) {
 	$starter_archive_url = remove_query_arg( array( 'page', 'paged', 'product-page' ), add_query_arg( $wp->query_string, '', home_url( $wp->request ) ) );
@@ -28,6 +30,7 @@ if ( '' === get_option( 'permalink_structure' ) ) {
 }
 ?>
 <input class="js_archive_url" type="hidden" value="<?php echo esc_url( $starter_archive_url ); ?>">
+<!-- filters - get canonical URL -->
 
 <?php
 $starter_search_page = '';
@@ -60,7 +63,7 @@ if ( is_search() ) {
 
 	<div class="row">
 
-		<!-- filters -->
+		<!-- filters layout -->
 		<div class="col-xl-5_per_line col-lg-3 col-md-4 d-flex justify-content-between d-md-block js_wrap_filters">
 			<div class="filter_block">
 				<?php if ( wc_get_loop_prop( 'total' ) ) : ?>
@@ -83,7 +86,7 @@ if ( is_search() ) {
 				<a href="#" class="filter_block mobile_filters_btn js_show_filters_btn" role="button"><?php esc_html_e( 'Filters', 'starter' ); ?><span class="ml-1 notifications_text d-none js_all_selected_filter"></span></a>
 			<?php endif; ?>
 		</div>
-		<!-- END filters -->
+		<!-- END filters layout -->
 
 		<div class="col-xl-5_per_line_wrap_4_items col-lg-9 col-md-8"><div class="row">
 		<?php

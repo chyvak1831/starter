@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || exit;
  * @param array $params .
  * @return array $params modified sort array.
  */
-function starter_price_filter_layout( $params ) {
+function starter_filter_layout( $params ) {
 	/*get widget id*/
 	$widget_id = $params[0]['widget_id'];
 	/*get widget title*/
@@ -50,7 +50,7 @@ function starter_price_filter_layout( $params ) {
 	return $params;
 
 }
-add_filter( 'dynamic_sidebar_params', 'starter_price_filter_layout' );
+add_filter( 'dynamic_sidebar_params', 'starter_filter_layout' );
 
 /**
  * Change Price Filter Widget Increment
