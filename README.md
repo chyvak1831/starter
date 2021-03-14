@@ -29,12 +29,12 @@ This theme **keeps your time**: it provides main ecommerce pages ready to easy a
 2. it developed in according with [WPCS](https://github.com/WordPress/WordPress-Coding-Standards) so existing custom **code is secure**  
 3. **load speed ready**: load time for dekstop is **under 1 second**, for is mobile **under 3 seconds**; the weight of homepage and catalog is only **about 300kb**, the weight of single product page is only **about 200kb**.
     <details><summary>Details</summary>
-   <img src="https://raw.githubusercontent.com/wiki/chyvak1831/starter/screenshots/weight_shop.jpg" alt="Weight shop page">
-   <img src="https://raw.githubusercontent.com/wiki/chyvak1831/starter/screenshots/weight_single.jpg" alt="Weight single product page">
+   <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.1.0/screenshots/weight_shop.jpg" alt="Weight shop page">
+   <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.1.0/screenshots/weight_single.jpg" alt="Weight single product page">
    <strong>Please note</strong>: load time and weight of pages described above - it's Starter as is, without any third-party resources. When you'll add google analitycs, gtm etc - it will down and it's ok.</details>  
 4. **lighthouse**: seo, best practice, accessability is **100**! Performance (aka google pagespeed): it's **90-100** for homepage, shop, category, support and simple pages, but for single unknown reason it's 80+ for single page.
     <details><summary>Details</summary>
-   <img src="https://raw.githubusercontent.com/wiki/chyvak1831/starter/screenshots/lighthouse.jpg" alt="Lighthouse">
+   <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.1.0/screenshots/lighthouse.jpg" alt="Lighthouse">
    <strong>Please note #1</strong>: lighthouse metrics described above - it's Starter as is, without any third-party resources. When you'll add google analitycs, gtm etc - it will down and it's ok.  
    <strong>Please note #2</strong>: Performance metric is vary from time to time +-5 points and it's ok.</details> 
 5. [retina ready](https://github.com/chyvak1831/starter/wiki/Images)  
@@ -56,12 +56,12 @@ Probably Starter will works with other plugin versions - but with versions below
   <details><summary>Show details</summary>
   You can to install: <strong>"ACF Pro"</strong> - <em>all features available</em> or <strong>Basic ACF</strong> - <em>is not available Home Page features</em> and you'll not see <em>comment images</em> in admin due gallery and repeater features are not available in free version.<br>
   After installation go to ACF and sync fields.
-  <img src="https://raw.githubusercontent.com/wiki/chyvak1831/starter/screenshots/acf_sync.jpg" alt="ACF sync settings"></details>
+  <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.1.0/screenshots/acf_sync.jpg" alt="ACF sync settings"></details>
 * [Classic Editor](https://wordpress.org/plugins/classic-editor/) >= 1.6
 * [EWWW Image Optimizer](https://wordpress.org/plugins/ewww-image-optimizer/) >= 5.7.0
   <details><summary>Show details</summary>
   After installation go to EWWW setting and enable 'WebP Conversion' & 'Force WebP'.
-  <img src="https://raw.githubusercontent.com/wiki/chyvak1831/starter/screenshots/ewww.jpg" alt="EWWW settings"></details>
+  <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.1.0/screenshots/ewww.jpg" alt="EWWW settings"></details>
 *  [TinyMCE Advanced](https://wordpress.org/plugins/tinymce-advanced/) >= 5.5.0
     <details><summary>Show details</summary>
     After installation copy settings
@@ -87,18 +87,18 @@ Probably Starter will works with other plugin versions - but with versions below
       }
     ```
     Go to settings 
-    <img src="https://raw.githubusercontent.com/wiki/chyvak1831/starter/screenshots/wysiwyg/wysiwyg_01.jpg" alt="TinyMCE settings 1">
-    <img src="https://raw.githubusercontent.com/wiki/chyvak1831/starter/screenshots/wysiwyg/wysiwyg_02.jpg" alt="TinyMCE settings 2">
+    <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.1.0/screenshots/wysiwyg/wysiwyg_01.jpg" alt="TinyMCE settings 1">
+    <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.1.0/screenshots/wysiwyg/wysiwyg_02.jpg" alt="TinyMCE settings 2">
     And paste here
-    <img src="https://raw.githubusercontent.com/wiki/chyvak1831/starter/screenshots/wysiwyg/wysiwyg_03.jpg" alt="TinyMCE settings 3">
+    <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.1.0/screenshots/wysiwyg/wysiwyg_03.jpg" alt="TinyMCE settings 3">
     </details>
 * [WooCommerce](https://wordpress.org/plugins/woocommerce/) >= 4.4.1
 * [Advanced Woo Search](https://wordpress.org/plugins/advanced-woo-search/) >= 2.09 (see [Widgets (search, minicart, wishlist) in menu](https://github.com/chyvak1831/starter/wiki/Menus))
 * [W3 Total Cache](https://wordpress.org/plugins/w3-total-cache/) >= 0.14.4
   <details><summary>Show details</summary>
   W3TC used for optimize page cache and js only.
-  <img src="https://raw.githubusercontent.com/wiki/chyvak1831/starter/screenshots/w3tc_01.jpg" alt="W3TC settings 1">
-  <img src="https://raw.githubusercontent.com/wiki/chyvak1831/starter/screenshots/w3tc_02.jpg" alt="W3TC settings 2"></details>
+  <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.1.0/screenshots/w3tc_01.jpg" alt="W3TC settings 1">
+  <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.1.0/screenshots/w3tc_02.jpg" alt="W3TC settings 2"></details>
 * [Node.js](https://nodejs.org/) = 14.x
     <details><summary>Version's details</summary>
       Tested with versions <a href="https://nodejs.org/download/release/v14.8.0/">v14.8.0</a> and <a href="https://nodejs.org/download/release/v14.15.3/">v14.15.3</a>, but it should works with any 14.x version.<br>
@@ -137,14 +137,14 @@ Open site with port 4000 to get [browserSync](https://browsersync.io/docs/gulp) 
 * [TI WooCommerce Wishlist](https://wordpress.org/plugins/ti-woocommerce-wishlist/) >= 1.21.2 (see [Widgets (search, minicart, wishlist) in menu](https://github.com/chyvak1831/starter/wiki/Menus))
   <details><summary>Show details</summary>
     After installation go to TI Wishlist and setup minimum recommnded settings. You can to play with other settings.
-  <img src="https://raw.githubusercontent.com/wiki/chyvak1831/starter/screenshots/wishlist/wishlist_01.jpg" alt="TI Wishlist settings 1">
-  <img src="https://raw.githubusercontent.com/wiki/chyvak1831/starter/screenshots/wishlist/wishlist_02.jpg" alt="TI Wishlist settings 2">
-  <img src="https://raw.githubusercontent.com/wiki/chyvak1831/starter/screenshots/wishlist/wishlist_03.jpg" alt="TI Wishlist settings 3">
-  <img src="https://raw.githubusercontent.com/wiki/chyvak1831/starter/screenshots/wishlist/wishlist_04.jpg" alt="TI Wishlist settings 4"></details>
+  <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.1.0/screenshots/wishlist/wishlist_01.jpg" alt="TI Wishlist settings 1">
+  <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.1.0/screenshots/wishlist/wishlist_02.jpg" alt="TI Wishlist settings 2">
+  <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.1.0/screenshots/wishlist/wishlist_03.jpg" alt="TI Wishlist settings 3">
+  <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.1.0/screenshots/wishlist/wishlist_04.jpg" alt="TI Wishlist settings 4"></details>
 * [Yoast SEO](https://wordpress.org/plugins/wordpress-seo/) >= 14.8.1
   <details><summary>Show details</summary>
   After installation go to SEO->Search Appearance-> tab Breadcrumbs and enable 'Enable Breadcrumbs'
-  <img src="https://raw.githubusercontent.com/wiki/chyvak1831/starter/screenshots/breadcrumb.jpg" alt="Breadcrumbs Yoast SEO"></details>
+  <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.1.0/screenshots/breadcrumb.jpg" alt="Breadcrumbs Yoast SEO"></details>
 ***
 <br>
 
