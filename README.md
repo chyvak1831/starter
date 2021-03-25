@@ -32,7 +32,7 @@ This theme **keeps your time**: it provides main ecommerce pages ready to easy a
    <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.2.0/screenshots/weight_shop.jpg" alt="Weight shop page">
    <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.2.0/screenshots/weight_single.jpg" alt="Weight single product page">
    <strong>Please note</strong>: load time and weight of pages described above - it's Starter as is, without any third-party resources. When you'll add google analitycs, gtm etc - it will down and it's ok.</details>  
-4. **lighthouse**: seo, best practice, accessability is **100**! Performance (aka google pagespeed): it's **90-100** for homepage, shop, category, support and simple pages, but for single unknown reason it's 80+ for single page.
+4. **lighthouse**: seo, best practice, accessability is **100**! Performance (aka google pagespeed): it's **96-100** for homepage, shop, category, product page, support and simple pages.
     <details><summary>Details</summary>
    <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.2.0/screenshots/lighthouse.jpg" alt="Lighthouse">
    <strong>Please note #1</strong>: lighthouse metrics described above - it's Starter as is, without any third-party resources. When you'll add google analitycs, gtm etc - it will down and it's ok.  
