@@ -124,7 +124,7 @@ function starter_filter_link_markup( $term_html, $term, $link, $count ) {
 		$indicator_color = '<span class="indicator_color" style="background:' . $color . ';"></span>';
 	}
 	$term_html = '<span class="custom-control custom-checkbox">' .
-				 '<input class="custom-control-input" type="checkbox">' .
+				 '<input class="custom-control-input" type="checkbox" aria-label="Filter">' .
 				 '<a class="custom-control-label" rel="nofollow" href="' . esc_url( $link ) . '">' .
 						$indicator_color . '<span class="wrap_text">' . esc_html( $term->name ) . '</span>' .
 						apply_filters( 'woocommerce_layered_nav_count', '<small class="text-muted count">(' . absint( $count ) . ')</small>', $count, $term ) .
