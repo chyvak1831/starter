@@ -1,5 +1,10 @@
 # Changelog
 
+# [1.2.1](https://github.com/chyvak1831/starter/releases/tag/v1.2.1) (2021-03-26)
+
+### Fix
+- fix lighthouse: svg image height/width, filter label [#72](https://github.com/chyvak1831/starter/issues/72)
+
 # [1.2.0](https://github.com/chyvak1831/starter/releases/tag/v1.2.0) (2021-03-14)
 
 ### Fix
