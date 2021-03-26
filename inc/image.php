@@ -33,7 +33,8 @@ add_filter( 'upload_mimes', 'starter_mime_types' );
 function starter_img_func( $atts ) {
 	$img = $atts['img_id'];
 	if ( $img ) {
-		$img_width  = '';
+		$img_width  = 'width="100%"';
+		$img_height = 'height="100%"';
 		$img_markup = '';
 		$img_src    = esc_url( wp_get_attachment_image_url( $img, $atts['img_src'] ) );
 
@@ -51,7 +52,9 @@ function starter_img_func( $atts ) {
 		if ( 0 != wp_get_attachment_image_src( $img, 'full' )[1] ) {
 			$img_width = "width='" . wp_get_attachment_image_src( $img, 'full' )[1] . "'";
 		}
-		$img_height = "height='" . wp_get_attachment_image_src( $img, 'full' )[2] . "'";
+		if ( 0 != wp_get_attachment_image_src( $img, 'full' )[2] ) {
+			$img_height = "height='" . wp_get_attachment_image_src( $img, 'full' )[2] . "'";
+		}
 		return $img_markup . "<img class='img-fluid' loading='lazy' src=\"$img_src\" $img_alt $img_width $img_height>";
 	} else {
 		return wc_placeholder_img( $size = '', $attr = 'class=img-fluid woocommerce-placeholder' );
