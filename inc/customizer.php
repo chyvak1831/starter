@@ -81,32 +81,27 @@ function starter_customizer_ajax( $wp_customize ) {
 add_action( 'customize_register', 'starter_customizer_ajax', 50 );
 
 /**
- * Add optimization section
+ * Add CSS section
  *
  * @since starter 1.1
  *
  * @param string $wp_customize .
  */
-function starter_customizer_optimization( $wp_customize ) {
+function starter_customizer_css( $wp_customize ) {
+	/**
+	 * Add CSS section
+	 */
 	$wp_customize->add_section(
-		'optimization_section',
+		'css_section',
 		array(
-			'title'    => __( 'Optimization', 'starter' ),
-			'priority' => 50,
+			'title'    => __( 'CSS', 'starter' ),
+			'priority' => 35,
 			'panel'    => 'starter_theme_panel',
 		)
 	);
-}
-add_action( 'customize_register', 'starter_customizer_optimization', 50 );
-
-/**
- * Customizer: CSS optimization
- *
- * @since starter 1.1
- *
- * @param string $wp_customize .
- */
-function starter_customizer_css_optimization( $wp_customize ) {
+	/**
+	 * On/off CSS preload
+	 */
 	$wp_customize->add_setting(
 		'preload_css',
 		array(
@@ -118,11 +113,14 @@ function starter_customizer_css_optimization( $wp_customize ) {
 	$wp_customize->add_control(
 		'preload_css',
 		array(
-			'section' => 'optimization_section',
+			'section' => 'css_section',
 			'label'   => __( 'Enable preload CSS', 'starter' ),
 			'type'    => 'checkbox',
 		)
 	);
+	/**
+	 * On/off critical CSS
+	 */
 	$wp_customize->add_setting(
 		'critical_css',
 		array(
@@ -134,84 +132,10 @@ function starter_customizer_css_optimization( $wp_customize ) {
 	$wp_customize->add_control(
 		'critical_css',
 		array(
-			'section' => 'optimization_section',
+			'section' => 'css_section',
 			'label'   => __( 'Enable critical CSS', 'starter' ),
 			'type'    => 'checkbox',
 		)
 	);
 }
-add_action( 'customize_register', 'starter_customizer_css_optimization', 50 );
-
-/**
- * Customizer: Image optimization
- *
- * @since starter 1.1
- *
- * @param string $wp_customize .
- */
-function starter_customizer_image_optimization( $wp_customize ) {
-	$wp_customize->add_setting(
-		'image_webp',
-		array(
-			'default'   => true,
-			'type'      => 'theme_mod',
-			'transport' => 'postMessage',
-		)
-	);
-	$wp_customize->add_control(
-		'image_webp',
-		array(
-			'section' => 'optimization_section',
-			'label'   => __( 'Enable WebP', 'starter' ),
-			'type'    => 'checkbox',
-		)
-	);
-}
-add_action( 'customize_register', 'starter_customizer_image_optimization', 50 );
-
-/**
- * Add product section
- *
- * @since starter 1.2
- *
- * @param string $wp_customize .
- */
-function starter_customizer_product( $wp_customize ) {
-	$wp_customize->add_section(
-		'product_section',
-		array(
-			'title'    => __( 'Product', 'starter' ),
-			'priority' => 60,
-			'panel'    => 'starter_theme_panel',
-		)
-	);
-}
-add_action( 'customize_register', 'starter_customizer_product', 50 );
-
-
-/**
- * Customizer: Product hover image
- *
- * @since starter 1.2
- *
- * @param string $wp_customize .
- */
-function starter_customizer_hover_product_image( $wp_customize ) {
-	$wp_customize->add_setting(
-		'hover_product_image',
-		array(
-			'default'   => false,
-			'type'      => 'theme_mod',
-			'transport' => 'postMessage',
-		)
-	);
-	$wp_customize->add_control(
-		'hover_product_image',
-		array(
-			'section' => 'product_section',
-			'label'   => __( 'Enable hover product image', 'starter' ),
-			'type'    => 'checkbox',
-		)
-	);
-}
-add_action( 'customize_register', 'starter_customizer_hover_product_image', 50 );
+add_action( 'customize_register', 'starter_customizer_css', 50 );

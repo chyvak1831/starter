@@ -90,3 +90,31 @@ function starter_replace_dismiss( $notice ) {
 	return str_replace( 'Dismiss', '<span class="screen-reader-text">Dismiss notification</span>' . starter_get_svg( array( 'icon' => 'bi-remove' ) ), $notice );
 }
 add_filter( 'woocommerce_demo_store', 'starter_replace_dismiss' );
+
+/**
+ * Customizer: Product hover image
+ *
+ * @since starter 1.2
+ *
+ * @param string $wp_customize .
+ */
+function starter_customizer_hover_product_image( $wp_customize ) {
+	$wp_customize->add_setting(
+		'hover_product_image',
+		array(
+			'default'   => false,
+			'type'      => 'theme_mod',
+			'transport' => 'postMessage',
+		)
+	);
+	$wp_customize->add_control(
+		'hover_product_image',
+		array(
+			'section'  => 'image_section',
+			'label'    => __( 'Enable hover product image', 'starter' ),
+			'type'     => 'checkbox',
+			'priority' => 2,
+		)
+	);
+}
+add_action( 'customize_register', 'starter_customizer_hover_product_image', 50 );
