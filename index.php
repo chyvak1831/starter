@@ -1,46 +1,76 @@
 <?php
 /**
- * Default homepage
+ * The main template file
  *
- * @package starter
+ * This is the most generic template file in a WordPress theme
+ * and one of the two required files for a theme (the other being style.css).
+ * It is used to display a page when nothing more specific matches a query.
+ * E.g., it puts together the home page when no home.php file exists.
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ *
+ * @package WordPress
+ * @subpackage starter
+ * @since starter 1.0
  */
 
 get_header();
 ?>
 
 <div class="content_wrapper container" role="main">
+
+	<?php
+	if ( ! is_front_page() ) {
+		the_archive_title( '<h1>', '</h1>' );
+	}
+	?>
 	<div class="row">
 		<?php
-			// Show most recent posts.
-			$starter_recent_posts = new WP_Query(
+		if ( have_posts() ) :
+
+			while ( have_posts() ) :
+				the_post();
+				?>
+				<article class="col-sm-6">
+					<a class="card" href="<?php echo esc_url( get_permalink() ); ?>">
+						<picture class="card-img-top">
+							<?php
+								echo wp_kses(
+									starter_img_func(
+										array(
+											'img_src'   => 'w600',
+											'img_sizes' => '(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 260px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px',
+											'img_id'    => get_post_thumbnail_id(),
+										)
+									),
+									wp_kses_allowed_html( 'post' )
+								);
+							?>
+						</picture>
+						<div class="card-body">
+							<h2 class="card-text h5 text-uppercase"><?php the_title(); ?></h2>
+						</div>
+					</a>
+				</article>
+
+				<?php
+		endwhile;
+			?>
+	</div>
+
+			<?php
+			the_posts_pagination(
 				array(
-					'post_status'    => array( 'publish' ),
-					'has_password'   => false,
-					'post_type'      => 'product',
-					'orderby'        => 'publish_date',
-					'order'          => 'DESK',
-					'posts_per_page' => (int) get_option( 'page_for_posts' ),
-					'tax_query'      => array(
-						'taxonomy' => 'product_visibility',
-						'field'    => 'name',
-						'terms'    => array( 'exclude-from-catalog' ),
-						'operator' => 'NOT IN',
-					),
+					'prev_text'          => starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ) . '<span class="screen-reader-text">' . __( 'Previous page', 'starter' ) . '</span>',
+					'next_text'          => '<span class="screen-reader-text">' . __( 'Next page', 'starter' ) . '</span>' . starter_get_svg( array( 'icon' => 'bi-chevron-right' ) ),
+					'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'starter' ) . ' </span>',
 				)
 			);
-			if ( $starter_recent_posts->have_posts() ) {
-				while ( $starter_recent_posts->have_posts() ) {
-					$starter_recent_posts->the_post();
-					echo "<div class='wraper_product col-xl-5_per_line col-lg-3 col-md-4 col-6 js_product'>";
-					$starter_img_sizes = '(max-width: 575px) calc(50vw - 10px), (max-width: 767px) 260px, (max-width: 991px) 220px, (max-width: 1199px) 220px, 208px';
-					require get_stylesheet_directory() . '/woocommerce-custom/global/product-item.php';
-					echo '</div>';
-				}
-				wp_reset_postdata();
-			}
-			?>
-	</div><!-- .row -->
-</div><!-- .content_wrapper -->
+		endif;
+		?>
+
+</div>
 
 <?php
+
 get_footer();
