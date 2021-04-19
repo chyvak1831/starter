@@ -126,9 +126,9 @@ add_action( 'customize_register', 'starter_customizer_hover_product_image', 50 )
  *
  * @param array $args .
  */
-function ilnp_woo_pagination( $args ) {
+function starter_woo_pagination( $args ) {
 	$args['prev_text'] = starter_get_svg( array( 'icon' => 'bi-chevron-left' ) );
 	$args['next_text'] = starter_get_svg( array( 'icon' => 'bi-chevron-right' ) );
 	return $args;
 }
-add_filter( 'woocommerce_pagination_args', 	'ilnp_woo_pagination' );
+add_filter( 'woocommerce_pagination_args', 'starter_woo_pagination' );
