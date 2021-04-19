@@ -118,3 +118,17 @@ function starter_customizer_hover_product_image( $wp_customize ) {
 	);
 }
 add_action( 'customize_register', 'starter_customizer_hover_product_image', 50 );
+
+/**
+ * Woocommerce pagination prev/next link's icons
+ *
+ * @since starter 2.0
+ *
+ * @param array $args .
+ */
+function ilnp_woo_pagination( $args ) {
+	$args['prev_text'] = starter_get_svg( array( 'icon' => 'bi-chevron-left' ) );
+	$args['next_text'] = starter_get_svg( array( 'icon' => 'bi-chevron-right' ) );
+	return $args;
+}
+add_filter( 'woocommerce_pagination_args', 	'ilnp_woo_pagination' );

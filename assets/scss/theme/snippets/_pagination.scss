@@ -1,11 +1,15 @@
-.woocommerce-pagination {
-	padding: 0 30px;
-	width: 100%;
+ul.page-numbers {
+	margin-left: 30px;
+	margin-right: 30px;
 	a {
 		@include flex_align();
 		border: 1px solid;
 		line-height: 1em;
 		padding: 8px 10px;
 		text-decoration: none!important;
+	}
+	svg {
+		height: 1em;
+		width: 1em;
 	}
 }

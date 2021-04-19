@@ -1,4 +1,4 @@
-.list, .menu_nested_list > .sub-menu, .woocommerce-pagination ul {
+.list, .menu_nested_list > .sub-menu, ul.page-numbers {
 	@include flex_align(flex-start);
 	list-style: none;
 	line-height: 1.7em;
