@@ -33,29 +33,21 @@ add_filter( 'upload_mimes', 'starter_mime_types' );
 function starter_img_func( $atts ) {
 	$img = $atts['img_id'];
 	if ( $img ) {
-		$img_width  = 'width="100%"';
-		$img_height = 'height="100%"';
 		$img_markup = '';
 		$img_src    = esc_url( wp_get_attachment_image_url( $img, $atts['img_src'] ) );
+		$img_srcset = wp_get_attachment_image_srcset( $img );
+		$img_sizes  = "sizes='" . $atts['img_sizes'] . "'";
 
 		if ( get_theme_mod( 'image_webp', true ) && wp_get_attachment_image_srcset( $img ) ) {
-			$img_sizes  = "sizes='" . $atts['img_sizes'] . "'";
-			$img_srcset = str_ireplace( array( '.jpg ', '.jpeg ', '.png ' ), array( '.jpg.webp ', '.jpeg.webp ', '.png.webp ' ), wp_get_attachment_image_srcset( $img ) );
-			$img_markup = "<source type='image/webp' srcset=\"$img_srcset\" $img_sizes>";
+			$img_srcset_webp = str_ireplace( array( '.jpg ', '.jpeg ', '.png ' ), array( '.jpg.webp ', '.jpeg.webp ', '.png.webp ' ), $img_srcset );
+			$img_markup      = "<source type='image/webp' srcset=\"$img_srcset_webp\">";
 		}
 
 		$img_alt = "alt='" . esc_attr( get_post_meta( $img, '_wp_attachment_image_alt', true ) ) . "'";
 		if ( ! get_post_meta( $img, '_wp_attachment_image_alt', true ) ) {
 			$img_alt = "alt='" . get_post( $img )->post_title . "'";
 		}
-
-		if ( 0 != wp_get_attachment_image_src( $img, 'full' )[1] ) {
-			$img_width = "width='" . wp_get_attachment_image_src( $img, 'full' )[1] . "'";
-		}
-		if ( 0 != wp_get_attachment_image_src( $img, 'full' )[2] ) {
-			$img_height = "height='" . wp_get_attachment_image_src( $img, 'full' )[2] . "'";
-		}
-		return $img_markup . "<img class='img-fluid' loading='lazy' src=\"$img_src\" $img_alt $img_width $img_height>";
+		return $img_markup . "<img class='img-fluid' loading='lazy' src=\"$img_src\" srcset=\"$img_srcset\" $img_alt $img_sizes>";
 	} else {
 		return wc_placeholder_img( $size = '', $attr = 'class=img-fluid woocommerce-placeholder' );
 	}
@@ -106,10 +98,11 @@ add_action( 'after_setup_theme', 'starter_custom_thumbnail_size', 999 );
 function starter_wpkses_post_tags( $tags, $context ) {
 	$tags['source'] = array(
 		'srcset'      => true,
-		'data-srcset' => true,
 		'sizes'       => true,
 		'type'        => true,
 	);
+	$tags['img']['sizes'] = true;
+	$tags['img']['srcset'] = true;
 	return $tags;
 }
 add_filter( 'wp_kses_allowed_html', 'starter_wpkses_post_tags', 10, 2 );
