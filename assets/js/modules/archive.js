@@ -158,13 +158,12 @@ $( document ).on( 'click', '.product_filter_sort_ajax .js_reset_filters', functi
 
 
 // ajax pagination
-$( document ).on( 'click', '.product_pagination_ajax .js_wrap_archive .woocommerce-pagination .page-numbers', function( e ) {
+$( document ).on( 'click', '.product_pagination_ajax .js_wrap_archive .woocommerce-pagination a.page-numbers', function( e ) {
 	e.preventDefault();
 	currentLink = $( this ).attr( 'href' );
 	woo_ajax_filter( currentLink, true );
 	var wrapArchive = $( '.js_wrap_archive' ).offset().top;
 	$( 'body, html' ).animate( { scrollTop: wrapArchive }, 500 );
-	e.stopPropagation();
 })
 
 
