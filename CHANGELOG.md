@@ -1,5 +1,12 @@
 # Changelog
 
+# [1.2.2](https://github.com/chyvak1831/starter/releases/tag/v1.2.2) (2021-04-20)
+
+### Fix
+- image: replace inline width/height into sizes due conflict: width has higher priority than width [#89](https://github.com/chyvak1831/starter/issues/89)
+- ajax pagination: fix pagination link selector [#90](https://github.com/chyvak1831/starter/issues/90)
+- filter: fix css selector which cause mobile filter invisible issue [#92](https://github.com/chyvak1831/starter/issues/92)
+
 # [1.2.1](https://github.com/chyvak1831/starter/releases/tag/v1.2.1) (2021-03-26)
 
 ### Fix
