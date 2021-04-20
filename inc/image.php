@@ -96,12 +96,12 @@ add_action( 'after_setup_theme', 'starter_custom_thumbnail_size', 999 );
  * @return array
  */
 function starter_wpkses_post_tags( $tags, $context ) {
-	$tags['source'] = array(
-		'srcset'      => true,
-		'sizes'       => true,
-		'type'        => true,
+	$tags['source']        = array(
+		'srcset' => true,
+		'sizes'  => true,
+		'type'   => true,
 	);
-	$tags['img']['sizes'] = true;
+	$tags['img']['sizes']  = true;
 	$tags['img']['srcset'] = true;
 	return $tags;
 }
