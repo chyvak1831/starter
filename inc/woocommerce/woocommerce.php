@@ -19,11 +19,6 @@ function starter_add_woocommerce_support() {
 add_action( 'after_setup_theme', 'starter_add_woocommerce_support' );
 
 /**
- * Extend comment feature
- */
-require_once get_stylesheet_directory() . '/inc/woocommerce/comment/comment.php';
-
-/**
  * Extend filter feature
  */
 require_once get_stylesheet_directory() . '/inc/woocommerce/filter.php';

@@ -43,9 +43,9 @@ while ( have_posts() ) :
 
 	<?php
 
-	// If comments are open or there is at least one comment, load up the comment template.
-	if ( comments_open() || get_comments_number() ) {
-		comments_template();
+	// If comments are open load up the comment template.
+	if ( comments_open() ) {
+		require get_stylesheet_directory() . '/templates/comment/comment-section.php';
 	}
 
 	// Previous/next post navigation.
