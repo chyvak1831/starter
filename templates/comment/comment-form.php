@@ -15,67 +15,7 @@ $starter_comment_file_max_weight     = get_theme_mod( 'comment_maximum_weight', 
 $starter_comment_recaptcha           = get_theme_mod( 'comment_recaptcha', false );
 $starter_comment_recaptcha_key       = get_theme_mod( 'public_recaptcha_key' );
 $starter_comment_privacy             = get_theme_mod( 'comment_privacy', false );
-$starter_comment_rating_required     = wc_review_ratings_required() ? 'required' : '';
-$starter_comment_low_rating_modal    = get_theme_mod( 'comment_low_rating_modal', false );
-$starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating', false );
 ?>
-<!-- rating -->
-<?php if ( wc_review_ratings_enabled() ) : ?>
-	<div class="col-md-5">
-		<!-- default rating -->
-		<?php if ( ! $starter_comment_extended_rating ) : ?>
-			<ul class="list-unstyled form-control ratings_list js_ratings_list">
-				<li>
-					<span><?php esc_html_e( 'Rating:', 'starter' ); ?></span>
-					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem-width="22">
-						<?php require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php'; ?>
-						<input name="rating" class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
-						<div class="invalid-feedback"><?php esc_html_e( 'Rating is required.', 'starter' ); ?></div>
-					</div>
-					<span class="d-none js_total_ratings"></span>
-				</li>
-			</ul>
-		<?php endif; ?>
-		<!-- END default rating -->
-
-		<!-- extended rating -->
-		<?php if ( $starter_comment_extended_rating ) : ?>
-			<ul class="list-unstyled form-control ratings_list js_ratings_list">
-				<li>
-					<span><?php esc_html_e( 'Price:', 'starter' ); ?></span>
-					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem-width="22">
-						<?php require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php'; ?>
-						<input name="price_rating" id="price_rating_<?php echo esc_attr( $starter_post_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
-						<div class="invalid-feedback"><?php esc_html_e( 'Price rating is required.', 'starter' ); ?></div>
-					</div>
-				</li>
-				<li>
-					<span><?php esc_html_e( 'Quality:', 'starter' ); ?></span>
-					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem-width="22">
-						<?php require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php'; ?>
-						<input name="quality_rating" id="quality_rating_<?php echo esc_attr( $starter_post_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
-						<div class="invalid-feedback"><?php esc_html_e( 'Quality rating is required.', 'starter' ); ?></div>
-					</div>
-				</li>
-				<li>
-					<span><?php esc_html_e( 'Shipping:', 'starter' ); ?></span>
-					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem-width="22">
-						<?php require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php'; ?>
-						<input name="shipping_rating" id="shipping_rating_<?php echo esc_attr( $starter_post_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
-						<div class="invalid-feedback"><?php esc_html_e( 'Shipping rating is required.', 'starter' ); ?></div>
-					</div>
-				</li>
-				<li class="total_row">
-					<span class="text_total_row"><?php esc_html_e( 'Your Overall Rating:', 'starter' ); ?></span>
-					<span class="text_total_rating js_total_ratings"></span>
-				</li>
-			</ul>
-		<?php endif; ?>
-		<!-- END extended rating -->
-	</div>
-<?php endif; ?>
-<!-- END rating -->
-
 
 <!-- comment form -->
 <div class="col-md-7">
@@ -194,40 +134,6 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 	</li>
 </div>
 <!-- END fileupload template -->
-
-
-<!-- low-rating modal -->
-<?php if ( $starter_comment_low_rating_modal ) : ?>
-	<div class="modal low_rating_modal js_low_rating_modal" tabindex="-1" role="dialog" data-minimum-rating="4">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h3 class="modal-title"><?php esc_html_e( 'Sorry to interrupt!', 'starter' ); ?></h3>
-					<button type="button" class="close" data-dismiss="modal" aria-label="<?php esc_attr_e( 'Close', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-remove' ) ); ?></button>
-				</div>
-				<div class="modal-body">
-					<div class="alert alert-secondary" role="alert">
-						<?php echo starter_get_svg( array( 'icon' => 'sad_face' ) ); ?>
-						<p><?php esc_html_e( 'We are extremely sorry to interrupt but it looks like you were not happy with our product!', 'starter' ); ?></p>
-					</div>
-					<p><?php esc_html_e( 'We want you to know that we value you as a customer and it\'s super important to us that you\'re 100% satisfied with your order!', 'starter' ); ?></p>
-					<p><?php esc_html_e( 'Please contact us and give us the opportunity to take care of any issues you may be having. We\'re here for you!', 'starter' ); ?></p>
-				</div>
-				<div class="modal-footer">
-					<div class="row">
-						<div class="col-sm-6 wrap_btn">
-							<a href="#" class="btn btn-outline-primary btn-block btn-md js_comment_submit_anyway" role="button"><?php esc_html_e( 'Submit review anyway', 'starter' ); ?></a>
-						</div>
-						<div class="col-sm-6 wrap_btn">
-							<a href="<?php echo esc_url( wc_get_endpoint_url( 'contact-us', '', site_url() ) ); ?>" class="btn btn-primary btn-block btn-md" role="button"><?php esc_html_e( 'Contact support', 'starter' ); ?></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-<?php endif; ?>
-<!-- END low-rating modal -->
 
 <?php
 	$starter_blueimp_script = array(

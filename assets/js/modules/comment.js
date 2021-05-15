@@ -304,11 +304,11 @@ $( document ).on( 'click', '.js_comment_show_more', function( e ) {
 	e.preventDefault();
 	var btn = $( this );
 	btn.addClass( 'loading' );
-	var product_id = btn.data( 'product_id' );
+	var post_id = btn.data( 'post_id' );
 	var offset = $( '.js_comment_item' ).length;
 	var data = {
 		action: 'comment_load',
-		product_id: product_id,
+		post_id: post_id,
 		offset: offset
 	};
 	$.post( starter_ajax['ajax_url'], data, function( response ) {
