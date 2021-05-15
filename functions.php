@@ -12,6 +12,11 @@
 require_once get_stylesheet_directory() . '/inc/assets.php';
 
 /**
+ * Extend comment feature
+ */
+require_once get_stylesheet_directory() . '/inc/comment/comment.php';
+
+/**
  * Customizer.
  */
 require_once get_stylesheet_directory() . '/inc/customizer.php';
