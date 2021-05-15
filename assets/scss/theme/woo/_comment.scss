@@ -44,15 +44,7 @@
 	picture {cursor: pointer;}
 	.item_img {
 		margin-bottom: 15px;
-		$imgBoxWidth: (
-			xs: 90px,
-			sm: 90px,
-			md: 90px,
-			lg: 90px,
-			xl: 90px
-		);
-		$imgAspectRatio: 1.323529411764706;
-		@include imgHeightItem($imgBoxWidth, $imgAspectRatio);
+		aspect-ratio: 1.3;
 		width: 90px;
 	}
 }

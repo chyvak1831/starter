@@ -10,16 +10,8 @@
 	width: 100%;
 	a {text-decoration: none !important;}
 	.item_img {
+		aspect-ratio: 1;
 		border: 1px solid;
-		$imgBoxWidth: (
-			xs: calc(50vw - 10px),
-			sm: 260px,
-			md: 220px,
-			lg: 220px,
-			xl: 208px
-		);
-		$imgAspectRatio: 1;
-		@include imgHeightItem($imgBoxWidth, $imgAspectRatio);
 	}
 	.thumbnail_img {
 		bottom: 0;
