@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit;
 $starter_comment            = get_comment( $starter_comment_id );
 $starter_comment_author     = $starter_comment->comment_author;
 $starter_comment_thumbnails = get_field( 'comment_image', $starter_comment );
-$starter_comment_img_count  = count( $starter_comment_thumbnails );
+$starter_comment_total_img  = count( $starter_comment_thumbnails );
 ?>
 
 <div class="modal img_modal js_img_modal js_comment_img_modal" tabindex="-1" role="dialog">
@@ -21,7 +21,7 @@ $starter_comment_img_count  = count( $starter_comment_thumbnails );
 					<?php
 						echo esc_html( $starter_comment_author );
 						/* translators: count images of comment. */
-						printf( esc_html( _n( ' Attached %s Photo', ' Attached %s Photos', $starter_comment_img_count, 'starter' ) ), esc_html( $starter_comment_img_count ) );
+						printf( esc_html( _n( ' Attached %s Photo', ' Attached %s Photos', $starter_comment_total_img, 'starter' ) ), esc_html( $starter_comment_total_img ) );
 					?>
 				</h3>
 				<button type="button" class="close" data-dismiss="modal" aria-label="<?php esc_attr_e( 'Close', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-remove' ) ); ?></button>
