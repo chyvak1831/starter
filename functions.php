@@ -9,7 +9,7 @@
 /**
  * Manage assets
  */
-require_once get_stylesheet_directory() . '/inc/assets.php';
+require_once get_stylesheet_directory() . '/inc/assets.php'; 
 
 /**
  * Extend comment feature
