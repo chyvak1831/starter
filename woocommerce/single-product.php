@@ -38,7 +38,7 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		$starter_product_id      = $product->get_id();
 		$starter_short_desc      = has_excerpt() ? get_the_excerpt() : '';
 		$starter_comment_enabled = wc_reviews_enabled() && $product->get_reviews_allowed() ? 1 : 0; /*woo feature - check if all reviews and for certain product enabled*/
-		$starter_comment_count   = get_comments_number();
+		$starter_comment_count   = $product->get_review_count();
 		$starter_comment_rating  = $product->get_average_rating();
 		?>
 
