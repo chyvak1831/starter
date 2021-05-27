@@ -1,5 +1,5 @@
 // remove bad shadow on focus
-.form-control:focus, .custom-select:focus, .custom-control-label:focus:before, .btn:focus {box-shadow: none !important;}
+.form-control:focus, .form-select:focus, .form-check-input:focus, .btn:focus {box-shadow: none !important;}
 
 // remove chrome/firefox input number styles
 input[type="number"] {
@@ -8,7 +8,7 @@ input[type="number"] {
 }
 
 // remove chrome/firefox autofill backgrodund
-.form-control, .custom-select {
+.form-control, .form-select {
 	filter: none;
 	&:-webkit-autofill {box-shadow: 0 0 0 30px white inset !important;}
 }
@@ -19,9 +19,11 @@ input[type="number"] {
 	bottom: 0;
 	height: auto;
 	left: 0;
+	opacity: 0;
 	position: absolute;
 	right: 0;
 	top: 0;
+	width: 100%;
 }
 .file_label {
 	cursor: pointer !important;
@@ -99,7 +101,7 @@ input[type="number"] {
 
 // extend native validation
 .not_required_feedback {display: none !important;}
-.form-control.not_empty, .custom-select.not_empty {
+.form-control.not_empty, .form-select.not_empty {
 	.was-validated &:invalid, &.is-invalid {
 		~ .invalid-feedback, ~ .invalid-tooltip {display: none !important;}
 		~ .not_required_feedback {display: block !important;}

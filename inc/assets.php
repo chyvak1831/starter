@@ -66,7 +66,6 @@ add_action( 'wp_enqueue_scripts', 'starter_enqueues_scripts' );
  * @since starter 1.0
  */
 function starter_enqueues_styles() {
-	wp_enqueue_style( 'plugins', get_template_directory_uri() . '/assets/css/plugins.css', '', filemtime( get_stylesheet_directory() . '/assets/css/plugins.css' ) );
 	wp_enqueue_style( 'styles', get_template_directory_uri() . '/assets/css/styles.css', '', filemtime( get_stylesheet_directory() . '/assets/css/styles.css' ) );
 }
 add_action( 'wp_enqueue_scripts', 'starter_enqueues_styles' );

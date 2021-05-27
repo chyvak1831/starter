@@ -68,7 +68,7 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 										starter_img_func(
 											array(
 												'img_src'   => 'w800',
-												'img_sizes' => '(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px',
+												'img_sizes' => '(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 336px, (max-width: 1199px) 456px, (max-width: 1399px) 546px, 636px',
 												'img_id'    => $starter_img,
 											)
 										),
@@ -93,7 +93,7 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 								?>
 							</picture>
 						</div>
-						<a href="#singleMainImgModal" class="loop_btn" data-toggle="modal" role="button" aria-label="<?php esc_attr_e( 'Image zoom', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-plus-circle' ) ); ?></a>
+						<a href="#singleMainImgModal" class="loop_btn" data-bs-toggle="modal" role="button" aria-label="<?php esc_attr_e( 'Image zoom', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-plus-circle' ) ); ?></a>
 					</div>
 						<?php if ( $starter_thumbnails ) : ?>
 						<div class="wrap_carousel thumbnail_carousel object_fit js_thumbnail_carousel_main_img">
@@ -171,7 +171,7 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 							</li>
 						<?php endif; ?>
 						<li class="tool_link dropdown share_dropdown">
-							<a href="#" class="link_dropdown" data-toggle="dropdown" role="button"><?php echo starter_get_svg( array( 'icon' => 'share' ) ); ?><?php esc_html_e( 'share', 'starter' ); ?></a>
+							<a href="#" class="link_dropdown" data-bs-toggle="dropdown" role="button"><?php echo starter_get_svg( array( 'icon' => 'share' ) ); ?><?php esc_html_e( 'share', 'starter' ); ?></a>
 							<ul class="list-unstyled dropdown-menu dropdown-menu-right">
 								<li>
 									<a class="twitter" href="https://twitter.com/share?url=<?php echo esc_url( get_the_permalink() ); ?>" rel="noopener" target="_blank"><?php echo starter_get_svg( array( 'icon' => 'twitter' ) ); ?><?php esc_html_e( 'Twitter', 'starter' ); ?></a>
@@ -213,7 +213,7 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 							<li>
 								<!-- add to cart -->
 								<div>
-									<?php woocommerce_template_loop_add_to_cart( 'btn_class=btn-outline-primary btn btn-block btn-lg' ); ?>
+									<?php woocommerce_template_loop_add_to_cart( 'btn_class=btn-outline-primary btn btn-lg' ); ?>
 								</div>
 								<!-- END add to cart -->
 							</li>

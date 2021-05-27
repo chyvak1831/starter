@@ -78,7 +78,7 @@ if ( is_search() ) {
 			<?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
 				<div class="filter_block all_filters">
 					<?php do_action( 'woocommerce_sidebar' ); ?>
-					<a href="<?php echo esc_url( $starter_archive_url ); ?>" class="btn btn-outline-primary d-none filter_reset_btn js_reset_filters" role="button"><?php esc_html_e( 'Reset', 'starter' ); ?></a>
+					<a href="<?php echo esc_url( $starter_archive_url ); ?>" class="btn btn-outline-primary btn-sm d-none filter_reset_btn js_reset_filters" role="button"><?php esc_html_e( 'Reset', 'starter' ); ?></a>
 					<a href="#" class="close_filters js_close_filters" role="button" aria-label="<?php esc_attr_e( 'Close filters', 'starter' ); ?>">
 						<?php echo starter_get_svg( array( 'icon' => 'bi-remove' ) ); ?>
 					</a>
@@ -95,7 +95,7 @@ if ( is_search() ) {
 				the_post();
 				global $product;
 				echo "<div class='wraper_product col-xl-3 col-lg-4 col-md-6 col-6 js_product'>";
-				$starter_img_sizes = '(max-width: 575px) calc(50vw - 10px), (max-width: 767px) 260px, (max-width: 991px) 220px, (max-width: 1199px) 220px, 208px';
+				$starter_img_sizes = '(max-width: 575px) calc(50vw - 10px), (max-width: 767px) 260px, (max-width: 991px) 216px, (max-width: 1199px) 216px, (max-width: 1399px) 204px, 240px';
 				require get_stylesheet_directory() . '/woocommerce-custom/global/product-item.php';
 				echo '</div>';
 			}

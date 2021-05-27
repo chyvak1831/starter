@@ -4,10 +4,13 @@
 		font-weight: 600;
 		text-transform: uppercase;
 	}
-	.close svg {
-		font-size: 10px;
-		height: 2em;
-		width: 2em;
+	.btn-close {
+		font-size: 21px;
+		svg {
+			display: block;
+			height: 100%;
+			width: 100%;
+		}
 	}
 
 	// image modal

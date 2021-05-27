@@ -31,15 +31,15 @@ get_header();
 			while ( have_posts() ) :
 				the_post();
 				?>
-				<article class="col-sm-6">
+				<article class="col-sm-6 col-lg-4">
 					<a class="card" href="<?php echo esc_url( get_permalink() ); ?>">
-						<picture class="card-img-top">
+						<picture class="card-img-top overflow-hidden">
 							<?php
 								echo wp_kses(
 									starter_img_func(
 										array(
 											'img_src'   => 'w600',
-											'img_sizes' => '(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 260px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px',
+											'img_sizes' => '(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 258px, (max-width: 991px) 334px, (max-width: 1199px) 294px, (max-width: 1399px) 354px, 414px',
 											'img_id'    => get_post_thumbnail_id(),
 										)
 									),

@@ -25,8 +25,8 @@ function addFormClass() {
 	var $primary_btn = '[name="apply_coupon"], [name="update_cart"], [name="apply_coupon"], [name="save_address"], [name="tinvwl-add-to-cart"], [name="tinvwl-action"]';
 	var $primary_btn_lg = '.woocommerce-form-login__submit, .woocommerce-form-register__submit, .lost_reset_password .woocommerce-Button, .wc-proceed-to-checkout .button, #place_order';
 	$( '.input-text' ).addClass( 'form-control' );
-	$( 'select' ).addClass( 'custom-select' );
-	$( $primary_btn_lg ).addClass( 'btn btn-primary btn-block btn-lg' );
+	$( 'select' ).addClass( 'form-select' );
+	$( $primary_btn_lg ).addClass( 'btn btn-primary btn-lg' );
 	$( $primary_btn ).addClass( 'btn btn-primary' );	
 }
 addFormClass();

@@ -30,10 +30,7 @@
 .woocommerce-widget-layered-nav-list {
 	list-style: none;
 	padding-left: 0;
-	a {
-		padding: 2px 0 0;
-		text-decoration: none !important;
-	}
+	a {text-decoration: none !important;}
 }
 .sidebar_list > li {margin-bottom: 20px;}
 
@@ -77,7 +74,7 @@
 	.widget-title  {
 		pointer-events: none;
 		svg {display: none;}
-		&[data-toggle="collapse"] {display: none;}
+		&[data-bs-toggle="collapse"] {display: none;}
 	}
 	.collapse {display: block;}
 	.dropdown-menu {
@@ -89,12 +86,12 @@
 	}
 }
 @mixin filter_dropdown() {
-	.widget-title[data-toggle="collapse"] {display: none;}
+	.widget-title[data-bs-toggle="collapse"] {display: none;}
 	.collapse {display: block;}
 	.dropdown-menu {padding: 15px 15px 12px;}
 }
 @mixin filter_collapse() {
-	.widget-title[data-toggle="dropdown"] {display: none;}
+	.widget-title[data-bs-toggle="dropdown"] {display: none;}
 	.dropdown-menu {
 		border: none;
 		box-shadow: none;

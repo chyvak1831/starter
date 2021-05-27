@@ -40,7 +40,7 @@ if ( $related_products ) : ?>
 
 					setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
 					echo "<div class='wraper_product js_product'>";
-					$starter_img_sizes = '(max-width: 575px) calc(50vw - 10px), (max-width: 767px) 260px, (max-width: 991px) 220px, (max-width: 1199px) 220px, 208px';
+					$starter_img_sizes = '(max-width: 575px) calc(50vw - 10px), (max-width: 767px) 260px, (max-width: 991px) 220px, (max-width: 1199px) 220px, (max-width: 1399px) 208px, 244px';
 					require get_stylesheet_directory() . '/woocommerce-custom/global/product-item.php';
 					echo '</div>';
 					?>

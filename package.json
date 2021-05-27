@@ -15,9 +15,9 @@
     "gulp-if": "3.0.0",
     "gulp-sass": "4.1.0",
     "gulp-sourcemaps": "3.0.0",
-    "bootstrap": "4.5.3",
-    "popper.js": "1.16.1",
+    "bootstrap": "5.0.1",
+    "@popperjs/core": "2.9.2",
     "slick-carousel": "1.8.1",
-    "blueimp-file-upload": "10.31.0"
+    "blueimp-file-upload": "10.31.0",
   }
 }

@@ -53,7 +53,7 @@ $( document ).on( 'click', '.js_close_filters', function( e ) {
 // check selected filters
 function markSelectedFilter() {
 	$( '.js_wrap_filters .woocommerce-widget-layered-nav-list__item--chosen' ).each( function() {
-		$( this ).find( '.custom-control-input' ).prop( 'checked', true );
+		$( this ).find( '[type="checkbox"]' ).prop( 'checked', true );
 	});
 }
 markSelectedFilter();

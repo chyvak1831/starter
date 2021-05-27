@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
 		<div class="modal-content js_wrap_img_thumbnails">
 			<div class="modal-header">
 				<h3 class="modal-title"><?php the_title(); ?></h3>
-				<button type="button" class="close" data-dismiss="modal" aria-label="<?php esc_attr_e( 'Close', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-remove' ) ); ?></button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?php esc_attr_e( 'Close', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-remove' ) ); ?></button>
 			</div>
 			<div class="modal-body">
 				<picture class="item_img js_main_img">

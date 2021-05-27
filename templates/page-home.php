@@ -46,7 +46,7 @@ get_header();
 											starter_img_func(
 												array(
 													'img_src'   => 'w800',
-													'img_sizes' => '(max-width: 767px) 530px, (max-width: 991px) 700px',
+													'img_sizes' => '(max-width: 767px) 530px, (max-width: 991px) 696px',
 													'img_id'    => $starter_home_image_tablet,
 												)
 											),
@@ -60,7 +60,7 @@ get_header();
 											starter_img_func(
 												array(
 													'img_src'   => 'w1200',
-													'img_sizes' => '(max-width: 1199px) 940px, 1120px',
+													'img_sizes' => '(max-width: 1199px) 936px, (max-width: 1399px) 1116px, 1296px',
 													'img_id'    => $starter_home_image_desktop,
 												)
 											),
@@ -123,7 +123,7 @@ get_header();
 						while ( $starter_loop->have_posts() ) {
 							$starter_loop->the_post();
 							echo "<div class='wraper_product js_product'>";
-							$starter_img_sizes = '(max-width: 575px) calc(50vw - 10px), (max-width: 767px) 260px, (max-width: 991px) 220px, (max-width: 1199px) 220px, 208px';
+							$starter_img_sizes = '(max-width: 575px) calc(50vw - 10px), (max-width: 767px) 260px, (max-width: 991px) 220px, (max-width: 1199px) 220px, (max-width: 1399px) 208px, 244px';
 							require get_stylesheet_directory() . '/woocommerce-custom/global/product-item.php';
 							echo '</div>';
 						}

@@ -34,13 +34,13 @@ function starter_filter_layout( $params ) {
 	$filter_view_desktop = get_field( 'filter_display_type_desktop', 'widget_' . $widget_id );
 	/*modify output html*/
 	$params[0]['before_widget'] .= '<div class="dropdown ' . $filter_view_desktop . ' ' . $filter_view_mobile . '">';
-	$params[0]['before_widget'] .= '<a href="#" class="widget-title" data-toggle="dropdown" data-display="static">' . $widget_title . '<span class="notifications_text js_count_selected_filter d-none">0</span>' . starter_get_svg(
+	$params[0]['before_widget'] .= '<a href="#" class="widget-title" data-bs-toggle="dropdown" data-bs-display="static">' . $widget_title . '<span class="notifications_text js_count_selected_filter d-none">0</span>' . starter_get_svg(
 		array(
 			'icon'  => 'bi-chevron-down',
 			'class' => 'arrow',
 		)
 	) . '</a>';
-	$params[0]['before_widget'] .= '<a href="#collapse_filter_' . $widget_id . '" class="widget-title" data-toggle="collapse">' . $widget_title . '<span class="notifications_text js_count_selected_filter d-none">0</span>' . starter_get_svg(
+	$params[0]['before_widget'] .= '<a href="#collapse_filter_' . $widget_id . '" class="widget-title" data-bs-toggle="collapse">' . $widget_title . '<span class="notifications_text js_count_selected_filter d-none">0</span>' . starter_get_svg(
 		array(
 			'icon'  => 'bi-chevron-down',
 			'class' => 'arrow',
@@ -123,13 +123,11 @@ function starter_filter_link_markup( $term_html, $term, $link, $count ) {
 		$color           = strtolower( get_field( 'color_taxonomy', $term->taxonomy . '_' . $term->term_id ) );
 		$indicator_color = '<span class="indicator_color" style="background:' . $color . ';"></span>';
 	}
-	$term_html = '<span class="custom-control custom-checkbox">' .
-				 '<input class="custom-control-input" type="checkbox" aria-label="Filter">' .
-				 '<a class="custom-control-label" rel="nofollow" href="' . esc_url( $link ) . '">' .
+	$term_html = '<a class="form-check" rel="nofollow" href="' . esc_url( $link ) . '">' .
+				 		'<input class="form-check-input" type="checkbox" aria-label="Filter">' .
 						$indicator_color . '<span class="wrap_text">' . esc_html( $term->name ) . '</span>' .
 						apply_filters( 'woocommerce_layered_nav_count', '<small class="text-muted count">(' . absint( $count ) . ')</small>', $count, $term ) .
-				 '</a>' .
-				 '</span>';
+				 '</a>';
 	return $term_html;
 }
 add_filter( 'woocommerce_layered_nav_term_html', 'starter_filter_link_markup', 10, 4 );

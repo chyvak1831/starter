@@ -3,7 +3,7 @@ svg {
 	font-size: inherit;
 	pointer-events: none;
 }
-a:not(.btn):not(.dropdown-item):not([data-toggle]) {
+a:not(.btn):not(.dropdown-item):not([data-bs-toggle]) {
 	text-decoration: underline;
 	&:hover {text-decoration: none;}
 }

@@ -80,7 +80,7 @@ svg.arrow {
 		> li {flex-grow: 1;}
 	}
 }
-.arrow_hide > [data-toggle="dropdown"], .arrow_hide > [data-toggle="collapse"] {> svg.arrow {display: none;}}
+.arrow_hide > [data-bs-toggle="dropdown"], .arrow_hide > [data-bs-toggle="collapse"] {> svg.arrow {display: none;}}
 .opened_menu_dropdown {z-index: 1001;}
 
 
