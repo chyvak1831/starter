@@ -110,7 +110,7 @@ foreach ( $starter_terms as $starter_term ) {
 
 		<!-- add to cart -->
 		<div class="pl-md-3 pr-md-3">
-			<?php woocommerce_template_loop_add_to_cart( 'btn_class=btn-outline-primary btn btn-block btn-sm' ); ?>
+			<?php woocommerce_template_loop_add_to_cart( 'btn_class=btn btn-outline-primary d-block' ); ?>
 		</div>
 		<!-- END add to cart -->
 

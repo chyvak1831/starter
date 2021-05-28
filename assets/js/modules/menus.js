@@ -2,15 +2,15 @@ jQuery( document ).ready( function( $ ) {
 
 
 // subnav fix dropdown attrs
-$( '.menu-item-has-children.menu_nested_dropdown' ).children( 'a' ).attr( 'data-toggle', 'dropdown' ).attr( 'aria-expanded', 'false' );
+$( '.menu-item-has-children.menu_nested_dropdown' ).children( 'a' ).attr( 'data-bs-toggle', 'dropdown' ).attr( 'aria-expanded', 'false' );
 
 
 // make all dropdowns static
-$( '[data-toggle="dropdown"]' ).attr( 'data-display', 'static' );
+$( '[data-bs-toggle="dropdown"]' ).attr( 'data-bs-display', 'static' );
 
 
 // nested dropdowns fix
-$( '.dropdown-menu [data-toggle="dropdown"]' ).on( 'click', function( e ) {
+$( '.dropdown-menu [data-bs-toggle="dropdown"]' ).on( 'click', function( e ) {
 	if ( $( this ).closest( '.dropdown-menu' ).parents().eq(0).hasClass( 'menu_nested_list' ) ) {
 		return;
 	}
@@ -26,7 +26,7 @@ $( '.dropdown-menu [data-toggle="dropdown"]' ).on( 'click', function( e ) {
 
 
 // make menu-item as collapse
-$( '.menu-item-has-children.menu_nested_collapse' ).children( 'a' ).attr( 'data-toggle', 'collapse' ).attr( 'aria-expanded', 'false' );
+$( '.menu-item-has-children.menu_nested_collapse' ).children( 'a' ).attr( 'data-bs-toggle', 'collapse' ).attr( 'aria-expanded', 'false' );
 $( '.menu-item-has-children.menu_nested_collapse' ).each( function() {
 	var itemId = $( this ).attr( 'id' );
 	$( this ).children( 'a' ).attr( 'href',  '#collapse_' + itemId );

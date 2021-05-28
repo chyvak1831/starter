@@ -24,7 +24,7 @@ $starter_comment_img_count  = count( $starter_comment_thumbnails );
 						printf( esc_html( _n( ' Attached %s Photo', ' Attached %s Photos', $starter_comment_img_count, 'starter' ) ), esc_html( $starter_comment_img_count ) );
 					?>
 				</h3>
-				<button type="button" class="close" data-dismiss="modal" aria-label="<?php esc_attr_e( 'Close', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-remove' ) ); ?></button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?php esc_attr_e( 'Close', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-remove' ) ); ?></button>
 			</div>
 			<div class="modal-body">
 				<picture class="item_img js_main_img">

@@ -23,14 +23,14 @@ $starter_comment_privacy             = get_theme_mod( 'comment_privacy', false )
 	<!-- name & email fields if not logged -->
 		<?php if ( ! is_user_logged_in() ) : ?>
 			<div class="row">
-				<div class="col-md-6 form-group">
+				<div class="col-md-6 mb-3">
 					<div class="js_label_on_input">
 						<input type="text" class="form-control" name="author" id="author_<?php echo esc_attr( $starter_post_id ); ?>" <?php echo esc_attr( $starter_comment_name_email_required ); ?>>
 						<label for="author_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'Your name', 'starter' ); ?></label>
 						<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
 					</div>
 				</div>
-				<div class="col-md-6 form-group">
+				<div class="col-md-6 mb-3">
 					<div class="js_label_on_input">
 						<input type="email" class="form-control" name="email" id="email_<?php echo esc_attr( $starter_post_id ); ?>" <?php echo esc_attr( $starter_comment_name_email_required ); ?>>
 						<label for="email_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'Your Email Address', 'starter' ); ?></label>
@@ -43,7 +43,7 @@ $starter_comment_privacy             = get_theme_mod( 'comment_privacy', false )
 	<!-- END name & email fields if not logged -->
 
 	<!-- comment field -->
-		<div class="form-group js_label_on_input">
+		<div class="mb-3 js_label_on_input">
 			<textarea id="comment_<?php echo esc_attr( $starter_post_id ); ?>" class="form-control" name="comment" cols="45" rows="8" required></textarea>
 			<label for="comment_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'Your Review', 'starter' ); ?></label>
 			<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
@@ -52,7 +52,7 @@ $starter_comment_privacy             = get_theme_mod( 'comment_privacy', false )
 
 	<!-- file field -->
 		<?php if ( $starter_comment_file ) : ?>
-			<div class="form-group">
+			<div class="mb-3">
 				<div class="form-control wrap_file_uploader js_label_on_input js_wrap_upload_files">
 					<input class="custom-file-input js_field_file_upload" data-length="<?php echo esc_attr( $starter_comment_file_max_length ); ?>" data-weight="<?php echo esc_attr( $starter_comment_file_max_weight ); ?>" id="comment_fileupload_<?php echo esc_attr( $starter_post_id ); ?>" type="file" name="files[]" multiple aria-describedby="fileHelp">
 					<label for="comment_fileupload_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'Attachment (Optional)', 'starter' ); ?></label>
@@ -97,9 +97,9 @@ $starter_comment_privacy             = get_theme_mod( 'comment_privacy', false )
 
 	<!-- privacy field -->
 		<?php if ( $starter_comment_privacy ) : ?>
-			<div class="custom-control custom-checkbox mb-4">
-				<input name="privacy_policy" type="checkbox" class="custom-control-input js_comment_privacy" id="check_privacy_policy_<?php echo esc_attr( $starter_post_id ); ?>" required checked>
-				<label class="custom-control-label" for="check_privacy_policy_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'I have read & accept the Privacy Policy', 'starter' ); ?></label>
+			<div class="form-check mb-4">
+				<input class="form-check-input js_comment_privacy" id="check_privacy_policy_<?php echo esc_attr( $starter_post_id ); ?>" name="privacy_policy" type="checkbox" required checked>
+				<label class="form-check-label" for="check_privacy_policy_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'I have read & accept the Privacy Policy', 'starter' ); ?></label>
 				<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
 			</div>
 		<?php endif; ?>
@@ -110,7 +110,7 @@ $starter_comment_privacy             = get_theme_mod( 'comment_privacy', false )
 	<input type="hidden" name="security" value="<?php echo esc_html( wp_create_nonce( 'comment' ) ); ?>">
 	<div class="row">
 		<div class="col-lg-5 col-sm-6">
-			<button type="submit" class="btn btn-block btn-lg btn-primary js_comment_submit">
+			<button type="submit" class="btn btn-lg btn-primary js_comment_submit">
 				<span class="default_txt"><?php esc_html_e( 'Submit review', 'starter' ); ?></span>
 				<span class="loading_txt"><?php esc_html_e( 'Loading...', 'starter' ); ?></span>
 			</button>
