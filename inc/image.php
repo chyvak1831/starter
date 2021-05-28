@@ -34,7 +34,7 @@ function starter_img_func( $atts ) {
 
 		/*add webp image if enabled*/
 		if ( get_theme_mod( 'image_webp', true ) && wp_get_attachment_image_srcset( $img ) ) {
-			$img_webp_srcset = str_ireplace( array( '.jpg ', '.jpeg ', '.png ' ), array( '.jpg.webp ', '.jpeg.webp ', '.png.webp ' ), wp_get_attachment_image_srcset( $img ) );
+			$img_srcset_webp = str_ireplace( array( '.jpg ', '.jpeg ', '.png ' ), array( '.jpg.webp ', '.jpeg.webp ', '.png.webp ' ), $img_srcset );
 			$img_markup      = "<source type='image/webp' srcset=\"$img_webp_srcset\" $img_sizes>";
 		}
 
@@ -104,16 +104,8 @@ add_action( 'after_setup_theme', 'starter_custom_thumbnail_size', 999 );
  * @return array
  */
 function starter_wpkses_post_tags( $tags, $context ) {
-	$tags['img']    = array(
-		'class'   => true,
-		'loading' => true,
-		'src'     => true,
-		'srcset'  => true,
-		'sizes'   => true,
-		'alt'     => true,
-		'width'   => true,
-		'height'  => true,
-	);
+	$tags['img']['sizes']  = true;
+	$tags['img']['srcset'] = true;
 	$tags['source'] = array(
 		'srcset' => true,
 		'sizes'  => true,
