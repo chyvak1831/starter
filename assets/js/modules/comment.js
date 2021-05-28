@@ -339,7 +339,7 @@ $( document ).on( 'click', '.js_comment_img_modal_btn', function( e ) {
 		$( '.js_comment_img_modal' ).modal( 'show' );
 		// call on load img due modal loaded via ajax
 		$( '.js_comment_img_modal .js_main_img img' ).on( 'load', function() {
-			$( this ).closest( '.js_wrap_img_thumbnails' ).find( '.js_main_img' ).removeClass( 'main_loading' ).toggleClass( 'd-none' );
+			$( this ).closest( '.js_wrap_img_thumbnails' ).find( '.js_main_img' ).removeClass( 'main_loading' );
 		});
 	});
 } );

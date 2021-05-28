@@ -1,9 +1,6 @@
 .item_img {
 	@include flex_align(center);
-	img {
-		max-height: 100%;
-		width: auto;
-	}
+	img {max-height: 100%;}
 }
 .object_fit img {
 	object-fit: cover;

@@ -40,7 +40,7 @@ $( document ).on( 'click mouseover', '.js_thumbnail:not(.is_active)', function (
 	e.preventDefault();
 	var $this = $( this );
 	var thumbnail_parent = $this.closest( '.js_wrap_img_thumbnails' );
-	var mainImg = thumbnail_parent.find( '.js_main_img.d-none' );
+	var mainImg = thumbnail_parent.find( '.js_main_img' );
 	thumbnail_parent.find( '.js_main_img' ).addClass( 'main_loading' );
 	thumbnail_parent.find( '.is_active' ).removeClass( 'is_active' );
 	$this.addClass( 'is_active' );
@@ -48,10 +48,9 @@ $( document ).on( 'click mouseover', '.js_thumbnail:not(.is_active)', function (
 	mainImg.find( 'img' ).attr( 'srcset', $this.find( 'img' ).attr( 'srcset' ) );
 	mainImg.find( 'img' ).attr( 'src', $this.find( 'img' ).attr( 'src' ) );
 	mainImg.attr( 'data-zoom-img', $this.attr( 'data-zoom-img' ) );
-});
-// toggle pictures due chrome bug when change srcset
-$( '.js_main_img img' ).on( 'load', function() {
-	$( this ).closest( '.js_wrap_img_thumbnails' ).find( '.js_main_img' ).removeClass( 'main_loading' ).toggleClass( 'd-none' );
+	$( '.js_main_img img' ).on( 'load', function() {
+		$( this ).closest( '.js_wrap_img_thumbnails' ).find( '.js_main_img' ).removeClass( 'main_loading' );
+	});
 });
 
 
@@ -88,7 +87,7 @@ function calcSizeImageModal( selector ) {
 	var windowHeight = window.innerHeight;
 	var modalHeaderHeight = selector.find( '.modal-header' ).outerHeight();
 	var modalFooterHeight = selector.find( '.modal-footer' ).outerHeight();
-	selector.find( '.js_main_img' ).css( 'height', windowHeight - modalHeaderHeight -modalFooterHeight );
+	selector.find( '.js_main_img img' ).css( 'max-height', windowHeight - modalHeaderHeight -modalFooterHeight );
 }
 // init carousel
 function initThumbnailModalCarousel() {

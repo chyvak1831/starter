@@ -27,14 +27,15 @@ function starter_img_func( $atts ) {
 
 	if ( $img ) {
 
-		/*get image src*/
-		$img_src = esc_url( wp_get_attachment_image_url( $img, $atts['img_src'] ) );
+		/*get image sizes, src, srcset*/
+		$img_sizes  = "sizes='" . $atts['img_sizes'] . "'";
+		$img_src    = esc_url( wp_get_attachment_image_url( $img, $atts['img_src'] ) );
+		$img_srcset = wp_get_attachment_image_srcset( $img );
 
 		/*add webp image if enabled*/
 		if ( get_theme_mod( 'image_webp', true ) && wp_get_attachment_image_srcset( $img ) ) {
-			$img_sizes  = "sizes='" . $atts['img_sizes'] . "'";
-			$img_srcset = str_ireplace( array( '.jpg ', '.jpeg ', '.png ' ), array( '.jpg.webp ', '.jpeg.webp ', '.png.webp ' ), wp_get_attachment_image_srcset( $img ) );
-			$img_markup = "<source type='image/webp' srcset=\"$img_srcset\" $img_sizes>";
+			$img_webp_srcset = str_ireplace( array( '.jpg ', '.jpeg ', '.png ' ), array( '.jpg.webp ', '.jpeg.webp ', '.png.webp ' ), wp_get_attachment_image_srcset( $img ) );
+			$img_markup      = "<source type='image/webp' srcset=\"$img_webp_srcset\" $img_sizes>";
 		}
 
 		/*get image alt if existing or add title instead*/
@@ -52,7 +53,7 @@ function starter_img_func( $atts ) {
 		}
 
 		/*return image markup*/
-		return $img_markup . "<img class='img-fluid' loading='lazy' src=\"$img_src\" $img_alt $img_width $img_height>";
+		return $img_markup . "<img class='img-fluid' loading='lazy' src=\"$img_src\" srcset=\"$img_srcset\" $img_sizes $img_alt $img_width $img_height>";
 
 	} else {
 		/*return onepixel placeholder if both image and placeholder ID missing*/
@@ -103,6 +104,16 @@ add_action( 'after_setup_theme', 'starter_custom_thumbnail_size', 999 );
  * @return array
  */
 function starter_wpkses_post_tags( $tags, $context ) {
+	$tags['img']    = array(
+		'class'   => true,
+		'loading' => true,
+		'src'     => true,
+		'srcset'  => true,
+		'sizes'   => true,
+		'alt'     => true,
+		'width'   => true,
+		'height'  => true,
+	);
 	$tags['source'] = array(
 		'srcset' => true,
 		'sizes'  => true,
