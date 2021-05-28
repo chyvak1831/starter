@@ -87,7 +87,7 @@ function calcSizeImageModal( selector ) {
 	var windowHeight = window.innerHeight;
 	var modalHeaderHeight = selector.find( '.modal-header' ).outerHeight();
 	var modalFooterHeight = selector.find( '.modal-footer' ).outerHeight();
-	selector.find( '.js_main_img img' ).css( 'height', windowHeight - modalHeaderHeight -modalFooterHeight );
+	selector.find( '.js_main_img img' ).css( 'max-height', windowHeight - modalHeaderHeight -modalFooterHeight );
 }
 // init carousel
 function initThumbnailModalCarousel() {
