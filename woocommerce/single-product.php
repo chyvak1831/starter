@@ -77,21 +77,6 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 								?>
 							</picture>
 							<div class="js_zoom_element"></div>
-							<!-- toggle pictures due chrome bug when change srcset -->
-							<picture class="single_main_img item_img js_main_img d-none" data-zoom-img="<?php echo esc_attr( wp_get_attachment_image_src( $starter_img, 'w2000' )[0] ); ?>">
-								<?php
-									echo wp_kses(
-										starter_img_func(
-											array(
-												'img_src'   => 'w800',
-												'img_sizes' => '(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 340px, (max-width: 1199px) 460px, 550px',
-												'img_id'    => $starter_img,
-											)
-										),
-										wp_kses_allowed_html( 'post' )
-									);
-								?>
-							</picture>
 						</div>
 						<a href="#singleMainImgModal" class="loop_btn" data-bs-toggle="modal" role="button" aria-label="<?php esc_attr_e( 'Image zoom', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-plus-circle' ) ); ?></a>
 					</div>
