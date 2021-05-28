@@ -41,21 +41,6 @@ $starter_comment_total_img  = count( $starter_comment_thumbnails );
 						);
 						?>
 				</picture>
-				<!-- toggle pictures due chrome bug when change srcset -->
-				<picture class="item_img js_main_img d-none">
-					<?php
-						echo wp_kses(
-							starter_img_func(
-								array(
-									'img_src'   => 'w1600',
-									'img_sizes' => 'calc(100vw - 32px)',
-									'img_id'    => $starter_comment_thumbnails[0],
-								)
-							),
-							wp_kses_allowed_html( 'post' )
-						);
-						?>
-				</picture>
 			</div>
 			<div class="modal-footer">
 				<div class="wrap_carousel thumbnail_carousel object_fit js_thumbnail_carousel_modal">

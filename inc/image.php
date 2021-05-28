@@ -34,20 +34,22 @@ function starter_img_func( $atts ) {
 	$img = $atts['img_id'];
 	if ( $img ) {
 		$img_markup = '';
+		$img_width  = 'width="100%"';
+		$img_height = 'height="100%"';
 		$img_src    = esc_url( wp_get_attachment_image_url( $img, $atts['img_src'] ) );
 		$img_srcset = wp_get_attachment_image_srcset( $img );
 		$img_sizes  = "sizes='" . $atts['img_sizes'] . "'";
 
 		if ( get_theme_mod( 'image_webp', true ) && wp_get_attachment_image_srcset( $img ) ) {
 			$img_srcset_webp = str_ireplace( array( '.jpg ', '.jpeg ', '.png ' ), array( '.jpg.webp ', '.jpeg.webp ', '.png.webp ' ), $img_srcset );
-			$img_markup      = "<source type='image/webp' srcset=\"$img_srcset_webp\">";
+			$img_markup      = "<source type='image/webp' srcset=\"$img_srcset_webp\" $img_sizes>";
 		}
 
 		$img_alt = "alt='" . esc_attr( get_post_meta( $img, '_wp_attachment_image_alt', true ) ) . "'";
 		if ( ! get_post_meta( $img, '_wp_attachment_image_alt', true ) ) {
 			$img_alt = "alt='" . get_post( $img )->post_title . "'";
 		}
-		return $img_markup . "<img class='img-fluid' loading='lazy' src=\"$img_src\" srcset=\"$img_srcset\" $img_alt $img_sizes>";
+		return $img_markup . "<img class='img-fluid' loading='lazy' src=\"$img_src\" srcset=\"$img_srcset\" $img_alt $img_sizes $img_width $img_height>";
 	} else {
 		return wc_placeholder_img( $size = '', $attr = 'class=img-fluid woocommerce-placeholder' );
 	}
