@@ -1,6 +1,9 @@
 // remove bad shadow on focus
 .form-control:focus, .form-select:focus, .form-check-input:focus, .btn:focus {box-shadow: none !important;}
 
+// fix bootstrap floating textarea height
+.form-floating > textarea.form-control {height: auto !important;}
+
 // remove chrome/firefox input number styles
 input[type="number"] {
 	-moz-appearance: textfield !important;
@@ -14,21 +17,21 @@ input[type="number"] {
 }
 
 // custom input file upload
-.wrap_file_uploader {height: auto;}
 .custom-file-input {
-	bottom: 0;
-	height: auto;
+	height: 100%;
 	left: 0;
 	opacity: 0;
 	position: absolute;
-	right: 0;
 	top: 0;
 	width: 100%;
 }
+.file_label_text {
+	opacity: 1 !important;
+	transform: none !important;
+}
 .file_label {
-	cursor: pointer !important;
+	opacity: 1 !important;
 	left: auto !important;
-	margin-top: -2px;
 	right: 0;
 	svg {
 		height: 1em;
@@ -47,7 +50,7 @@ input[type="number"] {
 		border: 1px solid $gray-200;
 		margin: 0 9px 15px 0;
 		width: 250px;
-		&.error_filesize {color: theme-color( 'danger' );}
+		&.error_filesize {color: $danger;}
 	}
 	.preview {
 		flex: none;
@@ -74,48 +77,17 @@ input[type="number"] {
 		}
 	}
 }
-
-// label moving-effect on focus/blur
-.js_label_on_input {
-	position: relative;
-	label {
-		background: $white;
-		color: $gray-600;
-		cursor: text;
-		left: 8px;
-		line-height: 1.429;
-		transition: all 0.3s;
-		padding: 0 7px;
-		position: absolute;
-		top: 9px;
-	}
-	.form-control:focus, .form-control.not_empty, .custom-file-input.not_empty {
-		~ label {
-			color: $primary;
-			font-size: 11px;
-			top: -8px;
-			z-index: 3;
-		}
-	}
+// file validation
+.js_wrap_upload_files.not_empty {height: auto !important;}
+.js_wrap_upload_files.not_empty ~ .file_label_text {
+	opacity: .65 !important;
+	transform: scale(.85) translateY(-.5rem) translateX(.15rem) !important;
 }
-
-// extend native validation
-.not_required_feedback {display: none !important;}
-.form-control.not_empty, .form-select.not_empty {
-	.was-validated &:invalid, &.is-invalid {
-		~ .invalid-feedback, ~ .invalid-tooltip {display: none !important;}
-		~ .not_required_feedback {display: block !important;}
-	}
-}
+.filelength_invalid ~ .filelength_invalid, .filesize_invalid ~ .filesize_invalid {display: block !important;}
 
 // buttons
 .btn {
 	text-transform: uppercase;
-	svg {
-		height: 1em;
-		margin: 0 4px 0 0;
-		width: 1em;
-	}
 	/* add/remove product text */
 	.loading_txt, .added_to_cart_txt {display: none;}
 	&.loading {

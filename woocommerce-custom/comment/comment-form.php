@@ -84,18 +84,17 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 		<?php if ( ! is_user_logged_in() ) : ?>
 			<div class="row">
 				<div class="col-md-6 mb-3">
-					<div class="js_label_on_input">
-						<input type="text" class="form-control" name="author" id="author_<?php echo esc_attr( $starter_post_id ); ?>" <?php echo esc_attr( $starter_comment_name_email_required ); ?>>
+					<div class="form-floating">
+						<input type="text" class="form-control" name="author" placeholder="Name" id="author_<?php echo esc_attr( $starter_post_id ); ?>" <?php echo esc_attr( $starter_comment_name_email_required ); ?>>
 						<label for="author_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'Your name', 'starter' ); ?></label>
 						<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
 					</div>
 				</div>
 				<div class="col-md-6 mb-3">
-					<div class="js_label_on_input">
-						<input type="email" class="form-control" name="email" id="email_<?php echo esc_attr( $starter_post_id ); ?>" <?php echo esc_attr( $starter_comment_name_email_required ); ?>>
+					<div class="form-floating">
+						<input type="email" class="form-control" name="email" placeholder="name@example.com" id="email_<?php echo esc_attr( $starter_post_id ); ?>" <?php echo esc_attr( $starter_comment_name_email_required ); ?>>
 						<label for="email_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'Your Email Address', 'starter' ); ?></label>
-						<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
-						<div class="invalid-feedback not_required_feedback"><?php esc_html_e( 'Please enter a valid email address.', 'starter' ); ?></div>
+						<div class="invalid-feedback"><?php esc_html_e( 'Please enter a valid email address.', 'starter' ); ?></div>
 					</div>
 				</div>
 			</div>
@@ -103,8 +102,8 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 	<!-- END name & email fields if not logged -->
 
 	<!-- comment field -->
-		<div class="mb-3 js_label_on_input">
-			<textarea id="comment_<?php echo esc_attr( $starter_post_id ); ?>" class="form-control" name="comment" cols="45" rows="8" required></textarea>
+		<div class="mb-3 form-floating">
+			<textarea class="form-control" name="comment" placeholder="Comment" id="comment_<?php echo esc_attr( $starter_post_id ); ?>" cols="45" rows="8" required></textarea>
 			<label for="comment_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'Your Review', 'starter' ); ?></label>
 			<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
 		</div>
@@ -113,24 +112,26 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 	<!-- file field -->
 		<?php if ( $starter_comment_file ) : ?>
 			<div class="mb-3">
-				<div class="form-control wrap_file_uploader js_label_on_input js_wrap_upload_files">
-					<input class="custom-file-input js_field_file_upload" data-length="<?php echo esc_attr( $starter_comment_file_max_length ); ?>" data-weight="<?php echo esc_attr( $starter_comment_file_max_weight ); ?>" id="comment_fileupload_<?php echo esc_attr( $starter_post_id ); ?>" type="file" name="files[]" multiple aria-describedby="fileHelp">
-					<label for="comment_fileupload_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'Attachment (Optional)', 'starter' ); ?></label>
+				<div class="form-floating">
+					<div class="form-control js_wrap_upload_files">
+						<input class="custom-file-input js_field_file_upload" data-length="10" data-weight="10" id="comment_fileupload_<?php echo esc_attr( $starter_post_id ); ?>" type="file" name="files[]" multiple aria-describedby="fileHelp">
+						<ul class="list-unstyled list_file_upload js_list_file_upload"></ul>
+					</div>
+					<label class="file_label_text" for="comment_fileupload_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'Attachment (Optional)', 'starter' ); ?></label>
 					<label class="file_label" for="comment_fileupload_<?php echo esc_attr( $starter_post_id ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-image' ) ); ?></label>
-					<ul class="list-unstyled list_file_upload js_list_file_upload"></ul>
-					<div class="invalid-feedback js_filelength_invalid_feedback d-none">
+					<div class="invalid-feedback filelength_invalid d-none">
 						<?php
 							// Translators: $s maximum count of files.
 							echo sprintf( esc_html__( 'Maximum %s files.', 'starter' ), esc_html( $starter_comment_file_max_length ) );
 						?>
 					</div>
-					<div class="invalid-feedback js_filesize_invalid_feedback d-none">
+					<div class="invalid-feedback filesize_invalid d-none">
 						<?php
 							// Translators: $s maximum count of files.
 							echo sprintf( esc_html__( 'File must be less than %sMB.', 'starter' ), esc_html( $starter_comment_file_max_weight ) );
 						?>
 					</div>
-					<div class="invalid-feedback js_type_invalid_feedback d-none">
+					<div class="invalid-feedback filetype_invalid d-none">
 						<?php esc_html_e( 'File type is not valid.', 'starter' ); ?>
 					</div>
 				</div>

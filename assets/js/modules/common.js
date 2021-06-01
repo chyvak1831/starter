@@ -35,24 +35,6 @@ $( document.body ).on( 'updated_cart_totals updated_checkout', function() {
 })
 
 
-// animate label
-function checkIfFormEmpty( formSelector ) {
-	var val = formSelector.val();
-	if ( val != '' ) {
-		formSelector.addClass( 'not_empty' );
-	} else {
-		formSelector.removeClass( 'not_empty' );
-	}
-}
-$( '.js_label_on_input .form-control' ).each( function() {
-	checkIfFormEmpty( $( this ) );
-});
-$( document ).on( 'input', '.js_label_on_input .form-control', function() {
-	$( this ).removeClass( 'is-invalid' );
-	checkIfFormEmpty( $( this ) );
-});
-
-
 // fix aws accessability
 $( '.aws-search-field' ).attr( 'aria-label', 'Search' );
 
