@@ -9,13 +9,13 @@ defined( 'ABSPATH' ) || exit;
 ?>
 
 <div class="modal img_modal js_img_modal" id="singleMainImgModal" tabindex="-1" role="dialog">
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog modal-fullscreen" role="document">
 		<div class="modal-content js_wrap_img_thumbnails">
 			<div class="modal-header">
-				<h3 class="modal-title"><?php the_title(); ?></h3>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?php esc_attr_e( 'Close', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-remove' ) ); ?></button>
+				<h3 class="modal-title h6 text-uppercase"><?php the_title(); ?></h3>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?php esc_attr_e( 'Close', 'starter' ); ?>"></button>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body p-0">
 				<picture class="item_img js_main_img">
 					<?php
 						echo wp_kses(
@@ -70,7 +70,7 @@ defined( 'ABSPATH' ) || exit;
 						<?php endforeach; ?>
 					</div>
 					<button class="btn carousel_control_prev js_carousel_control_prev" aria-label="Carousel scroll previous"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
-					<button class="btn carousel_control_next js_carousel_control_next" aria-label="Carousel scroll next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
+					<button class="btn carousel_control_next js_carousel_control_next" aria-label="Carousel scroll next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-right' ) ); ?></button>
 				</div>
 			</div>
 		</div>

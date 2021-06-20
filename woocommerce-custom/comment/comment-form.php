@@ -166,6 +166,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 		<?php endif; ?>
 	<!-- END privacy field -->
 
+	<input type="hidden" name="product_review" value="">
 	<input type="hidden" name="comment_post_ID" value="<?php echo esc_attr( $starter_post_id ); ?>">
 	<input type="hidden" name="action" value="starter_send_comment">
 	<input type="hidden" name="security" value="<?php echo esc_html( wp_create_nonce( 'comment' ) ); ?>">
@@ -189,7 +190,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 			<div class="file_name js_file_name"></div>
 			<div class="file_size js_file_size" data-size></div>
 		</div>
-		<a href="#" class="cancel remove_thumbnail_img" role="button" aria-label="Remove file">
+		<a href="#" class="btn btn-light cancel remove_thumbnail_img" role="button" aria-label="Remove file">
 			<?php echo starter_get_svg( array( 'icon' => 'bi-remove' ) ); ?>
 		</a>
 	</li>
@@ -203,8 +204,8 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h3 class="modal-title"><?php esc_html_e( 'Sorry to interrupt!', 'starter' ); ?></h3>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?php esc_attr_e( 'Close', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-remove' ) ); ?></button>
+					<h3 class="modal-title h6 text-uppercase"><?php esc_html_e( 'Sorry to interrupt!', 'starter' ); ?></h3>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?php esc_attr_e( 'Close', 'starter' ); ?>"></button>
 				</div>
 				<div class="modal-body">
 					<div class="alert alert-secondary" role="alert">

@@ -1,0 +1,66 @@
+// make input file invisible
+.custom-file-input {
+	height: 100%;
+	left: 0;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+
+// label and icon
+.file_label_text, .file_label {
+	opacity: 1 !important;
+	transform: none !important;
+}
+.file_label {
+	left: auto !important;
+	margin-top: -3px;
+	right: 0;
+	svg {
+		height: 1em;
+		width: 1em;
+	}
+}
+
+
+// file preview list
+.list_file_upload {
+	display: inline-flex;
+	flex-wrap: wrap;
+	margin: 0;
+	position: relative;
+	z-index: 2;
+	li {
+		@include flex_align(space-between, stretch, nowrap);
+		background: $gray-300;
+		border: 1px solid $gray-200;
+		margin: 0 9px 15px 0;
+		width: 250px;
+		&.error_filesize {color: $danger;}
+	}
+	.preview {
+		flex: none;
+		line-height: 0;
+	}
+	.file_info {
+		padding: 15px 7px 0;
+		width: 100px;
+	}
+	.file_name {@include ellipsis(1);}
+	.remove_thumbnail_img {
+		@include flex_align(center);
+		border-radius: 0;
+		flex: 0 0 48px;
+	}
+}
+
+
+// file validation
+.js_wrap_upload_files.not_empty {height: auto !important;}
+.js_wrap_upload_files.not_empty ~ .file_label_text {
+	opacity: .65 !important;
+	transform: scale(.85) translateY(-.5rem) translateX(.15rem) !important;
+}
+.filelength_invalid ~ .filelength_invalid, .filesize_invalid ~ .filesize_invalid {display: block !important;}

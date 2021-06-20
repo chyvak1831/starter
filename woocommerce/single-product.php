@@ -43,7 +43,7 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		?>
 
 
-<div class="content_wrapper single_product" role="main">
+<div class="content_wrapper pt-5 pb-5 single_product" role="main">
 	<!-- breadcrumb -->
 	<div class="container mb-3">
 		<?php
@@ -119,13 +119,13 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 								<?php endforeach; ?>
 							</div>
 							<button class="btn carousel_control_prev js_carousel_control_prev" aria-label="Carousel scroll previous"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
-							<button class="btn carousel_control_next js_carousel_control_next" aria-label="Carousel scroll next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
+							<button class="btn carousel_control_next js_carousel_control_next" aria-label="Carousel scroll next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-right' ) ); ?></button>
 						</div>
 					<?php endif; ?>
+					<!-- image modal -->
+							<?php require get_stylesheet_directory() . '/woocommerce-custom/single-image-modal.php'; ?>
+					<!-- END image modal -->
 				</div>
-				<!-- image modal -->
-						<?php require get_stylesheet_directory() . '/woocommerce-custom/single-image-modal.php'; ?>
-				<!-- END image modal -->
 			<!-- END images -->
 
 
@@ -237,7 +237,7 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 	<?php
 else :
-	echo "<div class='content_wrapper' role='main'><div class='container mt-5'><div class='col-md-5 col-lg-4 col-xl-3'>";
+	echo "<div class='content_wrapper pt-5 pb-5' role='main'><div class='container'><div class='col-md-5 col-lg-4 col-xl-3'>";
 	echo esc_html( get_the_password_form() );
 	echo '</div></div></div>';
 endif;

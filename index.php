@@ -17,7 +17,7 @@
 get_header();
 ?>
 
-<div class="content_wrapper container" role="main">
+<div class="content_wrapper container pt-5 pb-5" role="main">
 
 	<?php
 	if ( ! is_front_page() ) {

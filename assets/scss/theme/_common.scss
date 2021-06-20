@@ -4,16 +4,8 @@ svg {
 	font-size: inherit;
 	pointer-events: none;
 }
-a:not(.btn):not(.dropdown-item):not([data-bs-toggle]) {
-	text-decoration: underline;
-	&:hover {text-decoration: none;}
-}
+a:hover {text-decoration: none;}
 
-// tweak inline large font-size - this font-sizes gets sets customzier
-@media (min-width: 992px) and (max-width: 1199px) {@for $i from 54 through 62 {[style*="font-size: #{$i}px"] {font-size: 53px!important;}}}
-@media (min-width: 768px) and (max-width: 991px) {@for $i from 52 through 62 {[style*="font-size: #{$i}px"] {font-size: 51px!important;}}}
-@media (min-width: 576px) and (max-width: 767px) {@for $i from 50 through 62 {[style*="font-size: #{$i}px"] {font-size: 49px!important;}}}
-@media (max-width: 575px) {@for $i from 48 through 62 {[style*="font-size: #{$i}px"] {font-size: 47px!important;}}}
 
 // title with side-lines
 .title_section {
@@ -22,120 +14,16 @@ a:not(.btn):not(.dropdown-item):not([data-bs-toggle]) {
 	text-align: center;
 	span {
 		background: $white;
-		display: inline-block;
 		padding: 0 32px;
 		position: relative;
-		z-index: 2;
 	}
 	&::before {
 		background: $gray-400;
 		content: '';
 		height: 1px;
-		left: -1000%;
-		position: absolute;
-		right: -1000%;
-		top: 50%;
-	}
-}
-
-// make container side-spacings smaller on small screens
-@media (max-width: 767px) {
-	.container, .container-fluid, [class*="col-"] {
-		padding-left: 5px;
-		padding-right: 5px;
-	}
-	.row {
-		margin-right: -5px;
-		margin-left: -5px;
-	}
-}
-
-// custom grid for large screens - 5 items per row
-@media (min-width: 1200px) {
-	.col-xl-5_per_line {
-		flex: 0 0 20%;
-		max-width: 20%;
-	}
-	.col-xl-5_per_line_wrap_4_items {
-		flex: 0 0 80%;
-		max-width: 80%;
-	}
-}
-
-// loader overlay
-.main_loading {
-	position: relative;
-	&::before {
-		background: $white;
-		bottom: 0;
-		content: '';
 		left: 0;
-		opacity: 0.8;
 		position: absolute;
 		right: 0;
-		top: 0;
-		z-index: 1024;
-	}
-}
-
-// custom scroll
-.custom_scroll, .select2-results__options {
-	overflow-y: auto;
-	overflow-x: hidden;
-	-webkit-overflow-scrolling: touch;
-	&::-webkit-scrollbar {
-		background: transparent;
-		width: 8px;
-	}
-	&::-webkit-scrollbar-track {
-		background: transparent;
-		width: 8px;
-	}
-	&::-webkit-scrollbar-thumb {
-		background: $gray-500;
-		border-radius: 4px;
-		width: 8px;
-	}
-}
-
-// small circle notification
-.notifications_text, .wishlist_products_counter_number {
-	@include flex_align(center);
-	background: $black;
-	border-radius: 100%;
-	color: $white;
-	font-size: 8px;
-	height: 1.78em;
-	line-height: 1em;
-	min-width: 1.78em;
-	padding: 0 4px;
-	&:empty {display: none;}
-}
-
-// sitewide woocommerce notification
-.woocommerce-store-notice {
-	background: $black !important;
-	color: $white;
-	left: 0;
-	margin: 0;
-	padding: 10px 30px 8px;
-	position: fixed;
-	text-align: center;
-	top: 0;
-	width: 100%;
-	z-index: 5;
-	.woocommerce-store-notice__dismiss-link {
-		@include flex_align(center);
-		bottom: 0;
-		color: inherit;
-		font-size: 24px;
-		position: absolute;
-		right: 0;
-		top: 0;
-		width: 50px;
-		svg {
-			height: 1em;
-			width: 1em;
-		}
+		top: 50%;
 	}
 }

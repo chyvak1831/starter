@@ -1,6 +1,129 @@
 @import "account";
-@import "comment";
 @import "filters";
+@import "minicart";
 @import "product_item";
 @import "rating";
+@import "review";
+@import "select2";
 @import "single_product";
+@import "wishlist";
+
+
+// product carousel
+.product_carousel {
+	@media (max-width: 767px) {margin: 0 -5px;}
+	@media (min-width: 768px) {margin: 0 -10px;}
+	.carousel_control_prev, .carousel_control_next {
+		background: $white;
+		box-shadow: 0 0 4px 2px rgba(0,0,0,0.5) !important;
+		margin: -110px 10px 0;
+		@media (max-width: 767px) {margin: -60px 10px 0;}
+	}
+	.wraper_product {
+		padding: 10px;
+		@media (max-width: 767px) {padding: 5px;}
+	}
+}
+// END product carousel
+
+
+// fullwidth carousel
+.fullwidth_carousel {
+	margin-bottom: 6%;
+	.carousel_control_next, .carousel_control_prev {
+		color: $white;
+		font-size: 40px;
+	}
+	picture {
+		width: 100%;
+		// set height for different screens
+		@media (max-width: 575px) {height: calc(calc(100vw - 10px) / 1.5);} // mobile image
+		@media (min-width: 576px) and (max-width: 767px) {height: 265px;}
+		@media (min-width: 768px) and (max-width: 991px) {height: 350px;}
+		@media (min-width: 992px) and (max-width: 1199px) {height: 376px;} // desktop image
+		@media (min-width: 1200px) {height: 448px;} // desktop image - largest screens
+
+		// display image depends on screen size
+		@media (max-width: 575px) {&.carousel_img_mobile {display: block !important;}}
+		@media (min-width: 576px) and (max-width: 991px) {&.carousel_img_tablet {display: block !important;}}
+		@media (min-width: 992px) {&.carousel_img_desktop {display: block !important;}}
+	}
+}
+// END fullwidth carousel
+
+
+
+// custom +- block
+.count_block {
+	@include flex_align(flex-start, stretch, nowrap);
+	border: 1px solid $primary;
+	flex: none;
+	font-size: 10px;
+	.wrap_count_input {
+		position: relative;
+		width: 4.6em;
+	}
+	input {
+		background: $white !important;
+		border: none;
+		border-radius: 0;
+		border-left: 1px solid $primary;
+		border-right: 1px solid $primary;
+		bottom: 0;
+		height: auto;
+		left: 0;
+		padding: 6px 6px 5px 5px;
+		position: absolute;
+		right: 0;
+		text-align: center;
+		top: 0;
+	}
+	.count_block_btn {
+		@include flex_align();
+		flex: none;
+		height: 3.1em;
+		padding: 5px;
+		width: 3.1em;
+		svg {
+			height: 100%;
+			width: 100%;
+		}
+	}
+}
+// END custom +- block
+
+
+// add/remove product text
+.btn {
+	.loading_txt, .added_to_cart_txt {display: none;}
+	&.loading {
+		opacity: 0.5;
+		pointer-events: none;
+		.default_txt, .added_to_cart_txt {display: none !important;}
+		.loading_txt {display: inline !important;}
+	}
+	&.added {
+		.default_txt {display: none;}
+		.added_to_cart_txt {display: inline;}
+	}
+}
+// END add/remove product text
+
+
+
+
+// sitewide woocommerce notification
+.woocommerce-store-notice {
+	left: 0;
+	position: fixed;
+	text-align: center;
+	top: 0;
+	width: 100%;
+	z-index: 5;
+}
+// END sitewide woocommerce notification
+
+
+// minicart notification
+.notifications_text:empty {display: none;}
+// END minicart notification

@@ -8,7 +8,7 @@
 get_header();
 ?>
 
-<div class="content_wrapper" role="main">
+<div class="content_wrapper pt-5 pb-5" role="main">
 	<div class="container">
 		<!-- breadcrumb -->
 		<?php

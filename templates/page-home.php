@@ -8,7 +8,7 @@
 get_header();
 ?>
 
-<div class="content_wrapper" role="main">
+<div class="content_wrapper pt-5 pb-5" role="main">
 	<div class="container">
 		<!-- full slider -->
 		<?php if ( have_rows( 'home_carousel' ) ) : ?>
@@ -77,7 +77,7 @@ get_header();
 					?>
 				</div>
 				<button class="btn carousel_control_prev js_carousel_control_prev" aria-label="Carousel scroll previous"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
-				<button class="btn carousel_control_next js_carousel_control_next" aria-label="Carousel scroll next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
+				<button class="btn carousel_control_next js_carousel_control_next" aria-label="Carousel scroll next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-right' ) ); ?></button>
 			</div>
 		<?php endif; ?>
 		<!-- END full slider -->
@@ -131,7 +131,7 @@ get_header();
 						?>
 					</div>
 					<button class="btn carousel_control_prev js_carousel_control_prev" aria-label="Carousel scroll previous"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
-					<button class="btn carousel_control_next js_carousel_control_next" aria-label="Carousel scroll next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
+					<button class="btn carousel_control_next js_carousel_control_next" aria-label="Carousel scroll next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-right' ) ); ?></button>
 				</div>
 			</div>
 			<?php

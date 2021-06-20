@@ -16,7 +16,7 @@ while ( have_posts() ) :
 	the_post();
 	?>
 
-<div class="content_wrapper" role="main">
+<div class="content_wrapper pt-5 pb-5" role="main">
 	<article class="container service_page">
 
 		<header class="entry-header alignwide">

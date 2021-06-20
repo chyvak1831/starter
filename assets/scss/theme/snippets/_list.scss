@@ -1,15 +1,11 @@
 .list, .menu_nested_list > .sub-menu, ul.page-numbers {
 	@include flex_align(flex-start);
-	list-style: none;
-	line-height: 1.7em;
 	margin-bottom: 0;
 	padding: 0;
 	> li {
 		@include flex_align();
 		flex-wrap: nowrap;
-		list-style: none;
 		flex-shrink: 0;
-		margin: 0;
 		&::after {
 			content: ' ';
 			margin: 0 10px;

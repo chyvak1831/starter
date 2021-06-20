@@ -67,7 +67,7 @@ function starter_woocommerce_header_add_to_cart_fragment( $fragments ) {
 	global $woocommerce;
 	ob_start();
 	?>
-	<span class="notifications_text"><?php echo esc_html( $woocommerce->cart->cart_contents_count ); ?></span>
+	<span class="notifications_text badge rounded-pill bg-dark"><?php echo esc_html( $woocommerce->cart->cart_contents_count ); ?></span>
 	<?php
 	$fragments['.cart-counter .notifications_text'] = ob_get_clean();
 	return $fragments;
@@ -82,7 +82,9 @@ add_filter( 'woocommerce_add_to_cart_fragments', 'starter_woocommerce_header_add
  * @param string $notice .
  */
 function starter_replace_dismiss( $notice ) {
-	return str_replace( 'Dismiss', '<span class="screen-reader-text">Dismiss notification</span>' . starter_get_svg( array( 'icon' => 'bi-remove' ) ), $notice );
+	$notice = str_replace( 'woocommerce-store-notice__dismiss-link', 'woocommerce-store-notice__dismiss-link btn-close' , $notice );
+	$notice = str_replace( 'Dismiss', '<span class="screen-reader-text">Dismiss notification</span>', $notice );
+	return str_replace( 'demo_store', 'alert alert-secondary alert-dismissible', $notice );
 }
 add_filter( 'woocommerce_demo_store', 'starter_replace_dismiss' );
 

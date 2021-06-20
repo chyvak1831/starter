@@ -1,6 +1,5 @@
 ul.page-numbers {
-	margin-left: 30px;
-	margin-right: 30px;
+	margin: 30px;
 	a {
 		@include flex_align();
 		border: 1px solid;
