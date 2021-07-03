@@ -12,7 +12,7 @@
 @import "./node_modules/bootstrap/scss/mixins";
 @import "./node_modules/bootstrap/scss/utilities";
 
-// 3.1 Add-remove colors for color map
+// 3.1 Add-remove colors for color map - see https://getbootstrap.com/docs/5.0/customize/sass/#maps-and-loops
 /* // Remove from color map
 $theme-colors: map-remove($theme-colors, "info", "light", "dark");
 // Create your own map

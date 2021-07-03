@@ -14,12 +14,9 @@
 .carousel_control_prev {left: 0;}
 .carousel_control_next {right: 0;}
 
-
 // make slide item the same height in row
-.slick-track {display: flex;margin: 0;}
-.slick-slide {height: auto;}
-.slick-initialized .slick-slide {display: flex;}
-
+.slick-track {display: flex;}
+.slick-initialized .slick-slide {display: flex;height: auto;}
 
 // thumbnail carousel
 .thumbnail_carousel {

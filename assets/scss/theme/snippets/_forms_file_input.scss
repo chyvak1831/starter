@@ -8,9 +8,8 @@
 	width: 100%;
 }
 
-
 // label and icon
-.file_label_text, .file_label {
+.file_label, .file_label_text {
 	opacity: 1 !important;
 	transform: none !important;
 }
@@ -23,7 +22,6 @@
 		width: 1em;
 	}
 }
-
 
 // file preview list
 .list_file_upload {
@@ -55,7 +53,6 @@
 		flex: 0 0 48px;
 	}
 }
-
 
 // file validation
 .js_wrap_upload_files.not_empty {height: auto !important;}

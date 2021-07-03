@@ -27,7 +27,7 @@ while ( have_posts() ) :
 						starter_img_func(
 							array(
 								'img_src'   => 'w600',
-								'img_sizes' => '100vw',
+								'img_sizes' => '600px',
 								'img_id'    => get_post_thumbnail_id(),
 							)
 						),

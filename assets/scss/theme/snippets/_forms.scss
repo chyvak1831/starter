@@ -1,10 +1,8 @@
-// remove bad shadow on focus
+// remove ugly shadow on focus
 .form-control:focus, .form-select:focus, .form-check-input:focus, .btn:focus {box-shadow: none !important;}
 
-
 // fix bootstrap floating textarea height
-.form-floating > textarea.form-control {height: auto !important;}
-
+.form-floating > textarea.form-control {height: auto;}
 
 // remove chrome/firefox input number styles
 input[type="number"] {
@@ -12,13 +10,11 @@ input[type="number"] {
 	&::-webkit-inner-spin-button, &::-webkit-outer-spin-button {-webkit-appearance: none;}
 }
 
-
 // remove chrome/firefox autofill backgrodund
 .form-control, .form-select {
 	filter: none;
 	&:-webkit-autofill {box-shadow: 0 0 0 30px white inset !important;}
 }
-
 
 // buttons
 .btn {
