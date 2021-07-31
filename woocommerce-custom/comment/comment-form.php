@@ -216,13 +216,9 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 					<p><?php esc_html_e( 'Please contact us and give us the opportunity to take care of any issues you may be having. We\'re here for you!', 'starter' ); ?></p>
 				</div>
 				<div class="modal-footer">
-					<div class="row">
-						<div class="col-sm-6 wrap_btn">
-							<a href="#" class="btn btn-outline-primary js_comment_submit_anyway" role="button"><?php esc_html_e( 'Submit review anyway', 'starter' ); ?></a>
-						</div>
-						<div class="col-sm-6 wrap_btn">
-							<a href="<?php echo esc_url( wc_get_endpoint_url( 'contact-us', '', site_url() ) ); ?>" class="btn btn-primary" role="button"><?php esc_html_e( 'Contact support', 'starter' ); ?></a>
-						</div>
+					<div class="d-grid gap-2 w-100">
+						<a href="#" class="btn btn-outline-primary js_comment_submit_anyway" role="button"><?php esc_html_e( 'Submit review anyway', 'starter' ); ?></a>
+						<a href="<?php echo esc_url( wc_get_endpoint_url( 'contact-us', '', site_url() ) ); ?>" class="btn btn-primary" role="button"><?php esc_html_e( 'Contact support', 'starter' ); ?></a>
 					</div>
 				</div>
 			</div>

@@ -76,14 +76,17 @@ if ( is_search() ) {
 				<?php endif; ?>
 			</div>
 			<?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
-				<div class="filter_block all_filters">
-					<?php do_action( 'woocommerce_sidebar' ); ?>
-					<a href="<?php echo esc_url( $starter_archive_url ); ?>" class="btn btn-outline-primary btn-sm d-none filter_reset_btn js_reset_filters" role="button"><?php esc_html_e( 'Reset', 'starter' ); ?></a>
-					<a href="#" class="close_filters js_close_filters" role="button" aria-label="<?php esc_attr_e( 'Close filters', 'starter' ); ?>">
-						<?php echo starter_get_svg( array( 'icon' => 'bi-remove' ) ); ?>
-					</a>
+				<div class="filter_block all_filters offcanvas offcanvas-start" id="filtersSection" aria-labelledby="filtersSectionLabel">
+					<div class="offcanvas-header d-md-none">
+						<h5 class="offcanvas-title" id="filtersSectionLabel">Filters</h5>
+						<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+					</div>
+					<div class="offcanvas-body">
+						<?php do_action( 'woocommerce_sidebar' ); ?>
+						<a href="<?php echo esc_url( $starter_archive_url ); ?>" class="btn btn-outline-primary btn-sm d-none filter_reset_btn js_reset_filters" role="button"><?php esc_html_e( 'Reset', 'starter' ); ?></a>
+					</div>
 				</div>
-				<a href="#" class="filter_block mobile_filters_btn js_show_filters_btn" role="button"><?php esc_html_e( 'Filters', 'starter' ); ?><span class="ml-1 notifications_text badge rounded-pill bg-dark d-none js_all_selected_filter"></span></a>
+				<a href="#filtersSection" class="filter_block mobile_filters_btn" data-bs-toggle="offcanvas" role="button"><?php esc_html_e( 'Filters', 'starter' ); ?><span class="ml-1 notifications_text badge rounded-pill bg-dark d-none js_all_selected_filter"></span></a>
 			<?php endif; ?>
 		</div>
 		<!-- END filters layout -->

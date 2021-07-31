@@ -1,17 +1,15 @@
 .widget_shopping_cart {padding: 0 10px;}
 .woocommerce-mini-cart {
-	list-style: none;
 	margin-bottom: 7px;
 	padding: 0;
 }
 .woocommerce-mini-cart-item {
-	align-items: center;
 	border-bottom: 1px solid $gray-400;
-	display: flex;
-	padding: 7px 0;
+	@include flex_align(flex-start, center, nowrap);
 	a {
 		max-width: 180px;
 		overflow: hidden;
+		text-decoration: none;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 	}
@@ -31,4 +29,4 @@
 		white-space: nowrap;
 	}
 }
-.button.checkout {margin-left: 10px;}
+.woocommerce-mini-cart__buttons .button.checkout {margin-left: 10px;}

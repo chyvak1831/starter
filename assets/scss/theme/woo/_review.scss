@@ -1,26 +1,15 @@
-// comments
+// review list & extended rating table
 .comment_list {
 	.wrap_rating_list {font-size: 16px;}
-	.dropdown-menu {
-		overflow: hidden;
-		padding: 0;
-	}
+	.dropdown-menu {padding: 0;}
 }
 .table_ratings {
-	font-size: 13px;
-	font-weight: 600;
 	margin-bottom: 0;
-	tr:nth-child(even) td {background: $gray-100;}
 	.wrap_rating_list {font-size: 20px;}
 }
 
-// comment form
+// review form
 .ratings_list {
-	box-shadow: none;
-	font-size: 14px;
-	font-weight: 600;
-	height: auto;
-	margin-bottom: 20px;
 	padding: 0;
 	> li {
 		@include flex_align(space-between, center, nowrap);
@@ -33,7 +22,7 @@
 	}
 }
 
-// comment low-rating modal
+// review low-rating modal
 .low_rating_modal {
 	.alert svg {
 		height: 3em;
@@ -41,5 +30,5 @@
 		margin-right: 20px;
 		width: 3em;
 	}
-	.modal-footer .row {width: 100%;}
+	.modal-footer .row {width: 100%;} //???
 }

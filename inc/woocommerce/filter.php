@@ -46,7 +46,7 @@ function starter_filter_layout( $params ) {
 			'class' => 'arrow',
 		)
 	) . '</a>';
-	$params[0]['before_widget'] .= '<div class="collapse" id="collapse_filter_' . $widget_id . '"><div class="dropdown-menu">';
+	$params[0]['before_widget'] .= '<div class="dropdown-menu"><div class="collapse" id="collapse_filter_' . $widget_id . '">';
 	return $params;
 
 }

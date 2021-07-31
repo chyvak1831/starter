@@ -15,7 +15,7 @@ get_header();
 
 
 <div class="content_wrapper pt-5 pb-5" role="main">
-	<div class="container service_page">
+	<div class="container">
 		<!-- breadcrumb -->
 		<?php
 		if ( function_exists( 'yoast_breadcrumb' ) ) {

@@ -44,7 +44,7 @@ $starter_comment_average_rating  = ( $starter_comment_price_rating + $starter_co
 			?>
 			<a href="#" class="ml-1" data-bs-toggle="dropdown"><?php echo esc_html( number_format( round( $starter_comment_average_rating, 1 ), 1, '.', '' ) ); ?></a>
 			<div class="dropdown-menu">
-				<table class="table table_ratings">
+				<table class="table table-striped table_ratings">
 					<tr>
 						<td><?php echo esc_html_e( 'Price:', 'starter' ); ?></td>
 						<td>

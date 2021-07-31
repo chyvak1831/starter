@@ -97,13 +97,11 @@ foreach ( $starter_terms as $starter_term ) {
 			<!-- END rating -->
 
 			<!-- price -->
-			<div class="wrap_price">
-				<?php if ( $product->is_in_stock() ) : ?>
-					<?php wc_get_template( 'loop/price.php' ); ?>
-				<?php else : ?>
-					<span><?php esc_html_e( 'Sold Out', 'starter' ); ?></span>
-				<?php endif; ?>
-			</div>
+			<?php if ( $product->is_in_stock() ) : ?>
+				<?php wc_get_template( 'loop/price.php' ); ?>
+			<?php else : ?>
+				<span><?php esc_html_e( 'Sold Out', 'starter' ); ?></span>
+			<?php endif; ?>
 			<!-- END price -->
 
 		</div>
