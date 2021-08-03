@@ -14,19 +14,19 @@ $starter_comment_img_count  = count( $starter_comment_thumbnails );
 ?>
 
 <div class="modal img_modal js_img_modal js_comment_img_modal" tabindex="-1" role="dialog">
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog modal-fullscreen" role="document">
 		<div class="modal-content js_wrap_img_thumbnails">
 			<div class="modal-header">
-				<h3 class="modal-title">
+				<h3 class="modal-title h6 text-uppercase">
 					<?php
 						echo esc_html( $starter_comment_author );
 						/* translators: count images of comment. */
 						printf( esc_html( _n( ' Attached %s Photo', ' Attached %s Photos', $starter_comment_img_count, 'starter' ) ), esc_html( $starter_comment_img_count ) );
 					?>
 				</h3>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?php esc_attr_e( 'Close', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-remove' ) ); ?></button>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?php esc_attr_e( 'Close', 'starter' ); ?>"></button>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body p-0">
 				<picture class="item_img js_main_img">
 					<?php
 						echo wp_kses(
@@ -65,7 +65,7 @@ $starter_comment_img_count  = count( $starter_comment_thumbnails );
 						<?php endforeach; ?>
 					</div>
 					<button class="btn carousel_control_prev js_carousel_control_prev" aria-label="Carousel scroll previous"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
-					<button class="btn carousel_control_next js_carousel_control_next" aria-label="Carousel scroll next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
+					<button class="btn carousel_control_next js_carousel_control_next" aria-label="Carousel scroll next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-right' ) ); ?></button>
 				</div>
 			</div>
 		</div>

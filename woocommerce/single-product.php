@@ -43,7 +43,7 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		?>
 
 
-<div class="content_wrapper single_product" role="main">
+<div class="content_wrapper pt-5 pb-5" role="main">
 	<!-- breadcrumb -->
 	<div class="container mb-3">
 		<?php
@@ -119,22 +119,20 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 								<?php endforeach; ?>
 							</div>
 							<button class="btn carousel_control_prev js_carousel_control_prev" aria-label="Carousel scroll previous"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
-							<button class="btn carousel_control_next js_carousel_control_next" aria-label="Carousel scroll next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
+							<button class="btn carousel_control_next js_carousel_control_next" aria-label="Carousel scroll next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-right' ) ); ?></button>
 						</div>
 					<?php endif; ?>
+					<!-- image modal -->
+							<?php require get_stylesheet_directory() . '/woocommerce-custom/single-image-modal.php'; ?>
+					<!-- END image modal -->
 				</div>
-				<!-- image modal -->
-						<?php require get_stylesheet_directory() . '/woocommerce-custom/single-image-modal.php'; ?>
-				<!-- END image modal -->
 			<!-- END images -->
 
 
 			<!-- right part -->
-				<div class="col-md-6 single_main_content">
-					<div class="single_top_titles">
-						<h2><?php the_title(); ?></h2>
-						<h1 class="h6"><?php echo esc_html( $starter_short_desc ); ?></h1>
-					</div>
+				<div class="col-md-6">
+					<h2><?php the_title(); ?></h2>
+					<h1 class="h6 "><?php echo esc_html( $starter_short_desc ); ?></h1>
 					<ul class="list single_tool_list">
 							<?php if ( $starter_comment_enabled ) : ?>
 								<?php if ( $starter_comment_count ) : ?>
@@ -172,7 +170,7 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 					</ul>
 
 					<!-- price -->
-					<div class="wrap_price">
+					<div class="fs-2">
 							<?php if ( $product->is_in_stock() ) : ?>
 								<?php wc_get_template( 'loop/price.php' ); ?>
 						<?php else : ?>
@@ -189,10 +187,10 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 						<ul class="list mt-3">
 							<li>
-								<div class="count_block js_count_add_product">
-									<a href="#" class="count_block_btn js_minus_count_btn_product" role="button" aria-label="<?php esc_attr_e( 'Minus product', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-minus' ) ); ?></a>
-									<div class="wrap_count_input"><input aria-label="count add to cart" type="number" class="form-control" value="1" readonly></div>
-									<a href="#" class="count_block_btn js_plus_count_btn_product" role="button" aria-label="<?php esc_attr_e( 'Plus product', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-plus' ) ); ?></a>
+								<div class="btn-group count_block single_count_block js_count_add_product">
+									<a href="#" class="btn btn-outline-primary btn-lg js_minus_count_btn_product" role="button" aria-label="<?php esc_attr_e( 'Minus product', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-minus' ) ); ?></a>
+									<div class="btn-group"><input aria-label="count add to cart" type="number" class="form-control form-control-lg" value="1" readonly></div>
+									<a href="#" class="btn btn-outline-primary btn-lg js_plus_count_btn_product" role="button" aria-label="<?php esc_attr_e( 'Plus product', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-plus' ) ); ?></a>
 								</div>
 							</li>
 							<li>
@@ -237,7 +235,7 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 	<?php
 else :
-	echo "<div class='content_wrapper' role='main'><div class='container mt-5'><div class='col-md-5 col-lg-4 col-xl-3'>";
+	echo "<div class='content_wrapper pt-5 pb-5' role='main'><div class='container'><div class='col-md-5 col-lg-4 col-xl-3'>";
 	echo esc_html( get_the_password_form() );
 	echo '</div></div></div>';
 endif;

@@ -27,7 +27,7 @@ add_action( 'admin_head', 'starter_remove_add_media_buttons' );
  * @return array The custom font-sizes.
  */
 function starter_tiny_mce_fontsize( $mce_init ) {
-	$mce_init['fontsize_formats'] = '9px 10px 11px 12px 13px 14px 15px 16px 17px 18px 19px 20px 21px 22px 23px 24px 25px 26px 27px 28px 29px 30px 31px 32px 33px 34px 35px 36px 37px 38px 39px 40px 41px 42px 43px 44px 45px 46px 47px 48px 49px 50px 51px 52px 53px 54px 55px 56px 57px 58px 59px 60px 61px 62px';
+	$mce_init['fontsize_formats'] = '9px 10px 11px 12px 13px 14px 15px 16px 17px 18px 19px 20px 21px 22px 23px 24px 25px 26px 27px 28px 29px 30px 31px 32px 33px 34px 35px 36px 37px 38px 39px 40px 41px 42px 43px 44px 45px';
 	return $mce_init;
 }
 add_filter( 'tiny_mce_before_init', 'starter_tiny_mce_fontsize' );

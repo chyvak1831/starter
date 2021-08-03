@@ -34,19 +34,19 @@ function starter_filter_layout( $params ) {
 	$filter_view_desktop = get_field( 'filter_display_type_desktop', 'widget_' . $widget_id );
 	/*modify output html*/
 	$params[0]['before_widget'] .= '<div class="dropdown ' . $filter_view_desktop . ' ' . $filter_view_mobile . '">';
-	$params[0]['before_widget'] .= '<a href="#" class="widget-title" data-bs-toggle="dropdown" data-bs-display="static">' . $widget_title . '<span class="notifications_text js_count_selected_filter d-none">0</span>' . starter_get_svg(
+	$params[0]['before_widget'] .= '<a href="#" class="widget-title" data-bs-toggle="dropdown" data-bs-display="static">' . $widget_title . '<span class="notifications_text badge rounded-pill bg-dark js_count_selected_filter d-none">0</span>' . starter_get_svg(
 		array(
 			'icon'  => 'bi-chevron-down',
 			'class' => 'arrow',
 		)
 	) . '</a>';
-	$params[0]['before_widget'] .= '<a href="#collapse_filter_' . $widget_id . '" class="widget-title" data-bs-toggle="collapse">' . $widget_title . '<span class="notifications_text js_count_selected_filter d-none">0</span>' . starter_get_svg(
+	$params[0]['before_widget'] .= '<a href="#collapse_filter_' . $widget_id . '" class="widget-title" data-bs-toggle="collapse">' . $widget_title . '<span class="notifications_text badge rounded-pill bg-dark js_count_selected_filter d-none">0</span>' . starter_get_svg(
 		array(
 			'icon'  => 'bi-chevron-down',
 			'class' => 'arrow',
 		)
 	) . '</a>';
-	$params[0]['before_widget'] .= '<div class="collapse" id="collapse_filter_' . $widget_id . '"><div class="dropdown-menu">';
+	$params[0]['before_widget'] .= '<div class="dropdown-menu"><div class="collapse" id="collapse_filter_' . $widget_id . '">';
 	return $params;
 
 }

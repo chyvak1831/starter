@@ -26,7 +26,7 @@ $starter_hover_product_image = get_theme_mod( 'hover_product_image', false ) ? '
 	<header class="main_header">
 		<!-- TOP NAV AREA -->
 			<?php if ( has_nav_menu( 'header_top_nav' ) ) : ?>
-				<div class="header_top_nav">
+				<div class="header_top_nav border-bottom p-1">
 					<div class="container">
 						<nav aria-label="<?php esc_attr_e( 'Header Top Nav', 'starter' ); ?>">
 							<?php
@@ -45,7 +45,7 @@ $starter_hover_product_image = get_theme_mod( 'hover_product_image', false ) ? '
 
 		<!-- TOP MOBILE NAV AREA -->
 			<?php if ( has_nav_menu( 'header_top_nav_mobile' ) ) : ?>
-				<nav class="header_top_nav_mobile" aria-label="<?php esc_attr_e( 'Header Top Mobile Nav', 'starter' ); ?>">
+				<nav class="header_top_nav_mobile border-bottom p-1" aria-label="<?php esc_attr_e( 'Header Top Mobile Nav', 'starter' ); ?>">
 					<?php
 						wp_nav_menu(
 							array(
@@ -60,7 +60,7 @@ $starter_hover_product_image = get_theme_mod( 'hover_product_image', false ) ? '
 
 		<!-- MAIN NAV AREA -->
 			<?php if ( has_nav_menu( 'header_main_nav' ) ) : ?>
-				<div class="header_main_nav">
+				<div class="header_main_nav border-bottom p-3">
 					<div class="container">
 						<nav class="jsInnerNav" aria-label="<?php esc_attr_e( 'Header Main Nav', 'starter' ); ?>">
 							<?php
@@ -79,7 +79,7 @@ $starter_hover_product_image = get_theme_mod( 'hover_product_image', false ) ? '
 
 		<!-- MOBILE NAV AREA -->
 			<?php if ( has_nav_menu( 'header_main_nav_mobile' ) ) : ?>
-				<nav class="header_main_nav_mobile" aria-label="<?php esc_attr_e( 'Header Mobile Nav', 'starter' ); ?>">
+				<nav class="header_main_nav_mobile border-bottom p-2" aria-label="<?php esc_attr_e( 'Header Mobile Nav', 'starter' ); ?>">
 					<?php
 						wp_nav_menu(
 							array(

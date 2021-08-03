@@ -35,7 +35,7 @@ function starter_img_func( $atts ) {
 		/*add webp image if enabled*/
 		if ( get_theme_mod( 'image_webp', true ) && wp_get_attachment_image_srcset( $img ) ) {
 			$img_srcset_webp = str_ireplace( array( '.jpg ', '.jpeg ', '.png ' ), array( '.jpg.webp ', '.jpeg.webp ', '.png.webp ' ), $img_srcset );
-			$img_markup      = "<source type='image/webp' srcset=\"$img_webp_srcset\" $img_sizes>";
+			$img_markup      = "<source type='image/webp' srcset=\"$img_srcset_webp\" $img_sizes>";
 		}
 
 		/*get image alt if existing or add title instead*/

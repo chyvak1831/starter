@@ -1,0 +1,14 @@
+.main_loading {
+	position: relative;
+	&::before {
+		background: $white;
+		bottom: 0;
+		content: '';
+		left: 0;
+		opacity: 0.8;
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: 1024;
+	}
+}

@@ -2,7 +2,7 @@
 html, body {height: 100%;}
 .main_wrap {display: flex;flex-direction: column;min-height: 100%;}
 .main_header, .main_footer {flex: none;}
-.content_wrapper {flex: 1 0 auto;padding-top: 25px;padding-bottom: 40px;}
+.content_wrapper {flex: 1 0 auto;}
 
 .main_footer {
 	background: $black;
@@ -14,5 +14,4 @@ html, body {height: 100%;}
 		flex-direction: column;
 	}
 	.sub-menu > li {margin: 3px 0;}
-	@media (max-width: 767px) {> li {width: 50%;}}
 }

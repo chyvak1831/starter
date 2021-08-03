@@ -35,8 +35,6 @@
 </div>
 </div>
 
-<div class="backdrop"></div>
-
 <?php wp_footer(); ?>
 
 <script>

@@ -1,0 +1,12 @@
+.price {
+	@include flex_align();
+	font-weight: 600;
+	margin: 10px 0;
+	del {
+		color: $gray-600;
+		font-size: 0.75em;
+		margin-left: 5px;
+		order: 1;
+	}
+	ins {text-decoration: none;}
+}

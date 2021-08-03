@@ -38,7 +38,7 @@ if ( is_search() ) {
 	$starter_search_page = ' search_page';
 }
 ?>
-<div class="content_wrapper container mt-5 archive_product js_wrap_archive <?php echo esc_attr( $starter_search_page ); ?>" role="main">
+<div class="content_wrapper container pt-5 pb-5 archive_product js_wrap_archive <?php echo esc_attr( $starter_search_page ); ?>" role="main">
 
 	<!-- breadcrumb -->
 	<?php
@@ -64,7 +64,7 @@ if ( is_search() ) {
 	<div class="row">
 
 		<!-- filters layout -->
-		<div class="col-xl-5_per_line col-lg-3 col-md-4 d-flex justify-content-between d-md-block js_wrap_filters">
+		<div class="col-lg-3 col-md-4 d-flex justify-content-between d-md-block js_wrap_filters">
 			<div class="filter_block">
 				<?php if ( wc_get_loop_prop( 'total' ) ) : ?>
 					<span class="widget-title border-0"><?php esc_html_e( 'Sort by', 'starter' ); ?></span>
@@ -76,19 +76,22 @@ if ( is_search() ) {
 				<?php endif; ?>
 			</div>
 			<?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
-				<div class="filter_block all_filters">
-					<?php do_action( 'woocommerce_sidebar' ); ?>
-					<a href="<?php echo esc_url( $starter_archive_url ); ?>" class="btn btn-outline-primary btn-sm d-none filter_reset_btn js_reset_filters" role="button"><?php esc_html_e( 'Reset', 'starter' ); ?></a>
-					<a href="#" class="close_filters js_close_filters" role="button" aria-label="<?php esc_attr_e( 'Close filters', 'starter' ); ?>">
-						<?php echo starter_get_svg( array( 'icon' => 'bi-remove' ) ); ?>
-					</a>
+				<div class="filter_block all_filters offcanvas offcanvas-start" id="filtersSection" aria-labelledby="filtersSectionLabel">
+					<div class="offcanvas-header d-md-none">
+						<h5 class="offcanvas-title" id="filtersSectionLabel">Filters</h5>
+						<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+					</div>
+					<div class="offcanvas-body">
+						<?php do_action( 'woocommerce_sidebar' ); ?>
+						<a href="<?php echo esc_url( $starter_archive_url ); ?>" class="btn btn-outline-primary btn-sm d-none filter_reset_btn js_reset_filters" role="button"><?php esc_html_e( 'Reset', 'starter' ); ?></a>
+					</div>
 				</div>
-				<a href="#" class="filter_block mobile_filters_btn js_show_filters_btn" role="button"><?php esc_html_e( 'Filters', 'starter' ); ?><span class="ml-1 notifications_text d-none js_all_selected_filter"></span></a>
+				<a href="#filtersSection" class="filter_block mobile_filters_btn" data-bs-toggle="offcanvas" role="button"><?php esc_html_e( 'Filters', 'starter' ); ?><span class="ml-1 notifications_text badge rounded-pill bg-dark d-none js_all_selected_filter"></span></a>
 			<?php endif; ?>
 		</div>
 		<!-- END filters layout -->
 
-		<div class="col-xl-5_per_line_wrap_4_items col-lg-9 col-md-8"><div class="row">
+		<div class="col-lg-9 col-md-8"><div class="row">
 		<?php
 		if ( wc_get_loop_prop( 'total' ) ) {
 			while ( have_posts() ) {

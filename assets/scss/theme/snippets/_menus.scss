@@ -71,6 +71,8 @@ svg.arrow {
 		}
 	}
 }
+// fullwidth dropdown
+.header_top_nav, .header_main_nav, .header_top_nav_mobile, .header_main_nav_mobile {position: relative;}
 .dropdown_fullwidth {
 	position: static;
 	> .sub-menu {
@@ -111,3 +113,25 @@ svg.arrow {
 // widgets
 .yspl_win_title {display: none;}
 .textwidget * {margin: 0;}
+
+
+
+ //?? remove white-space for non-dropdown ??
+
+ // left navigation
+.support_nav, .support_nav_mobile {
+	li::after {display: none !important;}
+	.list > li, .menu_nested_list > .sub-menu {
+		width: 100%;
+		> li {width: 100%;}
+	}
+	.dropdown_fullwidth {position: relative;}
+	.widget_text {margin: 15px 0 0;}
+	a {
+		border: 1px solid $gray-400;
+		margin-top: -1px;
+		padding: 10px 15px !important;
+		width: 100%;
+	}
+}
+// END left navigation

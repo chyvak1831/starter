@@ -16,7 +16,7 @@ while ( have_posts() ) :
 	the_post();
 	?>
 
-<div class="content_wrapper" role="main">
+<div class="content_wrapper pt-5 pb-5" role="main">
 	<article class="container service_page">
 
 		<header class="entry-header alignwide">
@@ -27,7 +27,7 @@ while ( have_posts() ) :
 						starter_img_func(
 							array(
 								'img_src'   => 'w600',
-								'img_sizes' => '100vw',
+								'img_sizes' => '600px',
 								'img_id'    => get_post_thumbnail_id(),
 							)
 						),

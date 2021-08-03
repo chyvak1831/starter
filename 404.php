@@ -8,7 +8,7 @@
 get_header(); ?>
 
 
-<div class="content_wrapper container" role="main">
+<div class="content_wrapper container pt-5 pb-5" role="main">
 	<div class="container text-center mt-5">
 		<h4 class="status_type"><?php echo esc_html( __( '404', 'starter' ) ); ?></h4>
 		<h1 class="text-uppercase"><?php echo esc_html( __( 'Not found', 'starter' ) ); ?></h1>

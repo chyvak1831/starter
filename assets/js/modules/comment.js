@@ -49,16 +49,13 @@ function processingResponse( form, response ) {
 		for ( const error in errors ) {
 			switch ( error ) {
 				case 'limit_files':
-					form.find( '.js_wrap_upload_files' ).addClass( 'is-invalid' );
-					form.find( '.js_filelength_invalid_feedback' ).addClass( 'd-block' );
+					form.find( '.js_wrap_upload_files' ).addClass( 'is-invalid filelength_invalid' );
 					break;
 				case 'limit_file_size':
-					form.find( '.js_wrap_upload_files' ).addClass( 'is-invalid' );
-					form.find( '.js_filesize_invalid_feedback' ).addClass( 'd-block' );
+					form.find( '.js_wrap_upload_files' ).addClass( 'is-invalid filesize_invalid' );
 					break;
 				case 'not_allowed_type':
-					form.find( '.js_wrap_upload_files' ).addClass( 'is-invalid' );
-					form.find( '.js_type_invalid_feedback' ).addClass( 'd-block' );
+					form.find( '.js_wrap_upload_files' ).addClass( 'is-invalid filetype_invalid' );
 					break;
 				case 'g-recaptcha-response': form.find( '.g-recaptcha' ).addClass( 'is-invalid' ); break;
 				case 'privacy_policy': form.find( '[name="privacy_policy"]' ).addClass( 'is-invalid' ); break;
@@ -106,23 +103,18 @@ function validateFile ( fileInput ) {
 	var parentSelector = $( fileInput ).closest( '.js_wrap_upload_files' );
 	var fileList = parentSelector.find( '.js_list_file_upload' );
 	var lengthFiles = fileList.find( 'li' ).length;
-	var maximumFiles = +parentSelector.find( '.js_field_file_upload' ).data( 'length' );
-	var maximumWeight = +parentSelector.find( '.js_field_file_upload' ).data( 'weight' )*1000000;
-	parentSelector.removeClass( 'is-invalid' );
-	parentSelector.find( '.js_field_file_upload' ).removeClass( 'not_empty' );
-	parentSelector.find( '.invalid-feedback' ).removeClass( 'd-block' );
+	var maximumFiles = +$( fileInput ).data( 'length' );
+	var maximumWeight = +$( fileInput ).data( 'weight' )*1000000;
+	parentSelector.removeClass( 'is-invalid not_empty filelength_invalid filesize_invalid filetype_invalid' );
 	if ( fileList.children().length )
-		parentSelector.find( '.js_field_file_upload' ).addClass( 'not_empty' );
-	if ( lengthFiles > maximumFiles ) {
-		parentSelector.addClass( 'is-invalid' );
-		parentSelector.find( '.js_filelength_invalid_feedback' ).addClass( 'd-block' );
-	}
+		parentSelector.addClass( 'not_empty' );
+	if ( lengthFiles > maximumFiles )
+		parentSelector.addClass( 'is-invalid filelength_invalid' );
 	for ( var i = 0; i < lengthFiles; i++ ) {
 		var size = fileList.find( 'li' ).eq( i ).find( '.js_file_size' ).data( 'size' );
 		if ( maximumWeight < size ) {
-			parentSelector.addClass( 'is-invalid' );
+			parentSelector.addClass( 'is-invalid filesize_invalid' );
 			fileList.find( 'li' ).eq( i ).addClass( 'error_filesize' );
-			parentSelector.find( '.js_filesize_invalid_feedback' ).addClass( 'd-block' );
 		}
 	}
 }

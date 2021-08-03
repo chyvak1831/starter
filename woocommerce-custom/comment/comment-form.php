@@ -84,18 +84,17 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 		<?php if ( ! is_user_logged_in() ) : ?>
 			<div class="row">
 				<div class="col-md-6 mb-3">
-					<div class="js_label_on_input">
-						<input type="text" class="form-control" name="author" id="author_<?php echo esc_attr( $starter_post_id ); ?>" <?php echo esc_attr( $starter_comment_name_email_required ); ?>>
+					<div class="form-floating">
+						<input type="text" class="form-control" name="author" placeholder="Name" id="author_<?php echo esc_attr( $starter_post_id ); ?>" <?php echo esc_attr( $starter_comment_name_email_required ); ?>>
 						<label for="author_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'Your name', 'starter' ); ?></label>
 						<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
 					</div>
 				</div>
 				<div class="col-md-6 mb-3">
-					<div class="js_label_on_input">
-						<input type="email" class="form-control" name="email" id="email_<?php echo esc_attr( $starter_post_id ); ?>" <?php echo esc_attr( $starter_comment_name_email_required ); ?>>
+					<div class="form-floating">
+						<input type="email" class="form-control" name="email" placeholder="name@example.com" id="email_<?php echo esc_attr( $starter_post_id ); ?>" <?php echo esc_attr( $starter_comment_name_email_required ); ?>>
 						<label for="email_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'Your Email Address', 'starter' ); ?></label>
-						<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
-						<div class="invalid-feedback not_required_feedback"><?php esc_html_e( 'Please enter a valid email address.', 'starter' ); ?></div>
+						<div class="invalid-feedback"><?php esc_html_e( 'Please enter a valid email address.', 'starter' ); ?></div>
 					</div>
 				</div>
 			</div>
@@ -103,8 +102,8 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 	<!-- END name & email fields if not logged -->
 
 	<!-- comment field -->
-		<div class="mb-3 js_label_on_input">
-			<textarea id="comment_<?php echo esc_attr( $starter_post_id ); ?>" class="form-control" name="comment" cols="45" rows="8" required></textarea>
+		<div class="mb-3 form-floating">
+			<textarea class="form-control" name="comment" placeholder="Comment" id="comment_<?php echo esc_attr( $starter_post_id ); ?>" cols="45" rows="8" required></textarea>
 			<label for="comment_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'Your Review', 'starter' ); ?></label>
 			<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
 		</div>
@@ -113,24 +112,26 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 	<!-- file field -->
 		<?php if ( $starter_comment_file ) : ?>
 			<div class="mb-3">
-				<div class="form-control wrap_file_uploader js_label_on_input js_wrap_upload_files">
-					<input class="custom-file-input js_field_file_upload" data-length="<?php echo esc_attr( $starter_comment_file_max_length ); ?>" data-weight="<?php echo esc_attr( $starter_comment_file_max_weight ); ?>" id="comment_fileupload_<?php echo esc_attr( $starter_post_id ); ?>" type="file" name="files[]" multiple aria-describedby="fileHelp">
-					<label for="comment_fileupload_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'Attachment (Optional)', 'starter' ); ?></label>
+				<div class="form-floating">
+					<div class="form-control js_wrap_upload_files">
+						<input class="custom-file-input js_field_file_upload" data-length="10" data-weight="10" id="comment_fileupload_<?php echo esc_attr( $starter_post_id ); ?>" type="file" name="files[]" multiple aria-describedby="fileHelp">
+						<ul class="list-unstyled list_file_upload js_list_file_upload"></ul>
+					</div>
+					<label class="file_label_text" for="comment_fileupload_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'Attachment (Optional)', 'starter' ); ?></label>
 					<label class="file_label" for="comment_fileupload_<?php echo esc_attr( $starter_post_id ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-image' ) ); ?></label>
-					<ul class="list-unstyled list_file_upload js_list_file_upload"></ul>
-					<div class="invalid-feedback js_filelength_invalid_feedback d-none">
+					<div class="invalid-feedback filelength_invalid d-none">
 						<?php
 							// Translators: $s maximum count of files.
 							echo sprintf( esc_html__( 'Maximum %s files.', 'starter' ), esc_html( $starter_comment_file_max_length ) );
 						?>
 					</div>
-					<div class="invalid-feedback js_filesize_invalid_feedback d-none">
+					<div class="invalid-feedback filesize_invalid d-none">
 						<?php
 							// Translators: $s maximum count of files.
 							echo sprintf( esc_html__( 'File must be less than %sMB.', 'starter' ), esc_html( $starter_comment_file_max_weight ) );
 						?>
 					</div>
-					<div class="invalid-feedback js_type_invalid_feedback d-none">
+					<div class="invalid-feedback filetype_invalid d-none">
 						<?php esc_html_e( 'File type is not valid.', 'starter' ); ?>
 					</div>
 				</div>
@@ -165,6 +166,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 		<?php endif; ?>
 	<!-- END privacy field -->
 
+	<input type="hidden" name="product_review" value="">
 	<input type="hidden" name="comment_post_ID" value="<?php echo esc_attr( $starter_post_id ); ?>">
 	<input type="hidden" name="action" value="starter_send_comment">
 	<input type="hidden" name="security" value="<?php echo esc_html( wp_create_nonce( 'comment' ) ); ?>">
@@ -188,7 +190,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 			<div class="file_name js_file_name"></div>
 			<div class="file_size js_file_size" data-size></div>
 		</div>
-		<a href="#" class="cancel remove_thumbnail_img" role="button" aria-label="Remove file">
+		<a href="#" class="btn btn-light cancel remove_thumbnail_img" role="button" aria-label="Remove file">
 			<?php echo starter_get_svg( array( 'icon' => 'bi-remove' ) ); ?>
 		</a>
 	</li>
@@ -202,8 +204,8 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h3 class="modal-title"><?php esc_html_e( 'Sorry to interrupt!', 'starter' ); ?></h3>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?php esc_attr_e( 'Close', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-remove' ) ); ?></button>
+					<h3 class="modal-title h6 text-uppercase"><?php esc_html_e( 'Sorry to interrupt!', 'starter' ); ?></h3>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?php esc_attr_e( 'Close', 'starter' ); ?>"></button>
 				</div>
 				<div class="modal-body">
 					<div class="alert alert-secondary" role="alert">
@@ -214,13 +216,9 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 					<p><?php esc_html_e( 'Please contact us and give us the opportunity to take care of any issues you may be having. We\'re here for you!', 'starter' ); ?></p>
 				</div>
 				<div class="modal-footer">
-					<div class="row">
-						<div class="col-sm-6 wrap_btn">
-							<a href="#" class="btn btn-outline-primary js_comment_submit_anyway" role="button"><?php esc_html_e( 'Submit review anyway', 'starter' ); ?></a>
-						</div>
-						<div class="col-sm-6 wrap_btn">
-							<a href="<?php echo esc_url( wc_get_endpoint_url( 'contact-us', '', site_url() ) ); ?>" class="btn btn-primary" role="button"><?php esc_html_e( 'Contact support', 'starter' ); ?></a>
-						</div>
+					<div class="d-grid gap-2 w-100">
+						<a href="#" class="btn btn-outline-primary js_comment_submit_anyway" role="button"><?php esc_html_e( 'Submit review anyway', 'starter' ); ?></a>
+						<a href="<?php echo esc_url( wc_get_endpoint_url( 'contact-us', '', site_url() ) ); ?>" class="btn btn-primary" role="button"><?php esc_html_e( 'Contact support', 'starter' ); ?></a>
 					</div>
 				</div>
 			</div>
