@@ -1,6 +1,6 @@
 var scripts = [
 	// archive
-	'./assets/js/modules/archive.js',
+	'./assets/js/modules/woo/archive.js',
 
 	// comment
 	'./assets/js/modules/comment.js',
@@ -9,7 +9,7 @@ var scripts = [
 	'./assets/js/modules/common.js',
 
 	// homepage
-	'./assets/js/modules/home_page.js',
+	'./assets/js/modules/woo/home_page.js',
 
 	// menus
 	'./assets/js/modules/menus.js',
@@ -18,7 +18,7 @@ var scripts = [
 	'./assets/js/modules/recaptcha.js',
 
 	// single product page
-	'./assets/js/modules/single_product.js',
+	'./assets/js/modules/woo/single_product.js',
 ];
 
 module.exports = {
