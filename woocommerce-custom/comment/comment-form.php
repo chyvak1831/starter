@@ -30,7 +30,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem-width="22">
 						<?php require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php'; ?>
 						<input name="rating" class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
-						<div class="invalid-feedback"><?php esc_html_e( 'Rating is required.', 'starter' ); ?></div>
+						<div class="invalid-feedback text-end"><?php esc_html_e( 'Rating is required.', 'starter' ); ?></div>
 					</div>
 					<span class="d-none js_total_ratings"></span>
 				</li>
@@ -46,7 +46,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem-width="22">
 						<?php require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php'; ?>
 						<input name="price_rating" id="price_rating_<?php echo esc_attr( $starter_post_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
-						<div class="invalid-feedback"><?php esc_html_e( 'Price rating is required.', 'starter' ); ?></div>
+						<div class="invalid-feedback text-end"><?php esc_html_e( 'Price rating is required.', 'starter' ); ?></div>
 					</div>
 				</li>
 				<li>
@@ -54,7 +54,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem-width="22">
 						<?php require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php'; ?>
 						<input name="quality_rating" id="quality_rating_<?php echo esc_attr( $starter_post_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
-						<div class="invalid-feedback"><?php esc_html_e( 'Quality rating is required.', 'starter' ); ?></div>
+						<div class="invalid-feedback text-end"><?php esc_html_e( 'Quality rating is required.', 'starter' ); ?></div>
 					</div>
 				</li>
 				<li>
@@ -62,7 +62,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem-width="22">
 						<?php require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php'; ?>
 						<input name="shipping_rating" id="shipping_rating_<?php echo esc_attr( $starter_post_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
-						<div class="invalid-feedback"><?php esc_html_e( 'Shipping rating is required.', 'starter' ); ?></div>
+						<div class="invalid-feedback text-end"><?php esc_html_e( 'Shipping rating is required.', 'starter' ); ?></div>
 					</div>
 				</li>
 				<li class="total_row">
@@ -114,7 +114,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 			<div class="mb-3">
 				<div class="form-floating">
 					<div class="form-control js_wrap_upload_files">
-						<input class="custom-file-input js_field_file_upload" data-length="10" data-weight="10" id="comment_fileupload_<?php echo esc_attr( $starter_post_id ); ?>" type="file" name="files[]" multiple aria-describedby="fileHelp">
+						<input class="custom-file-input js_field_file_upload" accept="image/jpg, image/jpeg, image/png" data-length="<?php echo esc_attr( $starter_comment_file_max_length ); ?>" data-weight="<?php echo esc_attr( $starter_comment_file_max_weight ); ?>" id="comment_fileupload_<?php echo esc_attr( $starter_post_id ); ?>" type="file" multiple aria-describedby="fileHelp">
 						<ul class="list-unstyled list_file_upload js_list_file_upload"></ul>
 					</div>
 					<label class="file_label_text" for="comment_fileupload_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'Attachment (Optional)', 'starter' ); ?></label>
@@ -135,7 +135,6 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 						<?php esc_html_e( 'File type is not valid.', 'starter' ); ?>
 					</div>
 				</div>
-				<input type="hidden" class="hiddenUploadFilesComment" name="hiddenUploadFilesComment">
 				<small id="fileHelp" class="form-text text-muted">
 					<?php
 						// Translators: $s maximum count of files.
@@ -149,7 +148,6 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 	<!-- recaptcha field -->
 		<?php if ( $starter_comment_recaptcha ) : ?>
 			<div class="mb-4">
-				<input type="hidden" class="js_recaptcha_input">
 				<div class="g-recaptcha" data-callback="recaptchaCallback" data-recaptchapublickey="<?php echo esc_attr( $starter_comment_recaptcha_key ); ?>"></div>
 				<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
 			</div>
@@ -185,12 +183,12 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 <!-- fileupload template -->
 <div class="js_fileupload_tpl d-none" tabindex="-3">
 	<li class="template-upload">
-		<div class="preview"></div>
+		<div class="preview object_fit"><img class="img-fluid" src="" alt="<?php esc_attr_e( 'Comment image preview', 'starter' ); ?>"></div>
 		<div class="file_info">
 			<div class="file_name js_file_name"></div>
 			<div class="file_size js_file_size" data-size></div>
 		</div>
-		<a href="#" class="btn btn-light cancel remove_thumbnail_img" role="button" aria-label="Remove file">
+		<a href="#" class="btn btn-light cancel remove_thumbnail_img js_remove_thumb" role="button" aria-label="<?php esc_attr_e( 'Remove file', 'starter' ); ?>">
 			<?php echo starter_get_svg( array( 'icon' => 'bi-remove' ) ); ?>
 		</a>
 	</li>
@@ -199,7 +197,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 
 
 <!-- low-rating modal -->
-<?php if ( $starter_comment_low_rating_modal ) : ?>
+<?php if ( wc_review_ratings_enabled() && $starter_comment_low_rating_modal ) : ?>
 	<div class="modal low_rating_modal js_low_rating_modal" tabindex="-1" role="dialog" data-minimum-rating="4">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -226,21 +224,3 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 	</div>
 <?php endif; ?>
 <!-- END low-rating modal -->
-
-<?php
-	$starter_blueimp_script = array(
-		get_template_directory_uri() . '/assets/js/blueimp/vendor/jquery.ui.widget.js',
-		get_template_directory_uri() . '/assets/js/blueimp/blueimp-tmpl/js/tmpl.js',
-		get_template_directory_uri() . '/assets/js/blueimp/blueimp-load-image/js/load-image.all.min.js',
-		get_template_directory_uri() . '/assets/js/blueimp/blueimp-canvas-to-blob/js/canvas-to-blob.js',
-		get_template_directory_uri() . '/assets/js/blueimp/jquery.iframe-transport.js',
-		get_template_directory_uri() . '/assets/js/blueimp/jquery.fileupload.js',
-		get_template_directory_uri() . '/assets/js/blueimp/jquery.fileupload-process.js',
-		get_template_directory_uri() . '/assets/js/blueimp/jquery.fileupload-image.js',
-		get_template_directory_uri() . '/assets/js/blueimp/jquery.fileupload-validate.js',
-		get_template_directory_uri() . '/assets/js/blueimp/jquery.fileupload-ui.js',
-	);
-	?>
-<script>
-	var blueimp_script = <?php echo wp_json_encode( $starter_blueimp_script ); ?>;
-</script>

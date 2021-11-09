@@ -32,21 +32,23 @@ if ( $upsells ) : ?>
 		<?php endif; ?>
 	</div>
 	<div class="container">
-		<div class="wrap_carousel product_carousel js_product_carousel">
-			<div class="js_carousel">
-			<?php foreach ( $upsells as $upsell ) : ?>
+		<div class="position-relative product_carousel js_product_carousel">
+			<div class="swiper">
+				<div class="swiper-wrapper">
+				<?php foreach ( $upsells as $upsell ) : ?>
 
-				<?php
-				$post_object = get_post( $upsell->get_id() );
+					<?php
+					$post_object = get_post( $upsell->get_id() );
 
-				setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
-					echo "<div class='wraper_product js_product'>";
-					$starter_img_sizes = '(max-width: 575px) calc(50vw - 10px), (max-width: 767px) 260px, (max-width: 991px) 220px, (max-width: 1199px) 220px, (max-width: 1399px) 208px, 244px';
-					require get_stylesheet_directory() . '/woocommerce-custom/global/product-item.php';
-					echo '</div>';
-				?>
+					setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
+						echo "<div class='wraper_product swiper-slide js_product'>";
+						$starter_img_sizes = '(max-width: 575px) calc(50vw - 10px), (max-width: 767px) 260px, (max-width: 991px) 220px, (max-width: 1199px) 220px, (max-width: 1399px) 208px, 244px';
+						require get_stylesheet_directory() . '/woocommerce-custom/global/product-item.php';
+						echo '</div>';
+					?>
 
-			<?php endforeach; ?>
+				<?php endforeach; ?>
+				</div>
 			</div>
 			<button class="btn carousel_control_prev js_carousel_control_prev" aria-label="Carousel scroll previous"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
 			<button class="btn carousel_control_next js_carousel_control_next" aria-label="Carousel scroll next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-right' ) ); ?></button>

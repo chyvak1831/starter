@@ -1,6 +1,6 @@
 var plugins = [
 	// BOOTSTRAP
-	// popper.js
+	/*// popper.js
 	'./node_modules/@popperjs/core/dist/umd/popper.min.js',
 
 	// bootstrap base
@@ -23,10 +23,11 @@ var plugins = [
 	// './node_modules/bootstrap/js/dist/tab.js',
 	'./node_modules/bootstrap/js/dist/toast.js',
 	// './node_modules/bootstrap/js/dist/tooltip.js',// require popper - should be uncommented above
-	// END BOOTSTRAP
+	// END BOOTSTRAP*/
+	'/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
 
     // slick
-    './node_modules/slick-carousel/slick/slick.min.js'
+    './node_modules/swiper/swiper-bundle.min.js'
 ];
 
 module.exports = {

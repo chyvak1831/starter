@@ -1,63 +1,48 @@
-/**
- * Render recaptcha on related active form
- */
-function recaptchaOnloadCallback() {
-	let activeRecaptcha = document.querySelector( '.js_active_recaptcha' );
-	grecaptcha.render( activeRecaptcha, {
-		'sitekey' : activeRecaptcha.dataset.recaptchapublickey
-	});
-	activeRecaptcha.classList.add( 'recaptcha_inited' );
-	activeRecaptcha.classList.remove( 'js_active_recaptcha' );
-}
-
-/**
- * Load recaptcha by click on certain form
- */
+// Load recaptcha by click on current form
 function loadRecaptchaOnClick() {
-	// return if no recaptcha
-	if ( ! document.querySelector( '.g-recaptcha' ) ) {
-		return false;
-	}
-	// add class to each form with recaptcha
-	Array.from( document.querySelectorAll( '.js_recaptcha_input' ) ).forEach( function(e) {
-		e.form.classList.add( 'js_form_with_recaptcha' );
-	});
-	// proccess recaptcha by click
-	var form = document.getElementsByClassName( 'js_form_with_recaptcha' );
-	for( var i =0; i < form.length; i++ ) {
-		form[i].addEventListener( 'click', function() {
-			let recaptchaEl = this.querySelector( '.g-recaptcha');
-			recaptchaEl.classList.add( 'js_active_recaptcha' );
-			if ( recaptchaEl.classList.contains( 'recaptcha_inited' ) || ! recaptchaEl ) {
-				recaptchaEl.classList.remove( 'js_active_recaptcha' );
-				return;
-			} else {
-				let script = document.createElement( 'script' );
-				let scriptSrc = 'https://www.google.com/recaptcha/api.js?onload=recaptchaOnloadCallback&render=explicit';
-				script.setAttribute( 'src', scriptSrc );
-				document.body.appendChild( script );
+	const recaptchaNode = document.querySelectorAll( '.g-recaptcha' );
+	if ( 0 == recaptchaNode.length ) return;
+
+	recaptchaNode.forEach( recaptcha => {
+		const form = recaptcha.closest( 'form' );
+
+		// proccess click for form with recaptcha
+		form.addEventListener( 'click', () => {
+			if ( recaptcha.classList.contains( 'recaptcha_inited' ) ) return;
+			recaptcha.classList.add( 'js_active_recaptcha' );
+			const script = document.createElement( 'script' );
+			const scriptSrc = 'https://www.google.com/recaptcha/api.js?onload=recaptchaOnloadCallback&render=explicit';
+			script.setAttribute( 'src', scriptSrc );
+			document.body.appendChild( script );
+		});
+
+		// recaptcha validation
+		form.addEventListener( 'submit', e => {
+			const res = e.currentTarget.querySelector( '.g-recaptcha-response' ).value;
+			if ( res == '' || res == undefined || res.length == 0 ) {
+				e.currentTarget.querySelector( '.g-recaptcha' ).classList.add( 'is-invalid' );
+				e.preventDefault();
 			}
-		}, false );
-	}
+		});
+	});
 }
 loadRecaptchaOnClick();
 
-/**
- * Recaptcha validation
- */
-document.querySelectorAll( '.js_form_with_recaptcha' ).forEach( form => form.addEventListener( 'submit', function(e) {
-	var res = form.querySelector( '.g-recaptcha-response' ).value;
-	if ( res == '' || res == undefined || res.length == 0 ) {
-		form.querySelector( '.g-recaptcha' ).classList.add( 'is-invalid' );
-		e.preventDefault();
-	}
-}, false));
 
-/**
- * Callback recaptcha function
- */
-function recaptchaCallback() {
-	Array.from( document.querySelectorAll( '.g-recaptcha' ) ).forEach( function(e) {
-		e.classList.remove( 'is-invalid' );
+// Render recaptcha on current form
+function recaptchaOnloadCallback() {
+	const recaptchaNode = document.querySelector( '.js_active_recaptcha' );
+	const widgetId = grecaptcha.render( recaptchaNode, {
+		'sitekey' : recaptchaNode.dataset.recaptchapublickey
 	});
+	recaptchaNode.classList.add( 'recaptcha_inited' );
+	recaptchaNode.classList.remove( 'js_active_recaptcha' );
+	recaptchaNode.setAttribute( 'data-widget-id', widgetId );
+}
+
+
+// Callback recaptcha
+function recaptchaCallback() {
+	const recaptchaNode = document.querySelectorAll( '.g-recaptcha' );
+	[...recaptchaNode].map( element => element.classList.remove( 'is-invalid' ) );
 }

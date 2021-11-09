@@ -62,7 +62,7 @@ $starter_hover_product_image = get_theme_mod( 'hover_product_image', false ) ? '
 			<?php if ( has_nav_menu( 'header_main_nav' ) ) : ?>
 				<div class="header_main_nav border-bottom p-3">
 					<div class="container">
-						<nav class="jsInnerNav" aria-label="<?php esc_attr_e( 'Header Main Nav', 'starter' ); ?>">
+						<nav aria-label="<?php esc_attr_e( 'Header Main Nav', 'starter' ); ?>">
 							<?php
 								wp_nav_menu(
 									array(

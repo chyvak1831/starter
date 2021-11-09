@@ -86,7 +86,7 @@ if ( is_search() ) {
 						<a href="<?php echo esc_url( $starter_archive_url ); ?>" class="btn btn-outline-primary btn-sm d-none filter_reset_btn js_reset_filters" role="button"><?php esc_html_e( 'Reset', 'starter' ); ?></a>
 					</div>
 				</div>
-				<a href="#filtersSection" class="filter_block mobile_filters_btn" data-bs-toggle="offcanvas" role="button"><?php esc_html_e( 'Filters', 'starter' ); ?><span class="ml-1 notifications_text badge rounded-pill bg-dark d-none js_all_selected_filter"></span></a>
+				<a href="#filtersSection" class="filter_block mobile_filters_btn" data-bs-toggle="offcanvas" role="button"><?php esc_html_e( 'Filters', 'starter' ); ?><span class="ml-1 notifications_text badge rounded-pill bg-dark js_all_selected_filter"></span></a>
 			<?php endif; ?>
 		</div>
 		<!-- END filters layout -->

@@ -72,21 +72,21 @@ function starter_save_comment() {
 	}
 
 	/*make rating require if rating enabled*/
-	if ( class_exists( 'WooCommerce' ) && 'product' == get_post_type( isset( $_POST['comment_post_ID'] ) ) ) {
+	if ( class_exists( 'WooCommerce' ) && 'product' == get_post_type( isset( $_POST['comment_post_ID'] ) ? sanitize_text_field( wp_unslash( $_POST['comment_post_ID'] ) ) : '' ) ) {
 		if ( wc_review_ratings_enabled() && wc_review_ratings_required() ) {
 			if ( get_theme_mod( 'comment_extended_rating', false ) ) {
-				if ( ! isset( $_POST['price_rating'] ) ) {
+				if ( empty( $_POST['price_rating'] ) ) {
 					$errors['price_rating'] = false;
 				}
-				if ( ! isset( $_POST['quality_rating'] ) ) {
+				if ( empty( $_POST['quality_rating'] ) ) {
 					$errors['quality_rating'] = false;
 				}
-				if ( ! isset( $_POST['shipping_rating'] ) ) {
+				if ( empty( $_POST['shipping_rating'] ) ) {
 					$errors['shipping_rating'] = false;
 				}
 			}
 			/*default rating require*/
-			if ( ! get_theme_mod( 'comment_extended_rating', false ) && ! sanitize_text_field( wp_unslash( isset( $_POST['rating'] ) ) ) ) {
+			if ( ! get_theme_mod( 'comment_extended_rating', false ) && empty( $_POST['rating'] ) ) {
 				$errors['rating'] = false;
 			}
 		}
@@ -129,7 +129,7 @@ function starter_save_comment() {
 		}
 
 		/*setup custom rating if rating enabled*/
-		if ( class_exists( 'WooCommerce' ) && 'product' == get_post_type( isset( $_POST['comment_post_ID'] ) ) ) {
+		if ( class_exists( 'WooCommerce' ) && 'product' == get_post_type( isset( $_POST['comment_post_ID'] ) ? sanitize_text_field( wp_unslash( $_POST['comment_post_ID'] ) ) : '' ) ) {
 			if ( wc_review_ratings_enabled() && get_theme_mod( 'comment_extended_rating', false ) ) {
 				$options      = array(
 					'options' => array(

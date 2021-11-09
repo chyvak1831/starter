@@ -1,10 +1,7 @@
-jQuery( document ).ready( function( $ ) {
-
-
 // validate simple fields (name, email, comment, privacy)
-function commentValidation( form ) {
-	form.addClass( 'was-validated' );
-	if ( form[0].checkValidity() === false || form.find( '.is-invalid' ).length ) {
+const commentValidation = form => {
+	form.classList.add( 'was-validated' );
+	if ( false === form.checkValidity() || form.querySelector( '.is-invalid' ) ) {
 		return false;
 	} else {
 		return true;
@@ -12,332 +9,270 @@ function commentValidation( form ) {
 }
 
 
-// submit form function
-function submitComment( form ) {
-	if ( form.find( '.js_list_file_upload .template-upload' ).length ) {// send form and files if present
-		$( '.js_field_file_upload' ).fileupload( 'send', { files: filelistform } );
-	} else {// send form when no files
-		$.ajax({
-			url: starter_ajax.ajax_url,
-			type: 'POST',
-			data: new FormData( form[0] ),
-			cache: false,
-			contentType: false,
-			processData: false,
-			xhr: function() {
-				return $.ajaxSettings.xhr();
-			},
-			success: function ( data ) {
-				processingResponse( form, data );
-			},
-			error: function ( data ) {
-				location.reload();
-			}
-		});
-	}
-}
-// parse server response function
-function processingResponse( form, response ) {
-	if ( response.success ) {
-		$( '.js_comment_form, .js_comment_form_sent' ).slideToggle();
-	} else {
-		if ( form.find( '.g-recaptcha' ).length ) {
-			grecaptcha.reset();
-		}
-		var errors = response.data;
-		// custom errors
-		for ( const error in errors ) {
-			switch ( error ) {
-				case 'limit_files':
-					form.find( '.js_wrap_upload_files' ).addClass( 'is-invalid filelength_invalid' );
-					break;
-				case 'limit_file_size':
-					form.find( '.js_wrap_upload_files' ).addClass( 'is-invalid filesize_invalid' );
-					break;
-				case 'not_allowed_type':
-					form.find( '.js_wrap_upload_files' ).addClass( 'is-invalid filetype_invalid' );
-					break;
-				case 'g-recaptcha-response': form.find( '.g-recaptcha' ).addClass( 'is-invalid' ); break;
-				case 'privacy_policy': form.find( '[name="privacy_policy"]' ).addClass( 'is-invalid' ); break;
-				case 'price_rating': form.find( '[name="price_rating"]' ).addClass( 'is-invalid' ); break;
-				case 'shipping_rating': form.find( '[name="shipping_rating"]' ).addClass( 'is-invalid' ); break;
-				case 'quality_rating': form.find( '[name="quality_rating"]' ).addClass( 'is-invalid' ); break;
-				case 'rating': form.find( '[name="rating"]' ).addClass( 'is-invalid' ); break;
-			}
-		}
-		// default wp/woo errors
-		if ( 'string' == typeof errors ) {
-			$( '#write_comment' ).append( $( '.js_custom_alert' ).html() ).find( '.js_custom_alert_txt' ).html( errors );
-		}
-		form.find( '.js_comment_submit' ).removeClass( 'loading' );
-	}
-}
-// submit form event
-$( '.js_comment_form' ).submit( function( e ) {
-	e.preventDefault();
-	e.stopPropagation();
-	var form = $( this );
-	if ( !commentValidation( form ) ) {
-		return;
-	}
-	form.find( '.js_comment_submit' ).addClass( 'loading' );
-	if ( $( '.js_low_rating_modal' ).length ) {
-		commentMinimumRating( form );
-	} else {
-		submitComment( form );
-	}
-});
+// submit form
+const submitComment = form => {
+	form.querySelector( '.js_comment_submit' ).classList.add( 'loading' );
+	const data = new FormData( form );
 
-
-// reset privacy validation when privacy true
-$( '.js_comment_privacy' ).change( function() {
-	$( this ).removeClass( 'is-invalid' );
-})
-
-
-
-
-// FILEUPLOADER
-// validate file function
-function validateFile ( fileInput ) {
-	var parentSelector = $( fileInput ).closest( '.js_wrap_upload_files' );
-	var fileList = parentSelector.find( '.js_list_file_upload' );
-	var lengthFiles = fileList.find( 'li' ).length;
-	var maximumFiles = +$( fileInput ).data( 'length' );
-	var maximumWeight = +$( fileInput ).data( 'weight' )*1000000;
-	parentSelector.removeClass( 'is-invalid not_empty filelength_invalid filesize_invalid filetype_invalid' );
-	if ( fileList.children().length )
-		parentSelector.addClass( 'not_empty' );
-	if ( lengthFiles > maximumFiles )
-		parentSelector.addClass( 'is-invalid filelength_invalid' );
-	for ( var i = 0; i < lengthFiles; i++ ) {
-		var size = fileList.find( 'li' ).eq( i ).find( '.js_file_size' ).data( 'size' );
-		if ( maximumWeight < size ) {
-			parentSelector.addClass( 'is-invalid filesize_invalid' );
-			fileList.find( 'li' ).eq( i ).addClass( 'error_filesize' );
+	// add files if enabled
+	const fileNode = document.querySelector( '.js_field_file_upload' );
+	if ( fileNode ) {
+		for ( const file of fileNode.files ) {
+			data.append( 'files[]', file, file.name )
 		}
 	}
-}
-// load script function
-function loadScript ( arr, index, callback ) {
-	if ( index != arr.length ) {
-		$.getScript( arr[ index ] ).done( function() {
-			loadScript( arr, index + 1, callback );
-		} );
-	} else {
-		callback();
-	}
-}
-// init file upload function
-function initFileUpload() {
-	$( '.js_field_file_upload' ).each( function() {
-		var $this = $( this ),
-			form = $this.closest( 'form' ),
-			list_file_upload = form.find( '.js_list_file_upload' );
-		uploadImageCommentForm( $this, list_file_upload, form );
-	});
-}
-// load fileuploader by click
-$( document ).on( 'click', '.js_field_file_upload', function() {
-	if ( $( 'body' ).hasClass( 'loaded_fileuploader' ) ) {
-		return;
-	} else {
-		$( 'body' ).addClass( 'loaded_fileuploader' );
-		loadScript( blueimp_script, 0, initFileUpload );
-	}
-});
-// form with file upload/send function
-var filelistform = new Array();
-function uploadImageCommentForm( selector, list_file_upload, form ) {
-	selector.fileupload({
-		url: starter_ajax.ajax_url,
-		dataType: 'json',
-		previewMaxWidth: 96,
-		previewMaxHeight: 96,
-		previewCrop: true,
-		filesContainer: list_file_upload,
-		uploadTemplateId: null,
-		downloadTemplateId: null,
-		uploadTemplate: function ( o ) {
-			var rows = $();
-			$.each( o.files, function ( index, file ) {
-				var file_type = file.type.split( '/' );
-				if ( 'image' === file_type[0] ) {
-					var size_file = o.formatFileSize( file.size );
-					var row = $( $( '.js_fileupload_tpl' ).html() );
-					row.find( '.js_file_name' ).text( file.name );
-					row.find( '.js_file_size' ).text( size_file ).attr( 'data-size', file.size );
-					rows = rows.add( row );
+
+	// send data
+	fetch( starter_ajax.ajax_url, {
+		method: 'post',
+		body: data
+	})
+	.then( response => response.json() )
+	.then( data => {
+		if ( data.success ) {
+			const collapseNode = document.querySelectorAll( '.js_comment_form, .js_comment_form_sent' );
+			collapseNode.forEach( element => { new bootstrap.Collapse( element, {toggle: true} ) } )
+		} else {
+			const errors = data.data;
+
+			// custom errors
+			if ( 'object' == typeof errors ) {
+				for ( const error in errors ) {
+					switch ( error ) {
+						case 'limit_files': form.querySelector( '.js_wrap_upload_files' ).classList.add( 'is-invalid', 'filelength_invalid' ); break;
+						case 'limit_file_size': form.querySelector( '.js_wrap_upload_files' ).classList.add( 'is-invalid', 'filesize_invalid' ); break;
+						case 'not_allowed_type': form.querySelector( '.js_wrap_upload_files' ).classList.add( 'is-invalid', 'filetype_invalid' ); break;
+						case 'privacy_policy': form.querySelector( '[name="privacy_policy"]' ).classList.add( 'is-invalid' ); break;
+						case 'g-recaptcha-response': form.querySelector( '.g-recaptcha' ).classList.add( 'is-invalid' ); break;
+						case 'price_rating': form.querySelector( '[name="price_rating"]' ).classList.add( 'is-invalid' ); break;
+						case 'shipping_rating': form.querySelector( '[name="shipping_rating"]' ).classList.add( 'is-invalid' ); break;
+						case 'quality_rating': form.querySelector( '[name="quality_rating"]' ).classList.add( 'is-invalid' ); break;
+						case 'rating': form.querySelector( '[name="rating"]' ).classList.add( 'is-invalid' ); break;
+					}
 				}
-			});
-			return rows;
-		},
-		downloadTemplate: function ( o ) {
-			var rows = $();
-			$.each( o.files, function () {
-				var row = $( '<li></li>' );
-				rows = rows.add( row );
-			});
-			return rows;
+			}
+
+			// default wp/woo errors
+			if ( 'string' == typeof errors ) {
+				document.querySelector( '.js_custom_alert_txt' ).innerHTML = errors;
+				document.querySelector( '.js_comment_form' ).insertAdjacentHTML( 'beforeend', document.querySelector( '.js_custom_alert' ).innerHTML );
+			}
+
+			// remove class 'loading' and reset recaptcha
+			form.querySelector( '.js_comment_submit' ).classList.remove( 'loading' );
+			if ( form.querySelector( '.g-recaptcha' ) ) {
+				let widgetId = form.querySelector( '.g-recaptcha' ).getAttribute( 'data-widget-id' );
+				grecaptcha.reset( widgetId );
+			}
 		}
-	}).on( 'fileuploadadded', function ( e, data ) {
-		for ( var i = 0; i < data.files.length; i++ ) {
-			filelistform.push( data.files[i] );
-		}
-		validateFile( e.target );
-	}).on( 'fileuploadfailed', function ( e, data ) {
-		var indexElem = filelistform.indexOf( data.files[0] );
-		filelistform.splice( indexElem, 1 );
-		validateFile( e.target );
-	}).on( 'fileuploaddone', function ( e, data ) {
-		processingResponse( form, data.result );
 	});
 }
+const commentForm = document.querySelector( '.js_comment_form' );
+if ( commentForm ) {
+	commentForm.addEventListener( 'submit', e => {
+		e.preventDefault();
+		const form = e.currentTarget;
+		if ( !commentValidation( form ) ) {
+			return;
+		}
+		if ( document.querySelector( '.js_low_rating_modal' ) ) {
+			commentMinimumRating( form );
+		} else {
+			submitComment( form );
+		}
+	})
+}
 
 
+// format bytes
+const formatBytes = (bytes, decimals = 2) =>  {
+    if (0 === bytes) return '0 Bytes';
+
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+}
 
 
-// RATING
-// rating function
-function RatingProduct( selector ) {
-	this.rating            = selector;
-	this.parent_rating     = this.rating.closest( '.js_ratings_list' );
-	this.width_elem_rating = this.rating.closest( '.js_rating' ).data( 'elem-width' );
-	this.count_filled_star = 0;
+// Fileuploader
+class FileUploader {
+	constructor( element ) {
+		// get fileinput elements and datatransfer
+		this.fileUploader = element;
+		this.wrapPreviewList = this.fileUploader.closest( '.js_wrap_upload_files' );
+		this.previewList = this.wrapPreviewList.querySelector( '.js_list_file_upload' );
+		this.dataTransfer = new DataTransfer();
 
-	this.init();
-	this.bindEvents();
-};
-RatingProduct.prototype = {
-	init: function() {
-		var value = this.rating.closest( '.js_rating' ).find( '.js_rating_input' ).val();
-		this.rating.find( '.filled_star' ).css( 'width', value * this.width_elem_rating );
-		this.calcAverageRating();
-	},
+		// get maximum length & weight
+		this.maximumFiles = this.fileUploader.getAttribute( 'data-length' );
+		this.maximumWeight = this.fileUploader.getAttribute( 'data-weight' )*1024*1024;
 
-	bindEvents: function() {
-		this.rating.bind( 'mousemove', this.mouseMove.bind( this ) );
-		this.rating.bind( 'mouseleave', this.mouseLeave.bind( this ) );
-		this.rating.bind( 'click', this.click.bind( this ) );
-	},
+		// get template elements
+		this.imgTpl = document.querySelector( '.js_fileupload_tpl img' );
+		this.fileUploadTpl = document.querySelector( '.js_fileupload_tpl' );
+		this.fileName = document.querySelector( '.js_fileupload_tpl .js_file_name' );
+		this.fileSize = document.querySelector( '.js_fileupload_tpl .js_file_size' );
+	}
 
-	mouseMove: function( e ) {
-		this.calcFilledStar( e );
-		var final_rating = this.count_filled_star * this.width_elem_rating;
-		this.rating.find( '.filled_star' ).css( 'width', final_rating );
-	},
+	validateFile() {
+		this.wrapPreviewList.classList.remove( 'is-invalid', 'not_empty', 'filelength_invalid', 'filesize_invalid', 'filetype_invalid' );
 
-	mouseLeave: function( e ) {
-		var value_rating = this.rating.closest( '.js_rating' ).find( '.js_rating_input' ).val();
-		var final_rating = Math.ceil( this.width_elem_rating * value_rating );
-		this.rating.find( '.filled_star' ).css( 'width', final_rating );
-	},
+		// check if filelist empty
+		if ( this.previewList.firstChild ) {
+			this.wrapPreviewList.classList.add( 'not_empty' )
+		}
 
-	click: function( e ) {
-		this.calcFilledStar( e );
-		this.rating.closest( '.js_rating' ).find( '.js_rating_input' ).val( this.count_filled_star ).removeClass( 'is-invalid' );
-		this.calcAverageRating();
-	},
+		// check if filelist length valid
+		const lengthFiles = this.previewList.querySelectorAll( 'li' ).length;
+		if ( lengthFiles > this.maximumFiles ) {
+			this.wrapPreviewList.classList.add( 'is-invalid', 'filelength_invalid' );
+		}
 
-	calcFilledStar: function( e ) {
-		var offset = this.rating.offset();
-		var coord_mouse_x = e.pageX - offset.left;
-		this.count_filled_star = Math.ceil( coord_mouse_x / this.width_elem_rating );
-	},
+		// check if filesize valid
+		for ( let i = 1; i < lengthFiles+1; i++ ) {
+			let currentItem = this.previewList.querySelector( 'li:nth-child(' + i + ')' );
+			let size = parseFloat( currentItem.querySelector( '.js_file_size' ).getAttribute( 'data-size' ) );
+			if ( size > this.maximumWeight ) {
+				this.wrapPreviewList.classList.add( 'is-invalid', 'filesize_invalid' );
+				currentItem.classList.add( 'error_filesize' );
+			}
+		}
+	}
 
-	calcAverageRating: function() {
-		var average_rating = 0;
-		var count_ratings = this.parent_rating.find( '.js_rating' ).length;
-		this.parent_rating.find( '.js_rating' ).each( function() {
-			var value_rating = $( this ).closest( '.js_rating' ).find( '.js_rating_input' ).val();
-			average_rating += +value_rating;
-		});
-		average_rating = average_rating / count_ratings;
-		this.parent_rating.find( '.js_total_ratings' ).html( average_rating.toFixed(2) );
+	createPreview( fileList ) {
+		// reset preview list
+		this.previewList.innerHTML = '';
+
+		// create preview
+		for ( let i = 0; i < fileList.length; i++ ) {
+			this.imgTpl.src = URL.createObjectURL( fileList[i] );
+			this.fileName.innerHTML = fileList[i].name;
+			this.fileSize.innerHTML = formatBytes( fileList[i].size );
+			this.fileSize.setAttribute( 'data-size', fileList[i].size );
+			this.previewList.insertAdjacentHTML( 'beforeend', this.fileUploadTpl.innerHTML );
+		}
+
+		this.validateFile();
+	}
+
+	addFile(e) {
+		// add files to dataTransfer
+		for ( let i = 0; i < this.fileUploader.files.length; i++ ) {
+			this.dataTransfer.items.add( this.fileUploader.files[i] );
+		}
+
+		// update fileinput with new dataTransfer
+		console.log(this.dataTransfer.files);
+		// this.fileUploader.files = this.dataTransfer.files;
+		// console.log(this.fileUploader.files);
+
+		// this.createPreview( this.fileUploader.files );
+	}
+
+	removeFile(e) {
+		if ( e.target && e.target.matches( '.js_remove_thumb' ) ) {
+			e.preventDefault();
+			const fileIndex = [...this.previewList.children].indexOf( e.target.closest( 'li' ) );
+
+			// remove item from preview list and from datatransfer
+			e.target.closest( 'li' ).remove();
+			this.dataTransfer.items.remove( fileIndex );
+
+			// update fileinput with new dataTransfer
+			this.fileUploader.files = this.dataTransfer.files;
+		}
+
+		this.validateFile();
+	}
+
+	init() {
+		this.fileUploader.addEventListener( 'change', this.addFile.bind( this ) );
+		this.previewList.addEventListener( 'click', this.removeFile.bind( this ) );
 	}
 }
-// init rating
-$( '.js_rating .wrap_rating_list' ).each( function() {
-	var selector = $( this );
-	new RatingProduct( selector );
-} );
-// comment low-rating modal
-function commentMinimumRating( form ) {
-	var minimumRating = $( '[data-minimum-rating]' ).data( 'minimum-rating' );
-	var rating = +form.find( '.js_total_ratings' ).text();
-	if ( rating >= minimumRating || 0 == rating ) {
-		submitComment( form );
-	} else {
-		form.addClass( 'js_submiting_form' );
-		$( '.js_low_rating_modal' ).modal( 'show' );
-	}
-}
-$( document ).on( 'click', '.js_comment_submit_anyway', function( e ) {
-	e.preventDefault();
-	var form = $( '.js_submiting_form' );
-	submitComment( form );
-	$( '.js_comment_submit_anyway' ).addClass( 'js_lowrate_comment_sent' );
-	$( '.js_low_rating_modal' ).modal( 'hide' );
-});
-$( '.js_low_rating_modal' ).on( 'hidden.bs.modal ', function ( e ) {
-	var form = $( '.js_submiting_form' );
-	if ( ! $( '.js_lowrate_comment_sent' ).length ) {
-		form.find( '.js_comment_submit' ).removeClass( 'loading' );
-	}
-	$( '.js_lowrate_comment_sent' ).removeClass( 'js_lowrate_comment_sent' );
-	form.removeClass( '.js_submiting_form' );
-});
 
-
+const fileUploadElement = document.querySelectorAll( '.js_field_file_upload' );
+fileUploadElement.forEach( element => {
+	let fileUpload = new FileUploader( element );
+	fileUpload.init();
+})
 
 
 // load more comments
-$( document ).on( 'click', '.js_comment_show_more', function( e ) {
-	e.preventDefault();
-	var btn = $( this );
-	btn.addClass( 'loading' );
-	var post_id = btn.data( 'post_id' );
-	var offset = $( '.js_comment_item' ).length;
-	var data = {
-		action: 'comment_load',
-		post_id: post_id,
-		offset: offset
-	};
-	$.post( starter_ajax['ajax_url'], data, function( response ) {
-		$( '.js_comment_list' ).append( response );
-		var commentsList = $( '.js_comment_list' );
-		var totalComments = commentsList.data( 'comment-total' );
-		var show_comments = commentsList.find( '.js_comment_item' ).length;
-		if ( show_comments == totalComments ) {
-			btn.remove();
-		} else {
-			btn.removeClass( 'loading' );
-		}
-	});
-});
+const loadMoreComments = () => {
+	const btn = document.querySelector( '.js_comment_show_more' );
+	if ( !btn ) return;
+	btn.addEventListener( 'click', e => {
+		e.preventDefault();
+		btn.classList.add( 'loading' );
+
+		// collect data
+		const post_id = btn.getAttribute( 'data-post_id' );
+		const offset = document.querySelectorAll( '.js_comment_item' ).length;
+		const data = new FormData();
+		data.append( 'action', 'comment_load' );
+		data.append( 'post_id', post_id );
+		data.append( 'offset', offset );
+
+		// send data
+		fetch( starter_ajax.ajax_url, {
+			method: 'post',
+			body: data
+		})
+		.then( response => response.text() )
+		.then( body => {
+			const commentsList = document.querySelector( '.js_comment_list' );
+			commentsList.insertAdjacentHTML( 'beforeend', body );
+			const totalComments = commentsList.getAttribute( 'data-comment-total' );
+			const showComments = commentsList.querySelectorAll( '.js_comment_item' ).length;
+
+			if ( showComments == totalComments ) {
+				btn.remove();
+			} else {
+				btn.classList.remove( 'loading' );
+			}
+		})
+	} )
+}
+loadMoreComments();
 
 
 // comment image modal
-$( document ).on( 'click', '.js_comment_img_modal_btn', function( e ) {
-	e.preventDefault();
-	$( '.main_wrap' ).addClass( 'main_loading' );
-	var comment_id = $( this ).closest( '.js_comment_item' ).attr( 'data-comment_id' );
-	var data = {
-		action: 'comment_image',
-		comment_id: comment_id,
-	};
-	$.post( starter_ajax['ajax_url'], data, function( response ) {
-		$( '.main_wrap' ).append( response ).removeClass( 'main_loading' );
-		$( '.js_comment_img_modal' ).modal( 'show' );
-		// call on load img due modal loaded via ajax
-		$( '.js_comment_img_modal .js_main_img img' ).on( 'load', function() {
-			$( this ).closest( '.js_wrap_img_thumbnails' ).find( '.js_main_img' ).removeClass( 'main_loading' );
-		});
-	});
-} );
-$( document ).on( 'hidden.bs.modal', '.js_comment_img_modal', function() {
-	$( '.js_comment_img_modal' ).remove();
-});
+const loadCommentImgModal = () => {
+	const btn = document.querySelectorAll( '.js_comment_img_modal_btn' );
+	btn.forEach( element => element.addEventListener( 'click', e => {
+		e.preventDefault();
+		document.querySelector( '.main_wrap' ).classList.add( 'main_loading' );
 
+		// collect data
+		const comment_id = e.currentTarget.closest( '.js_comment_item' ).getAttribute( 'data-comment_id' );
+		const data = new FormData();
+		data.append( 'action', 'comment_image' );
+		data.append( 'comment_id', comment_id );
 
-})
+		// send data
+		fetch( starter_ajax.ajax_url, {
+			method: 'post',
+			body: data
+		})
+		.then( response => response.text() )
+		.then( body => {
+			document.querySelector( '.main_wrap' ).classList.remove( 'main_loading' );
+
+			// insert and call modal
+			document.querySelector( '.main_wrap' ).insertAdjacentHTML( 'beforeend', body );
+			const commentImgModal = document.querySelector( '.js_comment_img_modal' );
+			new bootstrap.Modal( commentImgModal ).show();
+
+			// remove modal when hidden
+			commentImgModal.addEventListener( 'hidden.bs.modal', () => {
+				commentImgModal.remove();
+			})
+		})
+	}))
+}
+loadCommentImgModal();

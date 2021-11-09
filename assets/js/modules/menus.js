@@ -1,52 +1,30 @@
-jQuery( document ).ready( function( $ ) {
-
-
-// subnav fix dropdown attrs
-$( '.menu-item-has-children.menu_nested_dropdown' ).children( 'a' ).attr( 'data-bs-toggle', 'dropdown' ).attr( 'aria-expanded', 'false' );
-
-
-// make all dropdowns static
-$( '[data-bs-toggle="dropdown"]' ).attr( 'data-bs-display', 'static' );
+// add attribute data-bs-toggle & data-bs-display='static' for dropdown link
+const dropdowns = document.querySelectorAll( '.menu .dropdown' );
+dropdowns.forEach( element => {
+	for ( let i = 0; i < element.children.length; i++ ) {
+		if ( element.children[i].tagName == 'A' ) {
+			element.children[i].setAttribute( 'data-bs-toggle', 'dropdown' );
+			element.children[i].setAttribute( 'data-bs-display', 'static' );
+		}
+	}
+})
 
 
 // nested dropdowns fix
-$( '.dropdown-menu [data-bs-toggle="dropdown"]' ).on( 'click', function( e ) {
-	if ( $( this ).closest( '.dropdown-menu' ).parents().eq(0).hasClass( 'menu_nested_list' ) ) {
+const nestedDropdownLink = document.querySelectorAll( '.menu .dropdown-menu .dropdown-menu [data-bs-toggle="dropdown"]' );
+nestedDropdownLink.forEach( element => element.addEventListener( 'click', e => {
+	// first parent dropdown-menu
+	const dropdownMenu = e.currentTarget.closest( '.dropdown-menu' );
+
+	// if parent is list - return
+	if ( dropdownMenu.parentElement.classList.contains( 'menu_nested_list' ) ) {
 		return;
 	}
-	if ( !$( this ).next().hasClass( 'show' ) ) {
-		$( this ).parents( '.dropdown-menu' ).first().find( '.show' ).removeClass( 'show' );
+
+	// close sibling dropdowns OR close current if it was opened
+	const openedDropdown = dropdownMenu.querySelector( '.dropdown-item.show' );
+	if ( openedDropdown && !e.currentTarget.classList.contains( 'show' ) ) {
+		openedDropdown.click();
 	}
-	$( this ).attr( 'aria-expanded', function( index, attr ) {
-		return attr == 'true' ? 'false' : 'true';
-	});
-	$( this ).siblings( '.dropdown-menu' ).toggleClass( 'show' );
-	return false;
-});
-
-
-// make menu-item as collapse
-$( '.menu-item-has-children.menu_nested_collapse' ).children( 'a' ).attr( 'data-bs-toggle', 'collapse' ).attr( 'aria-expanded', 'false' );
-$( '.menu-item-has-children.menu_nested_collapse' ).each( function() {
-	var itemId = $( this ).attr( 'id' );
-	$( this ).children( 'a' ).attr( 'href',  '#collapse_' + itemId );
-	$( this ).children( '.sub-menu' ).attr( 'id',  'collapse_' + itemId ).addClass( 'collapse list-unstyled' ).removeClass( 'dropdown-menu' );
-	$( this ).children( '.sub-menu' ).children( '.menu-item' ).children( '.dropdown-item' ).removeClass( 'dropdown-item' );
-});
-
-
-// ff svg image - width bugfix
-$( '.menu-item img[srcset$="svg"], .menu-item img[data-srcset$="svg"]' ).each(function () {
-	$( this ).width( $( this ).attr( 'sizes' ) );
-})
-
-
-$( document ).on( 'shown.bs.dropdown', '.menu .dropdown-menu', function() {
-	$( this ).parents( '.menu-item' ).addClass( 'opened_menu_dropdown' );
-})
-$( document ).on( 'hidden.bs.dropdown', '.menu .dropdown-menu', function() {
-	$( this ).parents( '.menu-item' ).removeClass( 'opened_menu_dropdown' );
-})
-
-
-})
+	e.stopPropagation();
+}))

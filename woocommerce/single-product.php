@@ -59,10 +59,12 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 			<div class="row">
 
 			<!-- images -->
-				<div class="col-md-6 wrap_single_images js_wrap_img_thumbnails">
-					<div class="position-relative mb-2">
-						<div class="js_zoom_wrap">
-							<picture class="single_main_img item_img js_main_img" data-zoom-img="<?php echo esc_attr( wp_get_attachment_image_src( $starter_img, 'w2000' )[0] ); ?>">
+				<div class="col-md-6 wrap_single_images">
+
+					<!-- main img carousel -->
+					<div class="swiper js_singlepage_img_carousel js_zoom_wrap mb-2">
+						<div class="swiper-wrapper">
+							<picture class="swiper-slide single_main_img item_img" style="background-image: url(<?php echo esc_attr( wp_get_attachment_image_src( $starter_img, 'w2000' )[0] ); ?>)">
 								<?php
 									echo wp_kses(
 										starter_img_func(
@@ -76,39 +78,42 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 									);
 								?>
 							</picture>
-							<div class="js_zoom_element"></div>
-						</div>
-						<a href="#singleMainImgModal" class="loop_btn" data-bs-toggle="modal" role="button" aria-label="<?php esc_attr_e( 'Image zoom', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-plus-circle' ) ); ?></a>
-					</div>
-						<?php if ( $starter_thumbnails ) : ?>
-						<div class="wrap_carousel thumbnail_carousel object_fit js_thumbnail_carousel_main_img">
-							<div class="js_carousel">
-								<div>
-									<picture class="thumbnail js_thumbnail is_active" data-zoom-img="<?php echo esc_attr( wp_get_attachment_image_src( $starter_img, 'w2000' )[0] ); ?>">
+							<?php if ( $starter_thumbnails ) : ?>
+								<?php foreach ( $starter_thumbnails as $starter_thumbnail_img ) : ?>
+									<picture class="swiper-slide single_main_img item_img" style="background-image: url(<?php echo esc_attr( wp_get_attachment_image_src( $starter_thumbnail_img, 'w2000' )[0] ); ?>)">
 										<?php
 											echo wp_kses(
 												starter_img_func(
 													array(
-														'img_src'   => 'w200',
-														'img_sizes' => '70px',
-														'img_id'    => $starter_img,
+														'img_src'   => 'w800',
+														'img_sizes' => '(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 530px, (max-width: 991px) 336px, (max-width: 1199px) 456px, (max-width: 1399px) 546px, 636px',
+														'img_id'    => $starter_thumbnail_img,
 													)
 												),
 												wp_kses_allowed_html( 'post' )
 											);
 										?>
 									</picture>
-								</div>
-								<?php foreach ( $starter_thumbnails as $starter_thumbnail_img ) : ?>
-									<div>
-										<picture class="thumbnail js_thumbnail" data-zoom-img="<?php echo esc_attr( wp_get_attachment_image_src( $starter_thumbnail_img, 'w2000' )[0] ); ?>">
+								<?php endforeach; ?>
+							<?php endif; ?>
+						</div>
+						<a href="#singleMainImgModal" class="loop_btn" data-bs-toggle="modal" role="button" aria-label="<?php esc_attr_e( 'Image zoom', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-plus-circle' ) ); ?></a>
+					</div>
+					<!-- END main img carousel -->
+
+					<?php if ( $starter_thumbnails ) : ?>
+						<div class="position-relative thumbnail_carousel object_fit js_singlepage_thumbnail_carousel">
+							<div class="swiper">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide">
+										<picture class="thumbnail">
 											<?php
 												echo wp_kses(
 													starter_img_func(
 														array(
 															'img_src'   => 'w200',
 															'img_sizes' => '70px',
-															'img_id'    => $starter_thumbnail_img,
+															'img_id'    => $starter_img,
 														)
 													),
 													wp_kses_allowed_html( 'post' )
@@ -116,7 +121,25 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 											?>
 										</picture>
 									</div>
-								<?php endforeach; ?>
+									<?php foreach ( $starter_thumbnails as $starter_thumbnail_img ) : ?>
+										<div class="swiper-slide">
+											<picture class="thumbnail">
+												<?php
+													echo wp_kses(
+														starter_img_func(
+															array(
+																'img_src'   => 'w200',
+																'img_sizes' => '70px',
+																'img_id'    => $starter_thumbnail_img,
+															)
+														),
+														wp_kses_allowed_html( 'post' )
+													);
+												?>
+											</picture>
+										</div>
+									<?php endforeach; ?>
+								</div>
 							</div>
 							<button class="btn carousel_control_prev js_carousel_control_prev" aria-label="Carousel scroll previous"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
 							<button class="btn carousel_control_next js_carousel_control_next" aria-label="Carousel scroll next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-right' ) ); ?></button>
@@ -188,15 +211,15 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 						<ul class="list mt-3">
 							<li>
 								<div class="btn-group count_block single_count_block js_count_add_product">
-									<a href="#" class="btn btn-outline-primary btn-lg js_minus_count_btn_product" role="button" aria-label="<?php esc_attr_e( 'Minus product', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-minus' ) ); ?></a>
+									<a href="#" class="btn btn-outline-primary btn-lg" data-count="minus" role="button" aria-label="<?php esc_attr_e( 'Minus product', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-minus' ) ); ?></a>
 									<div class="btn-group"><input aria-label="count add to cart" type="number" class="form-control form-control-lg" value="1" readonly></div>
-									<a href="#" class="btn btn-outline-primary btn-lg js_plus_count_btn_product" role="button" aria-label="<?php esc_attr_e( 'Plus product', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-plus' ) ); ?></a>
+									<a href="#" class="btn btn-outline-primary btn-lg" data-count="plus" role="button" aria-label="<?php esc_attr_e( 'Plus product', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-plus' ) ); ?></a>
 								</div>
 							</li>
 							<li>
 								<!-- add to cart -->
 								<div>
-									<?php woocommerce_template_loop_add_to_cart( 'btn_class=btn-outline-primary btn btn-lg' ); ?>
+									<?php woocommerce_template_loop_add_to_cart( 'btn_class=btn-outline-primary btn btn-lg js_add_to_cart_btn' ); ?>
 								</div>
 								<!-- END add to cart -->
 							</li>
