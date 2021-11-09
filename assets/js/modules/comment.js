@@ -165,12 +165,9 @@ class FileUploader {
 			this.dataTransfer.items.add( this.fileUploader.files[i] );
 		}
 
-		// update fileinput with new dataTransfer
-		console.log(this.dataTransfer.files);
-		// this.fileUploader.files = this.dataTransfer.files;
-		// console.log(this.fileUploader.files);
+		this.fileUploader.files = this.dataTransfer.files;
 
-		// this.createPreview( this.fileUploader.files );
+		this.createPreview( this.fileUploader.files );
 	}
 
 	removeFile(e) {
