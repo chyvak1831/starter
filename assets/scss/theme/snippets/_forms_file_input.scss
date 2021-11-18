@@ -60,4 +60,4 @@
 	opacity: .65 !important;
 	transform: scale(.85) translateY(-.5rem) translateX(.15rem) !important;
 }
-.filelength_invalid ~ .filelength_invalid, .filesize_invalid ~ .filesize_invalid, .filetype_invalid ~ .filetype_invalid {display: block !important;}
+.filelength ~ .filelength_invalid, .filesize ~ .filesize_invalid, .filetype ~ .filetype_invalid {display: block !important;}

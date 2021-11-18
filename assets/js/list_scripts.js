@@ -5,6 +5,9 @@ var scripts = [
 	// comment modal image
 	'./assets/js/modules/comment_modal_image.js',
 
+	// fileuploader
+	'./assets/js/modules/fileuploader.js',
+
 	// common
 	'./assets/js/modules/common.js',
 

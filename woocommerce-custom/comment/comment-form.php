@@ -29,7 +29,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 					<span><?php esc_html_e( 'Rating:', 'starter' ); ?></span>
 					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem-width="22">
 						<?php require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php'; ?>
-						<input name="rating" class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
+						<input name="rating" data-default_rating class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
 						<div class="invalid-feedback text-end"><?php esc_html_e( 'Rating is required.', 'starter' ); ?></div>
 					</div>
 					<span class="d-none js_total_ratings"></span>
@@ -45,7 +45,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 					<span><?php esc_html_e( 'Price:', 'starter' ); ?></span>
 					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem-width="22">
 						<?php require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php'; ?>
-						<input name="price_rating" id="price_rating_<?php echo esc_attr( $starter_post_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
+						<input name="price_rating" data-price_rating id="price_rating_<?php echo esc_attr( $starter_post_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
 						<div class="invalid-feedback text-end"><?php esc_html_e( 'Price rating is required.', 'starter' ); ?></div>
 					</div>
 				</li>
@@ -53,7 +53,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 					<span><?php esc_html_e( 'Quality:', 'starter' ); ?></span>
 					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem-width="22">
 						<?php require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php'; ?>
-						<input name="quality_rating" id="quality_rating_<?php echo esc_attr( $starter_post_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
+						<input name="quality_rating" data-quality_rating id="quality_rating_<?php echo esc_attr( $starter_post_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
 						<div class="invalid-feedback text-end"><?php esc_html_e( 'Quality rating is required.', 'starter' ); ?></div>
 					</div>
 				</li>
@@ -61,7 +61,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 					<span><?php esc_html_e( 'Shipping:', 'starter' ); ?></span>
 					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem-width="22">
 						<?php require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php'; ?>
-						<input name="shipping_rating" id="shipping_rating_<?php echo esc_attr( $starter_post_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
+						<input name="shipping_rating" data-shipping_rating id="shipping_rating_<?php echo esc_attr( $starter_post_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
 						<div class="invalid-feedback text-end"><?php esc_html_e( 'Shipping rating is required.', 'starter' ); ?></div>
 					</div>
 				</li>
@@ -75,7 +75,6 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 	</div>
 <?php endif; ?>
 <!-- END rating -->
-
 
 <!-- comment form -->
 <div class="col-md-7">
@@ -113,7 +112,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 		<?php if ( $starter_comment_file ) : ?>
 			<div class="mb-3">
 				<div class="form-floating">
-					<div class="form-control js_wrap_upload_files">
+					<div class="form-control js_wrap_upload_files" data-filelength data-filesize data-filetype>
 						<input class="custom-file-input js_field_file_upload" accept="image/jpg, image/jpeg, image/png" data-length="<?php echo esc_attr( $starter_comment_file_max_length ); ?>" data-weight="<?php echo esc_attr( $starter_comment_file_max_weight ); ?>" id="comment_fileupload_<?php echo esc_attr( $starter_post_id ); ?>" type="file" multiple aria-describedby="fileHelp">
 						<ul class="list-unstyled list_file_upload js_list_file_upload"></ul>
 					</div>
@@ -148,7 +147,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 	<!-- recaptcha field -->
 		<?php if ( $starter_comment_recaptcha ) : ?>
 			<div class="mb-4">
-				<div class="g-recaptcha" data-callback="recaptchaCallback" data-recaptchapublickey="<?php echo esc_attr( $starter_comment_recaptcha_key ); ?>"></div>
+				<div class="g-recaptcha" data-g_recaptcha data-callback="recaptchaCallback" data-recaptchapublickey="<?php echo esc_attr( $starter_comment_recaptcha_key ); ?>"></div>
 				<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
 			</div>
 		<?php endif; ?>
@@ -157,14 +156,13 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 	<!-- privacy field -->
 		<?php if ( $starter_comment_privacy ) : ?>
 			<div class="form-check mb-4">
-				<input class="form-check-input js_comment_privacy" id="check_privacy_policy_<?php echo esc_attr( $starter_post_id ); ?>" name="privacy_policy" type="checkbox" required checked>
+				<input class="form-check-input js_comment_privacy" id="check_privacy_policy_<?php echo esc_attr( $starter_post_id ); ?>" name="privacy_policy" type="checkbox" data-privacy_policy required checked>
 				<label class="form-check-label" for="check_privacy_policy_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'I have read & accept the Privacy Policy', 'starter' ); ?></label>
 				<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
 			</div>
 		<?php endif; ?>
 	<!-- END privacy field -->
 
-	<input type="hidden" name="product_review" value="">
 	<input type="hidden" name="comment_post_ID" value="<?php echo esc_attr( $starter_post_id ); ?>">
 	<input type="hidden" name="action" value="starter_send_comment">
 	<input type="hidden" name="security" value="<?php echo esc_html( wp_create_nonce( 'comment' ) ); ?>">

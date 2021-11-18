@@ -16,25 +16,18 @@ defined( 'ABSPATH' ) || exit;
  */
 function starter_save_comment() {
 	/*validation error array*/
-	$errors = array();
+	$errors = new WP_Error();
 
 	check_ajax_referer( 'comment', 'security' );
 
 	/*privacy validation*/
 	if ( get_theme_mod( 'comment_privacy', false ) && ! isset( $_POST['privacy_policy'] ) ) {
-		$errors['privacy_policy'] = false;
+		$errors->add( 'privacy_policy', 'invalid' );
 	}
 
 	/*recaptcha validation*/
 	if ( get_theme_mod( 'comment_recaptcha', false ) ) {
-		if ( ! empty( $_POST['g-recaptcha-response'] ) && ! empty( $_SERVER['REMOTE_ADDR'] ) ) {
-			$response = starter_validate_recaptcha( sanitize_text_field( wp_unslash( $_POST['g-recaptcha-response'] ) ) );
-			if ( ! $response['success'] ) {
-				$errors['g-recaptcha-response'] = false; /*missing recaptcha field and other cases*/
-			}
-		} else {
-			$errors['g-recaptcha-response'] = false; /*recaptcha textarea wrong value*/
-		}
+		starter_recaptcha_validation( $errors );
 	}
 
 	/*image validation*/
@@ -53,20 +46,17 @@ function starter_save_comment() {
 		$starter_files_tmp_name = $starter_files['tmp_name'];
 
 		if ( $starter_maximum_length < count( $starter_files_tmp_name ) ) {
-			$errors['limit_files'] = true;
-			wp_send_json_error( $errors );
+			$errors->add( 'filelength', 'invalid' );
 		}
 
 		foreach ( $starter_files_tmp_name as $key => $file ) {
 			$starter_img_size = $starter_files['size'][ $key ];
 			if ( $starter_maximum_weight < $starter_img_size ) {
-				$errors['limit_file_size'] = true;
-				wp_send_json_error( $errors );
+				$errors->add( 'filesize', 'invalid' );
 			}
 
 			if ( ! in_array( $starter_files['type'][ $key ], $starter_allowed_types, true ) ) {
-				$errors['not_allowed_type'] = true;
-				wp_send_json_error( $errors );
+				$errors->add( 'filetype', 'invalid' );
 			}
 		}
 	}
@@ -76,24 +66,24 @@ function starter_save_comment() {
 		if ( wc_review_ratings_enabled() && wc_review_ratings_required() ) {
 			if ( get_theme_mod( 'comment_extended_rating', false ) ) {
 				if ( empty( $_POST['price_rating'] ) ) {
-					$errors['price_rating'] = false;
+					$errors->add( 'price_rating', 'invalid' );
 				}
 				if ( empty( $_POST['quality_rating'] ) ) {
-					$errors['quality_rating'] = false;
+					$errors->add( 'quality_rating', 'invalid' );
 				}
 				if ( empty( $_POST['shipping_rating'] ) ) {
-					$errors['shipping_rating'] = false;
+					$errors->add( 'shipping_rating', 'invalid' );
 				}
 			}
 			/*default rating require*/
 			if ( ! get_theme_mod( 'comment_extended_rating', false ) && empty( $_POST['rating'] ) ) {
-				$errors['rating'] = false;
+				$errors->add( 'default_rating', 'invalid' );
 			}
 		}
 	}
 
 	/*send errors if they are*/
-	if ( $errors ) {
+	if ( $errors->has_errors() ) {
 		wp_send_json_error( $errors );
 	}
 

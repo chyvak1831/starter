@@ -1,6 +1,6 @@
 // scrollto
-const scrollToNode = document.querySelectorAll( '.js_scrollto' );
-scrollToNode.forEach( element => element.addEventListener( 'click', e => {
+const scrollTo = document.querySelectorAll( '.js_scrollto' );
+scrollTo.forEach( element => element.addEventListener( 'click', e => {
 	e.preventDefault();
 	const href = e.currentTarget.getAttribute( 'href' );
 	const scrollToSection = document.querySelector( href );
@@ -12,8 +12,8 @@ scrollToNode.forEach( element => element.addEventListener( 'click', e => {
 
 
 // show/hide scrollup
-const scrollupNode = document.querySelector( '.scrollup' );
-if ( scrollupNode ) {
+const scrollup = document.querySelector( '.scrollup' );
+if ( scrollup ) {
 	window.addEventListener( 'scroll', () => {
 		if ( window.scrollY > 100 ) {
 			document.querySelector( '.scrollup' ).classList.add( 'on' );

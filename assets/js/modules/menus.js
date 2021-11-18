@@ -1,6 +1,6 @@
 // add attribute data-bs-toggle & data-bs-display='static' for dropdown link
-const dropdowns = document.querySelectorAll( '.menu .dropdown' );
-dropdowns.forEach( element => {
+const dropdown = document.querySelectorAll( '.menu .dropdown' );
+dropdown.forEach( element => {
 	for ( let i = 0; i < element.children.length; i++ ) {
 		if ( element.children[i].tagName == 'A' ) {
 			element.children[i].setAttribute( 'data-bs-toggle', 'dropdown' );

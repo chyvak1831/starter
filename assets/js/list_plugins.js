@@ -24,7 +24,7 @@ var plugins = [
 	'./node_modules/bootstrap/js/dist/toast.js',
 	// './node_modules/bootstrap/js/dist/tooltip.js',// require popper - should be uncommented above
 	// END BOOTSTRAP*/
-	'/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
+	'./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
 
     // slick
     './node_modules/swiper/swiper-bundle.min.js'

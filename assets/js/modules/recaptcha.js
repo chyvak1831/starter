@@ -1,15 +1,14 @@
 // Load recaptcha by click on current form
-function loadRecaptchaOnClick() {
-	const recaptchaNode = document.querySelectorAll( '.g-recaptcha' );
-	if ( 0 == recaptchaNode.length ) return;
+const loadRecaptchaOnClick = () => {
+	const recaptcha = document.querySelectorAll( '.g-recaptcha' );
 
-	recaptchaNode.forEach( recaptcha => {
-		const form = recaptcha.closest( 'form' );
+	recaptcha.forEach( element => {
+		const form = element.closest( 'form' );
 
 		// proccess click for form with recaptcha
 		form.addEventListener( 'click', () => {
-			if ( recaptcha.classList.contains( 'recaptcha_inited' ) ) return;
-			recaptcha.classList.add( 'js_active_recaptcha' );
+			if ( element.classList.contains( 'recaptcha_inited' ) ) return;
+			element.classList.add( 'js_active_recaptcha' );
 			const script = document.createElement( 'script' );
 			const scriptSrc = 'https://www.google.com/recaptcha/api.js?onload=recaptchaOnloadCallback&render=explicit';
 			script.setAttribute( 'src', scriptSrc );
@@ -31,18 +30,18 @@ loadRecaptchaOnClick();
 
 // Render recaptcha on current form
 function recaptchaOnloadCallback() {
-	const recaptchaNode = document.querySelector( '.js_active_recaptcha' );
-	const widgetId = grecaptcha.render( recaptchaNode, {
-		'sitekey' : recaptchaNode.dataset.recaptchapublickey
+	const recaptcha = document.querySelector( '.js_active_recaptcha' );
+	const widgetId = grecaptcha.render( recaptcha, {
+		'sitekey' : recaptcha.dataset.recaptchapublickey
 	});
-	recaptchaNode.classList.add( 'recaptcha_inited' );
-	recaptchaNode.classList.remove( 'js_active_recaptcha' );
-	recaptchaNode.setAttribute( 'data-widget-id', widgetId );
+	recaptcha.classList.add( 'recaptcha_inited' );
+	recaptcha.classList.remove( 'js_active_recaptcha' );
+	recaptcha.setAttribute( 'data-widget-id', widgetId );
 }
 
 
 // Callback recaptcha
 function recaptchaCallback() {
-	const recaptchaNode = document.querySelectorAll( '.g-recaptcha' );
-	[...recaptchaNode].map( element => element.classList.remove( 'is-invalid' ) );
+	const recaptcha = document.querySelectorAll( '.g-recaptcha' );
+	[...recaptcha].map( element => element.classList.remove( 'is-invalid' ) );
 }

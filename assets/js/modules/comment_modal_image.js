@@ -1,3 +1,42 @@
+// load comment image modal
+const loadCommentImgModal = () => {
+	const comment_list = document.querySelectorAll( '.js_comment_list' );
+	comment_list.forEach( element => element.addEventListener( 'click', e => {
+		if ( e.target && !e.target.matches( '.js_comment_img_modal_btn img' ) ) return;
+
+		document.querySelector( '.main_wrap' ).classList.add( 'main_loading' );
+
+		// collect data
+		const comment_id = e.target.closest( '.js_comment_item' ).getAttribute( 'data-comment_id' );
+		const data = new FormData();
+		data.append( 'action', 'comment_image' );
+		data.append( 'comment_id', comment_id );
+
+		// send data
+		fetch( starter_ajax.ajax_url, {
+			method: 'post',
+			body: data
+		})
+		.then( response => response.text() )
+		.then( body => {
+			document.querySelector( '.main_wrap' ).classList.remove( 'main_loading' );
+
+			// insert and call modal
+			document.querySelector( '.main_wrap' ).insertAdjacentHTML( 'beforeend', body );
+			const commentImgModal = document.querySelector( '.js_comment_img_modal' );
+			new bootstrap.Modal( commentImgModal ).show();
+
+			// remove modal when hidden
+			commentImgModal.addEventListener( 'hidden.bs.modal', () => {
+				commentImgModal.remove();
+			})
+		})
+	}))
+}
+loadCommentImgModal();
+
+
+// shown comment image modal
 document.body.addEventListener( 'shown.bs.modal', e => {
 	if ( e.target && !e.target.matches( '.js_comment_img_modal' ) ) return;
 

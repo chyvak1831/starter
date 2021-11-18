@@ -84,7 +84,7 @@ const googleAnalyticsUpdate = data => {
 
 
 // ajax request
-const wooAjaxFilter = ( currentLink, pushToHistory = false ) => {
+const wooAjaxFilter = ( currentLink, pushToHistory = true ) => {
 	const archivePage = document.querySelector( '.js_wrap_archive' );
 	if ( !archivePage ) return;
 
@@ -116,7 +116,7 @@ const wooAjaxFilter = ( currentLink, pushToHistory = false ) => {
 		} );
 }
 window.addEventListener( 'popstate', () => {
-	wooAjaxFilter( location.href );
+	wooAjaxFilter( location.href, false );
 });
 
 
@@ -127,7 +127,7 @@ const ajaxTriggers = () => {
 		orderby.addEventListener( 'change', () => {
 			const formData = new URLSearchParams(new FormData( document.querySelector( '.woocommerce-ordering' ) )).toString();
 			const currentLink = document.querySelector( '.js_archive_url' ).value + '?' + formData;
-			wooAjaxFilter( currentLink, true );
+			wooAjaxFilter( currentLink );
 		} )
 	}
 	// NOT ajax sort - reload fallback
@@ -142,7 +142,7 @@ const ajaxTriggers = () => {
 	filterItem.forEach( element => element.addEventListener( 'click', e => {
 		e.preventDefault();
 		const currentLink = e.currentTarget.getAttribute( 'href' );
-		wooAjaxFilter( currentLink, true );
+		wooAjaxFilter( currentLink );
 	}));
 	// ajax reset filters
 	const filterReset = document.querySelector( '.product_filter_sort_ajax .js_reset_filters' );
@@ -150,7 +150,7 @@ const ajaxTriggers = () => {
 		filterReset.addEventListener( 'click', e => {
 			e.preventDefault();
 			const currentLink = e.currentTarget.getAttribute( 'href' );
-			wooAjaxFilter( currentLink, true );
+			wooAjaxFilter( currentLink );
 		});
 	}
 	// ajax pagination
@@ -158,7 +158,7 @@ const ajaxTriggers = () => {
 	filterPagination.forEach( element => element.addEventListener( 'click', e => {
 		e.preventDefault();
 		const currentLink = e.currentTarget.getAttribute( 'href' );
-		wooAjaxFilter( currentLink, true );
+		wooAjaxFilter( currentLink );
 		const archivePage = document.querySelector( '.js_wrap_archive' );
 		window.scrollTo({
 			behavior: 'smooth',
@@ -178,7 +178,7 @@ const changePrice = () => {
 
 	const formData = new URLSearchParams(new FormData( priceFilter )).toString();
 	const currentLink = priceFilter.getAttribute( 'action' ) + '?' + formData;
-	wooAjaxFilter( currentLink, true );
+	wooAjaxFilter( currentLink );
 }
 jQuery( document ).on( 'slidestop', '.product_filter_sort_ajax .js_wrap_archive .price_slider', () => {
 	changePrice();

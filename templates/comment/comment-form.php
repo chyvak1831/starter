@@ -53,7 +53,7 @@ $starter_comment_privacy             = get_theme_mod( 'comment_privacy', false )
 		<?php if ( $starter_comment_file ) : ?>
 			<div class="mb-3">
 				<div class="form-floating">
-					<div class="form-control js_wrap_upload_files">
+					<div class="form-control js_wrap_upload_files" data-filelength data-filesize data-filetype>
 						<input class="custom-file-input js_field_file_upload" accept="image/jpg, image/jpeg, image/png" data-length="<?php echo esc_attr( $starter_comment_file_max_length ); ?>" data-weight="<?php echo esc_attr( $starter_comment_file_max_weight ); ?>" id="comment_fileupload_<?php echo esc_attr( $starter_post_id ); ?>" type="file" multiple aria-describedby="fileHelp">
 						<ul class="list-unstyled list_file_upload js_list_file_upload"></ul>
 					</div>
@@ -88,7 +88,7 @@ $starter_comment_privacy             = get_theme_mod( 'comment_privacy', false )
 	<!-- recaptcha field -->
 		<?php if ( $starter_comment_recaptcha ) : ?>
 			<div class="mb-4">
-				<div class="g-recaptcha" data-callback="recaptchaCallback" data-recaptchapublickey="<?php echo esc_attr( $starter_comment_recaptcha_key ); ?>"></div>
+				<div class="g-recaptcha" data-g_recaptcha data-callback="recaptchaCallback" data-recaptchapublickey="<?php echo esc_attr( $starter_comment_recaptcha_key ); ?>"></div>
 				<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
 			</div>
 		<?php endif; ?>
@@ -97,7 +97,7 @@ $starter_comment_privacy             = get_theme_mod( 'comment_privacy', false )
 	<!-- privacy field -->
 		<?php if ( $starter_comment_privacy ) : ?>
 			<div class="form-check mb-4">
-				<input class="form-check-input js_comment_privacy" id="check_privacy_policy_<?php echo esc_attr( $starter_post_id ); ?>" name="privacy_policy" type="checkbox" required checked>
+				<input class="form-check-input js_comment_privacy" id="check_privacy_policy_<?php echo esc_attr( $starter_post_id ); ?>" name="privacy_policy" type="checkbox" data-privacy_policy required checked>
 				<label class="form-check-label" for="check_privacy_policy_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'I have read & accept the Privacy Policy', 'starter' ); ?></label>
 				<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
 			</div>

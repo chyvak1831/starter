@@ -26,3 +26,6 @@
 	}
 	.swiper-slide-thumb-active .thumbnail{border: 2px solid;}
 }
+
+// swiper overflow fix
+.swiper {overflow: hidden;}
