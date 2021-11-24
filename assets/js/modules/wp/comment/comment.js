@@ -1,3 +1,6 @@
+import './comment_modal_image.js';
+import './fileuploader.js';
+
 // validate simple fields (name, email, comment, privacy)
 const commentValidation = form => {
 	form.classList.add( 'was-validated' );
@@ -80,6 +83,7 @@ if ( commentForm ) {
 const loadMoreComments = () => {
 	const btn = document.querySelector( '.js_comment_show_more' );
 	if ( !btn ) return;
+
 	btn.addEventListener( 'click', e => {
 		e.preventDefault();
 		btn.classList.add( 'loading' );

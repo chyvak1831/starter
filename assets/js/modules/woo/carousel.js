@@ -1,10 +1,13 @@
 // homepage: fullwidth carousel
-new Swiper( '.js_fullwidth_carousel .swiper', {
-	navigation: {
-		prevEl: '.js_fullwidth_carousel .js_carousel_control_prev',
-		nextEl: '.js_fullwidth_carousel .js_carousel_control_next'
-	},
-	loop: true
+const fullwidthCarousel = document.querySelectorAll( '.js_fullwidth_carousel' );
+fullwidthCarousel.forEach( element => {
+	new Swiper( element.querySelector( '.swiper' ), {
+		navigation: {
+			prevEl: element.querySelector( '.js_carousel_control_prev' ),
+			nextEl: element.querySelector( '.js_carousel_control_next' )
+		},
+		loop: true
+	})
 })
 
 
@@ -27,25 +30,27 @@ productCarousels.forEach( element => {
 
 
 // single product: thumbnail carousel under main img
-const mainImgThumbnailCarousel = new Swiper( '.js_singlepage_thumbnail_carousel .swiper', {
-	navigation: {
-		prevEl: '.js_singlepage_thumbnail_carousel .js_carousel_control_prev',
-		nextEl: '.js_singlepage_thumbnail_carousel .js_carousel_control_next'
-	},
-	breakpoints: {
-		1200: {slidesPerView: 6},
-		992: {slidesPerView: 5},
-		320: {slidesPerView: 3}
-	}
-})
+const singleThumbCarousel = document.querySelector( '.js_singlepage_thumbnail_carousel .swiper' );
+if ( singleThumbCarousel ) {
+	const mainImgThumbnailCarousel = new Swiper( singleThumbCarousel, {
+		navigation: {
+			prevEl: '.js_singlepage_thumbnail_carousel .js_carousel_control_prev',
+			nextEl: '.js_singlepage_thumbnail_carousel .js_carousel_control_next'
+		},
+		breakpoints: {
+			1200: {slidesPerView: 6},
+			992: {slidesPerView: 5},
+			320: {slidesPerView: 3}
+		}
+	})
 
-
-// single product: main img
-new Swiper( '.js_singlepage_img_carousel', {
-	thumbs: {
-		swiper: mainImgThumbnailCarousel,
-	}
-})
+	// single product: main img
+	new Swiper( '.js_singlepage_img_carousel', {
+		thumbs: {
+			swiper: mainImgThumbnailCarousel,
+		}
+	})
+}
 
 
 // single product: main img modal carousel

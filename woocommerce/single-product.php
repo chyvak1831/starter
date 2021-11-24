@@ -62,7 +62,7 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 				<div class="col-md-6 wrap_single_images">
 
 					<!-- main img carousel -->
-					<div class="swiper js_singlepage_img_carousel js_zoom_wrap mb-2">
+					<div class="swiper position-relative js_singlepage_img_carousel js_zoom_wrap mb-2">
 						<div class="swiper-wrapper">
 							<picture class="swiper-slide single_main_img item_img" style="background-image: url(<?php echo esc_attr( wp_get_attachment_image_src( $starter_img, 'w2000' )[0] ); ?>)">
 								<?php

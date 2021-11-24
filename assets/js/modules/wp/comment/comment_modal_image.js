@@ -1,7 +1,9 @@
 // load comment image modal
 const loadCommentImgModal = () => {
-	const comment_list = document.querySelectorAll( '.js_comment_list' );
-	comment_list.forEach( element => element.addEventListener( 'click', e => {
+	const comment_list = document.querySelector( '.js_comment_list' );
+	if ( !comment_list ) return;
+
+	comment_list.addEventListener( 'click', e => {
 		if ( e.target && !e.target.matches( '.js_comment_img_modal_btn img' ) ) return;
 
 		document.querySelector( '.main_wrap' ).classList.add( 'main_loading' );
@@ -31,7 +33,7 @@ const loadCommentImgModal = () => {
 				commentImgModal.remove();
 			})
 		})
-	}))
+	})
 }
 loadCommentImgModal();
 

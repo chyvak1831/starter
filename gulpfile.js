@@ -9,6 +9,10 @@ var browserSync    = require( 'browser-sync' ),
     gulpIf         = require( 'gulp-if' ),
     sass           = require( 'gulp-sass' ),
     sourcemaps     = require( 'gulp-sourcemaps' );
+var { rollup } = require( 'rollup' );
+var commonjs = require( '@rollup/plugin-commonjs' );
+var { nodeResolve } = require( '@rollup/plugin-node-resolve' );
+var replace = require( '@rollup/plugin-replace' );
 
 // custom modules
 var config  = require( './config.js' ),
@@ -50,6 +54,36 @@ gulp.task( 'customScripts', function () {
              .pipe( changed( config.paths.scripts, { hasChanged: changed.compareContents } ) )
              .pipe( gulp.dest( config.paths.scripts ) );
 });
+
+
+// generate js
+gulp.task( 'js', function ( callback ) {
+  const map = !flags.production ? true : false;
+  const files = fs.readdirSync( config.paths.scripts + 'pages' );
+
+  files.forEach(function (file) {
+    return rollup({
+      input: config.paths.scripts + 'pages/' + file,
+      plugins: [
+          // babel({ babelHelpers: 'bundled' }),
+          commonjs(),
+          nodeResolve(),
+          replace({ 'process.env.NODE_ENV': JSON.stringify( 'production' ) })
+        ]
+      })
+      .then(bundle => {
+        return bundle.write({
+          file: config.paths.scripts + file,
+          format: 'umd',
+          sourcemap: false,
+        });
+      });
+    });
+
+callback();
+});
+
+
 // Watchers
 gulp.task( 'watch', function( done ) {
   gulp.watch( config.paths.scss + '**/*.scss', gulp.series( 'sass' ) );

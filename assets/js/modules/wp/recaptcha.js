@@ -8,6 +8,7 @@ const loadRecaptchaOnClick = () => {
 		// proccess click for form with recaptcha
 		form.addEventListener( 'click', () => {
 			if ( element.classList.contains( 'recaptcha_inited' ) ) return;
+
 			element.classList.add( 'js_active_recaptcha' );
 			const script = document.createElement( 'script' );
 			const scriptSrc = 'https://www.google.com/recaptcha/api.js?onload=recaptchaOnloadCallback&render=explicit';

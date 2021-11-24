@@ -1,21 +1,21 @@
 var scripts = [
 	// comment
-	'./assets/js/modules/comment.js',
+	'./assets/js/modules/wp/comment/comment.js',
 
 	// comment modal image
-	'./assets/js/modules/comment_modal_image.js',
+	'./assets/js/modules/wp/comment/comment_modal_image.js',
 
 	// fileuploader
-	'./assets/js/modules/fileuploader.js',
+	'./assets/js/modules/wp/comment/fileuploader.js',
 
 	// common
-	'./assets/js/modules/common.js',
+	'./assets/js/modules/wp/common.js',
 
 	// menus
-	'./assets/js/modules/menus.js',
+	'./assets/js/modules/wp/menus.js',
 
 	// recaptcha
-	'./assets/js/modules/recaptcha.js',
+	'./assets/js/modules/wp/recaptcha.js',
 
 
 
