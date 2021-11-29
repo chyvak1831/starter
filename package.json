@@ -17,11 +17,6 @@
     "gulp-sourcemaps": "3.0.0",
     "bootstrap": "5.0.2",
     "@popperjs/core": "2.9.2",
-    "swiper": "6.8.4",
-    "the-answer": "1.0.0",
-    "rollup": "2.60.0",
-    "@rollup/plugin-commonjs": "21.0.1",
-    "@rollup/plugin-node-resolve": "13.0.6",
-    "@rollup/plugin-replace": "3.0.0"
+    "swiper": "6.8.4"
   }
 }

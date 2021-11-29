@@ -1,4 +1,14 @@
 var scripts = [
+	// PLUGINS
+	// bootstrap
+	'./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
+
+	// slick
+	'./node_modules/swiper/swiper-bundle.min.js',
+
+
+
+	// STARTER WP SCRIPTS
 	// comment
 	'./assets/js/modules/wp/comment/comment.js',
 
@@ -19,6 +29,8 @@ var scripts = [
 
 
 
+
+	// STARTER WOO SCRIPTS
 	// archive
 	'./assets/js/modules/woo/archive.js',
 

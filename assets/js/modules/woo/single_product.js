@@ -1,3 +1,6 @@
+window.addEventListener( 'load', () => {
+
+
 // plus/minus product
 const plusMinusProduct = () => {
 	const btn = document.querySelectorAll( '.js_count_add_product [data-count]' );
@@ -50,3 +53,6 @@ const zoomImage = () => {
 	})
 }
 zoomImage();
+
+
+});/*end window load event*/

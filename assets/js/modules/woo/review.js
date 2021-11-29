@@ -1,3 +1,6 @@
+window.addEventListener( 'load', () => {
+
+
 // rating
 class Rating {
 	constructor( element ) {
@@ -59,19 +62,22 @@ ratingElement.forEach( element => {
 
 
 // comment low-rating modal
-const commentMinimumRating = form => {
+window.starterCommentMinimumRating = form => {
 	const minimumRating = document.querySelector( '[data-minimum-rating]' ).getAttribute( 'data-minimum-rating' );
 	const rating = +form.querySelector( '.js_total_ratings' ).textContent;
 
 	if ( rating >= minimumRating || 0 == rating ) {
-		submitComment( form );
+		starterSubmitComment( form );
 	} else {
 		const lowRatingModal = new bootstrap.Modal( document.querySelector( '.js_low_rating_modal' ) );
 		lowRatingModal.show();
 		document.querySelector( '.js_comment_submit_anyway' ).addEventListener( 'click', e => {
 			e.preventDefault();
-			submitComment( form );
+			starterSubmitComment( form );
 			lowRatingModal.hide();
 		});
 	}
 }
+
+
+});/*end window load event*/

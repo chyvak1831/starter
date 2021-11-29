@@ -1,3 +1,6 @@
+window.addEventListener( 'load', () => {
+
+
 // hide filter canvas on tablet/desktop
 const hideFiltersOnDesktop = () => {
 	const filterWrap = document.getElementById( 'filtersSection' );
@@ -166,7 +169,9 @@ const ajaxTriggers = () => {
 		});
 	}));
 	// init ajax price filter
-	jQuery( document.body ).trigger( 'init_price_filter' );
+	if ( window.jQuery ) {
+		jQuery( document.body ).trigger( 'init_price_filter' );
+	}
 }
 ajaxTriggers();
 
@@ -180,9 +185,14 @@ const changePrice = () => {
 	const currentLink = priceFilter.getAttribute( 'action' ) + '?' + formData;
 	wooAjaxFilter( currentLink );
 }
-jQuery( document ).on( 'slidestop', '.product_filter_sort_ajax .js_wrap_archive .price_slider', () => {
-	changePrice();
-})
-jQuery( document ).on( 'input change', '.product_filter_sort_ajax .js_wrap_archive .price_slider_amount input', () => {
-	changePrice();
-});
+if ( window.jQuery ) {
+	jQuery( document ).on( 'slidestop', '.product_filter_sort_ajax .js_wrap_archive .price_slider', () => {
+		changePrice();
+	})
+	jQuery( document ).on( 'input change', '.product_filter_sort_ajax .js_wrap_archive .price_slider_amount input', () => {
+		changePrice();
+	});
+}
+
+
+});/*end window load event*/

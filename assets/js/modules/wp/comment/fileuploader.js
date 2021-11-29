@@ -1,3 +1,6 @@
+window.addEventListener( 'load', () => {
+
+
 // format bytes
 const formatBytes = ( bytes, decimals = 2 ) =>  {
     if ( 0 === bytes ) return '0 Bytes';
@@ -111,3 +114,6 @@ fileUploadElement.forEach( element => {
 	let fileUpload = new FileUploader( element );
 	fileUpload.init();
 })
+
+
+});/*end window load event*/

@@ -1,3 +1,6 @@
+window.addEventListener( 'load', () => {
+
+
 // fix aws accessability
 const awsField = document.querySelector( '.aws-search-field' );
 if ( awsField ) {
@@ -15,6 +18,11 @@ const addFormClass = () => {
 	document.querySelectorAll( primaryBtnLg ).forEach( element => { element.classList.add( 'btn', 'btn-primary', 'btn-lg' ) } );
 }
 addFormClass();
-jQuery( document.body ).on( 'updated_cart_totals updated_checkout', () => {
-	addFormClass();
-})
+if ( window.jQuery ) {
+	jQuery( document.body ).on( 'updated_cart_totals updated_checkout', () => {
+		addFormClass();
+	})
+}
+
+
+});/*end window load event*/

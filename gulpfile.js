@@ -9,14 +9,9 @@ var browserSync    = require( 'browser-sync' ),
     gulpIf         = require( 'gulp-if' ),
     sass           = require( 'gulp-sass' ),
     sourcemaps     = require( 'gulp-sourcemaps' );
-var { rollup } = require( 'rollup' );
-var commonjs = require( '@rollup/plugin-commonjs' );
-var { nodeResolve } = require( '@rollup/plugin-node-resolve' );
-var replace = require( '@rollup/plugin-replace' );
 
 // custom modules
 var config  = require( './config.js' ),
-    plugins = require( './assets/js/list_plugins.js' ),
     scripts = require( './assets/js/list_scripts.js' ),
     flags   = { production: false };
 
@@ -40,54 +35,19 @@ gulp.task( 'sass', function() {
              .pipe( gulp.dest( config.paths.css ) )
              .pipe( browserSync.reload( { stream: true } ) );
 });
-// concat all plugins js
-gulp.task( 'pluginsScripts', function () {
-  return gulp.src( plugins.plugins )
-             .pipe( concat( 'plugins.js' ) )
-             .pipe( changed( config.paths.scripts, { hasChanged: changed.compareContents } ) )
-             .pipe( gulp.dest( config.paths.scripts ) );
-});
 // concat all custom js
-gulp.task( 'customScripts', function () {
+gulp.task( 'scripts', function () {
   return gulp.src( scripts.scripts )
-             .pipe( concat( 'scripts.js' ) )
+             .pipe( concat( 'starter.js' ) )
              .pipe( changed( config.paths.scripts, { hasChanged: changed.compareContents } ) )
              .pipe( gulp.dest( config.paths.scripts ) );
-});
-
-
-// generate js
-gulp.task( 'js', function ( callback ) {
-  const map = !flags.production ? true : false;
-  const files = fs.readdirSync( config.paths.scripts + 'pages' );
-
-  files.forEach(function (file) {
-    return rollup({
-      input: config.paths.scripts + 'pages/' + file,
-      plugins: [
-          // babel({ babelHelpers: 'bundled' }),
-          commonjs(),
-          nodeResolve(),
-          replace({ 'process.env.NODE_ENV': JSON.stringify( 'production' ) })
-        ]
-      })
-      .then(bundle => {
-        return bundle.write({
-          file: config.paths.scripts + file,
-          format: 'umd',
-          sourcemap: false,
-        });
-      });
-    });
-
-callback();
 });
 
 
 // Watchers
 gulp.task( 'watch', function( done ) {
   gulp.watch( config.paths.scss + '**/*.scss', gulp.series( 'sass' ) );
-  gulp.watch( config.paths.scripts + '**/*.js', gulp.series( 'customScripts' ) );
+  gulp.watch( config.paths.scripts + '**/*.js', gulp.series( 'scripts' ) );
   gulp.watch( config.paths.html + '**/*.{php,tpl,html}', browserSync.reload );
   done();
 });
@@ -135,8 +95,7 @@ gulp.task( 'critical', ( callback ) => {
 
 // development - local server - default task
 gulp.task( 'default', gulp.series(
-  'pluginsScripts',
-  'customScripts',
+  'scripts',
   'sass',
   gulp.parallel(
     'browserSync',
@@ -148,8 +107,7 @@ gulp.task( 'default', gulp.series(
 gulp.task( 'production', ( callback ) => {
   flags.production = true;
   gulp.series(
-    'pluginsScripts',
-    'customScripts',
+    'scripts',
     'sass',
     'minify',
     'critical')();

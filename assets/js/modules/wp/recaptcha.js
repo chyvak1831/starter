@@ -1,5 +1,8 @@
+window.addEventListener( 'load', () => {
+
+
 // Load recaptcha by click on current form
-const loadRecaptchaOnClick = () => {
+const starterLoadRecaptchaOnClick = () => {
 	const recaptcha = document.querySelectorAll( '.g-recaptcha' );
 
 	recaptcha.forEach( element => {
@@ -11,7 +14,7 @@ const loadRecaptchaOnClick = () => {
 
 			element.classList.add( 'js_active_recaptcha' );
 			const script = document.createElement( 'script' );
-			const scriptSrc = 'https://www.google.com/recaptcha/api.js?onload=recaptchaOnloadCallback&render=explicit';
+			const scriptSrc = 'https://www.google.com/recaptcha/api.js?onload=starterRecaptchaOnloadCallback&render=explicit';
 			script.setAttribute( 'src', scriptSrc );
 			document.body.appendChild( script );
 		});
@@ -26,11 +29,11 @@ const loadRecaptchaOnClick = () => {
 		});
 	});
 }
-loadRecaptchaOnClick();
+starterLoadRecaptchaOnClick();
 
 
 // Render recaptcha on current form
-function recaptchaOnloadCallback() {
+window.starterRecaptchaOnloadCallback = function() {
 	const recaptcha = document.querySelector( '.js_active_recaptcha' );
 	const widgetId = grecaptcha.render( recaptcha, {
 		'sitekey' : recaptcha.dataset.recaptchapublickey
@@ -42,7 +45,10 @@ function recaptchaOnloadCallback() {
 
 
 // Callback recaptcha
-function recaptchaCallback() {
+window.starterRecaptchaCallback = function() {
 	const recaptcha = document.querySelectorAll( '.g-recaptcha' );
 	[...recaptcha].map( element => element.classList.remove( 'is-invalid' ) );
 }
+
+
+});/*end window load event*/

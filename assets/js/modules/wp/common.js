@@ -1,3 +1,6 @@
+window.addEventListener( 'load', () => {
+
+
 // scrollto
 const scrollTo = document.querySelectorAll( '.js_scrollto' );
 scrollTo.forEach( element => element.addEventListener( 'click', e => {
@@ -22,3 +25,6 @@ if ( scrollup ) {
 		}
 	})
 }
+
+
+});/*end window load event*/

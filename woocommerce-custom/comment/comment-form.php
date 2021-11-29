@@ -147,7 +147,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 	<!-- recaptcha field -->
 		<?php if ( $starter_comment_recaptcha ) : ?>
 			<div class="mb-4">
-				<div class="g-recaptcha" data-g_recaptcha data-callback="recaptchaCallback" data-recaptchapublickey="<?php echo esc_attr( $starter_comment_recaptcha_key ); ?>"></div>
+				<div class="g-recaptcha" data-g_recaptcha data-callback="starterRecaptchaCallback" data-recaptchapublickey="<?php echo esc_attr( $starter_comment_recaptcha_key ); ?>"></div>
 				<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
 			</div>
 		<?php endif; ?>

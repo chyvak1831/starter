@@ -1,3 +1,6 @@
+window.addEventListener( 'load', () => {
+
+
 // load comment image modal
 const loadCommentImgModal = () => {
 	const comment_list = document.querySelector( '.js_comment_list' );
@@ -62,3 +65,6 @@ document.body.addEventListener( 'shown.bs.modal', e => {
 		}
 	})
 })
+
+
+});/*end window load event*/

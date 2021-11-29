@@ -1,3 +1,6 @@
+window.addEventListener( 'load', () => {
+
+
 // add attribute data-bs-toggle & data-bs-display='static' for dropdown link
 const dropdown = document.querySelectorAll( '.menu .dropdown' );
 dropdown.forEach( element => {
@@ -28,3 +31,6 @@ nestedDropdownLink.forEach( element => element.addEventListener( 'click', e => {
 	}
 	e.stopPropagation();
 }))
+
+
+});/*end window load event*/

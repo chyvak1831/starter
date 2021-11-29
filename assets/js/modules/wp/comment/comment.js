@@ -1,5 +1,5 @@
-import './comment_modal_image.js';
-import './fileuploader.js';
+window.addEventListener( 'load', () => {
+
 
 // validate simple fields (name, email, comment, privacy)
 const commentValidation = form => {
@@ -13,7 +13,7 @@ const commentValidation = form => {
 
 
 // submit form
-const submitComment = form => {
+window.starterSubmitComment = form => {
 	form.querySelector( '.js_comment_submit' ).classList.add( 'loading' );
 	const data = new FormData( form );
 
@@ -71,9 +71,9 @@ if ( commentForm ) {
 			return;
 		}
 		if ( document.querySelector( '.js_low_rating_modal' ) ) {
-			commentMinimumRating( form );
+			starterCommentMinimumRating( form );
 		} else {
-			submitComment( form );
+			starterSubmitComment( form );
 		}
 	})
 }
@@ -117,3 +117,6 @@ const loadMoreComments = () => {
 	} )
 }
 loadMoreComments();
+
+
+});/*end window load event*/

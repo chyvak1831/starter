@@ -1,3 +1,6 @@
+window.addEventListener( 'load', () => {
+
+
 // homepage: fullwidth carousel
 const fullwidthCarousel = document.querySelectorAll( '.js_fullwidth_carousel' );
 fullwidthCarousel.forEach( element => {
@@ -77,3 +80,6 @@ document.body.addEventListener( 'shown.bs.modal', e => {
 		}
 	})
 })
+
+
+});/*end window load event*/
