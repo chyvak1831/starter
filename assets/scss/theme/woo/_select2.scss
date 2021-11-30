@@ -21,13 +21,17 @@
 	border: $form-select-border-width solid $form-select-border-color;
 	@include border-radius($form-select-border-radius, 0);
 	@include box-shadow($form-select-box-shadow);
+	@include transition($form-select-transition);
 	appearance: none;
 }
 .select2-container--open .select2-selection__rendered {border-color: $form-select-focus-border-color;}
 // END style as bootstrap form-control: copied from bootstrap\scss\forms\_form-select.scss
 
+// fix when is not selected
+.select2-selection__rendered {min-height: 38px;}
+
 // hide arrow
-.select2-selection__arrow, .select2-selection__placeholder {display: none;} //???
+.select2-selection__arrow {display: none;}
 
 // style dropdown
 .select2-dropdown {border: 1px solid $form-select-focus-border-color;}
