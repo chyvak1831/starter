@@ -39,11 +39,11 @@
 		&.error_filesize {color: $danger;}
 	}
 	.preview {
-		flex: none;
+		flex: 0 0 70px;
 		line-height: 0;
 	}
 	.file_info {
-		padding: 15px 7px 0;
+		padding: 15px 7px;
 		width: 100px;
 	}
 	.file_name {@include ellipsis(1);}
@@ -60,4 +60,4 @@
 	opacity: .65 !important;
 	transform: scale(.85) translateY(-.5rem) translateX(.15rem) !important;
 }
-.filelength_invalid ~ .filelength_invalid, .filesize_invalid ~ .filesize_invalid {display: block !important;}
+.filelength ~ .filelength_invalid, .filesize ~ .filesize_invalid, .filetype ~ .filetype_invalid {display: block !important;}

@@ -69,8 +69,8 @@ $starter_comment_only_verified = ( 'yes' === get_option( 'woocommerce_review_rat
 			?>
 			<!-- anyone can write review -->
 			<h2 class="title_section mt-5 pt-2"><span><?php esc_html_e( 'Write Review', 'starter' ); ?></span></h2>
-			<h4 class="text-center js_comment_form_sent" style="display: none;"><?php esc_html_e( 'Thanks for your feedback!', 'starter' ); ?></h4>
-			<form class="row comment_block justify-content-center js_comment_form" novalidate method="post" enctype="multipart/form-data">
+			<h4 class="text-center collapse js_comment_form_sent"><?php esc_html_e( 'Thanks for your feedback!', 'starter' ); ?></h4>
+			<form class="row comment_block justify-content-center collapse show js_comment_form" novalidate method="post" enctype="multipart/form-data">
 			<?php require get_stylesheet_directory() . '/woocommerce-custom/comment/comment-form.php'; ?>
 			</form>
 		<?php endif; ?>

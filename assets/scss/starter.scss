@@ -62,8 +62,8 @@ $theme-colors: map-merge($theme-colors, $custom-colors); */
 
 
 // PLUGINS
-// slick
-@import "./node_modules/slick-carousel/slick/slick.scss";
+// swiper
+@import "./node_modules/swiper/swiper-bundle";
 // END PLUGINS
 
 

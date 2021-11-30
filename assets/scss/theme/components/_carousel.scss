@@ -1,22 +1,17 @@
 // next/prev buttons
-.wrap_carousel {position: relative;}
 .carousel_control_prev, .carousel_control_next {
 	color: $primary;
 	font-size: 25px;
 	line-height: 0;
 	margin-top: -0.5em;
 	padding: 0;
+	pointer-events: initial !important;
 	position: absolute;
 	top: 50%;
 	z-index: 2;
-	&.slick-disabled, &.slick-hidden {display: none !important;}
 }
 .carousel_control_prev {left: 0;}
 .carousel_control_next {right: 0;}
-
-// make slide item the same height in row
-.slick-track {display: flex;}
-.slick-initialized .slick-slide {display: flex;height: auto;}
 
 // thumbnail carousel
 .thumbnail_carousel {
@@ -24,11 +19,13 @@
 	padding: 0 30px;
 	width: 552px; // 6 items carousel width + 2 arrows
 	.thumbnail {
-		cursor: pointer;
 		display: block;
 		font-size: 10px;
 		height: 8em;
 		width: 8em;
 	}
-	.is_active {border: 2px solid;}
+	.swiper-slide-thumb-active .thumbnail{border: 2px solid;}
 }
+
+// swiper overflow fix
+.swiper {overflow: hidden;}
