@@ -22,7 +22,6 @@ defined( 'ABSPATH' ) || exit;
 
 <form class="js_wrap_price_filter" method="get" action="<?php echo esc_url( $form_action ); ?>">
 	<div class="price_slider_wrapper">
-		<div class="price_slider" style="display:none;"></div>
 		<div class="price_slider_amount row" data-step="<?php echo esc_attr( $step ); ?>">
 			<div class="col-6"><input aria-label="minimum price filter" class="form-control" id="min_price" name="min_price" value="<?php echo esc_attr( $current_min_price ); ?>" data-min="<?php echo esc_attr( $min_price ); ?>" placeholder="<?php echo esc_attr__( 'Min price', 'woocommerce' ); ?>"></div>
 			<div class="col-6"><input aria-label="maximum price filter" class="form-control" id="max_price" name="max_price" value="<?php echo esc_attr( $current_max_price ); ?>" data-max="<?php echo esc_attr( $max_price ); ?>" placeholder="<?php echo esc_attr__( 'Max price', 'woocommerce' ); ?>"></div>
@@ -34,6 +33,7 @@ defined( 'ABSPATH' ) || exit;
 			<?php echo wc_query_string_form_fields( null, array( 'min_price', 'max_price', 'paged' ), '', true ); ?>
 			<div class="clear"></div>
 		</div>
+		<div class="price_slider"></div>
 	</div>
 	<input class="js_price_slider_file" type="text" hidden="hidden" value="<?php echo esc_attr( WC()->plugin_url() . '/assets/js/frontend/price-slider.min.js' ); ?>">
 </form>
