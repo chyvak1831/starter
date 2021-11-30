@@ -18,7 +18,7 @@ const loadCommentImgModal = () => {
 		data.append( 'comment_id', comment_id );
 
 		// send data
-		fetch( starter_ajax.ajax_url, {
+		fetch( starter_theme.ajax_url, {
 			method: 'post',
 			body: data
 		})

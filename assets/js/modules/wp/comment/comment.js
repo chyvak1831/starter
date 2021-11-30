@@ -26,7 +26,7 @@ window.starterSubmitComment = form => {
 	}
 
 	// send data
-	fetch( starter_ajax.ajax_url, {
+	fetch( starter_theme.ajax_url, {
 		method: 'post',
 		body: data
 	})
@@ -97,7 +97,7 @@ const loadMoreComments = () => {
 		data.append( 'offset', offset );
 
 		// send data
-		fetch( starter_ajax.ajax_url, {
+		fetch( starter_theme.ajax_url, {
 			method: 'post',
 			body: data
 		})

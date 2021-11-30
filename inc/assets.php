@@ -55,7 +55,7 @@ function starter_enqueues_scripts() {
 	if ( get_theme_mod( 'preload_css', true ) ) {
 		wp_add_inline_script( 'starter-js', file_get_contents( get_stylesheet_directory() . '/assets/js/iosPreloadFix.js' ) );
 	}
-	wp_localize_script( 'starter-js', 'starter_ajax', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+	wp_localize_script( 'starter-js', 'starter_theme', array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'theme_url' => esc_url( get_stylesheet_directory_uri() ) ) );
 }
 add_action( 'wp_enqueue_scripts', 'starter_enqueues_scripts' );
 
