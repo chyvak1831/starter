@@ -232,16 +232,17 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		</div><!-- container -->
 
 
-		<!-- related products -->
+		<!-- upsells products -->
 			<?php
-			if ( get_field( 'upsell_products' ) && get_theme_mod( 'qty_upsell_products', -1 ) ) {
 				add_action( 'starter_single_product_upsell', 'woocommerce_upsell_display', 20 );
 				do_action( 'starter_single_product_upsell' );
-			}
-			if ( get_field( 'related_products' ) ) {
+			?>
+		<!-- END upsells products -->
+
+		<!-- related products -->
+			<?php
 				add_action( 'starter_single_product_related', 'woocommerce_output_related_products', 30 );
 				do_action( 'starter_single_product_related' );
-			}
 			?>
 		<!-- END related products -->
 
