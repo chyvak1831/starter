@@ -212,7 +212,19 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 							<li>
 								<div class="btn-group count_block single_count_block js_count_add_product">
 									<a href="#" class="btn btn-outline-primary btn-lg" data-count="minus" role="button" aria-label="<?php esc_attr_e( 'Minus product', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-minus' ) ); ?></a>
-									<div class="btn-group"><input aria-label="count add to cart" type="number" class="form-control form-control-lg" value="1" readonly></div>
+									<?php
+										do_action( 'woocommerce_before_add_to_cart_quantity' );
+
+										woocommerce_quantity_input(
+											array(
+												'min_value'   => apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ),
+												'max_value'   => apply_filters( 'woocommerce_quantity_input_max', $product->get_max_purchase_quantity(), $product ),
+												'input_value' => isset( $_POST['quantity'] ) ? wc_stock_amount( wp_unslash( $_POST['quantity'] ) ) : $product->get_min_purchase_quantity(), // WPCS: CSRF ok, input var ok.
+											)
+										);
+
+										do_action( 'woocommerce_after_add_to_cart_quantity' );
+									?>
 									<a href="#" class="btn btn-outline-primary btn-lg" data-count="plus" role="button" aria-label="<?php esc_attr_e( 'Plus product', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-plus' ) ); ?></a>
 								</div>
 							</li>
