@@ -9,6 +9,9 @@ var scripts = [
 
 
 	// STARTER WP SCRIPTS
+	// archive
+	'./assets/js/modules/wp/archive.js',
+
 	// comment
 	'./assets/js/modules/wp/comment/comment.js',
 
@@ -26,7 +29,6 @@ var scripts = [
 
 	// recaptcha
 	'./assets/js/modules/wp/recaptcha.js',
-
 
 
 

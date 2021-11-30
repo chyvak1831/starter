@@ -17,7 +17,7 @@
 get_header();
 ?>
 
-<div class="content_wrapper container pt-5 pb-5" role="main">
+<div class="content_wrapper container pt-5 pb-5 js_wrap_post_archive" role="main">
 
 	<?php
 	if ( ! is_front_page() ) {
@@ -61,6 +61,7 @@ get_header();
 			<?php
 			the_posts_pagination(
 				array(
+					'class'              => 'js_ajax_pagination',
 					'type'               => 'list',
 					'prev_text'          => starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ) . '<span class="screen-reader-text">' . __( 'Previous page', 'starter' ) . '</span>',
 					'next_text'          => '<span class="screen-reader-text">' . __( 'Next page', 'starter' ) . '</span>' . starter_get_svg( array( 'icon' => 'bi-chevron-right' ) ),
