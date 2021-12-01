@@ -19,6 +19,11 @@ function starter_add_woocommerce_support() {
 add_action( 'after_setup_theme', 'starter_add_woocommerce_support' );
 
 /**
+ * Woocommerce customizer
+ */
+require_once get_stylesheet_directory() . '/inc/woocommerce/woocommerce-customizer.php';
+
+/**
  * Extend filter feature
  */
 require_once get_stylesheet_directory() . '/inc/woocommerce/filter.php';
@@ -82,70 +87,6 @@ function starter_replace_dismiss( $notice ) {
 	return str_replace( 'demo_store', 'alert alert-secondary alert-dismissible', $notice );
 }
 add_filter( 'woocommerce_demo_store', 'starter_replace_dismiss' );
-
-/**
- * Customizer: Product hover image
- *
- * @since starter 1.2
- *
- * @param string $wp_customize .
- */
-function starter_customizer_hover_product_image( $wp_customize ) {
-	$wp_customize->add_setting(
-		'hover_product_image',
-		array(
-			'default'   => false,
-			'type'      => 'theme_mod',
-			'transport' => 'postMessage',
-		)
-	);
-	$wp_customize->add_control(
-		'hover_product_image',
-		array(
-			'section'  => 'image_section',
-			'label'    => __( 'Enable hover product image', 'starter' ),
-			'type'     => 'checkbox',
-			'priority' => 2,
-		)
-	);
-}
-add_action( 'customize_register', 'starter_customizer_hover_product_image', 50 );
-
-/**
- * Customizer: Related
- *
- * @since starter 1.0
- *
- * @param object $wp_customize .
- */
-function starter_related_customizer( $wp_customize ) {
-	$wp_customize->add_section(
-		'similar_products_section',
-		array(
-			'title'    => 'Related products',
-			'priority' => 80,
-			'panel'    => 'starter_theme_panel',
-		)
-	);
-	$wp_customize->add_setting(
-		'qty_related_products',
-		array(
-			'default'   => '10',
-			'type'      => 'theme_mod',
-			'transport' => 'postMessage',
-		)
-	);
-	$wp_customize->add_control(
-		'qty_related_products',
-		array(
-			'section'     => 'similar_products_section',
-			'label'       => 'Quantity related products',
-			'description' => '0 - hide related products globally',
-			'type'        => 'number',
-		)
-	);
-}
-add_action( 'customize_register', 'starter_related_customizer', 50 );
 
 /**
  * Change number of related products
