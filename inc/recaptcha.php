@@ -102,63 +102,6 @@ function starter_customizer_recaptcha( $wp_customize ) {
 			'type'    => 'checkbox',
 		)
 	);
-	/**
-	 * Login recaptcha
-	 */
-	$wp_customize->add_setting(
-		'login_recaptcha',
-		array(
-			'default'   => false,
-			'type'      => 'theme_mod',
-			'transport' => 'postMessage',
-		)
-	);
-	$wp_customize->add_control(
-		'login_recaptcha',
-		array(
-			'section' => 'recaptcha_section',
-			'label'   => 'Login',
-			'type'    => 'checkbox',
-		)
-	);
-	/**
-	 * Register recaptcha
-	 */
-	$wp_customize->add_setting(
-		'register_recaptcha',
-		array(
-			'default'   => false,
-			'type'      => 'theme_mod',
-			'transport' => 'postMessage',
-		)
-	);
-	$wp_customize->add_control(
-		'register_recaptcha',
-		array(
-			'section' => 'recaptcha_section',
-			'label'   => 'Registration',
-			'type'    => 'checkbox',
-		)
-	);
-	/**
-	 * Lost password
-	 */
-	$wp_customize->add_setting(
-		'lostpassword_recaptcha',
-		array(
-			'default'   => false,
-			'type'      => 'theme_mod',
-			'transport' => 'postMessage',
-		)
-	);
-	$wp_customize->add_control(
-		'lostpassword_recaptcha',
-		array(
-			'section' => 'recaptcha_section',
-			'label'   => 'Lost Password',
-			'type'    => 'checkbox',
-		)
-	);
 }
 add_action( 'customize_register', 'starter_customizer_recaptcha', 50 );
 

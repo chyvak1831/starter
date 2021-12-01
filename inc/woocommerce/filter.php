@@ -152,7 +152,7 @@ function starter_customizer_filter_ajax( $wp_customize ) {
 		'product_filter_sort_ajax',
 		array(
 			'section' => 'ajax_section',
-			'label'   => 'Category: filter & sort',
+			'label'   => 'Product category: filter & sort (woocommerce only)',
 			'type'    => 'checkbox',
 		)
 	);
@@ -168,7 +168,7 @@ function starter_customizer_filter_ajax( $wp_customize ) {
 		'product_pagination_ajax',
 		array(
 			'section' => 'ajax_section',
-			'label'   => 'Category: pagination',
+			'label'   => 'Product category: pagination (woocommerce only)',
 			'type'    => 'checkbox',
 		)
 	);

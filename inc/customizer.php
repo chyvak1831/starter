@@ -141,21 +141,13 @@ function starter_customizer_css( $wp_customize ) {
 add_action( 'customize_register', 'starter_customizer_css', 50 );
 
 /**
- * Customizer: Add post
+ * Customizer: Add post ajax pagination
  *
  * @since starter 2.0
  *
  * @param string $wp_customize .
  */
 function starter_customizer_post( $wp_customize ) {
-	$wp_customize->add_section(
-		'post_section',
-		array(
-			'title'    => __( 'Post', 'starter' ),
-			'priority' => 65,
-			'panel'    => 'starter_theme_panel',
-		)
-	);
 	$wp_customize->add_setting(
 		'post_ajax_pagination',
 		array(
@@ -166,8 +158,8 @@ function starter_customizer_post( $wp_customize ) {
 	$wp_customize->add_control(
 		'post_ajax_pagination',
 		array(
-			'section' => 'post_section',
-			'label'   => __( 'Category: ajax pagination', 'starter' ),
+			'section' => 'ajax_section',
+			'label'   => __( 'Post category: pagination', 'starter' ),
 			'type'    => 'checkbox',
 		)
 	);
