@@ -22,4 +22,7 @@
 	}
 	&.ftinvwl-pulse {animation: ftinvwl-pulse 2s linear infinite;}
 }
-.wishlist_products_counter {padding: 0 !important;}
+.wishlist_products_counter {
+	padding: 0 !important;
+	position: relative;
+}
