@@ -3,8 +3,7 @@
 	margin-bottom: 0;
 	padding: 0;
 	> li {
-		@include flex_align();
-		flex-wrap: nowrap;
+		@include flex_align(flex-start, center, nowrap);
 		flex-shrink: 0;
 		&::after {
 			content: ' ';
