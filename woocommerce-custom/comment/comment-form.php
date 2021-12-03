@@ -102,7 +102,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 
 	<!-- comment field -->
 		<div class="mb-3 form-floating">
-			<textarea class="form-control" name="comment" placeholder="Comment" id="comment_<?php echo esc_attr( $starter_post_id ); ?>" cols="45" rows="8" required></textarea>
+			<textarea style="height: 200px" class="form-control" name="comment" placeholder="Comment" id="comment_<?php echo esc_attr( $starter_post_id ); ?>" cols="45" required></textarea>
 			<label for="comment_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'Your Review', 'starter' ); ?></label>
 			<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
 		</div>

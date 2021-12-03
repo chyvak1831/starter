@@ -1,9 +1,3 @@
-// remove ugly shadow on focus
-.form-control:focus, .form-select:focus, .form-check-input:focus, .btn:focus {box-shadow: none !important;}
-
-// fix bootstrap floating textarea height
-.form-floating > textarea.form-control {height: auto;}
-
 // remove chrome/firefox input number styles
 input[type="number"] {
 	-moz-appearance: textfield !important;
