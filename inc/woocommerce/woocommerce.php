@@ -35,7 +35,8 @@ require_once get_stylesheet_directory() . '/inc/woocommerce/filter.php';
  */
 function starter_woocommerce_assets_cleaner() {
 	wp_dequeue_script( 'wc-single-product' );
-	wp_dequeue_style( 'wc-block-style' );
+	wp_deregister_style( 'wc-blocks-style' );
+	wp_deregister_style( 'tinvwl-webfont-font' );
 }
 add_action( 'wp_enqueue_scripts', 'starter_woocommerce_assets_cleaner', 99 );
 add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );

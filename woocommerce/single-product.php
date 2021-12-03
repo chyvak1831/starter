@@ -64,7 +64,7 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 					<!-- main img carousel -->
 					<div class="swiper position-relative js_singlepage_img_carousel js_zoom_wrap mb-2">
 						<div class="swiper-wrapper">
-							<picture class="swiper-slide single_main_img item_img" style="background-image: url(<?php echo esc_attr( wp_get_attachment_image_src( $starter_img, 'w2000' )[0] ); ?>)">
+							<picture class="swiper-slide single_main_img item_img swiper-slide-active" style="background-image: url(<?php echo esc_attr( wp_get_attachment_image_src( $starter_img, 'w2000' )[0] ); ?>)">
 								<?php
 									echo wp_kses(
 										starter_img_func(
@@ -80,7 +80,7 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 							</picture>
 							<?php if ( $starter_thumbnails ) : ?>
 								<?php foreach ( $starter_thumbnails as $starter_thumbnail_img ) : ?>
-									<picture class="swiper-slide single_main_img item_img" style="background-image: url(<?php echo esc_attr( wp_get_attachment_image_src( $starter_thumbnail_img, 'w2000' )[0] ); ?>)">
+									<picture class="swiper-slide single_main_img item_img swiper-slide-active" style="background-image: url(<?php echo esc_attr( wp_get_attachment_image_src( $starter_thumbnail_img, 'w2000' )[0] ); ?>)">
 										<?php
 											echo wp_kses(
 												starter_img_func(

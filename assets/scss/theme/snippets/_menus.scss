@@ -29,7 +29,7 @@
 
 
 // subnavs - dropdowns
-[data-bs-toggle="dropdown"] svg.arrow {
+.menu-item svg.arrow {
 	height: 0.7em;
 	margin-left: 3px;
 	width: 0.7em;
@@ -80,6 +80,7 @@
 // menu list
 .menu_nested_list {
 	position: static;
+	z-index: 5;
 	> a {display: none;}
 	> .dropdown-menu {
 		background: none;
@@ -98,6 +99,7 @@
 
 
 // widgets
+.yspl_win_title {display: none;}
 .textwidget * {margin: 0;}
 
 
