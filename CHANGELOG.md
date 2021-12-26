@@ -5,7 +5,6 @@
 ### Fix
 - widget: disable widget block editor [#132](https://github.com/chyvak1831/starter/issues/132)
 
-
 # [1.2.2](https://github.com/chyvak1831/starter/releases/tag/v1.2.2) (2021-04-20)
 
 ### Fix
