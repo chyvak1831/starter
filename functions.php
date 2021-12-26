@@ -86,3 +86,8 @@ function starter_add_analytics() {
 	// @codingStandardsIgnoreEnd
 }
 add_action( 'wp_head', 'starter_add_analytics' );
+
+/**
+ * Remove widget block editor
+ */
+add_filter( 'use_widgets_block_editor', '__return_false' );
