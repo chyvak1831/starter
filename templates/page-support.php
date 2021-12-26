@@ -2,11 +2,12 @@
 /**
  * Template Name: Support page
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
+ * @since starter 1.0
  */
 
-get_header();
-?>
+get_header(); ?>
 
 <div class="content_wrapper pt-5 pb-5" role="main">
 	<div class="container">

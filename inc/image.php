@@ -2,7 +2,8 @@
 /**
  * Image function & settings
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
  * @since 1.0
  */
 

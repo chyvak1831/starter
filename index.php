@@ -14,8 +14,7 @@
  * @since starter 1.0
  */
 
-get_header();
-?>
+get_header(); ?>
 
 <div class="content_wrapper container pt-5 pb-5 js_wrap_post_archive" role="main">
 
@@ -71,8 +70,7 @@ get_header();
 		endif;
 		?>
 
-</div>
+</div><!-- .content_wrapper -->
 
 <?php
-
 get_footer();

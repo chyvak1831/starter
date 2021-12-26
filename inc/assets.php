@@ -2,7 +2,8 @@
 /**
  * Remove unnecessary WordPress assets
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
  * @since 1.0
  */
 

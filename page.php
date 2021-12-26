@@ -7,12 +7,14 @@
  * and that other 'pages' on your WordPress site may use a
  * different template.
  *
- * @package starter
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ *
+ * @package WordPress
+ * @subpackage starter
+ * @since starter 1.0
  */
 
-get_header();
-?>
-
+get_header(); ?>
 
 <div class="content_wrapper pt-5 pb-5" role="main">
 	<div class="container">
@@ -23,6 +25,7 @@ get_header();
 		}
 		?>
 		<!-- END breadcrumb -->
+
 		<?php
 		while ( have_posts() ) {
 			the_post();
@@ -55,7 +58,6 @@ get_header();
 		?>
 	</div>
 </div><!-- .content_wrapper -->
-
 
 <?php
 get_footer();

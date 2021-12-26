@@ -1,8 +1,14 @@
 <?php
 /**
- * The header for our theme
+ * The header.
  *
- * @package starter
+ * This is the template that displays all of the <head> section and everything up until main.
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ *
+ * @package WordPress
+ * @subpackage starter
+ * @since starter 1.0
  */
 
 ?>
@@ -14,10 +20,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<?php wp_head(); ?>
 </head>
+
 <body id="topPage" <?php body_class(); ?>>
 <a href="#topPage" class="scrollup js_scrollto" role="button" aria-label="<?php esc_attr_e( 'Scroll to top', 'starter' ); ?>">
 	<?php echo starter_get_svg( array( 'icon' => 'arrow-up' ) ); ?>
 </a>
+
 <div class="main_wrap">
 	<header class="main_header">
 		<!-- TOP NAV AREA -->

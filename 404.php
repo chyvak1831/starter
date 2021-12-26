@@ -2,11 +2,14 @@
 /**
  * The template for displaying 404 pages (not found)
  *
- * @package starter
+ * @link https://codex.wordpress.org/Creating_an_Error_404_Page
+ *
+ * @package WordPress
+ * @subpackage starter
+ * @since starter 1.0
  */
 
 get_header(); ?>
-
 
 <div class="content_wrapper container pt-5 pb-5" role="main">
 	<div class="container text-center mt-5">

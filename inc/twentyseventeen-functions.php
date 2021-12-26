@@ -1,8 +1,9 @@
 <?php
 /**
- * Twentyseventeen function forks: setup, unique id, icon-func (svg)
+ * Twentyseventeen function fork: setup, unique id, icon-func (svg)
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
  * @since 1.0
  */
 

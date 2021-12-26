@@ -2,7 +2,8 @@
 /**
  * Recaptcha function and setting for recaptcha in customizer
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
  * @since 1.0
  */
 

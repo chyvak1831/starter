@@ -2,7 +2,10 @@
 /**
  * Functions and definitions
  *
- * @package starter
+ * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ *
+ * @package WordPress
+ * @subpackage starter
  * @since starter 1.0
  */
 
@@ -17,17 +20,17 @@ require_once get_stylesheet_directory() . '/inc/assets.php';
 require_once get_stylesheet_directory() . '/inc/comment/comment.php';
 
 /**
- * Customizer.
+ * Customizer
  */
 require_once get_stylesheet_directory() . '/inc/customizer.php';
 
 /**
- * Image function & settings.
+ * Image function & settings
  */
 require_once get_stylesheet_directory() . '/inc/image.php';
 
 /**
- * Menu improvements: icons, font-size, colors and more.
+ * Menu improvements: icons, font-size, colors and more
  */
 require_once get_stylesheet_directory() . '/inc/menu.php';
 
@@ -37,24 +40,24 @@ require_once get_stylesheet_directory() . '/inc/menu.php';
 require_once get_stylesheet_directory() . '/inc/recaptcha.php';
 
 /**
- * WYSIWYG improvements: remove "Add media" button, add font-sizes/font-families/line-height/letter-spacing.
+ * WYSIWYG improvements: remove "Add media" button, add font-sizes/font-families/line-height/letter-spacing
  */
 require_once get_stylesheet_directory() . '/inc/tiny-mce-advanced.php';
 
 /**
- * Twentyseventeen function forks: setup, unique id, icon-func
+ * Twentyseventeen function fork: setup, unique id, icon-func
  */
 require_once get_stylesheet_directory() . '/inc/twentyseventeen-functions.php';
 
 /**
- * Include woocommerce funstions if plugin enabled.
+ * Include woocommerce funstions if plugin enabled
  */
 if ( class_exists( 'WooCommerce' ) ) {
 	require_once get_stylesheet_directory() . '/inc/woocommerce/woocommerce.php';
 }
 
 /**
- * Custom path save acf fields.
+ * Custom path save acf fields
  *
  * @since starter 1.0
  *
@@ -67,7 +70,7 @@ function starter_custom_acf_save( $path ) {
 add_filter( 'acf/settings/save_json', 'starter_custom_acf_save' );
 
 /**
- * Custom path load acf fields.
+ * Custom path load acf fields
  *
  * @since starter 1.0
  *
@@ -81,7 +84,7 @@ function starter_custom_acf_load( $paths ) {
 add_filter( 'acf/settings/load_json', 'starter_custom_acf_load' );
 
 /**
- * Add analytics code into <head>.
+ * Add analytics code into <head>
  *
  * @since starter 1.2
  */
@@ -93,7 +96,7 @@ function starter_add_analytics() {
 add_action( 'wp_head', 'starter_add_analytics' );
 
 /**
- * Add classes to <body>: add login/logout and post_archive_ajax_pagination classes.
+ * Add classes to <body>: add login/logout and post_archive_ajax_pagination classes
  *
  * @since starter 2.0
  *
