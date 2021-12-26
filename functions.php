@@ -93,6 +93,20 @@ function starter_add_analytics() {
 add_action( 'wp_head', 'starter_add_analytics' );
 
 /**
+ * Add classes to <body>: add login/logout and post_archive_ajax_pagination classes.
+ *
+ * @since starter 2.0
+ *
+ * @param array $classes .
+ */
+function starter_wp_body_custom_class( $classes ) {
+	$classes[] = is_user_logged_in() ? ' user_logged' : ' user_unlogged';
+	$classes[] = get_theme_mod( 'post_ajax_pagination', true ) ? ' post_ajax_pagination' : '';
+	return $classes;
+}
+add_filter( 'body_class', 'starter_wp_body_custom_class' );
+
+/**
  * Remove keyword ('category', 'tag' etc) from archive page title
  *
  * @since starter 2.0

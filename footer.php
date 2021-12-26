@@ -25,9 +25,9 @@
 </footer>
 </div>
 
-<!-- woo alert -->
+<!-- alert -->
 <div class="js_custom_alert" style="display:none">
-<div class="woocommerce-message alert alert-danger alert-dismissible fade show" role="alert">
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
 	<span class="js_custom_alert_txt"></span>
 	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="<?php esc_attr_e( 'Close', 'starter' ); ?>"></button>
 </div>

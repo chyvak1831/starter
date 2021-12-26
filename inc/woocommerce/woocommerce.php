@@ -83,7 +83,7 @@ add_filter( 'woocommerce_add_to_cart_fragments', 'starter_woocommerce_header_add
  * @param string $notice .
  */
 function starter_replace_dismiss( $notice ) {
-	$notice = str_replace( 'woocommerce-store-notice__dismiss-link', 'woocommerce-store-notice__dismiss-link btn-close' , $notice );
+	$notice = str_replace( 'woocommerce-store-notice__dismiss-link', 'woocommerce-store-notice__dismiss-link btn-close', $notice );
 	$notice = str_replace( 'Dismiss', '<span class="screen-reader-text">Dismiss notification</span>', $notice );
 	return str_replace( 'demo_store', 'alert alert-secondary alert-dismissible', $notice );
 }
@@ -116,3 +116,51 @@ function starter_woo_pagination( $args ) {
 	return $args;
 }
 add_filter( 'woocommerce_pagination_args', 'starter_woo_pagination' );
+
+/**
+ * Add recaptcha validation for login, register and lostpassword pages.
+ * starter_recaptcha_markup - markup for recaptcha, look at file inc/recaptcha.php
+ * starter_recaptcha_validation - recaptcha validation, look at file inc/recaptcha.php
+ *
+ * @since starter 2.0
+ */
+if ( get_theme_mod( 'login_recaptcha', false ) ) {
+	add_action( 'woocommerce_login_form', 'starter_recaptcha_markup' );
+	add_action( 'woocommerce_process_login_errors', 'starter_recaptcha_validation', 10, 3 );
+}
+if ( get_theme_mod( 'register_recaptcha', false ) ) {
+	add_action( 'woocommerce_register_form', 'starter_recaptcha_markup' );
+	add_action( 'woocommerce_process_registration_errors', 'starter_recaptcha_validation', 10, 3 );
+}
+if ( get_theme_mod( 'lostpassword_recaptcha', false ) ) {
+	add_action( 'woocommerce_lostpassword_form', 'starter_recaptcha_markup' );
+	add_action( 'lostpassword_post', 'starter_recaptcha_validation', 10, 3 );
+}
+
+/**
+ * Remove default Woo image sizes.
+ *
+ * @since starter 2.0
+ *
+ * @param array $default_sizes Default image size names.
+ * @return array $default_sizes Updated image names
+ */
+function starter_remove_default_woo_image_sizes( $default_sizes ) {
+	return array_diff( $default_sizes, array( 'woocommerce_thumbnail', 'woocommerce_single', 'woocommerce_gallery_thumbnail', 'shop_catalog', 'shop_single', 'shop_thumbnail' ) );
+}
+add_action( 'intermediate_image_sizes', 'starter_remove_default_woo_image_sizes', 999 );
+
+/**
+ * Add classes to <body>: add product_archive_ajax_pagination and product hover images classes.
+ *
+ * @since starter 2.0
+ *
+ * @param array $classes .
+ */
+function starter_woo_body_custom_class( $classes ) {
+	$classes[] = get_theme_mod( 'product_filter_sort_ajax', true ) ? ' product_filter_sort_ajax' : '';
+	$classes[] = get_theme_mod( 'product_pagination_ajax', true ) ? ' product_pagination_ajax' : '';
+	$classes[] = get_theme_mod( 'hover_product_image', false ) ? ' hover_product_image' : '';
+	return $classes;
+}
+add_filter( 'body_class', 'starter_woo_body_custom_class' );

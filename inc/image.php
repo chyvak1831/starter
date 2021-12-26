@@ -65,17 +65,17 @@ function starter_img_func( $atts ) {
 }
 
 /**
- * Remove default WP/woo image sizes.
+ * Remove default WP image sizes.
  *
  * @since starter 1.0
  *
  * @param array $default_sizes Default image size names.
  * @return array $default_sizes Updated image names
  */
-function starter_remove_default_image_sizes( $default_sizes ) {
-	return array_diff( $default_sizes, array( 'medium', 'medium_large', 'large', '1536x1536', '2048x2048', 'woocommerce_thumbnail', 'woocommerce_single', 'woocommerce_gallery_thumbnail', 'shop_catalog', 'shop_single', 'shop_thumbnail' ) );
+function starter_remove_default_wp_image_sizes( $default_sizes ) {
+	return array_diff( $default_sizes, array( 'medium', 'medium_large', 'large', '1536x1536', '2048x2048' ) );
 }
-add_action( 'intermediate_image_sizes', 'starter_remove_default_image_sizes', 999 );
+add_action( 'intermediate_image_sizes', 'starter_remove_default_wp_image_sizes', 999 );
 
 /**
  * Add custom image sizes.

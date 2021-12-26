@@ -136,17 +136,3 @@ function starter_recaptcha_validation( $errors ) {
 	}
 	return $errors;
 }
-
-
-if ( get_theme_mod( 'login_recaptcha', false ) ) {
-	add_action( 'woocommerce_login_form', 'starter_recaptcha_markup' );
-	add_action( 'woocommerce_process_login_errors', 'starter_recaptcha_validation', 10, 3 );
-}
-if ( get_theme_mod( 'register_recaptcha', false ) ) {
-	add_action( 'woocommerce_register_form', 'starter_recaptcha_markup' );
-	add_action( 'woocommerce_process_registration_errors', 'starter_recaptcha_validation', 10, 3 );
-}
-if ( get_theme_mod( 'lostpassword_recaptcha', false ) ) {
-	add_action( 'woocommerce_lostpassword_form', 'starter_recaptcha_markup' );
-	add_action( 'lostpassword_post', 'starter_recaptcha_validation', 10, 3 );
-}
