@@ -1,6 +1,5 @@
 // next/prev buttons
 .carousel_control_prev, .carousel_control_next {
-	color: $primary;
 	font-size: 25px;
 	line-height: 0;
 	margin-top: -0.5em;
@@ -26,6 +25,3 @@
 	}
 	.swiper-slide-thumb-active .thumbnail{border: 2px solid;}
 }
-
-// swiper overflow fix
-.swiper {overflow: hidden;}

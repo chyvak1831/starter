@@ -26,3 +26,9 @@ a:hover {text-decoration: none;}
 		top: 50%;
 	}
 }
+
+// posts
+.wrap_posts .item_img {
+	aspect-ratio: 1.5;
+	overflow: hidden;
+}
