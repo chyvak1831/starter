@@ -131,3 +131,8 @@ function starter_archive_title( $title ) {
 	return $title;
 }
 add_filter( 'get_the_archive_title', 'starter_archive_title' );
+
+/**
+ * Remove widget block editor
+ */
+add_filter( 'use_widgets_block_editor', '__return_false' );

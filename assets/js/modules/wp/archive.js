@@ -17,7 +17,7 @@ const yoastUpdate = data => {
 
 // send GA data - initially data MUST be updated in ga object and then send 'pageview'
 const googleAnalyticsUpdate = data => {
-	if( window.ga ) {
+	if ( window.ga ) {
 		ga( 'set', {
 			page: location.pathname,
 			title: data.querySelector( 'title' ).textContent
