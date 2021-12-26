@@ -5,11 +5,11 @@
  * @package starter
  */
 
-$starter_is_logged           = is_user_logged_in() ? ' user_logged' : ' user_unlogged';
+$starter_is_logged            = is_user_logged_in() ? ' user_logged' : ' user_unlogged';
 $starter_ajax_pagination_post = get_theme_mod( 'post_ajax_pagination', true ) ? ' post_ajax_pagination' : '';
-$starter_ajax_filter_sort    = get_theme_mod( 'product_filter_sort_ajax', true ) ? ' product_filter_sort_ajax' : '';
-$starter_ajax_pagination     = get_theme_mod( 'product_pagination_ajax', true ) ? ' product_pagination_ajax' : '';
-$starter_hover_product_image = get_theme_mod( 'hover_product_image', false ) ? ' hover_product_image' : '';
+$starter_ajax_filter_sort     = get_theme_mod( 'product_filter_sort_ajax', true ) ? ' product_filter_sort_ajax' : '';
+$starter_ajax_pagination      = get_theme_mod( 'product_pagination_ajax', true ) ? ' product_pagination_ajax' : '';
+$starter_hover_product_image  = get_theme_mod( 'hover_product_image', false ) ? ' hover_product_image' : '';
 ?>
 
 <!DOCTYPE html>

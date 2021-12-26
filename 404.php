@@ -12,7 +12,7 @@ get_header(); ?>
 	<div class="container text-center mt-5">
 		<h4 class="status_type"><?php echo esc_html( __( '404', 'starter' ) ); ?></h4>
 		<h1 class="text-uppercase"><?php echo esc_html( __( 'Not found', 'starter' ) ); ?></h1>
-		<a href="<?php echo esc_url( site_url() ); ?>" class="btn btn-primary"><?php echo esc_html( __( 'back to shop', 'starter' ) ); ?></a>
+		<a href="<?php echo esc_url( site_url() ); ?>" class="btn btn-primary"><?php echo esc_html( __( 'Back to home', 'starter' ) ); ?></a>
 	</div>
 </div>
 

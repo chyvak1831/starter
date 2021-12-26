@@ -20,6 +20,9 @@ function starter_img_func( $atts ) {
 	/*get image ID or placeholder ID*/
 	$img = $atts['img_id'] ? $atts['img_id'] : get_theme_mod( 'image_placeholder' );
 
+	/*get image lazy parameter*/
+	$lazy = ( isset( $atts['lazy'] ) ) ? '' : 'loading="lazy"';
+
 	/*default values*/
 	$img_width  = 'width="100%"';
 	$img_height = 'height="100%"';
@@ -53,7 +56,7 @@ function starter_img_func( $atts ) {
 		}
 
 		/*return image markup*/
-		return $img_markup . "<img class='img-fluid' loading='lazy' src=\"$img_src\" srcset=\"$img_srcset\" $img_sizes $img_alt $img_width $img_height>";
+		return $img_markup . "<img class='img-fluid' $lazy src=\"$img_src\" srcset=\"$img_srcset\" $img_sizes $img_alt $img_width $img_height>";
 
 	} else {
 		/*return onepixel placeholder if both image and placeholder ID missing*/
@@ -106,7 +109,7 @@ add_action( 'after_setup_theme', 'starter_custom_thumbnail_size', 999 );
 function starter_wpkses_post_tags( $tags, $context ) {
 	$tags['img']['sizes']  = true;
 	$tags['img']['srcset'] = true;
-	$tags['source'] = array(
+	$tags['source']        = array(
 		'srcset' => true,
 		'sizes'  => true,
 		'type'   => true,

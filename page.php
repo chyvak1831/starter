@@ -28,20 +28,28 @@ get_header();
 			the_post();
 			the_title( '<h1 class="entry-title">', '</h1>' );
 
-			switch ( $post->ID ) {
-				case wc_get_page_id( 'cart' ):
-					echo "<div class='cart_page'>" . do_shortcode( '[woocommerce_cart]' ) . '</div>';
-					break;
-				case wc_get_page_id( 'checkout' ):
-					echo "<div class='checkout_page'>" . do_shortcode( '[woocommerce_checkout]' ) . '</div>';
-					break;
-				case wc_get_page_id( 'myaccount' ):
-					echo "<div class='account_page'>" . do_shortcode( '[woocommerce_my_account]' ) . '</div>';
-					break;
-				default:
-					echo '<div class="mt-5">';
-					the_content();
-					echo '</div>';
+			if ( class_exists( 'WooCommerce' ) ) {
+				/*if woocommerce enabled*/
+				switch ( $post->ID ) {
+					case wc_get_page_id( 'cart' ):
+						echo "<div class='cart_page'>" . do_shortcode( '[woocommerce_cart]' ) . '</div>';
+						break;
+					case wc_get_page_id( 'checkout' ):
+						echo "<div class='checkout_page'>" . do_shortcode( '[woocommerce_checkout]' ) . '</div>';
+						break;
+					case wc_get_page_id( 'myaccount' ):
+						echo "<div class='account_page'>" . do_shortcode( '[woocommerce_my_account]' ) . '</div>';
+						break;
+					default:
+						echo '<div class="mt-5">';
+						the_content();
+						echo '</div>';
+				}
+				/*END if woocommerce enabled*/
+			} else {
+				echo '<div class="mt-5">';
+				the_content();
+				echo '</div>';
 			}
 		}
 		?>
