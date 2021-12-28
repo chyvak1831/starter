@@ -2,7 +2,8 @@
 /**
  * Image function & settings
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
  * @since 1.0
  */
 
@@ -19,6 +20,9 @@ defined( 'ABSPATH' ) || exit;
 function starter_img_func( $atts ) {
 	/*get image ID or placeholder ID*/
 	$img = $atts['img_id'] ? $atts['img_id'] : get_theme_mod( 'image_placeholder' );
+
+	/*get image lazy parameter*/
+	$lazy = ( isset( $atts['lazy'] ) ) ? '' : 'loading="lazy"';
 
 	/*default values*/
 	$img_width  = 'width="100%"';
@@ -53,7 +57,7 @@ function starter_img_func( $atts ) {
 		}
 
 		/*return image markup*/
-		return $img_markup . "<img class='img-fluid' loading='lazy' src=\"$img_src\" srcset=\"$img_srcset\" $img_sizes $img_alt $img_width $img_height>";
+		return $img_markup . "<img class='img-fluid' $lazy src=\"$img_src\" srcset=\"$img_srcset\" $img_sizes $img_alt $img_width $img_height>";
 
 	} else {
 		/*return onepixel placeholder if both image and placeholder ID missing*/
@@ -62,17 +66,17 @@ function starter_img_func( $atts ) {
 }
 
 /**
- * Remove default WP/woo image sizes.
+ * Remove default WP image sizes.
  *
  * @since starter 1.0
  *
  * @param array $default_sizes Default image size names.
  * @return array $default_sizes Updated image names
  */
-function starter_remove_default_image_sizes( $default_sizes ) {
-	return array_diff( $default_sizes, array( 'medium', 'medium_large', 'large', '1536x1536', '2048x2048', 'woocommerce_thumbnail', 'woocommerce_single', 'woocommerce_gallery_thumbnail', 'shop_catalog', 'shop_single', 'shop_thumbnail' ) );
+function starter_remove_default_wp_image_sizes( $default_sizes ) {
+	return array_diff( $default_sizes, array( 'medium', 'medium_large', 'large', '1536x1536', '2048x2048' ) );
 }
-add_action( 'intermediate_image_sizes', 'starter_remove_default_image_sizes', 999 );
+add_action( 'intermediate_image_sizes', 'starter_remove_default_wp_image_sizes', 999 );
 
 /**
  * Add custom image sizes.
@@ -106,7 +110,7 @@ add_action( 'after_setup_theme', 'starter_custom_thumbnail_size', 999 );
 function starter_wpkses_post_tags( $tags, $context ) {
 	$tags['img']['sizes']  = true;
 	$tags['img']['srcset'] = true;
-	$tags['source'] = array(
+	$tags['source']        = array(
 		'srcset' => true,
 		'sizes'  => true,
 		'type'   => true,

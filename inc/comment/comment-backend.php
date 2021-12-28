@@ -2,8 +2,9 @@
 /**
  * Comment backend
  *
- * @package starter
- * @since 1.0
+ * @package WordPress
+ * @subpackage starter
+ * @since starter 1.0
  */
 
 defined( 'ABSPATH' ) || exit;

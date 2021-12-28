@@ -2,7 +2,8 @@
 /**
  * Recaptcha function and setting for recaptcha in customizer
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
  * @since 1.0
  */
 
@@ -112,7 +113,7 @@ add_action( 'customize_register', 'starter_customizer_recaptcha', 50 );
  */
 function starter_recaptcha_markup() { ?>
 	<div class="form-row">
-		<div class="g-recaptcha" data-g_recaptcha data-callback="starterRecaptchaCallback" data-recaptchapublickey="<?php echo esc_attr( get_theme_mod( 'public_recaptcha_key' ) ); ?>"></div>
+		<div class="g-recaptcha" data-g_recaptcha data-callback="starterRecaptchaCallback" data-recaptcha_public_key="<?php echo esc_attr( get_theme_mod( 'public_recaptcha_key' ) ); ?>"></div>
 		<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
 	</div>
 	<?php
@@ -135,18 +136,4 @@ function starter_recaptcha_validation( $errors ) {
 		$errors->add( 'g_recaptcha', __( 'Please click the reCAPTCHA checkbox to proceed.', 'starter' ) ); /*recaptcha textarea wrong value*/
 	}
 	return $errors;
-}
-
-
-if ( get_theme_mod( 'login_recaptcha', false ) ) {
-	add_action( 'woocommerce_login_form', 'starter_recaptcha_markup' );
-	add_action( 'woocommerce_process_login_errors', 'starter_recaptcha_validation', 10, 3 );
-}
-if ( get_theme_mod( 'register_recaptcha', false ) ) {
-	add_action( 'woocommerce_register_form', 'starter_recaptcha_markup' );
-	add_action( 'woocommerce_process_registration_errors', 'starter_recaptcha_validation', 10, 3 );
-}
-if ( get_theme_mod( 'lostpassword_recaptcha', false ) ) {
-	add_action( 'woocommerce_lostpassword_form', 'starter_recaptcha_markup' );
-	add_action( 'lostpassword_post', 'starter_recaptcha_validation', 10, 3 );
 }

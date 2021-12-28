@@ -2,7 +2,8 @@
 /**
  * WYSIWYG improvements: remove media button, add font-sizes/line-height/letter-spacing/font-families.
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
  * @since 1.0
  */
 

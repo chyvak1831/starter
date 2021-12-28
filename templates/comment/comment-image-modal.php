@@ -1,8 +1,10 @@
 <?php
 /**
- * Image modal
+ * Template part for displaying comment image modal
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
+ * @since starter 1.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -73,8 +75,8 @@ $starter_comment_img_count  = count( $starter_comment_thumbnails );
 							<?php endforeach; ?>
 						</div>
 					</div>
-					<button class="btn carousel_control_prev js_carousel_control_prev" aria-label="Carousel scroll previous"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
-					<button class="btn carousel_control_next js_carousel_control_next" aria-label="Carousel scroll next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-right' ) ); ?></button>
+					<button type="button" class="btn carousel_control_prev" aria-label="Carousel scroll previous"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
+					<button type="button" class="btn carousel_control_next" aria-label="Carousel scroll next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-right' ) ); ?></button>
 				</div>
 			</div>
 		</div>

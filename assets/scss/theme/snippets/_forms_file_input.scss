@@ -1,5 +1,5 @@
 // make input file invisible
-.custom-file-input {
+.custom_file_input {
 	height: 100%;
 	left: 0;
 	opacity: 0;
@@ -57,7 +57,7 @@
 // file validation
 .js_wrap_upload_files.not_empty {height: auto !important;}
 .js_wrap_upload_files.not_empty ~ .file_label_text {
-	opacity: .65 !important;
-	transform: scale(.85) translateY(-.5rem) translateX(.15rem) !important;
+	opacity: $form-floating-label-opacity !important; // from bootstrap/scss/forms/_floating-labels.scss
+	transform: $form-floating-label-transform !important; // from bootstrap/scss/forms/_floating-labels.scss
 }
 .filelength ~ .filelength_invalid, .filesize ~ .filesize_invalid, .filetype ~ .filetype_invalid {display: block !important;}

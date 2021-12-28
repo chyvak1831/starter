@@ -7,6 +7,7 @@ const loadCommentImgModal = () => {
 	if ( !comment_list ) return;
 
 	comment_list.addEventListener( 'click', e => {
+		e.preventDefault();
 		if ( e.target && !e.target.matches( '.js_comment_img_modal_btn img' ) ) return;
 
 		document.querySelector( '.main_wrap' ).classList.add( 'main_loading' );
@@ -48,8 +49,8 @@ document.body.addEventListener( 'shown.bs.modal', e => {
 	// modal: thumbnail carousel
 	const thumbnailCarousel = new Swiper( '.js_comment_img_modal .js_thumbnail_carousel .swiper', {
 		navigation: {
-			prevEl: '.js_comment_img_modal .js_thumbnail_carousel .js_carousel_control_prev',
-			nextEl: '.js_comment_img_modal .js_thumbnail_carousel .js_carousel_control_next'
+			prevEl: '.js_comment_img_modal .carousel_control_prev',
+			nextEl: '.js_comment_img_modal .carousel_control_next'
 		},
 		breakpoints: {
 			1200: {slidesPerView: 6},

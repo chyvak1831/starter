@@ -2,11 +2,12 @@
 /**
  * Template Name: Support page
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
+ * @since starter 1.0
  */
 
-get_header();
-?>
+get_header(); ?>
 
 <div class="content_wrapper pt-5 pb-5" role="main">
 	<div class="container">
@@ -58,7 +59,7 @@ get_header();
 				while ( have_posts() ) :
 					the_post();
 					?>
-					<h1 class="main_page_title"><?php the_title(); ?></h1>
+					<h1><?php the_title(); ?></h1>
 					<?php the_content(); ?>
 				<?php endwhile; ?>
 			</div>

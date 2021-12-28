@@ -1,0 +1,17 @@
+.wrap_posts .item_img {
+	aspect-ratio: 1.5;
+	overflow: hidden;
+}
+.wrap_single_post_content {
+	margin: 0 auto 6%;
+	max-width: 800px;
+}
+.single_post_page .nav-links {
+	@include flex_align(space-between);
+	margin-top: 25px;
+	svg {
+		height: 2em;
+		width: 2em;
+	}
+	.nav-next {text-align: right;}
+}

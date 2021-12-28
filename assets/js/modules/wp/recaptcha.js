@@ -36,7 +36,7 @@ starterLoadRecaptchaOnClick();
 window.starterRecaptchaOnloadCallback = function() {
 	const recaptcha = document.querySelector( '.js_active_recaptcha' );
 	const widgetId = grecaptcha.render( recaptcha, {
-		'sitekey' : recaptcha.dataset.recaptchapublickey
+		'sitekey' : recaptcha.dataset.recaptcha_public_key
 	});
 	recaptcha.classList.add( 'recaptcha_inited' );
 	recaptcha.classList.remove( 'js_active_recaptcha' );

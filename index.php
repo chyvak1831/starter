@@ -14,8 +14,7 @@
  * @since starter 1.0
  */
 
-get_header();
-?>
+get_header(); ?>
 
 <div class="content_wrapper container pt-5 pb-5 js_wrap_post_archive" role="main">
 
@@ -24,16 +23,16 @@ get_header();
 		the_archive_title( '<h1>', '</h1>' );
 	}
 	?>
-	<div class="row">
+	<div class="row wrap_posts">
 		<?php
 		if ( have_posts() ) :
 
 			while ( have_posts() ) :
 				the_post();
 				?>
-				<article class="col-sm-6 col-lg-4">
+				<article class="col-sm-6 col-lg-4 mb-4">
 					<a class="card" href="<?php echo esc_url( get_permalink() ); ?>">
-						<picture class="card-img-top overflow-hidden">
+						<picture class="item_img">
 							<?php
 								echo wp_kses(
 									starter_img_func(
@@ -71,8 +70,7 @@ get_header();
 		endif;
 		?>
 
-</div>
+</div><!-- .content_wrapper -->
 
 <?php
-
 get_footer();

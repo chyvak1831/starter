@@ -1,8 +1,9 @@
 <?php
 /**
- * Twentyseventeen function forks: setup, unique id, icon-func (svg)
+ * Twentyseventeen function fork: setup, unique id, icon-func (svg)
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
  * @since 1.0
  */
 
@@ -31,6 +32,13 @@ function starter_setup() {
 	 * provide it for us.
 	 */
 	add_theme_support( 'title-tag' );
+
+	/*
+	 * Enable support for Post Thumbnails on posts and pages.
+	 *
+	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
+	 */
+	add_theme_support( 'post-thumbnails' );
 
 	// Add theme support for selective refresh for widgets.
 	add_theme_support( 'customize-selective-refresh-widgets' );

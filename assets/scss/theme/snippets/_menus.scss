@@ -103,12 +103,11 @@
 .textwidget * {margin: 0;}
 
 
-// left navigation
+// left navigation - in starter it's faq/support pages
 .support_nav, .support_nav_mobile {
 	li::after {display: none !important;}
 	.list > li, .menu_nested_list > .sub-menu {width: 100%;}
 	.dropdown_fullwidth {position: relative;}
-	.widget_text {margin: 15px 0 0;}
 	a {
 		border: 1px solid $gray-400;
 		margin-top: -1px;
@@ -116,4 +115,3 @@
 		width: 100%;
 	}
 }
-// END left navigation
