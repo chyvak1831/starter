@@ -59,7 +59,7 @@ get_header(); ?>
 				while ( have_posts() ) :
 					the_post();
 					?>
-					<h1 class="main_page_title"><?php the_title(); ?></h1>
+					<h1><?php the_title(); ?></h1>
 					<?php the_content(); ?>
 				<?php endwhile; ?>
 			</div>

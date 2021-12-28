@@ -1,13 +1,14 @@
 <?php
 /**
- * Comment part
+ * Template part for displaying comment form
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
+ * @since starter 1.0
  */
 
 defined( 'ABSPATH' ) || exit;
 
-$starter_post_id                     = get_the_ID();
 $starter_comment_name_email_required = get_option( 'require_name_email', 1 ) ? 'required' : '';
 $starter_comment_file                = get_theme_mod( 'comment_file', false );
 $starter_comment_file_max_length     = get_theme_mod( 'comment_maximum_files', 10 ); /*maximum files*/
@@ -45,7 +46,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 					<span><?php esc_html_e( 'Price:', 'starter' ); ?></span>
 					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem-width="22">
 						<?php require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php'; ?>
-						<input name="price_rating" data-price_rating id="price_rating_<?php echo esc_attr( $starter_post_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
+						<input name="price_rating" data-price_rating id="priceRating_<?php echo esc_attr( $starter_post_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
 						<div class="invalid-feedback text-end"><?php esc_html_e( 'Price rating is required.', 'starter' ); ?></div>
 					</div>
 				</li>
@@ -53,7 +54,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 					<span><?php esc_html_e( 'Quality:', 'starter' ); ?></span>
 					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem-width="22">
 						<?php require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php'; ?>
-						<input name="quality_rating" data-quality_rating id="quality_rating_<?php echo esc_attr( $starter_post_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
+						<input name="quality_rating" data-quality_rating id="qualityRating_<?php echo esc_attr( $starter_post_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
 						<div class="invalid-feedback text-end"><?php esc_html_e( 'Quality rating is required.', 'starter' ); ?></div>
 					</div>
 				</li>
@@ -61,7 +62,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 					<span><?php esc_html_e( 'Shipping:', 'starter' ); ?></span>
 					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem-width="22">
 						<?php require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php'; ?>
-						<input name="shipping_rating" data-shipping_rating id="shipping_rating_<?php echo esc_attr( $starter_post_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
+						<input name="shipping_rating" data-shipping_rating id="shippingRating_<?php echo esc_attr( $starter_post_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
 						<div class="invalid-feedback text-end"><?php esc_html_e( 'Shipping rating is required.', 'starter' ); ?></div>
 					</div>
 				</li>
@@ -113,7 +114,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 			<div class="mb-3">
 				<div class="form-floating">
 					<div class="form-control js_wrap_upload_files" data-filelength data-filesize data-filetype>
-						<input class="custom-file-input js_field_file_upload" accept="image/jpg, image/jpeg, image/png" data-length="<?php echo esc_attr( $starter_comment_file_max_length ); ?>" data-weight="<?php echo esc_attr( $starter_comment_file_max_weight ); ?>" id="comment_fileupload_<?php echo esc_attr( $starter_post_id ); ?>" type="file" multiple aria-describedby="fileHelp">
+						<input class="custom_file_input js_field_file_upload" accept="image/jpg, image/jpeg, image/png" data-length="<?php echo esc_attr( $starter_comment_file_max_length ); ?>" data-weight="<?php echo esc_attr( $starter_comment_file_max_weight ); ?>" id="commentFileupload_<?php echo esc_attr( $starter_post_id ); ?>" type="file" multiple aria-describedby="fileHelp">
 						<ul class="list-unstyled list_file_upload js_list_file_upload"></ul>
 					</div>
 					<label class="file_label_text" for="comment_fileupload_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'Attachment (Optional)', 'starter' ); ?></label>
@@ -156,7 +157,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 	<!-- privacy field -->
 		<?php if ( $starter_comment_privacy ) : ?>
 			<div class="form-check mb-4">
-				<input class="form-check-input js_comment_privacy" id="check_privacy_policy_<?php echo esc_attr( $starter_post_id ); ?>" name="privacy_policy" type="checkbox" data-privacy_policy required checked>
+				<input class="form-check-input" id="checkPrivacyPolicy_<?php echo esc_attr( $starter_post_id ); ?>" name="privacy_policy" type="checkbox" data-privacy_policy required checked>
 				<label class="form-check-label" for="check_privacy_policy_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'I have read & accept the Privacy Policy', 'starter' ); ?></label>
 				<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
 			</div>

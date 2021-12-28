@@ -1,8 +1,10 @@
 <?php
 /**
- * Image modal
+ * Template part for displaying comment image modal
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
+ * @since starter 1.0
  */
 
 defined( 'ABSPATH' ) || exit;

@@ -2,7 +2,8 @@
 /**
  * Comments setting in customizer
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
  * @since starter 1.0
  */
 

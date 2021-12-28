@@ -2,8 +2,9 @@
 /**
  * Comment main file: customizer, backend
  *
- * @package starter
- * @since 1.0
+ * @package WordPress
+ * @subpackage starter
+ * @since starter 1.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -35,23 +36,23 @@ function starter_comment_load() {
 	if ( ! isset( $_POST['post_id'] ) || ! isset( $_POST['offset'] ) ) {
 		wp_die();
 	}
-	$starter_post_id          = sanitize_text_field( wp_unslash( $_POST['post_id'] ) );
-	$starter_offset           = sanitize_text_field( wp_unslash( $_POST['offset'] ) );
-	$starter_comment_quantity = get_option( 'page_comments', 0 ) ? get_option( 'comments_per_page', 2 ) : 0; // wp feature
-	$starter_comment_order    = get_option( 'comment_order', 'DESK' ); // wp feature
+	$offset           = sanitize_text_field( wp_unslash( $_POST['offset'] ) );
+	$post_id          = sanitize_text_field( wp_unslash( $_POST['post_id'] ) );
+	$comment_quantity = get_option( 'page_comments', 0 ) ? get_option( 'comments_per_page', 2 ) : 0; // wp feature
+	$comment_order    = get_option( 'comment_order', 'DESK' ); // wp feature
 	// phpcs:enable
-	$starter_param          = array(
-		'offset'  => $starter_offset,
+	$param          = array(
+		'offset'  => $offset,
 		'status'  => 'approve',
-		'post_id' => $starter_post_id,
+		'post_id' => $post_id,
 		'orderby' => 'comment_date',
-		'order'   => $starter_comment_order,
-		'number'  => $starter_comment_quantity,
+		'order'   => $comment_order,
+		'number'  => $comment_quantity,
 	);
-	$starter_comments_query = get_comments( $starter_param );
-	foreach ( $starter_comments_query as $starter_comment ) {
-		$starter_comment_id = $starter_comment->comment_ID;
-		if ( class_exists( 'WooCommerce' ) && 'product' == get_post_type( $starter_post_id ) ) {
+	$comments_query = get_comments( $param );
+	foreach ( $comments_query as $comment ) {
+		$starter_comment_id = $comment->comment_ID;
+		if ( class_exists( 'WooCommerce' ) && 'product' == get_post_type( $post_id ) ) {
 			require get_stylesheet_directory() . '/woocommerce-custom/comment/comment-item.php';
 		} else {
 			require get_stylesheet_directory() . '/templates/comment/comment-item.php';
@@ -73,10 +74,10 @@ function starter_comment_image() {
 		wp_die();
 	}
 	$starter_comment_id = sanitize_text_field( wp_unslash( $_POST['comment_id'] ) );
-	$starter_comment    = get_comment( $starter_comment_id ); 
-	$starter_post_id    = $starter_comment->comment_post_ID ;
+	$comment            = get_comment( $starter_comment_id ); 
+	$post_id            = $comment->comment_post_ID ;
 	// phpcs:enable
-	if ( class_exists( 'WooCommerce' ) && 'product' == get_post_type( $starter_post_id ) ) {
+	if ( class_exists( 'WooCommerce' ) && 'product' == get_post_type( $post_id ) ) {
 		require get_stylesheet_directory() . '/woocommerce-custom/comment/comment-image-modal.php';
 	} else {
 		require get_stylesheet_directory() . '/templates/comment/comment-image-modal.php';

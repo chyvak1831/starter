@@ -7,6 +7,7 @@ const loadCommentImgModal = () => {
 	if ( !comment_list ) return;
 
 	comment_list.addEventListener( 'click', e => {
+		e.preventDefault();
 		if ( e.target && !e.target.matches( '.js_comment_img_modal_btn img' ) ) return;
 
 		document.querySelector( '.main_wrap' ).classList.add( 'main_loading' );
