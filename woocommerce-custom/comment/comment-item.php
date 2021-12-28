@@ -81,7 +81,7 @@ $starter_comment_average_rating  = ( $starter_comment_price_rating + $starter_co
 	<!-- END display extended rating if enabled -->
 
 	<!-- author, date and verified badge -->
-	<ul class="list details_comment_list text-muted small mb-3">
+	<ul class="list details_comment_list">
 		<?php if ( $starter_comment_author ) : ?>
 		<li>
 			<?php
@@ -101,7 +101,7 @@ $starter_comment_average_rating  = ( $starter_comment_price_rating + $starter_co
 	<?php if ( 0 < $starter_comment_total_img ) : ?>
 		<div class="attached_img_comment mt-4">
 			<?php /* translators: count of images. */ ?>
-			<small class="attached_img_title text-muted text-uppercase"><?php printf( esc_html( _n( 'Attached %s Photo', 'Attached %s Photos', $starter_comment_total_img, 'starter' ) ), esc_html( $starter_comment_total_img ) ); ?></small>
+			<small class="attached_img_title"><?php printf( esc_html( _n( 'Attached %s Photo', 'Attached %s Photos', $starter_comment_total_img, 'starter' ) ), esc_html( $starter_comment_total_img ) ); ?></small>
 			<ul class="list object_fit">
 				<?php foreach ( $starter_comment_img_ids as $starter_comment_img ) : ?>
 					<li class="js_comment_img_modal_btn">

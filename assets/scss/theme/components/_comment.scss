@@ -10,11 +10,21 @@
 	}
 }
 .details_comment_list li {
+	color: $gray-700;
 	flex-shrink: 1;
+	font-size: 11px;
+	margin-bottom: 10px;
+	text-transform: uppercase;
 	&::after {content: '|';}
 }
-.attached_img_comment .item_img {
-	margin-bottom: 15px;
-	aspect-ratio: 1.3;
-	width: 90px;
+.attached_img_comment {
+	.attached_img_title {
+		color: $gray-700;
+		text-transform: uppercase;
+	}
+	.item_img {
+		margin-bottom: 15px;
+		aspect-ratio: 1.3;
+		width: 90px;
+	}
 }
