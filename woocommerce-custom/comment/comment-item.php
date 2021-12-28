@@ -81,7 +81,7 @@ $starter_comment_average_rating  = ( $starter_comment_price_rating + $starter_co
 	<!-- END display extended rating if enabled -->
 
 	<!-- author, date and verified badge -->
-	<ul class="list details_comment_list text-muted">
+	<ul class="list details_comment_list text-muted small mb-3">
 		<?php if ( $starter_comment_author ) : ?>
 		<li>
 			<?php

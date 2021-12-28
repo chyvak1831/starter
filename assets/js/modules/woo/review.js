@@ -6,7 +6,7 @@ class Rating {
 	constructor( element ) {
 		this.rating = element;
 		this.parentRating = this.rating.closest( '.js_ratings_list' );
-		this.widthElemRating = this.rating.closest( '.js_rating' ).getAttribute( 'data-elem-width' );
+		this.widthElemRating = this.rating.closest( '.js_rating' ).getAttribute( 'data-elem_width' );
 		this.countFilledStar = 0;
 	}
 
@@ -63,7 +63,7 @@ ratingElement.forEach( element => {
 
 // comment low-rating modal
 window.starterCommentMinimumRating = form => {
-	const minimumRating = document.querySelector( '[data-minimum-rating]' ).getAttribute( 'data-minimum-rating' );
+	const minimumRating = document.querySelector( '[data-minimum_rating]' ).getAttribute( 'data-minimum_rating' );
 	const rating = +form.querySelector( '.js_total_ratings' ).textContent;
 
 	if ( rating >= minimumRating || 0 == rating ) {

@@ -26,11 +26,11 @@ $starter_bought_product        = wc_customer_bought_product( 'completed', get_cu
 $starter_comment_only_verified = ( 'yes' === get_option( 'woocommerce_review_rating_verification_required', 'no' ) ); /*woo feature*/
 ?>
 
-<div class="container mt-4" id="comments_wrap">
+<div class="container mt-4" id="commentsWrap">
 	<h2 class="title_section"><span><?php esc_html_e( 'Customer Reviews', 'starter' ); ?></span></h2>
 
 	<!-- comment list -->
-	<div class="comment_list js_comment_list" data-comment-total="<?php echo esc_attr( $starter_comment_count ); ?>">
+	<div class="comment_list js_comment_list" data-comment_total="<?php echo esc_attr( $starter_comment_count ); ?>">
 		<?php
 		foreach ( $starter_comments_query as $starter_comment ) {
 			$starter_comment_id = $starter_comment->comment_ID;
@@ -58,7 +58,7 @@ $starter_comment_only_verified = ( 'yes' === get_option( 'woocommerce_review_rat
 	<!-- END show this text when no any comments -->
 
 	<!-- comment form -->
-	<div id="write_comment">
+	<div id="writeComment">
 
 		<!-- only buyers of this product can write review -->
 		<?php if ( $starter_comment_only_verified && ! $starter_bought_product ) : ?>

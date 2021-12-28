@@ -105,7 +105,7 @@ const loadMoreComments = () => {
 		.then( body => {
 			const commentsList = document.querySelector( '.js_comment_list' );
 			commentsList.insertAdjacentHTML( 'beforeend', body );
-			const totalComments = commentsList.getAttribute( 'data-comment-total' );
+			const totalComments = commentsList.getAttribute( 'data-comment_total' );
 			const showComments = commentsList.querySelectorAll( '.js_comment_item' ).length;
 
 			if ( showComments == totalComments ) {

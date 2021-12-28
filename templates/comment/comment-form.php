@@ -89,7 +89,7 @@ $starter_comment_privacy             = get_theme_mod( 'comment_privacy', false )
 	<!-- recaptcha field -->
 		<?php if ( $starter_comment_recaptcha ) : ?>
 			<div class="mb-4">
-				<div class="g-recaptcha" data-g_recaptcha data-callback="starterRecaptchaCallback" data-recaptchapublickey="<?php echo esc_attr( $starter_comment_recaptcha_key ); ?>"></div>
+				<div class="g-recaptcha" data-g_recaptcha data-callback="starterRecaptchaCallback" data-recaptcha_public_key="<?php echo esc_attr( $starter_comment_recaptcha_key ); ?>"></div>
 				<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
 			</div>
 		<?php endif; ?>
@@ -99,7 +99,7 @@ $starter_comment_privacy             = get_theme_mod( 'comment_privacy', false )
 		<?php if ( $starter_comment_privacy ) : ?>
 			<div class="form-check mb-4">
 				<input class="form-check-input" id="checkPrivacyPolicy_<?php echo esc_attr( $starter_post_id ); ?>" name="privacy_policy" type="checkbox" data-privacy_policy required checked>
-				<label class="form-check-label" for="check_privacy_policy_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'I have read & accept the Privacy Policy', 'starter' ); ?></label>
+				<label class="form-check-label" for="checkPrivacyPolicy_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'I have read & accept the Privacy Policy', 'starter' ); ?></label>
 				<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
 			</div>
 		<?php endif; ?>

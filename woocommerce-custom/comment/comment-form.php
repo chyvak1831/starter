@@ -28,7 +28,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 			<ul class="list-unstyled form-control ratings_list js_ratings_list">
 				<li>
 					<span><?php esc_html_e( 'Rating:', 'starter' ); ?></span>
-					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem-width="22">
+					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem_width="22">
 						<?php require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php'; ?>
 						<input name="rating" data-default_rating class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
 						<div class="invalid-feedback text-end"><?php esc_html_e( 'Rating is required.', 'starter' ); ?></div>
@@ -44,7 +44,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 			<ul class="list-unstyled form-control ratings_list js_ratings_list">
 				<li>
 					<span><?php esc_html_e( 'Price:', 'starter' ); ?></span>
-					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem-width="22">
+					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem_width="22">
 						<?php require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php'; ?>
 						<input name="price_rating" data-price_rating id="priceRating_<?php echo esc_attr( $starter_post_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
 						<div class="invalid-feedback text-end"><?php esc_html_e( 'Price rating is required.', 'starter' ); ?></div>
@@ -52,7 +52,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 				</li>
 				<li>
 					<span><?php esc_html_e( 'Quality:', 'starter' ); ?></span>
-					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem-width="22">
+					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem_width="22">
 						<?php require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php'; ?>
 						<input name="quality_rating" data-quality_rating id="qualityRating_<?php echo esc_attr( $starter_post_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
 						<div class="invalid-feedback text-end"><?php esc_html_e( 'Quality rating is required.', 'starter' ); ?></div>
@@ -60,7 +60,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 				</li>
 				<li>
 					<span><?php esc_html_e( 'Shipping:', 'starter' ); ?></span>
-					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem-width="22">
+					<div class="d-flex justify-content-end flex-wrap text-right js_rating" data-elem_width="22">
 						<?php require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php'; ?>
 						<input name="shipping_rating" data-shipping_rating id="shippingRating_<?php echo esc_attr( $starter_post_id ); ?>" class="js_rating_input" <?php echo esc_attr( $starter_comment_rating_required ); ?> hidden>
 						<div class="invalid-feedback text-end"><?php esc_html_e( 'Shipping rating is required.', 'starter' ); ?></div>
@@ -148,7 +148,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 	<!-- recaptcha field -->
 		<?php if ( $starter_comment_recaptcha ) : ?>
 			<div class="mb-4">
-				<div class="g-recaptcha" data-g_recaptcha data-callback="starterRecaptchaCallback" data-recaptchapublickey="<?php echo esc_attr( $starter_comment_recaptcha_key ); ?>"></div>
+				<div class="g-recaptcha" data-g_recaptcha data-callback="starterRecaptchaCallback" data-recaptcha_public_key="<?php echo esc_attr( $starter_comment_recaptcha_key ); ?>"></div>
 				<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
 			</div>
 		<?php endif; ?>
@@ -158,7 +158,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 		<?php if ( $starter_comment_privacy ) : ?>
 			<div class="form-check mb-4">
 				<input class="form-check-input" id="checkPrivacyPolicy_<?php echo esc_attr( $starter_post_id ); ?>" name="privacy_policy" type="checkbox" data-privacy_policy required checked>
-				<label class="form-check-label" for="check_privacy_policy_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'I have read & accept the Privacy Policy', 'starter' ); ?></label>
+				<label class="form-check-label" for="checkPrivacyPolicy_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'I have read & accept the Privacy Policy', 'starter' ); ?></label>
 				<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
 			</div>
 		<?php endif; ?>
@@ -197,7 +197,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 
 <!-- low-rating modal -->
 <?php if ( wc_review_ratings_enabled() && $starter_comment_low_rating_modal ) : ?>
-	<div class="modal low_rating_modal js_low_rating_modal" tabindex="-1" role="dialog" data-minimum-rating="4">
+	<div class="modal low_rating_modal js_low_rating_modal" tabindex="-1" role="dialog" data-minimum_rating="4">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">

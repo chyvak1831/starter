@@ -113,7 +113,7 @@ add_action( 'customize_register', 'starter_customizer_recaptcha', 50 );
  */
 function starter_recaptcha_markup() { ?>
 	<div class="form-row">
-		<div class="g-recaptcha" data-g_recaptcha data-callback="starterRecaptchaCallback" data-recaptchapublickey="<?php echo esc_attr( get_theme_mod( 'public_recaptcha_key' ) ); ?>"></div>
+		<div class="g-recaptcha" data-g_recaptcha data-callback="starterRecaptchaCallback" data-recaptcha_public_key="<?php echo esc_attr( get_theme_mod( 'public_recaptcha_key' ) ); ?>"></div>
 		<div class="invalid-feedback"><?php esc_html_e( 'This field is required.', 'starter' ); ?></div>
 	</div>
 	<?php

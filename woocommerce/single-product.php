@@ -141,8 +141,8 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 									<?php endforeach; ?>
 								</div>
 							</div>
-							<button class="btn carousel_control_prev js_carousel_control_prev" aria-label="Carousel scroll previous"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
-							<button class="btn carousel_control_next js_carousel_control_next" aria-label="Carousel scroll next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-right' ) ); ?></button>
+							<button type="button" class="btn carousel_control_prev js_carousel_control_prev" aria-label="Carousel scroll previous"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
+							<button type="button" class="btn carousel_control_next js_carousel_control_next" aria-label="Carousel scroll next"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-right' ) ); ?></button>
 						</div>
 					<?php endif; ?>
 					<!-- image modal -->
@@ -160,7 +160,7 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 							<?php if ( $starter_comment_enabled ) : ?>
 								<?php if ( $starter_comment_count ) : ?>
 							<li>
-								<a href="#comments_wrap" class="d-flex align-items-center js_scrollto" role="button" aria-label="<?php esc_attr_e( 'Average rating', 'starter' ); ?>">
+								<a href="#commentsWrap" class="d-flex align-items-center js_scrollto" role="button" aria-label="<?php esc_attr_e( 'Average rating', 'starter' ); ?>">
 									<?php
 									if ( wc_review_ratings_enabled() && $starter_comment_rating ) {
 										require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php';
@@ -173,7 +173,7 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 							</li>
 							<?php endif; ?>
 							<li class="tool_link">
-								<a href="#write_comment" class="js_scrollto" role="button" aria-label="<?php esc_attr_e( 'Write review', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-pen' ) ); ?><?php esc_html_e( 'review', 'starter' ); ?></a>
+								<a href="#writeComment" class="js_scrollto" role="button" aria-label="<?php esc_attr_e( 'Write review', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-pen' ) ); ?><?php esc_html_e( 'review', 'starter' ); ?></a>
 							</li>
 						<?php endif; ?>
 						<li class="tool_link dropdown share_dropdown">

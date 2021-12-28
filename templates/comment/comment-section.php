@@ -24,11 +24,11 @@ $starter_comment_count       = get_comments_number();
 $starter_comment_only_logged = get_option( 'comment_registration' ) && ! is_user_logged_in(); /*wp feature*/
 ?>
 
-<div class="container mt-4" id="comments_wrap">
+<div class="container mt-4" id="commentsWrap">
 	<h2 class="title_section"><span><?php esc_html_e( 'Comments', 'starter' ); ?></span></h2>
 
 	<!-- comment list -->
-	<div class="comment_list js_comment_list" data-comment-total="<?php echo esc_attr( $starter_comment_count ); ?>">
+	<div class="comment_list js_comment_list" data-comment_total="<?php echo esc_attr( $starter_comment_count ); ?>">
 		<?php
 		foreach ( $starter_comments_query as $starter_comment ) {
 			$starter_comment_id = $starter_comment->comment_ID;
@@ -56,7 +56,7 @@ $starter_comment_only_logged = get_option( 'comment_registration' ) && ! is_user
 	<!-- END show this text when no any comments -->
 
 	<!-- comment form -->
-	<div id="write_comment">
+	<div id="writeComment">
 
 		<!-- only logged users can write comment -->
 		<?php if ( $starter_comment_only_logged ) : ?>
