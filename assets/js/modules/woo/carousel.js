@@ -6,8 +6,8 @@ const fullwidthCarousel = document.querySelectorAll( '.js_fullwidth_carousel' );
 fullwidthCarousel.forEach( element => {
 	new Swiper( element.querySelector( '.swiper' ), {
 		navigation: {
-			prevEl: element.querySelector( '.js_carousel_control_prev' ),
-			nextEl: element.querySelector( '.js_carousel_control_next' )
+			prevEl: element.querySelector( '.carousel_control_prev' ),
+			nextEl: element.querySelector( '.carousel_control_next' )
 		},
 		loop: true
 	})
@@ -19,8 +19,8 @@ const productCarousels = document.querySelectorAll( '.js_product_carousel' );
 productCarousels.forEach( element => {
 	new Swiper( element.querySelector( '.swiper' ), {
 		navigation: {
-			prevEl: element.querySelector( '.js_carousel_control_prev' ),
-			nextEl: element.querySelector( '.js_carousel_control_next' )
+			prevEl: element.querySelector( '.carousel_control_prev' ),
+			nextEl: element.querySelector( '.carousel_control_next' )
 		},
 		breakpoints: {
 			1200: {slidesPerView: 5},
@@ -37,8 +37,8 @@ const singleThumbCarousel = document.querySelector( '.js_singlepage_thumbnail_ca
 if ( singleThumbCarousel ) {
 	const mainImgThumbnailCarousel = new Swiper( singleThumbCarousel, {
 		navigation: {
-			prevEl: '.js_singlepage_thumbnail_carousel .js_carousel_control_prev',
-			nextEl: '.js_singlepage_thumbnail_carousel .js_carousel_control_next'
+			prevEl: '.js_singlepage_thumbnail_carousel .carousel_control_prev',
+			nextEl: '.js_singlepage_thumbnail_carousel .carousel_control_next'
 		},
 		breakpoints: {
 			1200: {slidesPerView: 6},
@@ -63,8 +63,8 @@ document.body.addEventListener( 'shown.bs.modal', e => {
 	// modal: thumbnail carousel
 	const thumbnailCarousel = new Swiper( '.js_singlepage_img_modal .js_thumbnail_carousel .swiper', {
 		navigation: {
-			prevEl: '.js_singlepage_img_modal .js_thumbnail_carousel .js_carousel_control_prev',
-			nextEl: '.js_singlepage_img_modal .js_thumbnail_carousel .js_carousel_control_next'
+			prevEl: '.js_singlepage_img_modal .carousel_control_prev',
+			nextEl: '.js_singlepage_img_modal .carousel_control_next'
 		},
 		breakpoints: {
 			1200: {slidesPerView: 6},
