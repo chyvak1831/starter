@@ -2,7 +2,8 @@
 /**
  * Woocommerce only code
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
  * @since starter 1.0
  */
 
@@ -151,7 +152,7 @@ function starter_remove_default_woo_image_sizes( $default_sizes ) {
 add_action( 'intermediate_image_sizes', 'starter_remove_default_woo_image_sizes', 999 );
 
 /**
- * Add classes to <body>: add product_archive_ajax_pagination and product hover images classes.
+ * Add classes to <body>: add product archive ajax pagination and product hover images classes.
  *
  * @since starter 2.0
  *

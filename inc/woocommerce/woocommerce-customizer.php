@@ -2,7 +2,8 @@
 /**
  * Woocommerce setting in customizer
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
  * @since starter 2.0
  */
 
@@ -61,9 +62,9 @@ function starter_related_customizer( $wp_customize ) {
 	$wp_customize->add_control(
 		'qty_related_products',
 		array(
-			'section'     => 'product_section',
-			'label'       => 'Quantity related products',
-			'type'        => 'number',
+			'section' => 'product_section',
+			'label'   => 'Quantity related products',
+			'type'    => 'number',
 		)
 	);
 }

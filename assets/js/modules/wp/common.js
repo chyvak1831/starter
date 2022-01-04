@@ -18,7 +18,7 @@ scrollTo.forEach( element => element.addEventListener( 'click', e => {
 const scrollup = document.querySelector( '.scrollup' );
 if ( scrollup ) {
 	window.addEventListener( 'scroll', () => {
-		if ( window.scrollY > 100 ) {
+		if ( 100 < window.scrollY ) {
 			document.querySelector( '.scrollup' ).classList.add( 'on' );
 		} else {
 			document.querySelector( '.scrollup' ).classList.remove( 'on' );

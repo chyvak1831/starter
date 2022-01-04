@@ -2,7 +2,8 @@
 /**
  * Filter and sorting
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
  * @since starter 1.0
  */
 
@@ -124,7 +125,7 @@ function starter_filter_link_markup( $term_html, $term, $link, $count ) {
 		$indicator_color = '<span class="indicator_color" style="background:' . $color . ';"></span>';
 	}
 	$term_html = '<a class="form-check" rel="nofollow" href="' . esc_url( $link ) . '">' .
-				 		'<input class="form-check-input" type="checkbox" aria-label="Filter">' .
+						'<input class="form-check-input" type="checkbox" aria-label="Filter">' .
 						$indicator_color . '<span class="wrap_text">' . esc_html( $term->name ) . '</span>' .
 						apply_filters( 'woocommerce_layered_nav_count', '<small class="text-muted count">(' . absint( $count ) . ')</small>', $count, $term ) .
 				 '</a>';
