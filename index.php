@@ -20,8 +20,7 @@ get_header(); ?>
 
 	<?php
 	if ( ! is_front_page() ) {
-		the_archive_title( '<h1>', '</h1>' );
-	}
+		the_archive_title( '<h1>', '</h1>' ); }
 	?>
 	<div class="row wrap_posts">
 		<?php
@@ -52,9 +51,7 @@ get_header(); ?>
 					</a>
 				</article>
 
-				<?php
-		endwhile;
-			?>
+			<?php endwhile; ?>
 	</div>
 
 			<?php

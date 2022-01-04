@@ -13,8 +13,7 @@ get_header();
 
 /* Start the Loop */
 while ( have_posts() ) :
-	the_post();
-	?>
+	the_post(); ?>
 
 <div class="content_wrapper single_post_page pt-md-5 pb-5" role="main">
 	<div class="wrap_single_post_content container-fluid">

@@ -2,7 +2,9 @@
 /**
  * Product item
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
+ * @since starter 1.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -107,9 +109,7 @@ foreach ( $starter_terms as $starter_term ) {
 		</div>
 
 		<!-- add to cart -->
-		<div class="pl-md-3 pr-md-3">
-			<?php woocommerce_template_loop_add_to_cart( 'btn_class=btn btn-outline-primary d-block' ); ?>
-		</div>
+		<?php woocommerce_template_loop_add_to_cart( 'btn_class=btn btn-outline-primary d-block' ); ?>
 		<!-- END add to cart -->
 
 	</div><!-- END description_block -->

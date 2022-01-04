@@ -111,8 +111,8 @@ add_filter( 'woocommerce_output_related_products_args', 'starter_related_product
  * @param array $args .
  */
 function starter_woo_pagination( $args ) {
-	$args['prev_text'] = starter_get_svg( array( 'icon' => 'bi-chevron-left' ) );
-	$args['next_text'] = starter_get_svg( array( 'icon' => 'bi-chevron-right' ) );
+	$args['prev_text'] = starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ) . '<span class="screen-reader-text">Previous page</span>';
+	$args['next_text'] = starter_get_svg( array( 'icon' => 'bi-chevron-right' ) ) . '<span class="screen-reader-text">Next page</span>';
 	return $args;
 }
 add_filter( 'woocommerce_pagination_args', 'starter_woo_pagination' );

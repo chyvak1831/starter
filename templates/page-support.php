@@ -11,6 +11,7 @@ get_header(); ?>
 
 <div class="content_wrapper pt-5 pb-5" role="main">
 	<div class="container">
+
 		<!-- breadcrumb -->
 		<?php
 		if ( function_exists( 'yoast_breadcrumb' ) ) {
@@ -18,8 +19,8 @@ get_header(); ?>
 		}
 		?>
 		<!-- END breadcrumb -->
-		<div class="row mt-4">
 
+		<div class="row mt-4">
 			<!-- desktop nav -->
 			<?php if ( has_nav_menu( 'support_nav' ) ) : ?>
 				<div class="col-md-3 pr-md-5 support_nav">
@@ -63,10 +64,10 @@ get_header(); ?>
 					<?php the_content(); ?>
 				<?php endwhile; ?>
 			</div>
-
 		</div>
+
 	</div>
-</div>
+</div><!-- .content_wrapper -->
 
 <?php
 get_footer();

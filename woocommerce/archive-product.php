@@ -11,7 +11,7 @@
  * the readme will list any important changes.
  *
  * @see https://docs.woocommerce.com/document/template-structure/
- * @package WooCommerce/Templates
+ * @package WooCommerce\Templates
  * @version 3.4.0
  */
 
@@ -30,15 +30,9 @@ if ( '' === get_option( 'permalink_structure' ) ) {
 }
 ?>
 <input class="js_archive_url" type="hidden" value="<?php echo esc_url( $starter_archive_url ); ?>">
-<!-- filters - get canonical URL -->
+<!-- END filters - get canonical URL -->
 
-<?php
-$starter_search_page = '';
-if ( is_search() ) {
-	$starter_search_page = ' search_page';
-}
-?>
-<div class="content_wrapper container pt-5 pb-5 archive_product js_wrap_archive <?php echo esc_attr( $starter_search_page ); ?>" role="main">
+<div class="content_wrapper container pt-5 pb-5 archive_product js_wrap_archive" role="main">
 
 	<!-- breadcrumb -->
 	<?php
@@ -51,11 +45,11 @@ if ( is_search() ) {
 	<h1 class="mb-0 text-center">
 		<?php
 		if ( is_product_taxonomy() ) {
-			woocommerce_page_title();
+			woocommerce_page_title(); // category page.
 		} elseif ( is_search() ) {
-			printf( 'Search Results for: “%s”', '<span>' . get_search_query() . '</span>' );
+			printf( 'Search Results for: “%s”', '<span>' . get_search_query() . '</span>' ); // search page.
 		} else {
-			esc_html_e( 'All products', 'starter' );
+			esc_html_e( 'All products', 'starter' ); // shop page.
 		}
 		?>
 	</h1>
@@ -91,13 +85,14 @@ if ( is_search() ) {
 		</div>
 		<!-- END filters layout -->
 
+		<!-- products layout -->
 		<div class="col-lg-9 col-md-8"><div class="row">
 		<?php
 		if ( wc_get_loop_prop( 'total' ) ) {
 			while ( have_posts() ) {
 				the_post();
 				global $product;
-				echo "<div class='wraper_product col-xl-3 col-lg-4 col-md-6 col-6 js_product'>";
+				echo "<div class='wraper_product col-xl-3 col-lg-4 col-md-6 col-6'>";
 				$starter_img_sizes = '(max-width: 575px) calc(50vw - 10px), (max-width: 767px) 260px, (max-width: 991px) 216px, (max-width: 1199px) 216px, (max-width: 1399px) 204px, 240px';
 				require get_stylesheet_directory() . '/woocommerce-custom/global/product-item.php';
 				echo '</div>';
@@ -109,6 +104,7 @@ if ( is_search() ) {
 			do_action( 'woocommerce_after_shop_loop' );
 		?>
 		</div></div>
+		<!-- END products layout -->
 
 	</div><!-- .row -->
 

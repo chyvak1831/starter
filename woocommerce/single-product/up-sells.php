@@ -28,7 +28,7 @@ if ( $upsells ) : ?>
 
 		if ( $heading ) :
 			?>
-			<h2><?php echo esc_html( $heading ); ?></h2>
+			<h2 class="title_section"><span><?php echo esc_html( $heading ); ?></h2>
 		<?php endif; ?>
 	</div>
 	<div class="container">

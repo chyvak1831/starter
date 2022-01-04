@@ -1,7 +1,7 @@
 .wraper_product {
-	background: $white;
 	display: flex;
 	@include media-breakpoint-up(md) {margin-bottom: 50px;}
+	@include media-breakpoint-down(md) {margin-bottom: 30px;}
 }
 .box_product_item {
 	display: flex;

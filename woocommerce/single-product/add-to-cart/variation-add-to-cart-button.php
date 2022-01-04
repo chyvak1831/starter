@@ -30,7 +30,7 @@ global $product;
 					);
 
 					do_action( 'woocommerce_after_add_to_cart_quantity' );
-				?>
+					?>
 				<a href="#" class="btn btn-outline-primary btn-lg" data-count="plus" role="button" aria-label="<?php esc_attr_e( 'Plus product', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-plus' ) ); ?></a>
 			</div>
 		</li>
