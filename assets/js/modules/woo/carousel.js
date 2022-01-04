@@ -27,7 +27,8 @@ productCarousels.forEach( element => {
 			992: {slidesPerView: 4},
 			768: {slidesPerView: 3},
 			320: {slidesPerView: 2}
-		}
+		},
+		spaceBetween: 20,
 	})
 })
 

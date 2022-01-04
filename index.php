@@ -37,7 +37,7 @@ get_header(); ?>
 									starter_img_func(
 										array(
 											'img_src'   => 'w600',
-											'img_sizes' => '(max-width: 575px) calc(100vw - 10px), (max-width: 767px) 258px, (max-width: 991px) 334px, (max-width: 1199px) 294px, (max-width: 1399px) 354px, 414px',
+											'img_sizes' => '(max-width: 575px) calc(100vw - 26px), (max-width: 767px) 244px, (max-width: 991px) 334px, (max-width: 1199px) 294px, (max-width: 1399px) 354px, 414px',
 											'img_id'    => get_post_thumbnail_id(),
 										)
 									),

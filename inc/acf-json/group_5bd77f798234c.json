@@ -1,6 +1,6 @@
 {
     "key": "group_5bd77f798234c",
-    "title": "Home",
+    "title": "Woocommerce Home",
     "fields": [
         {
             "key": "field_5bd77f8b5f2cc",
@@ -43,7 +43,7 @@
                     "name": "home_image_desktop",
                     "type": "image",
                     "instructions": "Best fit image with aspect ratio 2.5:1\r\ne.g. width=2240px and height=896px",
-                    "required": 1,
+                    "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
@@ -216,7 +216,7 @@
             {
                 "param": "page_template",
                 "operator": "==",
-                "value": "templates\/page-home.php"
+                "value": "woocommerce-custom\/page-home.php"
             }
         ]
     ],
@@ -231,5 +231,6 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1604663258
+    "show_in_rest": 0,
+    "modified": 1641318430
 }

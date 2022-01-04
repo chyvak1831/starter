@@ -93,7 +93,7 @@ if ( '' === get_option( 'permalink_structure' ) ) {
 				the_post();
 				global $product;
 				echo "<div class='wraper_product col-xl-3 col-lg-4 col-md-6 col-6'>";
-				$starter_img_sizes = '(max-width: 575px) calc(50vw - 10px), (max-width: 767px) 260px, (max-width: 991px) 216px, (max-width: 1199px) 216px, (max-width: 1399px) 204px, 240px';
+				$starter_img_sizes = '(max-width: 575px) calc(50vw - 26px), (max-width: 767px) 244px, (max-width: 991px) 214px, (max-width: 1199px) 214px, (max-width: 1399px) 188px, 222px';
 				require get_stylesheet_directory() . '/woocommerce-custom/global/product-item.php';
 				echo '</div>';
 			}
