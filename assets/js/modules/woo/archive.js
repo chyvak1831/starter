@@ -3,7 +3,7 @@ window.addEventListener( 'load', () => {
 
 // hide filter canvas on tablet/desktop
 const hideFiltersOnDesktop = () => {
-	const filterWrap = document.getElementById( 'filtersSection' );
+	const filterWrap = document.querySelector( '.js_filter_section' );
 	if ( !filterWrap ) return;
 
 	const filterPanel = new bootstrap.Offcanvas( filterWrap );
@@ -90,9 +90,11 @@ const googleAnalyticsUpdate = data => {
 // ajax request
 const wooAjaxFilter = ( currentLink, pushToHistory = true ) => {
 	const archivePage = document.querySelector( '.js_wrap_archive' );
+	const filterWrapBody = document.querySelector( '.js_filter_section .offcanvas-body' );
 	if ( !archivePage ) return;
 
 	archivePage.classList.add( 'main_loading' );
+	filterWrapBody.classList.add( 'main_loading' );
 	if ( pushToHistory ) {
 		history.pushState( null, null, currentLink );
 	}
@@ -100,6 +102,7 @@ const wooAjaxFilter = ( currentLink, pushToHistory = true ) => {
 		.then( response => response.text() )
 		.then( body => {
 			archivePage.classList.remove( 'main_loading' );
+			filterWrapBody.classList.remove( 'main_loading' );
 	
 			// insert archive main data
 			const tempContainerData = document.createElement( 'div' );

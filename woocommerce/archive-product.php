@@ -70,7 +70,7 @@ if ( '' === get_option( 'permalink_structure' ) ) {
 				<?php endif; ?>
 			</div>
 			<?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
-				<div class="filter_block all_filters offcanvas offcanvas-start" id="filtersSection" aria-labelledby="filtersSectionLabel">
+				<div class="filter_block all_filters offcanvas offcanvas-start js_filter_section" aria-labelledby="filtersSectionLabel">
 					<div class="offcanvas-header d-md-none">
 						<h5 class="offcanvas-title" id="filtersSectionLabel">Filters</h5>
 						<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -80,7 +80,7 @@ if ( '' === get_option( 'permalink_structure' ) ) {
 						<a href="<?php echo esc_url( $starter_archive_url ); ?>" class="btn btn-outline-primary btn-sm d-none filter_reset_btn js_reset_filters" role="button"><?php esc_html_e( 'Reset', 'starter' ); ?></a>
 					</div>
 				</div>
-				<a href="#filtersSection" class="filter_block mobile_filters_btn" data-bs-toggle="offcanvas" role="button"><?php esc_html_e( 'Filters', 'starter' ); ?><span class="ml-1 notifications_text badge rounded-pill bg-dark js_all_selected_filter"></span></a>
+				<a href="#" class="filter_block mobile_filters_btn" data-bs-target=".js_filter_section" data-bs-toggle="offcanvas" role="button"><?php esc_html_e( 'Filters', 'starter' ); ?><span class="ml-1 notifications_text badge rounded-pill bg-dark js_all_selected_filter"></span></a>
 			<?php endif; ?>
 		</div>
 		<!-- END filters layout -->

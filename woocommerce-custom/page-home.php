@@ -124,7 +124,7 @@ get_header(); ?>
 							while ( $starter_loop->have_posts() ) {
 								$starter_loop->the_post();
 								echo "<div class='wraper_product swiper-slide js_product'>";
-								$starter_img_sizes = '(max-width: 575px) calc(50vw - 10px), (max-width: 767px) 260px, (max-width: 991px) 220px, (max-width: 1199px) 220px, (max-width: 1399px) 208px, 244px';
+								$starter_img_sizes = '(max-width: 575px) calc(50vw - 24px), (max-width: 767px) 246px, (max-width: 991px) 217px, (max-width: 1199px) 217px, (max-width: 1399px) 206px, 242px';
 								require get_stylesheet_directory() . '/woocommerce-custom/global/product-item.php';
 								echo '</div>';
 							}
