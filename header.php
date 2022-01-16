@@ -23,7 +23,7 @@
 
 <body id="topPage" <?php body_class(); ?>>
 <a href="#topPage" class="scrollup js_scrollto" role="button" aria-label="<?php esc_attr_e( 'Scroll to top', 'starter' ); ?>">
-	<?php echo starter_get_svg( array( 'icon' => 'arrow-up' ) ); ?>
+	<?php echo starter_get_svg( array( 'icon' => 'bi-arrow-up' ) ); ?>
 </a>
 
 <div class="main_wrap">

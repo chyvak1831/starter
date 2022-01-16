@@ -129,7 +129,7 @@ $starter_comment_privacy             = get_theme_mod( 'comment_privacy', false )
 			<div class="file_size js_file_size" data-size></div>
 		</div>
 		<a href="#" class="btn btn-light cancel remove_thumbnail_img js_remove_thumb" role="button" aria-label="<?php esc_attr_e( 'Remove file', 'starter' ); ?>">
-			<?php echo starter_get_svg( array( 'icon' => 'bi-remove' ) ); ?>
+			<?php echo starter_get_svg( array( 'icon' => 'bi-delete' ) ); ?>
 		</a>
 	</li>
 </div>

@@ -188,7 +188,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 			<div class="file_size js_file_size" data-size></div>
 		</div>
 		<a href="#" class="btn btn-light cancel remove_thumbnail_img js_remove_thumb" role="button" aria-label="<?php esc_attr_e( 'Remove file', 'starter' ); ?>">
-			<?php echo starter_get_svg( array( 'icon' => 'bi-remove' ) ); ?>
+			<?php echo starter_get_svg( array( 'icon' => 'bi-delete' ) ); ?>
 		</a>
 	</li>
 </div>
@@ -206,16 +206,15 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 				</div>
 				<div class="modal-body">
 					<div class="alert alert-secondary" role="alert">
-						<?php echo starter_get_svg( array( 'icon' => 'sad_face' ) ); ?>
-						<p><?php esc_html_e( 'We are extremely sorry to interrupt but it looks like you were not happy with our product!', 'starter' ); ?></p>
+						<?php echo starter_get_svg( array( 'icon' => 'bi-emoji-frown' ) ); ?>
+						<p><?php esc_html_e( 'Sorry to interrupt! It seems like you were not happy with this product!', 'starter' ); ?></p>
 					</div>
-					<p><?php esc_html_e( 'We want you to know that we value you as a customer and it\'s super important to us that you\'re 100% satisfied with your order!', 'starter' ); ?></p>
-					<p><?php esc_html_e( 'Please contact us and give us the opportunity to take care of any issues you may be having. We\'re here for you!', 'starter' ); ?></p>
+					<p><?php esc_html_e( 'You can contact and we\'ll try to fix your issue!', 'starter' ); ?></p>
 				</div>
 				<div class="modal-footer">
 					<div class="d-grid gap-2 w-100">
 						<a href="#" class="btn btn-outline-primary js_comment_submit_anyway" role="button"><?php esc_html_e( 'Submit review anyway', 'starter' ); ?></a>
-						<a href="<?php echo esc_url( wc_get_endpoint_url( 'contact-us', '', site_url() ) ); ?>" class="btn btn-primary" role="button"><?php esc_html_e( 'Contact support', 'starter' ); ?></a>
+						<a href="<?php echo esc_url( wc_get_endpoint_url( 'contact-us', '', site_url() ) ); ?>" class="btn btn-primary" role="button"><?php esc_html_e( 'Contact us', 'starter' ); ?></a>
 					</div>
 				</div>
 			</div>

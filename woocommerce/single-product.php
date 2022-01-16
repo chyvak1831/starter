@@ -145,13 +145,13 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 						</li>
 					<?php endif; ?>
 					<li class="tool_link dropdown share_dropdown">
-						<a href="#" class="link_dropdown" data-bs-toggle="dropdown" role="button"><?php echo starter_get_svg( array( 'icon' => 'share' ) ); ?><?php esc_html_e( 'share', 'starter' ); ?></a>
+						<a href="#" class="link_dropdown" data-bs-toggle="dropdown" role="button"><?php echo starter_get_svg( array( 'icon' => 'bi-share' ) ); ?><?php esc_html_e( 'share', 'starter' ); ?></a>
 						<ul class="list-unstyled dropdown-menu dropdown-menu-right">
 							<li>
-								<a class="twitter" href="https://twitter.com/share?url=<?php echo esc_url( get_the_permalink() ); ?>" rel="noopener" target="_blank"><?php echo starter_get_svg( array( 'icon' => 'twitter' ) ); ?><?php esc_html_e( 'Twitter', 'starter' ); ?></a>
+								<a class="twitter" href="https://twitter.com/share?url=<?php echo esc_url( get_the_permalink() ); ?>" rel="noopener" target="_blank"><?php echo starter_get_svg( array( 'icon' => 'bi-twitter' ) ); ?><?php esc_html_e( 'Twitter', 'starter' ); ?></a>
 							</li>
 							<li>
-								<a class="facebook" href="https://www.facebook.com/sharer.php?u=<?php echo esc_url( get_the_permalink() ); ?>" rel="noopener" target="_blank"><?php echo starter_get_svg( array( 'icon' => 'facebook' ) ); ?><?php esc_html_e( 'Facebook', 'starter' ); ?></a>
+								<a class="facebook" href="https://www.facebook.com/sharer.php?u=<?php echo esc_url( get_the_permalink() ); ?>" rel="noopener" target="_blank"><?php echo starter_get_svg( array( 'icon' => 'bi-facebook' ) ); ?><?php esc_html_e( 'Facebook', 'starter' ); ?></a>
 							</li>
 						</ul>
 					</li>
