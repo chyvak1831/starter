@@ -52,7 +52,7 @@ defined( 'ABSPATH' ) || exit;
 											starter_img_func(
 												array(
 													'img_src'   => 'w200',
-													'img_sizes' => '70px',
+													'img_sizes' => '80px',
 													'img_id'    => $starter_single_image,
 												)
 											),

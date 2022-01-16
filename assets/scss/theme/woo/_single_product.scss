@@ -19,7 +19,7 @@
 }
 .touch_device .single_main_img, .single_main_img:not(.zoomOn) {background-image: none !important;}
 html:not(.touch_device) .single_main_img.zoomOn img {opacity: 0;}
-.wrap_single_images .thumbnail_carousel {
+.js_singlepage_thumbnail_carousel.thumbnail_carousel {
 	@include media-breakpoint-down(xl) {width: 470px;}
 	@include media-breakpoint-down(lg) {width: 306px;}
 }

@@ -2,6 +2,6 @@
 	// image modal
 	&.img_modal {
 		.item_img {width: 100% !important;}
-		@include media-breakpoint-down(sm) {.thumbnail_carousel {width: 306px;}}
+		@include media-breakpoint-down(md) {.thumbnail_carousel {width: 306px;}}
 	}
 }
