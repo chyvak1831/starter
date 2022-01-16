@@ -39,7 +39,7 @@ $starter_comment_img_count  = count( $starter_comment_thumbnails );
 								starter_img_func(
 									array(
 										'img_src'   => 'w1600',
-										'img_sizes' => 'calc(100vw - 32px)',
+										'img_sizes' => '100vw',
 										'img_id'    => $starter_comment_modal_img,
 									)
 								),

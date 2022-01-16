@@ -31,6 +31,27 @@ function starter_save_comment() {
 		starter_recaptcha_validation( $errors );
 	}
 
+	/*make rating require if rating enabled*/
+	if ( class_exists( 'WooCommerce' ) && 'product' == get_post_type( isset( $_POST['comment_post_ID'] ) ? sanitize_text_field( wp_unslash( $_POST['comment_post_ID'] ) ) : '' ) ) {
+		if ( wc_review_ratings_enabled() && wc_review_ratings_required() ) {
+			if ( get_theme_mod( 'comment_extended_rating', false ) ) {
+				if ( empty( $_POST['price_rating'] ) ) {
+					$errors->add( 'price_rating', 'invalid' );
+				}
+				if ( empty( $_POST['quality_rating'] ) ) {
+					$errors->add( 'quality_rating', 'invalid' );
+				}
+				if ( empty( $_POST['shipping_rating'] ) ) {
+					$errors->add( 'shipping_rating', 'invalid' );
+				}
+			}
+			/*default rating require*/
+			if ( ! get_theme_mod( 'comment_extended_rating', false ) && empty( $_POST['rating'] ) ) {
+				$errors->add( 'default_rating', 'invalid' );
+			}
+		}
+	}
+
 	/*image validation*/
 	if ( isset( $_FILES['files'] ) && ! empty( $_FILES['files']['name'][0] ) && get_theme_mod( 'comment_file', false ) ) {
 		$starter_maximum_length = get_theme_mod( 'comment_maximum_files', 10 ); /*maximum files*/
@@ -62,27 +83,6 @@ function starter_save_comment() {
 		}
 	}
 
-	/*make rating require if rating enabled*/
-	if ( class_exists( 'WooCommerce' ) && 'product' == get_post_type( isset( $_POST['comment_post_ID'] ) ? sanitize_text_field( wp_unslash( $_POST['comment_post_ID'] ) ) : '' ) ) {
-		if ( wc_review_ratings_enabled() && wc_review_ratings_required() ) {
-			if ( get_theme_mod( 'comment_extended_rating', false ) ) {
-				if ( empty( $_POST['price_rating'] ) ) {
-					$errors->add( 'price_rating', 'invalid' );
-				}
-				if ( empty( $_POST['quality_rating'] ) ) {
-					$errors->add( 'quality_rating', 'invalid' );
-				}
-				if ( empty( $_POST['shipping_rating'] ) ) {
-					$errors->add( 'shipping_rating', 'invalid' );
-				}
-			}
-			/*default rating require*/
-			if ( ! get_theme_mod( 'comment_extended_rating', false ) && empty( $_POST['rating'] ) ) {
-				$errors->add( 'default_rating', 'invalid' );
-			}
-		}
-	}
-
 	/*send errors if they are*/
 	if ( $errors->has_errors() ) {
 		wp_send_json_error( $errors );
@@ -94,6 +94,26 @@ function starter_save_comment() {
 	if ( is_wp_error( $comment ) ) {
 		wp_send_json_error( $comment->get_error_message() );
 	} else {
+
+		/*setup custom rating if rating enabled*/
+		if ( class_exists( 'WooCommerce' ) && 'product' == get_post_type( isset( $_POST['comment_post_ID'] ) ? sanitize_text_field( wp_unslash( $_POST['comment_post_ID'] ) ) : '' ) ) {
+			if ( wc_review_ratings_enabled() && get_theme_mod( 'comment_extended_rating', false ) ) {
+				$options      = array(
+					'options' => array(
+						'default'   => 0,
+						'min_range' => 0,
+						'max_range' => 5,
+					),
+				);
+				$rating_group = array(
+					'price'    => filter_var( wp_unslash( $_POST['price_rating'] ), FILTER_VALIDATE_INT, $options ),
+					'quality'  => filter_var( wp_unslash( $_POST['quality_rating'] ), FILTER_VALIDATE_INT, $options ),
+					'shipping' => filter_var( wp_unslash( $_POST['shipping_rating'] ), FILTER_VALIDATE_INT, $options ),
+				);
+				update_field( 'rating_group', $rating_group, $comment );
+				update_comment_meta( $comment->comment_ID, 'rating', round( array_sum( $rating_group ) / 3 ), true );
+			}
+		}
 
 		/*upload image if enabled*/
 		if ( isset( $_FILES['files'] ) && ! empty( $_FILES['files']['name'][0] ) && get_theme_mod( 'comment_file', false ) ) {
@@ -117,26 +137,6 @@ function starter_save_comment() {
 				}
 			}
 			update_field( 'comment_image', $starter_img_ids, get_comment( $comment->comment_ID ) );
-		}
-
-		/*setup custom rating if rating enabled*/
-		if ( class_exists( 'WooCommerce' ) && 'product' == get_post_type( isset( $_POST['comment_post_ID'] ) ? sanitize_text_field( wp_unslash( $_POST['comment_post_ID'] ) ) : '' ) ) {
-			if ( wc_review_ratings_enabled() && get_theme_mod( 'comment_extended_rating', false ) ) {
-				$options      = array(
-					'options' => array(
-						'default'   => 0,
-						'min_range' => 0,
-						'max_range' => 5,
-					),
-				);
-				$rating_group = array(
-					'price'    => filter_var( wp_unslash( $_POST['price_rating'] ), FILTER_VALIDATE_INT, $options ),
-					'quality'  => filter_var( wp_unslash( $_POST['quality_rating'] ), FILTER_VALIDATE_INT, $options ),
-					'shipping' => filter_var( wp_unslash( $_POST['shipping_rating'] ), FILTER_VALIDATE_INT, $options ),
-				);
-				update_field( 'rating_group', $rating_group, $comment );
-				update_comment_meta( $comment->comment_ID, 'rating', round( array_sum( $rating_group ) / 3 ), true );
-			}
 		}
 
 		wp_send_json(
