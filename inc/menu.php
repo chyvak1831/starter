@@ -93,6 +93,7 @@ function starter_nav_menu_objects( $sorted_menu_items, $args ) {
 		$img_visibility   = get_field( 'menu_item_img_visibility', $item );
 		$icon_img_toggler = get_field( 'menu_item_img_toggler', $item );
 		$icon             = get_field( 'menu_item_icon', $item );
+		$icon_response    = wp_remote_get( wp_get_attachment_image_src( $icon['ID'] )[0] );
 		$img              = get_field( 'menu_item_img', $item );
 		$img_width        = get_field( 'menu_item_img_width', $item ) . 'px';
 		$item_grow_shrink = get_field( 'menu_item_flex_width', $item );
@@ -110,8 +111,8 @@ function starter_nav_menu_objects( $sorted_menu_items, $args ) {
 		$item->title .= "<span class='notifications_text'></span>";
 
 		if ( $img_visibility ) {
-			if ( 'menu_item_icon_on' === $icon_img_toggler && $icon ) {
-				$item->title .= '<span class="menu_icon">' . wp_remote_get( wp_get_attachment_image_src( $icon['ID'] )[0] )['body'] . '</span>';
+			if ( 'menu_item_icon_on' === $icon_img_toggler && '200' == $icon_response['response']['code'] ) {
+				$item->title .= '<span class="menu_icon">' . $icon_response['body'] . '</span>';
 			} elseif ( 'menu_item_img_on' === $icon_img_toggler && $img ) {
 				$item->title .= '<picture style="max-width:' . $img_width . '">' . starter_img_func(
 					array(
