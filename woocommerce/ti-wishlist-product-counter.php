@@ -2,6 +2,8 @@
 /**
  * The Template for displaying dropdown wishlist products.
  *
+ * This template can be overridden by copying it to yourtheme/woocommerce/ti-wishlist-product-counter.php.
+ *
  * @version             1.9.0
  * @package           TInvWishlist\Template
  */

@@ -2,7 +2,8 @@
 /**
  * Woocommerce only code
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
  * @since starter 1.0
  */
 
@@ -111,8 +112,8 @@ add_filter( 'woocommerce_output_related_products_args', 'starter_related_product
  * @param array $args .
  */
 function starter_woo_pagination( $args ) {
-	$args['prev_text'] = starter_get_svg( array( 'icon' => 'bi-chevron-left' ) );
-	$args['next_text'] = starter_get_svg( array( 'icon' => 'bi-chevron-right' ) );
+	$args['prev_text'] = starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ) . '<span class="screen-reader-text">Previous page</span>';
+	$args['next_text'] = starter_get_svg( array( 'icon' => 'bi-chevron-right' ) ) . '<span class="screen-reader-text">Next page</span>';
 	return $args;
 }
 add_filter( 'woocommerce_pagination_args', 'starter_woo_pagination' );
@@ -151,7 +152,7 @@ function starter_remove_default_woo_image_sizes( $default_sizes ) {
 add_action( 'intermediate_image_sizes', 'starter_remove_default_woo_image_sizes', 999 );
 
 /**
- * Add classes to <body>: add product_archive_ajax_pagination and product hover images classes.
+ * Add classes to <body>: add product archive ajax pagination and product hover images classes.
  *
  * @since starter 2.0
  *

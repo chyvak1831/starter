@@ -3,7 +3,7 @@ window.addEventListener( 'load', () => {
 
 // hide filter canvas on tablet/desktop
 const hideFiltersOnDesktop = () => {
-	const filterWrap = document.getElementById( 'filtersSection' );
+	const filterWrap = document.querySelector( '.js_filter_section' );
 	if ( !filterWrap ) return;
 
 	const filterPanel = new bootstrap.Offcanvas( filterWrap );
@@ -25,7 +25,7 @@ const checkIfFiltered = () => {
 		if ( element['name'] != 'paged' && element['name'] != 's' && element['name'] != 'post_type' ) return element;
 	});
 
-	if ( filters.length > 0 )
+	if ( 0 < filters.length )
 		html.classList.add( 'filtered' );
 	else
 		html.classList.remove( 'filtered' );
@@ -38,16 +38,17 @@ const setCountSelectedFilter = () => {
 	const filterBlock = document.querySelectorAll( '.js_wrap_filters .woocommerce-widget-layered-nav-list' );
 	if ( 0 == filterBlock.length ) return;
 
+	// set filter counter for desktop
 	filterBlock.forEach( element => {
 		const filterLength = element.querySelectorAll( '.woocommerce-widget-layered-nav-list__item--chosen' ).length;
 		const filterCounter = element.closest( '.widget' ).querySelectorAll( '.js_count_selected_filter' );
-		if ( filterLength > 0 ) [...filterCounter].map( element => element.innerHTML = filterLength );
+		if ( 0 < filterLength ) [...filterCounter].map( element => element.innerHTML = filterLength );
 	} );
 
 	// set filter counter for mobile
 	const allFilter = document.querySelector( '.js_all_selected_filter' );
 	const allFilterLength = document.querySelectorAll( '.js_wrap_filters .woocommerce-widget-layered-nav-list__item--chosen' ).length;
-	if ( allFilterLength > 0 ) allFilter.innerHTML = allFilterLength;
+	if ( 0 < allFilterLength ) allFilter.innerHTML = allFilterLength;
 }
 setCountSelectedFilter();
 
@@ -76,7 +77,7 @@ const yoastUpdate = data => {
 
 // send GA data - initially data MUST be updated in ga object and then send 'pageview'
 const googleAnalyticsUpdate = data => {
-	if( window.ga ) {
+	if ( window.ga ) {
 		ga( 'set', {
 			page: location.pathname,
 			title: data.querySelector( 'title' ).textContent
@@ -89,9 +90,11 @@ const googleAnalyticsUpdate = data => {
 // ajax request
 const wooAjaxFilter = ( currentLink, pushToHistory = true ) => {
 	const archivePage = document.querySelector( '.js_wrap_archive' );
+	const filterWrapBody = document.querySelector( '.js_filter_section .offcanvas-body' );
 	if ( !archivePage ) return;
 
 	archivePage.classList.add( 'main_loading' );
+	filterWrapBody.classList.add( 'main_loading' );
 	if ( pushToHistory ) {
 		history.pushState( null, null, currentLink );
 	}
@@ -99,6 +102,7 @@ const wooAjaxFilter = ( currentLink, pushToHistory = true ) => {
 		.then( response => response.text() )
 		.then( body => {
 			archivePage.classList.remove( 'main_loading' );
+			filterWrapBody.classList.remove( 'main_loading' );
 	
 			// insert archive main data
 			const tempContainerData = document.createElement( 'div' );

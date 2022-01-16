@@ -53,8 +53,7 @@ document.body.addEventListener( 'shown.bs.modal', e => {
 			nextEl: '.js_comment_img_modal .carousel_control_next'
 		},
 		breakpoints: {
-			1200: {slidesPerView: 6},
-			992: {slidesPerView: 5},
+			768: {slidesPerView: 6},
 			320: {slidesPerView: 3}
 		}
 	})

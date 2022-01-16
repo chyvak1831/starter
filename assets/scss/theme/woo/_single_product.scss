@@ -17,9 +17,9 @@
 	}
 	&:hover {opacity: 0.5;}
 }
-.single_main_img:not(.zoomOn) {background-image: none !important;}
-.single_main_img.zoomOn img {opacity: 0;}
-.wrap_single_images .thumbnail_carousel {
+.touch_device .single_main_img, .single_main_img:not(.zoomOn) {background-image: none !important;}
+html:not(.touch_device) .single_main_img.zoomOn img {opacity: 0;}
+.js_singlepage_thumbnail_carousel.thumbnail_carousel {
 	@include media-breakpoint-down(xl) {width: 470px;}
 	@include media-breakpoint-down(lg) {width: 306px;}
 }
@@ -27,11 +27,10 @@
 // rating, review/share/fav buttons
 .single_tool_list {
 	border-top: 1px solid $gray-400;
-	font-size: 9px;
-	margin-bottom: 20px;
+	font-size: 11px;
 	padding-top: 10px;
 	text-transform: uppercase;
-	a {text-decoration: none !important;}
+	a {text-decoration: none;}
 	> li::after {content: '|';}
 	.tool_link {
 		> a {@include flex_align(flex-start, center, nowrap);}
@@ -64,5 +63,3 @@
 		}
 	}
 }
-
-.single_count_block.count_block {font-size: 15px;}

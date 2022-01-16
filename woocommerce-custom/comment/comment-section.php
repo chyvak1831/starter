@@ -62,12 +62,12 @@ $starter_comment_only_verified = ( 'yes' === get_option( 'woocommerce_review_rat
 
 		<!-- only buyers of this product can write review -->
 		<?php if ( $starter_comment_only_verified && ! $starter_bought_product ) : ?>
-			<h4 class="text-center mt-5 pt-2"><?php esc_html_e( 'Only logged in customers who have purchased this product may leave a review.', 'starter' ); ?></h4>
+			<h3 class="text-center h4 mt-5 pt-2"><?php esc_html_e( 'Only logged in customers who have purchased this product may leave a review.', 'starter' ); ?></h3>
 		<?php endif; ?>
 
 		<!-- only logged users can write review -->
 		<?php if ( ! $starter_comment_only_verified && $starter_comment_only_logged ) : ?>
-			<h4 class="text-center mt-5 pt-2"><?php esc_html_e( 'You must be ', 'starter' ); ?><a href="<?php echo esc_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ); ?>"><?php esc_html_e( 'logged in', 'starter' ); ?></a><?php esc_html_e( ' to post a review.', 'starter' ); ?></h4>
+			<h3 class="text-center h4 mt-5 pt-2"><?php esc_html_e( 'You must be ', 'starter' ); ?><a href="<?php echo esc_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ); ?>"><?php esc_html_e( 'logged in', 'starter' ); ?></a><?php esc_html_e( ' to post a review.', 'starter' ); ?></h3>
 		<?php endif; ?>
 
 		<!-- anyone can write review -->

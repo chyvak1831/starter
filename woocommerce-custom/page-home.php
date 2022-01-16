@@ -1,12 +1,13 @@
 <?php
 /**
- * Template Name: Home
+ * Template Name: Woocommerce Home
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
+ * @since starter 1.0
  */
 
-get_header();
-?>
+get_header(); ?>
 
 <div class="content_wrapper pt-5 pb-5" role="main">
 	<div class="container">
@@ -24,7 +25,7 @@ get_header();
 							$starter_home_image_mobile  = get_sub_field( 'home_image_mobile' ) ? get_sub_field( 'home_image_mobile' )['ID'] : $starter_home_image_desktop;
 							?>
 								<div class="swiper-slide">
-								<?php if ( $starter_home_url ) : ?>
+									<?php if ( $starter_home_url ) : ?>
 									<a href="<?php echo esc_url( $starter_home_url ); ?>">
 									<?php endif; ?>
 										<picture class="carousel_img_mobile" style="display: none;">
@@ -33,7 +34,7 @@ get_header();
 												starter_img_func(
 													array(
 														'img_src'   => 'w600',
-														'img_sizes' => '(max-width: 575px) calc(100vw - 10px)',
+														'img_sizes' => '(max-width: 575px) calc(100vw - 24px)',
 														'img_id'    => $starter_home_image_mobile,
 													)
 												),
@@ -47,7 +48,7 @@ get_header();
 												starter_img_func(
 													array(
 														'img_src'   => 'w800',
-														'img_sizes' => '(max-width: 767px) 530px, (max-width: 991px) 696px',
+														'img_sizes' => '(max-width: 767px) 516px, (max-width: 991px) 696px',
 														'img_id'    => $starter_home_image_tablet,
 													)
 												),
@@ -60,7 +61,7 @@ get_header();
 											echo wp_kses(
 												starter_img_func(
 													array(
-														'img_src'   => 'w1200',
+														'img_src'   => 'w1400',
 														'img_sizes' => '(max-width: 1199px) 936px, (max-width: 1399px) 1116px, 1296px',
 														'img_id'    => $starter_home_image_desktop,
 													)
@@ -73,9 +74,7 @@ get_header();
 									</a>
 									<?php endif; ?>
 								</div>
-							<?php
-							endwhile;
-						?>
+							<?php endwhile; ?>
 					</div>
 				</div>
 				<button type="button" class="btn carousel_control_prev" aria-label="Carousel scroll previous"><?php echo starter_get_svg( array( 'icon' => 'bi-chevron-left' ) ); ?></button>
@@ -126,7 +125,7 @@ get_header();
 							while ( $starter_loop->have_posts() ) {
 								$starter_loop->the_post();
 								echo "<div class='wraper_product swiper-slide js_product'>";
-								$starter_img_sizes = '(max-width: 575px) calc(50vw - 10px), (max-width: 767px) 260px, (max-width: 991px) 220px, (max-width: 1199px) 220px, (max-width: 1399px) 208px, 244px';
+								$starter_img_sizes = '(max-width: 575px) calc(50vw - 24px), (max-width: 767px) 246px, (max-width: 991px) 217px, (max-width: 1199px) 217px, (max-width: 1399px) 206px, 242px';
 								require get_stylesheet_directory() . '/woocommerce-custom/global/product-item.php';
 								echo '</div>';
 							}

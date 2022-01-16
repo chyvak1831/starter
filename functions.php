@@ -134,5 +134,7 @@ add_filter( 'get_the_archive_title', 'starter_archive_title' );
 
 /**
  * Remove widget block editor
+ *
+ * @since starter 2.0
  */
 add_filter( 'use_widgets_block_editor', '__return_false' );

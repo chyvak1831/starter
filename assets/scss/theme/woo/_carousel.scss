@@ -1,7 +1,5 @@
 // product carousel
 .product_carousel {
-	margin: 0 -12px;
-	width: 100%;
 	.carousel_control_prev, .carousel_control_next {
 		background: $white;
 		box-shadow: 0 0 4px 2px rgba(0,0,0,0.5) !important;
@@ -10,7 +8,8 @@
 	}
 	.wraper_product {
 		height: auto;
-		padding: 10px;
+		margin-right: 20px;
+		width: 240px;
 	}
 }
 
@@ -19,7 +18,7 @@
 	margin-bottom: 6%;
 	.carousel_control_next, .carousel_control_prev {
 		color: $white;
-		font-size: 40px;
+		font-size: 47px;
 	}
 	picture {
 		width: 100%;

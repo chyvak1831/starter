@@ -2,7 +2,9 @@
 /**
  * Image modal
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
+ * @since starter 1.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -19,35 +21,21 @@ defined( 'ABSPATH' ) || exit;
 
 			<div class="modal-body swiper js_img_carousel p-0">
 				<div class="swiper-wrapper">
-					<picture class="item_img swiper-slide">
-						<?php
-							echo wp_kses(
-								starter_img_func(
-									array(
-										'img_src'   => 'w1600',
-										'img_sizes' => 'calc(100vw - 32px)',
-										'img_id'    => $starter_img,
-									)
-								),
-								wp_kses_allowed_html( 'post' )
-							);
+					<?php foreach ( $starter_single_images as $starter_single_image ) : ?>
+						<picture class="item_img swiper-slide">
+							<?php
+								echo wp_kses(
+									starter_img_func(
+										array(
+											'img_src'   => 'w1600',
+											'img_sizes' => 'calc(100vw - 32px)',
+											'img_id'    => $starter_single_image,
+										)
+									),
+									wp_kses_allowed_html( 'post' )
+								);
 							?>
-					</picture>
-					<?php foreach ( $starter_thumbnails as $starter_key => $starter_modal_img ) : ?>
-					<picture class="item_img swiper-slide">
-						<?php
-							echo wp_kses(
-								starter_img_func(
-									array(
-										'img_src'   => 'w1600',
-										'img_sizes' => 'calc(100vw - 32px)',
-										'img_id'    => $starter_modal_img,
-									)
-								),
-								wp_kses_allowed_html( 'post' )
-							);
-						?>
-					</picture>
+						</picture>
 					<?php endforeach; ?>
 				</div>
 			</div>
@@ -56,6 +44,7 @@ defined( 'ABSPATH' ) || exit;
 				<div class="position-relative thumbnail_carousel object_fit js_thumbnail_carousel">
 					<div class="swiper">
 						<div class="swiper-wrapper">
+							<?php foreach ( $starter_single_images as $starter_single_image ) : ?>
 							<div class="swiper-slide">
 								<picture class="thumbnail">
 									<?php
@@ -63,25 +52,8 @@ defined( 'ABSPATH' ) || exit;
 											starter_img_func(
 												array(
 													'img_src'   => 'w200',
-													'img_sizes' => '70px',
-													'img_id'    => $starter_img,
-												)
-											),
-											wp_kses_allowed_html( 'post' )
-										);
-										?>
-								</picture>
-							</div>
-							<?php foreach ( $starter_thumbnails as $starter_key => $starter_modal_img ) : ?>
-							<div class="swiper-slide">
-								<picture class="thumbnail">
-									<?php
-										echo wp_kses(
-											starter_img_func(
-												array(
-													'img_src'   => 'w200',
-													'img_sizes' => '70px',
-													'img_id'    => $starter_modal_img,
+													'img_sizes' => '80px',
+													'img_id'    => $starter_single_image,
 												)
 											),
 											wp_kses_allowed_html( 'post' )

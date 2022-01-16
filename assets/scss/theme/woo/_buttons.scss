@@ -17,10 +17,7 @@
 
 // custom +- buttons
 .count_block {
-	.btn {
-		align-items: center;
-		display: flex;
-	}
+	.btn {@include flex_align();}
 	input {
 		background: $white !important;
 		border-color: $primary;

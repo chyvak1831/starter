@@ -32,14 +32,14 @@ $starter_comment_img_count  = count( $starter_comment_thumbnails );
 
 			<div class="modal-body swiper js_img_carousel p-0">
 				<div class="swiper-wrapper">
-					<?php foreach ( $starter_comment_thumbnails as $starter_key => $starter_comment_modal_img ) : ?>
+					<?php foreach ( $starter_comment_thumbnails as $starter_comment_modal_img ) : ?>
 					<picture class="item_img swiper-slide">
 						<?php
 							echo wp_kses(
 								starter_img_func(
 									array(
 										'img_src'   => 'w1600',
-										'img_sizes' => 'calc(100vw - 32px)',
+										'img_sizes' => '100vw',
 										'img_id'    => $starter_comment_modal_img,
 									)
 								),
@@ -55,7 +55,7 @@ $starter_comment_img_count  = count( $starter_comment_thumbnails );
 				<div class="position-relative thumbnail_carousel object_fit js_thumbnail_carousel">
 					<div class="swiper">
 						<div class="swiper-wrapper">
-							<?php foreach ( $starter_comment_thumbnails as $starter_key => $starter_comment_modal_img ) : ?>
+							<?php foreach ( $starter_comment_thumbnails as $starter_comment_modal_img ) : ?>
 								<div class="swiper-slide">
 									<picture class="thumbnail">
 										<?php

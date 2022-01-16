@@ -42,7 +42,9 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": ""
+            "default_value": "",
+            "enable_opacity": false,
+            "return_format": "string"
         }
     ],
     "location": [
@@ -62,5 +64,6 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1600494313
+    "show_in_rest": 0,
+    "modified": 1641318384
 }

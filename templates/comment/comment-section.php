@@ -60,7 +60,7 @@ $starter_comment_only_logged = get_option( 'comment_registration' ) && ! is_user
 
 		<!-- only logged users can write comment -->
 		<?php if ( $starter_comment_only_logged ) : ?>
-			<h4 class="text-center mt-5 pt-2"><?php esc_html_e( 'You must be ', 'starter' ); ?><a href="<?php echo esc_url( wp_login_url( get_permalink() ) ); ?>"><?php esc_html_e( 'logged in', 'starter' ); ?></a><?php esc_html_e( ' to post a comment.', 'starter' ); ?></h4>
+			<h3 class="text-center h4 mt-5 pt-2"><?php esc_html_e( 'You must be ', 'starter' ); ?><a href="<?php echo esc_url( wp_login_url( get_permalink() ) ); ?>"><?php esc_html_e( 'logged in', 'starter' ); ?></a><?php esc_html_e( ' to post a comment.', 'starter' ); ?></h3>
 		<?php endif; ?>
 
 		<!-- anyone can write comment -->

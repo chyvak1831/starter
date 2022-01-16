@@ -13,8 +13,7 @@ get_header();
 
 /* Start the Loop */
 while ( have_posts() ) :
-	the_post();
-	?>
+	the_post(); ?>
 
 <div class="content_wrapper single_post_page pt-md-5 pb-5" role="main">
 	<div class="wrap_single_post_content container-fluid">
@@ -27,7 +26,7 @@ while ( have_posts() ) :
 					starter_img_func(
 						array(
 							'img_src'   => 'w800',
-							'img_sizes' => '(max-width: 767px) calc(100vw - 24px), 800px',
+							'img_sizes' => '(max-width: 767px) calc(100vw - 24px), 776px',
 							'img_id'    => get_post_thumbnail_id(),
 						)
 					),
