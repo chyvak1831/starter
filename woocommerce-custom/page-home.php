@@ -4,6 +4,7 @@
  *
  * @package WordPress
  * @subpackage starter
+ * @since starter 1.0
  */
 
 get_header(); ?>
