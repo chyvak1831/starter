@@ -193,7 +193,7 @@ function starter_google_fonts_css() {
 		$google_fonts_css .= '[style*=' . $value . '] {font-family:' . $value . ' !important}';
 	}
 	$default_google_font = get_theme_mod( 'default_google_font', "font-family: 'Open Sans', sans-serif;" );
-	$google_fonts_css   .= '#tinymce {' . $default_google_font . '}:root {--default-font-family:' . str_replace( 'font-family:', '', $default_google_font ) . '}';
+	$google_fonts_css   .= '#tinymce {' . $default_google_font . '}:root {--bs-body-font-family:' . str_replace( 'font-family:', '', $default_google_font ) . '}';
 	$google_font_weights = "[style*='MCEfontweight100'] {font-weight: 100 !important} [style*='MCEfontweight200'] {font-weight: 200 !important} [style*='MCEfontweight300'] {font-weight: 300 !important} [style*='MCEfontweight400'] {font-weight: 400 !important} [style*='MCEfontweight500'] {font-weight: 500 !important} [style*='MCEfontweight600'] {font-weight: 600 !important} [style*='MCEfontweight700'] {font-weight: 700 !important} [style*='MCEfontweight800'] {font-weight: 800 !important} [style*='MCEfontweight900'] {font-weight: 900 !important}";
 	return $google_fonts_css . $google_font_weights;
 }
