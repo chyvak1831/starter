@@ -1,9 +1,7 @@
 const browserSync    = require( 'browser-sync' ),
 	  critical       = require( 'critical' ),
-	  fs             = require( 'fs' ),
 	  gulp           = require( 'gulp' ),
 	  autoprefixer   = require( 'gulp-autoprefixer' ),
-	  changed        = require( 'gulp-changed' ),
 	  cleanCSS       = require( 'gulp-clean-css' ),
 	  concat         = require( 'gulp-concat' ),
 	  gulpIf         = require( 'gulp-if' ),
@@ -14,7 +12,6 @@ const browserSync    = require( 'browser-sync' ),
 const config  = require( './config.js' ),
 	  scripts = require( './assets/js/list_scripts.js' ),
 	  flags   = { production: false };
-
 
 
 // Development Tasks 
@@ -31,7 +28,6 @@ gulp.task( 'sass', () => {
 			   .pipe( sass().on( 'error', sass.logError ) )
 			   .pipe( autoprefixer( { browserslistrc: config.settingsAutoprefixer.browsers } ) )
 			   .pipe( gulpIf( !flags.production, sourcemaps.write() ) )
-			   .pipe( changed( config.paths.css, { hasChanged: changed.compareContents } ) )
 			   .pipe( gulp.dest( config.paths.css ) )
 			   .pipe( browserSync.reload( { stream: true } ) );
 });
@@ -39,11 +35,8 @@ gulp.task( 'sass', () => {
 gulp.task( 'scripts', () => {
 	return gulp.src( scripts.scripts )
 			   .pipe( concat( 'starter.js' ) )
-			   .pipe( changed( config.paths.scripts, { hasChanged: changed.compareContents } ) )
 			   .pipe( gulp.dest( config.paths.scripts ) );
 });
-
-
 // Watchers
 gulp.task( 'watch', done => {
 	gulp.watch( config.paths.scss + '**/*.scss', gulp.series( 'sass' ) );
