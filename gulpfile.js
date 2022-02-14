@@ -40,7 +40,7 @@ gulp.task( 'scripts', () => {
 // Watchers
 gulp.task( 'watch', done => {
 	gulp.watch( config.paths.scss + '**/*.scss', gulp.series( 'sass' ) );
-	gulp.watch( config.paths.scripts + '**/*.js', gulp.series( 'scripts' ) );
+	gulp.watch( config.paths.scripts + 'modules/**/*.js', gulp.series( 'scripts' ) );
 	gulp.watch( config.paths.html + '**/*.{php,tpl,html}', browserSync.reload );
 	done();
 });
