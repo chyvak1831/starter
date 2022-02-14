@@ -41,7 +41,7 @@ $starter_comment_only_verified = ( 'yes' === get_option( 'woocommerce_review_rat
 	<!-- END comment list -->
 
 	<!-- comment 'load more' button -->
-	<?php if ( $starter_comment_count > $starter_comment_quantity && '0' !== $starter_comment_quantity ) : ?>
+	<?php if ( $starter_comment_count > $starter_comment_quantity && 0 !== $starter_comment_quantity ) : ?>
 		<div class="text-center">
 			<a href="#" class="btn btn-outline-primary btn-lg js_comment_show_more" data-post_id="<?php echo esc_attr( $starter_post_id ); ?>">
 				<span class="default_txt"><?php esc_html_e( 'Show more', 'starter' ); ?></span>
