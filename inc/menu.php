@@ -2,7 +2,8 @@
 /**
  * Menus
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
  * @since 1.0
  */
 
@@ -60,13 +61,13 @@ add_filter( 'wp_nav_menu_items', 'starter_nav_menu_items', 10, 2 );
  */
 function starter_nested_menu_style( $item_output, $item ) {
 	if ( in_array( 'menu-item-has-children', $item->classes, true ) ) {
-		$font_size    = get_field( 'menu_font_size', $item->db_id );
-		$icon_size    = get_field( 'menu_icon_size', $item->db_id );
-		$color        = get_field( 'menu_color', $item->db_id );
-		$color_hover  = get_field( 'menu_color_hover', $item->db_id );
-		$space        = get_field( 'menu_item_space', $item->db_id );
-		$separator    = get_field( 'menu_item_separator', $item->db_id );
-		$menu_style   = '<style>#menu-item-' . $item->db_id . ' .sub-menu{font-size:' . $font_size . 'px;color:' . $color . ';}
+		$font_size   = get_field( 'menu_font_size', $item->db_id );
+		$icon_size   = get_field( 'menu_icon_size', $item->db_id );
+		$color       = get_field( 'menu_color', $item->db_id );
+		$color_hover = get_field( 'menu_color_hover', $item->db_id );
+		$space       = get_field( 'menu_item_space', $item->db_id );
+		$separator   = get_field( 'menu_item_separator', $item->db_id );
+		$menu_style  = '<style>#menu-item-' . $item->db_id . ' .sub-menu{font-size:' . $font_size . 'px;color:' . $color . ';}
 		                       #menu-item-' . $item->db_id . ' .sub-menu a:hover, #menu-item-' . $item->db_id . ' .sub-menu a:focus, #menu-item-' . $item->db_id . ' .sub-menu .current-menu-item > a:focus{color:' . $color_hover . ';}
 		                       #menu-item-' . $item->db_id . ' .sub-menu .menu_icon{font-size:' . $icon_size . 'px !important;}
 		                       #menu-item-' . $item->db_id . ' > .sub-menu > li::after{content:"' . $separator . '";margin: 0 ' . $space . 'px;}</style>';
@@ -92,6 +93,7 @@ function starter_nav_menu_objects( $sorted_menu_items, $args ) {
 		$img_visibility   = get_field( 'menu_item_img_visibility', $item );
 		$icon_img_toggler = get_field( 'menu_item_img_toggler', $item );
 		$icon             = get_field( 'menu_item_icon', $item );
+		$icon_response    = wp_remote_get( wp_get_attachment_image_src( $icon['ID'] )[0] );
 		$img              = get_field( 'menu_item_img', $item );
 		$img_width        = get_field( 'menu_item_img_width', $item ) . 'px';
 		$item_grow_shrink = get_field( 'menu_item_flex_width', $item );
@@ -109,14 +111,15 @@ function starter_nav_menu_objects( $sorted_menu_items, $args ) {
 		$item->title .= "<span class='notifications_text'></span>";
 
 		if ( $img_visibility ) {
-			if ( 'menu_item_icon_on' === $icon_img_toggler && $icon ) {
-				$item->title .= '<span class="menu_icon">' . wp_remote_get( wp_get_attachment_image_src( $icon['ID'] )[0] )['body'] . '</span>';
+			if ( 'menu_item_icon_on' === $icon_img_toggler && '200' == $icon_response['response']['code'] ) {
+				$item->title .= '<span class="menu_icon">' . $icon_response['body'] . '</span>';
 			} elseif ( 'menu_item_img_on' === $icon_img_toggler && $img ) {
 				$item->title .= '<picture style="max-width:' . $img_width . '">' . starter_img_func(
 					array(
 						'img_src'   => 'w1000',
 						'img_sizes' => $img_width,
 						'img_id'    => $img['ID'],
+						'lazy'      => 'false',
 					)
 				) . '</picture>';
 			}

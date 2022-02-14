@@ -1,6 +1,6 @@
 // show/hide desktop/mobile menus
-@media (min-width: 768px) {.header_top_nav_mobile, .header_main_nav_mobile, .support_nav_mobile {display: none;}}
-@media (max-width: 767px) {.header_top_nav, .header_main_nav, .support_nav {display: none;}}
+@include media-breakpoint-up(md) {.header_top_nav_mobile, .header_main_nav_mobile, .support_nav_mobile {display: none;}}
+@include media-breakpoint-down(md) {.header_top_nav, .header_main_nav, .support_nav {display: none;}}
 
 // logged/unlogged users
 .user_logged .display_logout {display: none !important;}
@@ -9,14 +9,9 @@
 
 // menu-items
 .menu-item > a, .wishlist_products_counter {
-	@include flex_align(flex-start);
+	@include flex_align(flex-start, center, nowrap);
 	color: inherit;
-	flex-wrap: nowrap;
-	position: relative;
-	text-decoration: none !important;
-	transition: all 0.1s linear;
 	.menu_icon {
-		display: block;
 		margin-right: 3px;
 		order: -1;
 		width: 1em;
@@ -25,7 +20,6 @@
 	.screen-reader-text ~ .menu_icon, &.no-txt .menu_icon {margin-right: 0;}
 }
 .menu-item {
-	img[srcset$="svg"] {width: 100%;}
 	.notifications_text, .wishlist_products_counter_number {
 		position: absolute;
 		left: -1.3em;
@@ -40,9 +34,8 @@ svg.arrow {
 	margin-left: 3px;
 	width: 0.7em;
 }
-[aria-expanded="true"] svg.arrow {transform: rotate(200grad);}
-.menu_nested_dropdown .dropdown-menu {color: inherit;}
-@media (min-width: 768px) {
+[aria-expanded="true"] > svg.arrow {transform: rotate(200grad);}
+@include media-breakpoint-up(md) {
 	.dropdown_left:not(.menu_nested_list) {
 		.sub-menu {
 			svg.arrow {transform: rotate(-100grad);}
@@ -71,34 +64,31 @@ svg.arrow {
 		}
 	}
 }
+// fullwidth dropdown
+.header_top_nav, .header_main_nav, .header_top_nav_mobile, .header_main_nav_mobile {position: relative;}
 .dropdown_fullwidth {
 	position: static;
 	> .sub-menu {
-		left: 0 !important;
 		margin: -1px 0 0;
 		width: 100%;
 		> li {flex-grow: 1;}
 	}
 }
-.arrow_hide > [data-toggle="dropdown"], .arrow_hide > [data-toggle="collapse"] {> svg.arrow {display: none;}}
-.opened_menu_dropdown {z-index: 1001;}
+.arrow_hide > [data-bs-toggle="dropdown"], .arrow_hide > [data-bs-toggle="collapse"] {> svg.arrow {display: none;}}
 
 
 // menu list
 .menu_nested_list {
 	position: static;
+	z-index: 5;
 	> a {display: none;}
 	> .dropdown-menu {
 		background: none;
 		border: none;
-		box-shadow: none;
 		color: inherit;
-		float: none;
 		font-size: inherit;
-		margin: 0;
 		min-width: 0;
 		position: static;
-		z-index: 1;
 		> li > .dropdown-item {
 			background: none;
 			color: inherit;
@@ -111,3 +101,17 @@ svg.arrow {
 // widgets
 .yspl_win_title {display: none;}
 .textwidget * {margin: 0;}
+
+
+// left navigation - in starter it's faq/support pages
+.support_nav, .support_nav_mobile {
+	li::after {display: none !important;}
+	.list > li, .menu_nested_list > .sub-menu {width: 100%;}
+	.dropdown_fullwidth {position: relative;}
+	a {
+		border: 1px solid $gray-400;
+		margin-top: -1px;
+		padding: 10px 15px !important;
+		width: 100%;
+	}
+}

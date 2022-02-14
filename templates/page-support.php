@@ -2,14 +2,16 @@
 /**
  * Template Name: Support page
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
+ * @since starter 1.0
  */
 
-get_header();
-?>
+get_header(); ?>
 
-<div class="content_wrapper" role="main">
+<div class="content_wrapper pt-5 pb-5" role="main">
 	<div class="container">
+
 		<!-- breadcrumb -->
 		<?php
 		if ( function_exists( 'yoast_breadcrumb' ) ) {
@@ -17,8 +19,8 @@ get_header();
 		}
 		?>
 		<!-- END breadcrumb -->
-		<div class="row mt-4">
 
+		<div class="row mt-4">
 			<!-- desktop nav -->
 			<?php if ( has_nav_menu( 'support_nav' ) ) : ?>
 				<div class="col-md-3 pr-md-5 support_nav">
@@ -58,14 +60,14 @@ get_header();
 				while ( have_posts() ) :
 					the_post();
 					?>
-					<h1 class="main_page_title"><?php the_title(); ?></h1>
+					<h1><?php the_title(); ?></h1>
 					<?php the_content(); ?>
 				<?php endwhile; ?>
 			</div>
-
 		</div>
+
 	</div>
-</div>
+</div><!-- .content_wrapper -->
 
 <?php
 get_footer();

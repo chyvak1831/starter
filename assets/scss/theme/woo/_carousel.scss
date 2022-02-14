@@ -1,0 +1,40 @@
+// product carousel
+.product_carousel {
+	.carousel_control_prev, .carousel_control_next {
+		background: $white;
+		box-shadow: 0 0 4px 2px rgba(0,0,0,0.5) !important;
+		margin: -110px 10px 0;
+		@include media-breakpoint-down(md) {margin: -60px 10px 0;}
+	}
+	.wraper_product {
+		height: auto;
+		margin-right: 20px;
+		width: 240px;
+	}
+}
+
+// fullwidth carousel
+.fullwidth_carousel {
+	margin-bottom: 6%;
+	.carousel_control_next, .carousel_control_prev {
+		color: $white;
+		font-size: 47px;
+	}
+	picture {
+		width: 100%;
+		img {
+			margin: 0 auto;
+			max-height: 100%;
+		}
+		// set aspect-ratio (i.e. height in fact) for different screens
+		aspect-ratio: 1.5; // mobile image
+		@include media-breakpoint-up(sm) {aspect-ratio: 2.0;} // tablet image
+		@include media-breakpoint-up(lg) {aspect-ratio: 2.5;} // desktop image
+
+		// display image depends on screen size
+		@include media-breakpoint-down(sm) {&.carousel_img_mobile {display: block !important;}} // display mobile image
+		@include media-breakpoint-up(sm) {&.carousel_img_tablet {display: block !important;}} // display tablet image
+		@include media-breakpoint-up(lg) {&.carousel_img_tablet {display: none !important;}} // hide tablet image
+		@include media-breakpoint-up(lg) {&.carousel_img_desktop {display: block !important;}} // display desktop image
+	}
+}

@@ -1,0 +1,64 @@
+// custom file label and icon
+.custom_file_label {
+	bottom: 0;
+	left: 0;
+	pointer-events: initial;
+	position: absolute;
+	right: 0;
+	top: 0;
+	.label_text {
+		left: 0;
+		line-height: var(--bs-body-line-height); // make line-height the same with labels
+		padding: $form-floating-padding-y $form-floating-padding-x; // from bootstrap/scss/forms/_floating-labels.scss
+		position: absolute;
+		top: 0;
+		transform-origin: 0 0;
+		transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out; // css of selector ".form-floating > label" from browser's inspector
+	}
+	svg {
+		height: 1em;
+		position: absolute;
+		right: 15px;
+		top: 20px;
+		width: 1em;
+	}
+}
+
+// file preview list
+.list_file_upload {
+	margin: 0 20px 0 0;
+	position: relative;
+	z-index: 2;
+	li {
+		@include flex_align(space-between, stretch, nowrap);
+		background: $gray-300;
+		border: 1px solid $gray-200;
+		display: inline-flex;
+		margin: 0 9px 15px 0;
+		width: 250px;
+		&.error_filesize {color: $danger;}
+	}
+	.preview {
+		flex: 0 0 70px;
+		height: 70px;
+		line-height: 0;
+	}
+	.file_info {
+		padding: 15px 7px;
+		width: 100px;
+	}
+	.file_name {@include ellipsis(1);}
+	.remove_thumbnail_img {
+		@include flex_align(center);
+		border-radius: 0;
+		flex: 0 0 48px;
+	}
+}
+
+// file validation
+.js_wrap_fileuploader.not_empty {height: auto !important;}
+.js_wrap_fileuploader.not_empty .label_text {
+	opacity: $form-floating-label-opacity !important; // from bootstrap/scss/forms/_floating-labels.scss
+	transform: $form-floating-label-transform !important; // from bootstrap/scss/forms/_floating-labels.scss
+}
+.filelength ~ .filelength_invalid, .filesize ~ .filesize_invalid, .filetype ~ .filetype_invalid {display: block !important;}

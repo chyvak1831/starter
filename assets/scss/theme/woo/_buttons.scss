@@ -1,0 +1,28 @@
+.added_to_cart.wc-forward {display: none;}
+
+// "add to cart" button texts
+.btn {
+	.loading_txt, .added_to_cart_txt {display: none;}
+	&.loading {
+		opacity: 0.5;
+		pointer-events: none;
+		.default_txt, .added_to_cart_txt {display: none !important;}
+		.loading_txt {display: inline !important;}
+	}
+	&.added {
+		.default_txt {display: none;}
+		.added_to_cart_txt {display: inline;}
+	}
+}
+
+// custom +- buttons
+.count_block {
+	.btn {@include flex_align();}
+	input {
+		background: $white !important;
+		border-color: $primary;
+		border-radius: 0;
+		text-align: center;
+		width: 70px;
+	}
+}

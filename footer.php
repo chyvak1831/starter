@@ -2,7 +2,13 @@
 /**
  * The template for displaying the footer
  *
- * @package starter
+ * Contains the closing of the .main_wrap div and all content after.
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ *
+ * @package WordPress
+ * @subpackage starter
+ * @since starter 1.0
  */
 
 ?>
@@ -25,61 +31,15 @@
 </footer>
 </div>
 
-<!-- woo alert -->
+<!-- alert -->
 <div class="js_custom_alert" style="display:none">
-<div class="woocommerce-message alert alert-danger alert-dismissible fade show" role="alert">
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
 	<span class="js_custom_alert_txt"></span>
-	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		<span aria-hidden="true">&times;</span>
-	</button>
+	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="<?php esc_attr_e( 'Close', 'starter' ); ?>"></button>
 </div>
 </div>
-
-<div class="backdrop"></div>
 
 <?php wp_footer(); ?>
-
-<script>
-	var svg_icons = "<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/svg-icons.svg";
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', svg_icons);
-	xhr.onload = function() {
-		if (xhr.status === 200) {
-			var svg = document.createElement('div');
-			svg.innerHTML = xhr.responseText;
-			document.getElementsByTagName('body')[0].appendChild(svg);
-		}
-	};
-	xhr.send();
-</script>
-
-<script>
-	/*detect ios*/
-	function getMobileOperatingSystemIOS() {
-		var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-		if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-			document.getElementsByTagName( 'html' )[0].className += ' iOS mobile';
-		}
-	}
-	getMobileOperatingSystemIOS();
-	/*END detect ios*/
-
-	/*detect android*/
-	function getMobileOperatingSystemAndroid() {
-		var userAgent = navigator.userAgent;
-		if (/Android/.test(userAgent)) {
-			document.getElementsByTagName( 'html' )[0].className += ' android mobile';
-		}
-	}
-	getMobileOperatingSystemAndroid();
-	/*END detect android*/
-
-	/*detect touch*/
-	window.addEventListener( 'touchstart', function() {
-		document.getElementsByTagName( 'html' )[0].className += ' touch_device';
-	});
-	/*END detect touch*/
-</script>
 
 </body>
 </html>

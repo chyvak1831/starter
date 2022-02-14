@@ -1,0 +1,39 @@
+// review list & extended rating table
+.comment_list {
+	.wrap_rating_list {font-size: 16px;}
+	.dropdown-menu {padding: 0;}
+	.details_comment_list svg {
+		height: 1.455em;
+		margin-left: 6px;
+		width: 1.455em;
+	}
+}
+.table_ratings {
+	margin-bottom: 0;
+	.wrap_rating_list {font-size: 20px;}
+}
+
+// review form
+.ratings_list {
+	padding: 0;
+	> li {
+		@include flex_align(space-between, center, nowrap);
+		padding: 20px;
+		&:nth-child(odd) {background: $gray-100;}
+	}
+	.wrap_rating_list {
+		font-size: 20px;
+		li {cursor: pointer;}
+	}
+}
+
+// review low-rating modal
+.low_rating_modal {
+	.alert svg {
+		height: 3em;
+		float: left;
+		margin-right: 20px;
+		width: 3em;
+	}
+	.modal-footer .row {width: 100%;} //???
+}

@@ -16,9 +16,8 @@ global $product;
 
 	<ul class="list mt-3">
 		<li>
-			<div class="count_block js_count_add_product">
-				<a href="#" class="count_block_btn js_minus_count_btn_product" role="button" aria-label="<?php esc_attr_e( 'Minus product', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-minus' ) ); ?></a>
-				<div class="wrap_count_input">
+			<div class="btn-group count_block single_count_block js_count_add_product">
+				<a href="#" class="btn btn-outline-primary btn-lg" data-count="minus" role="button" aria-label="<?php esc_attr_e( 'Minus product', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-minus' ) ); ?></a>
 				<?php
 					do_action( 'woocommerce_before_add_to_cart_quantity' );
 
@@ -32,12 +31,11 @@ global $product;
 
 					do_action( 'woocommerce_after_add_to_cart_quantity' );
 					?>
-				</div>
-				<a href="#" class="count_block_btn js_plus_count_btn_product" role="button" aria-label="<?php esc_attr_e( 'Plus product', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-plus' ) ); ?></a>
+				<a href="#" class="btn btn-outline-primary btn-lg" data-count="plus" role="button" aria-label="<?php esc_attr_e( 'Plus product', 'starter' ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-plus' ) ); ?></a>
 			</div>
 		</li>
 		<li>
-			<button type="submit" class="single_add_to_cart_button btn btn-lg btn-outline-primary"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
+			<button type="submit" class="single_add_to_cart_button btn btn-lg btn-outline-primary js_add_to_cart_btn"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
 		</li>
 	</ul>
 

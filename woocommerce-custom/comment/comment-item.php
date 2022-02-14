@@ -1,8 +1,10 @@
 <?php
 /**
- * Comment part
+ * Template part for displaying comment item
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
+ * @since starter 1.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -42,9 +44,9 @@ $starter_comment_average_rating  = ( $starter_comment_price_rating + $starter_co
 				$starter_comment_rating = $starter_comment_average_rating;
 				require get_stylesheet_directory() . '/woocommerce-custom/global/rating.php';
 			?>
-			<a href="#" class="ml-1" data-toggle="dropdown"><?php echo esc_html( number_format( round( $starter_comment_average_rating, 1 ), 1, '.', '' ) ); ?></a>
+			<a href="#" class="ml-1" data-bs-toggle="dropdown"><?php echo esc_html( number_format( round( $starter_comment_average_rating, 1 ), 1, '.', '' ) ); ?></a>
 			<div class="dropdown-menu">
-				<table class="table table_ratings">
+				<table class="table table-striped table_ratings">
 					<tr>
 						<td><?php echo esc_html_e( 'Price:', 'starter' ); ?></td>
 						<td>
@@ -97,26 +99,28 @@ $starter_comment_average_rating  = ( $starter_comment_price_rating + $starter_co
 	<!-- text and image comment content -->
 	<?php echo esc_html( $starter_comment_description ); ?>
 	<?php if ( 0 < $starter_comment_total_img ) : ?>
-		<div class="attached_img_comment">
+		<div class="attached_img_comment mt-4">
 			<?php /* translators: count of images. */ ?>
-			<span class="h6"><?php printf( esc_html( _n( 'Attached %s Photo', 'Attached %s Photos', $starter_comment_total_img, 'starter' ) ), esc_html( $starter_comment_total_img ) ); ?></span>
+			<small class="attached_img_title"><?php printf( esc_html( _n( 'Attached %s Photo', 'Attached %s Photos', $starter_comment_total_img, 'starter' ) ), esc_html( $starter_comment_total_img ) ); ?></small>
 			<ul class="list object_fit">
 				<?php foreach ( $starter_comment_img_ids as $starter_comment_img ) : ?>
 					<li class="js_comment_img_modal_btn">
-						<picture class="item_img">
-							<?php
-								echo wp_kses(
-									starter_img_func(
-										array(
-											'img_src'   => 'w200',
-											'img_sizes' => '90px',
-											'img_id'    => $starter_comment_img,
-										)
-									),
-									wp_kses_allowed_html( 'post' )
-								);
-							?>
-						</picture>
+						<a href="/" role="button" aria-label="Open review modal">
+							<picture class="item_img">
+								<?php
+									echo wp_kses(
+										starter_img_func(
+											array(
+												'img_src'   => 'w200',
+												'img_sizes' => '90px',
+												'img_id'    => $starter_comment_img,
+											)
+										),
+										wp_kses_allowed_html( 'post' )
+									);
+								?>
+							</picture>
+						</a>
 					</li>
 				<?php endforeach; ?>
 			</ul>

@@ -2,7 +2,8 @@
 /**
  * WYSIWYG improvements: remove media button, add font-sizes/line-height/letter-spacing/font-families.
  *
- * @package starter
+ * @package WordPress
+ * @subpackage starter
  * @since 1.0
  */
 
@@ -27,7 +28,7 @@ add_action( 'admin_head', 'starter_remove_add_media_buttons' );
  * @return array The custom font-sizes.
  */
 function starter_tiny_mce_fontsize( $mce_init ) {
-	$mce_init['fontsize_formats'] = '9px 10px 11px 12px 13px 14px 15px 16px 17px 18px 19px 20px 21px 22px 23px 24px 25px 26px 27px 28px 29px 30px 31px 32px 33px 34px 35px 36px 37px 38px 39px 40px 41px 42px 43px 44px 45px 46px 47px 48px 49px 50px 51px 52px 53px 54px 55px 56px 57px 58px 59px 60px 61px 62px';
+	$mce_init['fontsize_formats'] = '9px 10px 11px 12px 13px 14px 15px 16px 17px 18px 19px 20px 21px 22px 23px 24px 25px 26px 27px 28px 29px 30px 31px 32px 33px 34px 35px 36px 37px 38px 39px 40px 41px 42px 43px 44px 45px';
 	return $mce_init;
 }
 add_filter( 'tiny_mce_before_init', 'starter_tiny_mce_fontsize' );
@@ -192,7 +193,7 @@ function starter_google_fonts_css() {
 		$google_fonts_css .= '[style*=' . $value . '] {font-family:' . $value . ' !important}';
 	}
 	$default_google_font = get_theme_mod( 'default_google_font', "font-family: 'Open Sans', sans-serif;" );
-	$google_fonts_css   .= '#tinymce {' . $default_google_font . '}:root {--default-font-family:' . str_replace( 'font-family:', '', $default_google_font ) . '}';
+	$google_fonts_css   .= '#tinymce {' . $default_google_font . '}:root {--bs-body-font-family:' . str_replace( 'font-family:', '', $default_google_font ) . '}';
 	$google_font_weights = "[style*='MCEfontweight100'] {font-weight: 100 !important} [style*='MCEfontweight200'] {font-weight: 200 !important} [style*='MCEfontweight300'] {font-weight: 300 !important} [style*='MCEfontweight400'] {font-weight: 400 !important} [style*='MCEfontweight500'] {font-weight: 500 !important} [style*='MCEfontweight600'] {font-weight: 600 !important} [style*='MCEfontweight700'] {font-weight: 700 !important} [style*='MCEfontweight800'] {font-weight: 800 !important} [style*='MCEfontweight900'] {font-weight: 900 !important}";
 	return $google_fonts_css . $google_font_weights;
 }

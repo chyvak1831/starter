@@ -1,0 +1,32 @@
+.widget_shopping_cart {padding: 0 10px;}
+.woocommerce-mini-cart {
+	margin-bottom: 7px;
+	padding: 0;
+}
+.woocommerce-mini-cart-item {
+	border-bottom: 1px solid $gray-400;
+	@include flex_align(flex-start, center, nowrap);
+	a {
+		max-width: 180px;
+		overflow: hidden;
+		text-decoration: none;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	.remove_from_cart_button {
+		font-size: 25px;
+		padding: 5px 7px;
+		&:hover {opacity: 0.35;}
+	}
+	img {
+		height: auto;
+		margin-right: 5px;
+		max-height: 50px;
+		width: 50px;
+	}
+	.quantity {
+		margin-left: 8px;
+		white-space: nowrap;
+	}
+}
+.woocommerce-mini-cart__buttons .button.checkout {margin-left: 10px;}
