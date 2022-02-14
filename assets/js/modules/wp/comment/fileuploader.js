@@ -14,105 +14,96 @@ const formatBytes = ( bytes, decimals = 2 ) =>  {
     return parseFloat( ( bytes / Math.pow( k, i ) ).toFixed( dm ) ) + ' ' + sizes[i];
 }
 
+const wrapFileuploader = document.querySelectorAll( '.js_wrap_fileuploader' );
+wrapFileuploader.forEach( element => {
+	// get preview and input templates
+	inputTpl = document.querySelector( '.js_fileuploader_input_tpl' );
+	uploadedTpl = document.querySelector( '.js_uploaded_item_tpl' );
+	imgTpl = document.querySelector( '.js_uploaded_item_tpl img' );
+	fileName = document.querySelector( '.js_uploaded_item_tpl .js_file_name' );
+	fileSize = document.querySelector( '.js_uploaded_item_tpl .js_file_size' );
 
-// Fileuploader
-class FileUploader {
-	constructor( element ) {
-		// get fileinput elements and datatransfer
-		this.fileUploader = element;
-		this.wrapPreviewList = this.fileUploader.closest( '.js_wrap_upload_files' );
-		this.previewList = this.wrapPreviewList.querySelector( '.js_list_file_upload' );
-		this.dataTransfer = new DataTransfer();
+	element.addEventListener( 'change', (e)=> {
+		if ( e.target && e.target.matches( '.js_fileuploader_label' ) ) return;
+
+		// get current elements
+		const fileuploader = e.target;
+		const fileList = fileuploader.files;
+		const inputId = fileuploader.getAttribute( 'id' );
+		const wrapFileuploader = fileuploader.closest( '.js_wrap_fileuploader' );
+		const previewList = wrapFileuploader.querySelector( '.js_uploaded_list' );
+		const wrapHiddenInputs = wrapFileuploader.querySelector( '.js_wrap_hidden_fileinputs' );
 
 		// get maximum length & weight
-		this.maximumFiles = this.fileUploader.getAttribute( 'data-length' );
-		this.maximumWeight = this.fileUploader.getAttribute( 'data-weight' )*1024*1024;
+		maximumFiles = wrapFileuploader.getAttribute( 'data-length' );
+		maximumWeight = wrapFileuploader.getAttribute( 'data-weight' )*1024*1024;
 
-		// get template elements
-		this.imgTpl = document.querySelector( '.js_fileupload_tpl img' );
-		this.fileUploadTpl = document.querySelector( '.js_fileupload_tpl' );
-		this.fileName = document.querySelector( '.js_fileupload_tpl .js_file_name' );
-		this.fileSize = document.querySelector( '.js_fileupload_tpl .js_file_size' );
-	}
+		// validation
+		const validateFile = () => {
+			wrapFileuploader.classList.remove( 'is-invalid', 'not_empty', 'filelength', 'filesize', 'filetype' );
 
-	validateFile() {
-		this.wrapPreviewList.classList.remove( 'is-invalid', 'not_empty', 'filelength', 'filesize', 'filetype' );
+			// check if filelist empty
+			if ( previewList.querySelector( 'li' ) ) {
+				wrapFileuploader.classList.add( 'not_empty' )
+			}
 
-		// check if filelist empty
-		if ( this.previewList.firstChild ) {
-			this.wrapPreviewList.classList.add( 'not_empty' )
-		}
+			// check if filelist length valid
+			let lengthFiles = previewList.querySelectorAll( 'li' ).length;
+			if ( lengthFiles > maximumFiles ) {
+				wrapFileuploader.classList.add( 'is-invalid', 'filelength' );
+			}
 
-		// check if filelist length valid
-		const lengthFiles = this.previewList.querySelectorAll( 'li' ).length;
-		if ( lengthFiles > this.maximumFiles ) {
-			this.wrapPreviewList.classList.add( 'is-invalid', 'filelength' );
-		}
-
-		// check if filesize valid
-		for ( let i = 1; i < lengthFiles+1; i++ ) {
-			let currentItem = this.previewList.querySelector( 'li:nth-child(' + i + ')' );
-			let size = parseFloat( currentItem.querySelector( '.js_file_size' ).getAttribute( 'data-size' ) );
-			if ( size > this.maximumWeight ) {
-				this.wrapPreviewList.classList.add( 'is-invalid', 'filesize' );
-				currentItem.classList.add( 'error_filesize' );
+			// check if filesize valid
+			for ( let i = 1; i < lengthFiles+1; i++ ) {
+				let currentItem = previewList.querySelector( 'li:nth-child(' + i + ')' );
+				let size = parseFloat( currentItem.querySelector( '.js_file_size' ).getAttribute( 'data-size' ) );
+				if ( size > maximumWeight ) {
+					wrapFileuploader.classList.add( 'is-invalid', 'filesize' );
+					currentItem.classList.add( 'error_filesize' );
+				}
 			}
 		}
-	}
 
-	createPreview( fileList ) {
-		// reset preview list
-		this.previewList.innerHTML = '';
-
-		// create preview
+		// create previews & hidden input[type='file']
 		for ( let i = 0; i < fileList.length; i++ ) {
-			this.imgTpl.src = URL.createObjectURL( fileList[i] );
-			this.fileName.innerHTML = fileList[i].name;
-			this.fileSize.innerHTML = formatBytes( fileList[i].size );
-			this.fileSize.setAttribute( 'data-size', fileList[i].size );
-			this.previewList.insertAdjacentHTML( 'beforeend', this.fileUploadTpl.innerHTML );
+			// create preview
+			imgTpl.src = URL.createObjectURL( fileList[i] );
+			fileName.innerHTML = fileList[i].name;
+			fileSize.innerHTML = formatBytes( fileList[i].size );
+			fileSize.setAttribute( 'data-size', fileList[i].size );
+			previewList.insertAdjacentHTML( 'beforeend', uploadedTpl.innerHTML );
+
+			// create input[type='file']
+			let hiddenInput = document.createElement( 'input' );
+			let dataTransfer = new DataTransfer();
+			hiddenInput.setAttribute( 'type', 'file' )
+			dataTransfer.items.add( fileList[i] );
+			hiddenInput.files = dataTransfer.files;
+			wrapHiddenInputs.appendChild( hiddenInput );
 		}
+		validateFile();
+		previewList.addEventListener( 'click', (e)=> {
+			validateFile();
+		})
 
-		this.validateFile();
-	}
+		// remove current main input[file] and add new main input[file] - due ios bug
+		fileuploader.remove();
+		wrapFileuploader.insertAdjacentHTML( 'afterbegin', inputTpl.innerHTML );
+		wrapFileuploader.querySelector( '.js_field_file_upload' ).setAttribute( 'id', inputId );
+	});
 
-	addFile(e) {
-		// add files to dataTransfer
-		for ( let i = 0; i < this.fileUploader.files.length; i++ ) {
-			this.dataTransfer.items.add( this.fileUploader.files[i] );
-		}
-
-		this.fileUploader.files = this.dataTransfer.files;
-
-		this.createPreview( this.fileUploader.files );
-	}
-
-	removeFile(e) {
+	// remove file
+	const previewList = document.querySelectorAll( '.js_uploaded_list' );
+	previewList.forEach( element => element.addEventListener( 'click', e => {
 		if ( e.target && e.target.matches( '.js_remove_thumb' ) ) {
 			e.preventDefault();
-			const fileIndex = [...this.previewList.children].indexOf( e.target.closest( 'li' ) );
-
-			// remove item from preview list and from datatransfer
+			let fileIndex = [...element.children].indexOf( e.target.closest( 'li' ) ) + 1;
+			console.log(fileIndex);
+			let wrapHiddenInput = e.target.closest( '.js_wrap_fileuploader' ).querySelector( '.js_wrap_hidden_fileinputs' );
+			wrapHiddenInput.querySelector( 'input:nth-child(' + fileIndex + ')' ).remove();
 			e.target.closest( 'li' ).remove();
-			this.dataTransfer.items.remove( fileIndex );
-
-			// update fileinput with new dataTransfer
-			this.fileUploader.files = this.dataTransfer.files;
 		}
-
-		this.validateFile();
-	}
-
-	init() {
-		this.fileUploader.addEventListener( 'change', this.addFile.bind( this ) );
-		this.previewList.addEventListener( 'click', this.removeFile.bind( this ) );
-	}
-}
-
-const fileUploadElement = document.querySelectorAll( '.js_field_file_upload' );
-fileUploadElement.forEach( element => {
-	let fileUpload = new FileUploader( element );
-	fileUpload.init();
+	}))
 })
 
 

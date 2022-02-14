@@ -18,11 +18,11 @@ window.starterSubmitComment = form => {
 	const data = new FormData( form );
 
 	// add files if comment image enabled
-	const fileNode = document.querySelector( '.js_field_file_upload' );
-	if ( fileNode ) {
-		for ( const file of fileNode.files ) {
-			data.append( 'files[]', file, file.name )
-		}
+	const fileInputs = form.querySelectorAll( '.js_wrap_hidden_fileinputs input' );
+	if ( 0 !== fileInputs.length ) {
+		fileInputs.forEach( element => {
+			data.append( 'files[]', element.files[0], element.files[0].name );
+		})
 	}
 
 	// send data

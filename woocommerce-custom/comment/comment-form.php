@@ -10,9 +10,6 @@
 defined( 'ABSPATH' ) || exit;
 
 $starter_comment_name_email_required = get_option( 'require_name_email', 1 ) ? 'required' : '';
-$starter_comment_file                = get_theme_mod( 'comment_file', false );
-$starter_comment_file_max_length     = get_theme_mod( 'comment_maximum_files', 10 ); /*maximum files*/
-$starter_comment_file_max_weight     = get_theme_mod( 'comment_maximum_weight', 15 ); /*MB, each file maximum weight*/
 $starter_comment_recaptcha           = get_theme_mod( 'comment_recaptcha', false );
 $starter_comment_recaptcha_key       = get_theme_mod( 'public_recaptcha_key' );
 $starter_comment_privacy             = get_theme_mod( 'comment_privacy', false );
@@ -110,39 +107,7 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 	<!-- END comment field -->
 
 	<!-- file field -->
-		<?php if ( $starter_comment_file ) : ?>
-			<div class="mb-3">
-				<div class="form-floating">
-					<div class="form-control js_wrap_upload_files" data-filelength data-filesize data-filetype>
-						<input class="custom_file_input js_field_file_upload" accept="image/jpg, image/jpeg, image/png" data-length="<?php echo esc_attr( $starter_comment_file_max_length ); ?>" data-weight="<?php echo esc_attr( $starter_comment_file_max_weight ); ?>" id="commentFileupload_<?php echo esc_attr( $starter_post_id ); ?>" type="file" multiple aria-describedby="fileHelp">
-						<ul class="list-unstyled list_file_upload js_list_file_upload"></ul>
-					</div>
-					<label class="file_label_text" for="commentFileupload_<?php echo esc_attr( $starter_post_id ); ?>"><?php esc_html_e( 'Attachment (Optional)', 'starter' ); ?></label>
-					<label class="file_label" for="commentFileupload_<?php echo esc_attr( $starter_post_id ); ?>"><?php echo starter_get_svg( array( 'icon' => 'bi-image' ) ); ?></label>
-					<div class="invalid-feedback filelength_invalid d-none">
-						<?php
-							// Translators: $s maximum count of files.
-							echo sprintf( esc_html__( 'Maximum %s files.', 'starter' ), esc_html( $starter_comment_file_max_length ) );
-						?>
-					</div>
-					<div class="invalid-feedback filesize_invalid d-none">
-						<?php
-							// Translators: $s maximum count of files.
-							echo sprintf( esc_html__( 'File must be less than %sMB.', 'starter' ), esc_html( $starter_comment_file_max_weight ) );
-						?>
-					</div>
-					<div class="invalid-feedback filetype_invalid d-none">
-						<?php esc_html_e( 'File type is not valid.', 'starter' ); ?>
-					</div>
-				</div>
-				<small id="fileHelp" class="form-text text-muted">
-					<?php
-						// Translators: $s maximum count of files.
-						echo sprintf( esc_html__( 'You can upload up to %1$s files in png, jpg or jpeg format size limit %2$s MB each.', 'starter' ), esc_html( $starter_comment_file_max_length ), esc_html( $starter_comment_file_max_weight ) );
-					?>
-				</small>
-			</div>
-		<?php endif; ?>
+		<?php require get_stylesheet_directory() . '/templates/fileuploader.php'; ?>
 	<!-- END file field -->
 
 	<!-- recaptcha field -->
@@ -179,20 +144,6 @@ $starter_comment_extended_rating     = get_theme_mod( 'comment_extended_rating',
 <!-- END comment form -->
 
 
-<!-- fileupload template -->
-<div class="js_fileupload_tpl d-none" tabindex="-3">
-	<li class="template-upload">
-		<div class="preview object_fit"><img class="img-fluid" src="" alt="<?php esc_attr_e( 'Comment image preview', 'starter' ); ?>"></div>
-		<div class="file_info">
-			<div class="file_name js_file_name"></div>
-			<div class="file_size js_file_size" data-size></div>
-		</div>
-		<a href="#" class="btn btn-light cancel remove_thumbnail_img js_remove_thumb" role="button" aria-label="<?php esc_attr_e( 'Remove file', 'starter' ); ?>">
-			<?php echo starter_get_svg( array( 'icon' => 'bi-delete' ) ); ?>
-		</a>
-	</li>
-</div>
-<!-- END fileupload template -->
 
 
 <!-- low-rating modal -->
