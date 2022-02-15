@@ -1,6 +1,7 @@
 # STARTER
 
-Starter WooCommerce theme, how it looks/works by default see here https://starter.rsdev.in/.  
+# WARNING! VERSION # 2 RELEASED!
+## But documentation still outstanding! It will be updated in next two days (**if fucking Russia not invade my country Ukraine**)
 Open source, free to use - [MIT](https://choosealicense.com/licenses/mit/) license.
 
 
@@ -22,12 +23,12 @@ Open source, free to use - [MIT](https://choosealicense.com/licenses/mit/) licen
 
 
 # ❔ About
-This theme **keeps your time**: it provides main ecommerce pages ready to easy and fast customize (home, catalog, single page) and a few great **features which usually used or must have**.
+This theme **keeps your time**: it provides main ecommerce pages ready for easy and fast customize (home, catalog, single page) and a few great **features which usually used or must have**.
 
 #### ✔️ 6 main reasons to use Starter
 1. **easy to customize** [layout](https://github.com/chyvak1831/starter/wiki/Templates)  
 2. it developed in according with [WPCS](https://github.com/WordPress/WordPress-Coding-Standards) so existing custom **code is secure**  
-3. **load speed ready**: load time for dekstop is **under 1 second**, for is mobile **under 3 seconds**; the weight of homepage and catalog is only **about 300kb**, the weight of single product page is only **about 200kb**.
+3. **load speed ready**: load time for dekstop is **under 1 second**, for mobile is **under 3 seconds**; the weight of homepage and catalog is only **about 300kb**, the weight of single product page is only **about 200kb**.
     <details><summary>Details</summary>
    <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.2.0/screenshots/weight_shop.jpg" alt="Weight shop page">
    <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.2.0/screenshots/weight_single.jpg" alt="Weight single product page">
@@ -51,18 +52,13 @@ This theme **keeps your time**: it provides main ecommerce pages ready to easy a
 
 ### ✅ Requirements
 Probably Starter will works with other plugin versions - but with versions below it's tested.
-* [WordPress](https://wordpress.org/) >= 5.5
-* [ACF](https://wordpress.org/plugins/advanced-custom-fields/) >= 5.9.0
+* [WordPress](https://wordpress.org/) >= 5.9
+* [ACF](https://wordpress.org/plugins/advanced-custom-fields/) >= 5.11.4
   <details><summary>Show details</summary>
   You can to install: <strong>"ACF Pro"</strong> - <em>all features available</em> or <strong>Basic ACF</strong> - <em>is not available Home Page features</em> and you'll not see <em>comment images</em> in admin due gallery and repeater features are not available in free version.<br>
   After installation go to ACF and sync fields.
   <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.2.0/screenshots/acf_sync.jpg" alt="ACF sync settings"></details>
-* [Classic Editor](https://wordpress.org/plugins/classic-editor/) >= 1.6
-* [EWWW Image Optimizer](https://wordpress.org/plugins/ewww-image-optimizer/) >= 5.7.0
-  <details><summary>Show details</summary>
-  After installation go to EWWW setting and enable 'WebP Conversion' & 'Force WebP'.
-  <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.2.0/screenshots/ewww.jpg" alt="EWWW settings"></details>
-*  [TinyMCE Advanced](https://wordpress.org/plugins/tinymce-advanced/) >= 5.5.0
+*  [Advanced Editor Tools (previously TinyMCE Advanced)](https://wordpress.org/plugins/tinymce-advanced/) >= 5.6.0
     <details><summary>Show details</summary>
     After installation copy settings
     
@@ -92,19 +88,20 @@ Probably Starter will works with other plugin versions - but with versions below
     And paste here
     <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.2.0/screenshots/wysiwyg/wysiwyg_03.jpg" alt="TinyMCE settings 3">
     </details>
-* [WooCommerce](https://wordpress.org/plugins/woocommerce/) >= 4.4.1
-* [Advanced Woo Search](https://wordpress.org/plugins/advanced-woo-search/) >= 2.09 (see [Widgets (search, minicart, wishlist) in menu](https://github.com/chyvak1831/starter/wiki/Menus))
-* [W3 Total Cache](https://wordpress.org/plugins/w3-total-cache/) >= 0.14.4
+* [Advanced Woo Search](https://wordpress.org/plugins/advanced-woo-search/) >= 2.47 (see [Widgets (search, minicart, wishlist) in menu](https://github.com/chyvak1831/starter/wiki/Menus))
+* [Classic Editor](https://wordpress.org/plugins/classic-editor/) >= 1.6.2
+* [EWWW Image Optimizer](https://wordpress.org/plugins/ewww-image-optimizer/) >= 6.4.1
+  <details><summary>Show details</summary>
+  After installation go to EWWW setting and enable 'WebP Conversion' & 'Force WebP'.
+  <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.2.0/screenshots/ewww.jpg" alt="EWWW settings"></details>
+* [W3 Total Cache](https://wordpress.org/plugins/w3-total-cache/) >= 2.2.1
   <details><summary>Show details</summary>
   W3TC used for optimize page cache and js only.
   <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.2.0/screenshots/w3tc_01.jpg" alt="W3TC settings 1">
   <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.2.0/screenshots/w3tc_02.jpg" alt="W3TC settings 2"></details>
-* [Node.js](https://nodejs.org/) = 14.x
-    <details><summary>Version's details</summary>
-      Tested with versions <a href="https://nodejs.org/download/release/v14.8.0/">v14.8.0</a> and <a href="https://nodejs.org/download/release/v14.15.3/">v14.15.3</a>, but it should works with any 14.x version.<br>
-      Due short life-cycle of node <a href="https://nodejs.org/en/about/releases/">v15</a> Starter <strong>will never officially compatible with node v15</strong>.
-    </details>
-* gulp = 2.3.0 (how to install - see next step Setup)
+* [WooCommerce](https://wordpress.org/plugins/woocommerce/) >= 6.2.0
+* [Node.js](https://nodejs.org/) = 17.x.x (**IMPORTANT for Windows: be sure that you're using x86 version, e.g. [v17](https://nodejs.org/download/release/v17.0.0/node-v17.0.0-x86.msi))
+* gulp = 4.0.2 (how to install - see next step Setup)
 
 ### 🔧 Setup
 1. Install [Requirements](#-requirements)
@@ -116,7 +113,7 @@ Probably Starter will works with other plugin versions - but with versions below
     ```bash
     npm i
     ```
-4. Setup your local domain in `config.js`: replace each `yourdomain` into your local domain - it's required for [browserSync](https://browsersync.io/docs/gulp) and for [Critical CSS](https://github.com/chyvak1831/starter/wiki/CSS)
+4. Setup your local domain in `config.js`: replace `yourdomain` into your local domain - it's required for [browserSync](https://browsersync.io/docs/gulp) and for [Critical CSS](https://github.com/chyvak1831/starter/wiki/CSS)
 
 ### 🚀 Build commands
 
@@ -133,18 +130,18 @@ Open site with port 4000 to get [browserSync](https://browsersync.io/docs/gulp) 
 
 
 ### 👍 Highly recommended/integrated to theme plugins
-* [WP Widget in Navigation](https://wordpress.org/plugins/wp-widget-in-navigation/) >= 2.0.1 (see [Widgets (search, minicart, wishlist) in menu](https://github.com/chyvak1831/starter/wiki/Menus))
-* [TI WooCommerce Wishlist](https://wordpress.org/plugins/ti-woocommerce-wishlist/) >= 1.21.2 (see [Widgets (search, minicart, wishlist) in menu](https://github.com/chyvak1831/starter/wiki/Menus))
+* [TI WooCommerce Wishlist](https://wordpress.org/plugins/ti-woocommerce-wishlist/) >= 1.40.1 (see [Widgets (search, minicart, wishlist) in menu](https://github.com/chyvak1831/starter/wiki/Menus))
   <details><summary>Show details</summary>
     After installation go to TI Wishlist and setup minimum recommnded settings. You can to play with other settings.
   <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.2.0/screenshots/wishlist/wishlist_01.jpg" alt="TI Wishlist settings 1">
   <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.2.0/screenshots/wishlist/wishlist_02.jpg" alt="TI Wishlist settings 2">
   <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.2.0/screenshots/wishlist/wishlist_03.jpg" alt="TI Wishlist settings 3">
   <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.2.0/screenshots/wishlist/wishlist_04.jpg" alt="TI Wishlist settings 4"></details>
-* [Yoast SEO](https://wordpress.org/plugins/wordpress-seo/) >= 14.8.1
+* [Yoast SEO](https://wordpress.org/plugins/wordpress-seo/) >= 18.1
   <details><summary>Show details</summary>
   After installation go to SEO->Search Appearance-> tab Breadcrumbs and enable 'Enable Breadcrumbs'
   <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.2.0/screenshots/breadcrumb.jpg" alt="Breadcrumbs Yoast SEO"></details>
+* [WP Widget in Navigation](https://wordpress.org/plugins/wp-widget-in-navigation/) >= 3.0.1 (see [Widgets (search, minicart, wishlist) in menu](https://github.com/chyvak1831/starter/wiki/Menus))
 ***
 <br>
 

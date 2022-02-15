@@ -1,5 +1,9 @@
 # Changelog
 
+# [2.0.0](https://github.com/chyvak1831/starter/releases/tag/v2.0.0) (2022-02-15)
+
+### Update details: coming soon
+
 # [1.2.3](https://github.com/chyvak1831/starter/releases/tag/v1.2.3) (2021-12-26)
 
 ### Fix
