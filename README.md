@@ -2,6 +2,8 @@
 
 # WARNING! VERSION # 2 RELEASED!
 ## But documentation still outstanding! It will be updated in next two days (**if fucking Russia not invade my country Ukraine**)
+
+# SORRY GUYS, CAN'T UPDATE DOCUMENTATION - I'M UNDER BOMBING IN KYIV. WILL BACK WHEN OUR ARMY DESTROY EACH RUSSIAN NAZI.
 Open source, free to use - [MIT](https://choosealicense.com/licenses/mit/) license.
 
 
