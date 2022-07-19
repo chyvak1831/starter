@@ -1,10 +1,7 @@
 # STARTER
 
-# WARNING! VERSION # 2 RELEASED!
-## But documentation still outstanding! It will be updated in next two days (**if fucking Russia not invade my country Ukraine**)
-
-# UPDATE: SORRY GUYS, CAN'T UPDATE DOCUMENTATION - I'M UNDER BOMBING IN KYIV. WILL BACK WHEN OUR ARMY DESTROY EACH RUSSIAN NAZI.
-Open source, free to use - [MIT](https://choosealicense.com/licenses/mit/) license.
+Starter WooCommerce theme, how it looks/works by default see here https://starter-demo.dakha.info/.  
+Open source, free to use - MIT license.
 
 
 
