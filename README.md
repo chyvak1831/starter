@@ -1,6 +1,6 @@
 # STARTER
 
-Starter WooCommerce theme, how it looks/works by default see here https://starter-demo.dakha.info/.  
+Starter WooCommerce theme, how it looks/works by default see here https://starter-demo.dakha.info/shop.  
 Open source, free to use - MIT license.
 
 
@@ -87,7 +87,6 @@ Probably Starter will works with other plugin versions - but with versions below
     And paste here
     <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.2.0/screenshots/wysiwyg/wysiwyg_03.jpg" alt="TinyMCE settings 3">
     </details>
-* [Advanced Woo Search](https://wordpress.org/plugins/advanced-woo-search/) >= 2.47 (see [Widgets (search, minicart, wishlist) in menu](https://github.com/chyvak1831/starter/wiki/Menus))
 * [Classic Editor](https://wordpress.org/plugins/classic-editor/) >= 1.6.2
 * [EWWW Image Optimizer](https://wordpress.org/plugins/ewww-image-optimizer/) >= 6.4.1
   <details><summary>Show details</summary>
@@ -98,7 +97,6 @@ Probably Starter will works with other plugin versions - but with versions below
   W3TC used for optimize page cache and js only.
   <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.2.0/screenshots/w3tc_01.jpg" alt="W3TC settings 1">
   <img src="https://raw.githubusercontent.com/chyvak1831/starter_img/master/archive/v1.2.0/screenshots/w3tc_02.jpg" alt="W3TC settings 2"></details>
-* [WooCommerce](https://wordpress.org/plugins/woocommerce/) >= 6.2.0
 * [Node.js](https://nodejs.org/) = 17.x.x (**IMPORTANT for Windows: be sure that you're using x86 version, e.g. [v17](https://nodejs.org/download/release/v17.0.0/node-v17.0.0-x86.msi))
 * gulp = 4.0.2 (how to install - see next step Setup)
 
@@ -129,6 +127,8 @@ Open site with port 4000 to get [browserSync](https://browsersync.io/docs/gulp) 
 
 
 ### 👍 Highly recommended/integrated to theme plugins
+* [WooCommerce](https://wordpress.org/plugins/woocommerce/) >= 6.2.0
+* [Advanced Woo Search](https://wordpress.org/plugins/advanced-woo-search/) >= 2.47 (see [Widgets (search, minicart, wishlist) in menu](https://github.com/chyvak1831/starter/wiki/Menus))
 * [TI WooCommerce Wishlist](https://wordpress.org/plugins/ti-woocommerce-wishlist/) >= 1.40.1 (see [Widgets (search, minicart, wishlist) in menu](https://github.com/chyvak1831/starter/wiki/Menus))
   <details><summary>Show details</summary>
     After installation go to TI Wishlist and setup minimum recommnded settings. You can to play with other settings.

@@ -22,7 +22,7 @@ function starter_img_func( $atts ) {
 	$img = $atts['img_id'] ? $atts['img_id'] : get_theme_mod( 'image_placeholder' );
 
 	/*get image lazy parameter*/
-	$lazy = ( isset( $atts['lazy'] ) ) ? '' : 'loading="lazy"';
+	$lazy = ( isset( $atts['lazy'] ) && 'false' == $atts['lazy'] ) ? '' : 'loading="lazy"';
 
 	/*default values*/
 	$img_width  = 'width="100%"';
