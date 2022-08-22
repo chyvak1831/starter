@@ -265,7 +265,7 @@ add_action( 'admin_init', 'starter_add_editor_styles' );
  * @since starter 1.0
  */
 function starter_admin_google_fonts() {
-	wp_enqueue_style( 'google-fonts', starter_get_google_fonts_url(), array(), '1' );
+	wp_enqueue_style( 'google-fonts', starter_get_google_fonts_url(), array(), null );
 	wp_add_inline_style( 'google-fonts', starter_google_fonts_css() );
 }
 add_action( 'admin_enqueue_scripts', 'starter_admin_google_fonts' );
@@ -277,7 +277,7 @@ add_action( 'admin_enqueue_scripts', 'starter_admin_google_fonts' );
  * @since starter 1.0
  */
 function starter_frontend_google_fonts() {
-	wp_enqueue_style( 'google-fonts', starter_get_google_fonts_url(), array(), '1' );
+	wp_enqueue_style( 'google-fonts', starter_get_google_fonts_url(), array(), null );
 	wp_add_inline_style( 'google-fonts', starter_google_fonts_css() );
 }
 add_action( 'get_footer', 'starter_frontend_google_fonts' );

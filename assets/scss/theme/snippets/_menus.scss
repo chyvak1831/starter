@@ -29,12 +29,12 @@
 
 
 // subnavs - dropdowns
-svg.arrow {
+.menu svg.arrow {
 	height: 0.7em;
 	margin-left: 3px;
 	width: 0.7em;
 }
-[aria-expanded="true"] > svg.arrow {transform: rotate(200grad);}
+.menu [aria-expanded="true"] > svg.arrow {transform: rotate(200grad);}
 @include media-breakpoint-up(md) {
 	.dropdown_left:not(.menu_nested_list) {
 		.sub-menu {
